@@ -13,7 +13,7 @@ git remote -v
 git remote add origin $REPO_URL
 git config remote.origin.url $REPO_URL
 
-echo '{}' >> src/env.json
+echo $FIREBASE >> src/env.json
 
 echo "DEBUG, cd out"
 test -d out && (
