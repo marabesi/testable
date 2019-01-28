@@ -1,0 +1,26 @@
+import React, { Component } from 'react';
+
+import './profile.scss';
+
+export default class Profile extends Component {
+
+    render() {
+        const name = this.props.user.displayName;
+
+        return (
+            <div className="profile">
+                <div className="picture-holder">
+                    <img src="https://placeimg.com/200/200/any" alt={name} className="picture"/>
+                </div>
+                <div className="info">
+                    <h2 className="title" alt={name} title={name}>
+                        {name}
+                    </h2>
+                    <span className="icon">
+                        }
+                    </span>
+                </div>
+            </div>
+        );
+    }
+}

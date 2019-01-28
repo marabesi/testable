@@ -1,0 +1,65 @@
+$leve-width: 300px;
+$level-height: 15px;
+$border-radius: 100px;
+
+.level {
+    .title {
+        text-transform: uppercase;
+        font-weight: bold;
+        margin: 0;
+    }
+
+    .progress-holder {
+        width: $leve-width;
+        height: $level-height;
+        border: 2px solid;
+        border-radius: $border-radius;
+        padding: 5px;
+
+        .progress {
+            height: $level-height;
+            background-color: #ccc;
+            border-radius: $border-radius;
+        }
+
+        .progress-10 {
+            width: 10%;
+        }
+
+        .progress-20 {
+            width: 20%;
+        }
+
+        .progress-30 {
+            width: 30%;
+        }
+
+        .progress-40 {
+            width: 40%;
+        }
+
+        .progress-50 {
+            width: 50%;
+        }
+
+        .progress-60 {
+            width: 60%;
+        }
+
+        .progress-70 {
+            width: 70%;
+        }
+
+        .progress-80 {
+            width: 80%;
+        }
+
+        .progress-90 {
+            width: 90%;
+        }
+
+        .progress-100 {
+            width: 100%;
+        }
+    }
+}
