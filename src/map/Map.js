@@ -14,20 +14,13 @@ export default class Map extends Component {
 
     return (
       <div className="flex">
-        <Profile user={this.props.user}/>
-        <Profile user={{displayName:'asdiasjdi isdjiadjisajdia aisj'}}/>
-        <Profile user={{displayName:'asduhausd uashduashdua usdahuasdhaushd uadshau'}}/>
-        <Profile user={{displayName:'nome grande de exemplo iuashaiush shussusu sira'}}/>
-        <Profile user={{displayName:'test'}}/>
+        <div className="user-info">
+          <Profile user={this.props.user}/>
+        </div>
 
-        <br/>
-
-        <Level progress="10" level="1"/>
-        <Level progress="70" level="10"/>
-        <Level progress="40" level="3"/>
-        <Level progress="90" level="685"/>
-        <Level progress="100" level="1123685"/>
-
+        <div className="user-progress">
+          <Level progress="10" level="1"/>
+        </div>
         <br/>
         <br/>
         <br/>
