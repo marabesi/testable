@@ -13,13 +13,15 @@
     "react-helmet": "^5.2.0",
     "react-router-dom": "^4.3.1",
     "react-scripts": "^2.1.3",
-    "react-transition-group": "^1.2.1"
+    "react-transition-group": "^1.2.1",
+    "tailwindcss": "^0.7.4"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
+    "start": "npm run tailwind:css && react-scripts start",
+    "build": "npm run tailwind:css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "tailwind:css":"tailwind build src/tailwind.src.css -c tailwind.js -o src/tailwind.css"
   },
   "browserslist": [
     ">0.2%",

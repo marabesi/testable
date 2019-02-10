@@ -13,7 +13,7 @@ export default class Map extends Component {
     }
 
     return (
-      <div>
+      <div className="flex">
         <Profile user={this.props.user}/>
         <Profile user={{displayName:'asdiasjdi isdjiadjisajdia aisj'}}/>
         <Profile user={{displayName:'asduhausd uashduashdua usdahuasdhaushd uadshau'}}/>
