@@ -11,13 +11,10 @@ $border-radius: 100px;
 
     .progress-holder {
         width: $leve-width;
-        height: $level-height;
         border: 2px solid;
         border-radius: $border-radius;
-        padding: 5px;
 
         .progress {
-            height: $level-height;
             background-color: #ccc;
             border-radius: $border-radius;
         }
