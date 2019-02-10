@@ -1,7 +1,10 @@
 .scene {
-    width: 500px;
-    height: 500px;
     background: #fff;
-    border-radius: 5%;
-    margin: 0 auto;
+    border-radius: 2.5em;
+    min-height: 60vh;
+
+  .content {
+    width: 70%;
+    height: 90%;
+  }
 }
