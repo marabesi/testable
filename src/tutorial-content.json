@@ -1,0 +1,18 @@
+{
+  "tutorial": {
+    "version": 1,
+    "steps": [
+        {
+            "step": 1,
+            "content": [
+                {"key": 0, "line": "_ Hello world", "style": "p-2"},
+                {"key": 1, "line": "{", "style": "p-2"},
+                {"key": 2, "line": "Meu nome é Buggy", "style": "p-2 ml-4"},
+                {"key": 3, "line": "e meu sonho é ser programador", "style": "p-2 ml-4"},
+                {"key": 4, "line": "mas tenho dois grandes desafios", "style": "p-2 ml-4"},
+                {"key": 5, "line": "}", "style": "p-2"}
+            ]
+        }
+    ]
+  }
+}
