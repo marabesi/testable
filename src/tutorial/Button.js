@@ -7,7 +7,7 @@ export default class Button extends Component {
   render() {
     const className = `button focus:outline-none ${this.props.className ? this.props.className: ''}`;
     return (
-      <button className={className}>{this.props.description}</button>
+      <button className={className} onClick={this.props.onClick}>{this.props.description}</button>
     );
   }
 }
