@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
 import Typing, {Cursor} from 'react-typing-animation';
+import PropTypes from 'prop-types';
+
+import './animated-text.scss';
 
 export default class AnimatedText extends Component {
 
@@ -16,11 +19,19 @@ export default class AnimatedText extends Component {
 
   render() {
     return (
-      <Typing onFinishedTyping={this.props.onFinishedTyping}>
+      <Typing speed={200}
+        onFinishedTyping={this.props.onFinishedTyping}
+        cursorClassName="cursor"
+        hideCursor={false}
+      >
         <Typing.Delay ms={500}/>
         {this.renderText()}
-        <Cursor />
+        <Cursor className="cursor" />
       </Typing>
     );
   }
+}
+
+AnimatedText.propTypes ={
+  onFinishedTyping: PropTypes.func
 }
