@@ -11,12 +11,17 @@ export default class Scene extends Component {
     this.state = {
       showNextButton: false
     };
+    this.onClick = this.onClick.bind(this);
   }
 
   onFinishedTyping() {
     this.setState({
       showNextButton: true
     });
+  }
+
+  onClick(event) {
+    this.props.next(event);
   }
 
   render() {
@@ -31,7 +36,7 @@ export default class Scene extends Component {
     let next = '';
 
     if (this.state.showNextButton){
-      next = <Button className="mt-10" description={this.props.button}/>
+      next = <Button className="mt-10" description={this.props.button} onClick={this.onClick} />
     }
 
     return (

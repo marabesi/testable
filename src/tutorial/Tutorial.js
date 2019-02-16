@@ -5,6 +5,8 @@ import content from '../tutorial-content.json';
 
 import './tutorial.scss';
 
+const isDebug = process.env.REACT_APP_DEBUG || false;
+
 export default class Tutorial extends Component {
 
   constructor() {
@@ -13,28 +15,60 @@ export default class Tutorial extends Component {
       tutorial: content.tutorial,
       currentStep: 1
     };
+
+    this.handleNextScene = this.handleNextScene.bind(this);
+    this.handlePreviousScene = this.handlePreviousScene.bind(this);
   }
 
-  componentDidMount() {
+  handlePreviousScene() {
+    const current = this.state.currentStep;
+
+    this.setState({
+      tutorial: content.tutorial,
+      currentStep: current - 1
+    });
+  }
+
+  handleNextScene() {
+    const current = this.state.currentStep;
+
+    this.setState({
+      tutorial: content.tutorial,
+      currentStep: current + 1
+    });
   }
 
   renderStep() {
     const steps = this.state.tutorial.steps;
+    const scenes = [];
 
     for (let step in steps) {
       if (steps[step].step === this.state.currentStep) {
-        return <Scene text={steps[step].content} button="Ok" step="{this.state.currentStep}" className="m-auto w-4/5"/>;
+        scenes.push(<Scene
+          key={step}
+          text={steps[step].content}
+          button="Ok"
+          step="{this.state.currentStep}"
+          className="m-auto w-4/5"
+          next={this.handleNextScene} />
+        );
       }
     }
+
+    return scenes;
   }
 
   render() {
     return (
       <div className="tutorial flex">
+        { isDebug && <button onClick={this.handlePreviousScene}>previous</button>}
+
         <Helmet>
           <style>{'body { background-color: #520F87; }'}</style>
         </Helmet>
         {this.renderStep()}
+
+        { isDebug && <button onClick={this.handleNextScene}>next</button>}
       </div>
     );
   }
