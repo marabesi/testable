@@ -12,6 +12,21 @@
                 {"key": 4, "line": "mas tenho dois grandes desafios", "style": "p-2 ml-4"},
                 {"key": 5, "line": "}", "style": "p-2"}
             ]
+        },
+        {
+            "step": 2,
+            "content": [
+                {"key": 0, "line": "_ O primeiro você sabe bem...", "style": "p-2"},
+                {"key": 1, "line": "{", "style": "p-2"},
+                {"key": 2, "line": "... programador não é NADA fácil!", "style": "p-2 ml-4"},
+                {"key": 3, "line": "}", "style": "p-2"}
+            ]
+        },
+        {
+            "step": 3,
+            "content": [
+                {"key": 0, "line": "_Sou um bug!", "style": "p-2"}
+            ]
         }
     ]
   }
