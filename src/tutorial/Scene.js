@@ -30,6 +30,8 @@ export default class Scene extends Component {
       flex
       flex-col
       items-start py-10 px-10
+      text-2xl
+      text-white
       ${this.props.className ? this.props.className: ''}
     `;
 

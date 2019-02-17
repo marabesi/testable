@@ -64,7 +64,7 @@ export default class Tutorial extends Component {
         { isDebug && <button onClick={this.handlePreviousScene}>previous</button>}
 
         <Helmet>
-          <style>{'body { background-color: #520F87; }'}</style>
+          <style>{'body { background-image: url("assets/bg.png"); }'}</style>
         </Helmet>
         {this.renderStep()}
 
