@@ -19,12 +19,13 @@ export default class AnimatedText extends Component {
 
   render() {
     return (
-      <Typing speed={200}
+      <Typing
         onFinishedTyping={this.props.onFinishedTyping}
         cursorClassName="cursor"
         hideCursor={false}
+        {...this.props}
       >
-        <Typing.Delay ms={500}/>
+        <Typing.Delay ms={100}/>
         {this.renderText()}
         <Cursor className="cursor" />
       </Typing>
