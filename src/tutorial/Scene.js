@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import Button from './Button';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
+import SvgBuggy from '../buggy/SvgBuggy';
+import Alien from '../alien/Alien';
 
 import './scene.scss';
 
@@ -29,9 +31,10 @@ export default class Scene extends Component {
       scene
       flex
       flex-col
-      items-start py-10 px-10
+      py-10 px-10
       text-2xl
       text-white
+      relative
       ${this.props.className ? this.props.className: ''}
     `;
 
@@ -43,9 +46,16 @@ export default class Scene extends Component {
 
     return (
       <div className={className}>
-        <div className="content">
-          <AnimatedText text={this.props.text} onFinishedTyping={() => this.onFinishedTyping() }/>
+        <div className="content flex">
+          <AnimatedText
+            className="w-2/3"
+            text={this.props.text}
+            onFinishedTyping={() => this.onFinishedTyping() }
+          />
+          <SvgBuggy className="absolute pin-r w-1/3 mt-10" />
+          {/* <Alien className="w-3/3 absolute pin-r pin-t"/> */}
         </div>
+
         {next}
       </div>
     );

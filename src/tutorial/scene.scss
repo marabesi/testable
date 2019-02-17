@@ -1,10 +1,10 @@
 .scene {
-    background-color: rgba(238, 155, 250, 0.2);
-    border-radius: 2.5em;
+    background-color: rgba(238, 155, 250, 0.1);
+    border-radius: 1.5em;
     min-height: 60vh;
+    border: 2px solid rgba(255,255,255, .2);
 
   .content {
-    width: 70%;
-    height: 90%;
+    width: 100%;
   }
 }
