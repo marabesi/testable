@@ -49,7 +49,7 @@ export default class Tutorial extends Component {
           text={steps[step].content}
           button="Ok"
           step="{this.state.currentStep}"
-          className="m-auto w-4/5"
+          className="m-auto w-3/5"
           next={this.handleNextScene} />
         );
       }
@@ -64,7 +64,14 @@ export default class Tutorial extends Component {
         { isDebug && <button onClick={this.handlePreviousScene}>previous</button>}
 
         <Helmet>
-          <style>{'body { background-image: url("assets/bg.png"); }'}</style>
+          <style>
+            {`
+              body {
+                background-image: url("assets/bg.png");
+                background-position: center center;
+              }
+            `}
+          </style>
         </Helmet>
         {this.renderStep()}
 
