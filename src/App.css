@@ -1,5 +1,30 @@
-@import url('https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700');
+@import url("https://fonts.googleapis.com/css?family=Rajdhani:300,400,500,600,700");
 
 body {
-    font-family: 'Rajdhani', sans-serif;
+  font-family: "Rajdhani", sans-serif;
+  overflow: hidden;
+}
+
+.stars:before,
+.stars:after {
+  content: "";
+  background-image: url("/assets/stars.png");
+  position: absolute;
+  left: -50%;
+  top: -50%;
+  right: -50%;
+  bottom: -50%;
+  pointer-events: none;
+  animation: sky 600s linear infinite;
+  opacity: 0.1;
+}
+
+@keyframes sky {
+  0% {
+    background-position: 110% 0;
+  }
+
+  100% {
+    background-position: 0 0;
+  }
 }
