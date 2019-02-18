@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Button from './Button';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import SvgBuggy from '../buggy/SvgBuggy';
-import Alien from '../alien/Alien';
+import AlienSvg from '../alien/AlienSvg';
 
 import './scene.scss';
 
@@ -53,7 +53,7 @@ export default class Scene extends Component {
             onFinishedTyping={() => this.onFinishedTyping() }
           />
           <SvgBuggy className="absolute pin-r w-1/3 mt-10" />
-          {/* <Alien className="w-3/3 absolute pin-r pin-t"/> */}
+          <AlienSvg className="w-3/3 absolute w-1/3 pin-r pin-t"/>
         </div>
 
         {next}
