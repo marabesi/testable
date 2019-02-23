@@ -5,7 +5,7 @@ import './profile.scss';
 export default class Profile extends Component {
 
     render() {
-      const name = this.props.user.displayName;
+      const name = this.props.user.name;
       const className = `profile ${this.props.className ? this.props.className : ''}`;
         return (
             <div className={className}>

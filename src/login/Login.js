@@ -1,3 +1,4 @@
+
 import React, { Component } from 'react';
 import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
@@ -7,6 +8,8 @@ import uiConfig from './Firebase';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
+
+require('firebase/database');
 
 export default class Login extends Component {
   constructor(props) {
@@ -24,10 +27,29 @@ export default class Login extends Component {
 
   authStatusChanged(user) {
     if (user !== null) {
-      this.setState({
-        isLogged: true,
-        user: user,
-      });
+      const userDefault = {
+        uid: user.uid,
+        name: user.displayName,
+        email: user.email,
+        photo: user.photoURL,
+        level: 1,
+        tutorial: true,
+      };
+
+      const userData = firebase.database().ref().child('users/' + user.uid);
+      userData.on('value', (snapshot) => {
+        const userObject = snapshot.val();
+
+        if (userObject !== null) {
+          userDefault.tutorial = userObject.tutorial;
+          userDefault.level = userObject.level;
+        }
+  
+        this.setState({
+          isLogged: true,
+          user: userDefault 
+        });
+      })
     }
 
     if (user === null) {
@@ -48,10 +70,7 @@ export default class Login extends Component {
   render() {
     if (this.state.isLogged) {
       return (
-        <div>
-          <Map user={this.state.user}/>
-          <button onClick={this.onLogout}>Logout</button>
-        </div>
+        <Map user={this.state.user} isTutorial={this.state.user.tutorial}/>
       )
     }
 
