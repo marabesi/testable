@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import Typing, {Cursor} from 'react-typing-animation';
 import PropTypes from 'prop-types';
+import TypedText from './TypedText';
+import ReactDOMServer from "react-dom/server";
 
 import './animated-text.scss';
 
@@ -14,25 +15,15 @@ export default class AnimatedText extends Component {
       )
     });
 
-    return text;
+    return [ReactDOMServer.renderToStaticMarkup(text)];
   }
 
   render() {
     return (
-      <Typing
-        onFinishedTyping={this.props.onFinishedTyping}
-        cursorClassName="cursor"
-        hideCursor={false}
-        {...this.props}
-      >
-        <Typing.Delay ms={100}/>
-        {this.renderText()}
-        <Cursor className="cursor" />
-      </Typing>
+      <TypedText
+        strings={this.renderText()}
+        onCompleted={this.props.onFinishedTyping}
+      />
     );
   }
-}
-
-AnimatedText.propTypes ={
-  onFinishedTyping: PropTypes.func
 }
