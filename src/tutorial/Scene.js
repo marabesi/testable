@@ -17,9 +17,11 @@ export default class Scene extends Component {
   }
 
   onFinishedTyping() {
-    this.setState({
-      showNextButton: true
-    });
+    setTimeout(() => {
+      this.setState({
+        showNextButton: true
+      });
+    }, 700);
   }
 
   onClick(event) {
@@ -41,12 +43,12 @@ export default class Scene extends Component {
     let next = '';
 
     if (this.state.showNextButton){
-      next = <Button className="mt-10" description={this.props.button} onClick={this.onClick} />
+      next = <Button className="mt-10 scale-in-center" description={this.props.button} onClick={this.onClick} />
     }
 
     return (
       <div className={className}>
-        <div className="content flex">
+        <div className="flex">
           <AnimatedText
             className="w-2/3"
             text={this.props.text}
