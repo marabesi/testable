@@ -4,6 +4,7 @@
     "steps": [
         {
             "step": 1,
+            "button": "Qual é o primeiro?",
             "content": [
                 {"key": 0, "line": "_ Hello world", "style": "p-2"},
                 {"key": 1, "line": "{", "style": "p-2"},
@@ -15,21 +16,27 @@
         },
         {
             "step": 2,
+            "button": "E o segundo?",
             "content": [
                 {"key": 0, "line": "_ O primeiro você sabe bem...", "style": "p-2"},
                 {"key": 1, "line": "{", "style": "p-2"},
-                {"key": 2, "line": "... programador não é NADA fácil!", "style": "p-2 ml-4"},
+                {"key": 2, "line": "... programar não é NADA fácil!", "style": "p-2 ml-4"},
                 {"key": 3, "line": "}", "style": "p-2"}
             ]
         },
         {
             "step": 3,
+            "button": "Um bug?",
             "content": [
-                {"key": 0, "line": "_Sou um bug!", "style": "p-2"}
+                {"key": 0, "line": "_ E o segundo ...", "style": "p-2"},
+                {"key": 1, "line": ". . .", "style": "p-2"},
+                {"key": 2, "line": ". . .", "style": "p-2"},
+                {"key": 3, "line": "_Sou um bug!", "style": "p-2"}
             ]
         },
         {
             "step": 4,
+            "button": "Que amigo?",
             "content": [
                 {"key": 0, "line": "_{", "style": "p-2"},
                 {"key": 1, "line": "Não temos credibilidade nessa área,", "style": "p-2 ml-4"},
@@ -40,18 +47,19 @@
         },
         {
             "step": 5,
+            "button": "Nazah? A que faz foguetes?",
             "content": [
                 {"key": 0, "line": "_{", "style": "p-2"},
                 {"key": 1, "line": "Que é um alien, pois são super valorizados porque muitos trabalham", "style": "p-2 ml-4"},
                 {"key": 2, "line": "para aquelas empresa famosa, a Nazah.", "style": "p-2 ml-4"},
                 {"key": 3, "line": ". . .", "style": "p-2 ml-4"},
-                {"key": 4, "line": ". . .", "style": "p-2 ml-4"},
                 {"key": 5, "line": "pfff", "style": "p-2 ml-4"},
                 {"key": 6, "line": "}", "style": "p-2"}
             ]
         },
         {
             "step": 6,
+            "button": "Foguetes?",
             "content": [
                 {"key": 0, "line": "_[", "style": "p-2"},
                 {"key": 1, "line": "Eu não perco tempo com testes unitários!", "style": "p-2 ml-4"},
@@ -63,6 +71,7 @@
         },
          {
             "step":7,
+            "button": "Estou dentro!",
             "content": [
                 {"key": 0, "line": "_[", "style": "p-2"},
                 {"key": 1, "line": "Ei Buggy!", "style": "p-2 ml-4"},
