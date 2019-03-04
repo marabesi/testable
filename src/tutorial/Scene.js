@@ -21,10 +21,17 @@ export default class Scene extends Component {
       this.setState({
         showNextButton: true
       });
-    }, 700);
+    }, 900);
   }
 
   onClick(event) {
+    if (this.props.lastScene) {
+      this.props.handleLastScene();
+      return {
+        isLastScene: true
+      };
+    }
+
     this.props.next(event);
   }
 
@@ -43,7 +50,7 @@ export default class Scene extends Component {
     let next = '';
 
     if (this.state.showNextButton){
-      next = <Button className="mt-10 scale-in-center" description={this.props.button} onClick={this.onClick} />
+      next = <Button className="absolute pin-b mb-8 scale-in-center" description={this.props.button} onClick={this.onClick} />
     }
 
     return (
@@ -52,10 +59,10 @@ export default class Scene extends Component {
           <AnimatedText
             className="w-2/3"
             text={this.props.text}
-            onFinishedTyping={() => this.onFinishedTyping() }
+            onFinishedTyping={ () => this.onFinishedTyping() }
           />
-          <SvgBuggy className="absolute pin-r w-1/3 mt-10" />
-          <AlienSvg className="w-3/3 absolute w-1/3 pin-r pin-t"/>
+          {this.props.onCompleted.showBug && this.state.showNextButton && <SvgBuggy className="absolute pin-r w-1/3 mt-10" />}
+          {this.props.showAlien && <AlienSvg className="w-3/3 absolute w-1/3 pin-r pin-t"/>}
         </div>
 
         {next}

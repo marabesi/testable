@@ -22,8 +22,12 @@ export default class AnimatedText extends Component {
     return (
       <TypedText
         strings={this.renderText()}
-        onCompleted={this.props.onFinishedTyping}
+        onComplete={this.props.onFinishedTyping}
       />
     );
   }
+}
+
+AnimatedText.propTypes = {
+  onFinishedTyping: PropTypes.func
 }

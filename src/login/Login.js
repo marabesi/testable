@@ -2,82 +2,76 @@
 import React, { Component } from 'react';
 import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
-import env from '../env.json';
-import Map from '../map/Map';
 import uiConfig from './Firebase';
-
+import { Redirect } from 'react-router-dom';
+import {fakeAuth} from '../login/Auth';
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
 
-require('firebase/database');
-
 export default class Login extends Component {
+  state = {
+    logged: false,
+    loading: true
+  }
+
   constructor(props) {
     super(props);
 
-    firebase.initializeApp(env);
-    firebase.auth().onAuthStateChanged(this.authStatusChanged.bind(this));
-
-    this.onLogout = this.onLogout.bind(this);
-
-    this.state = {
-      isLogged: false
-    };
+    fakeAuth.authenticate(this.authStatusChanged.bind(this));
   }
 
   authStatusChanged(user) {
-    if (user !== null) {
-      const userDefault = {
-        uid: user.uid,
-        name: user.displayName,
-        email: user.email,
-        photo: user.photoURL,
-        level: 1,
-        tutorial: true,
-      };
-
-      const userData = firebase.database().ref().child('users/' + user.uid);
-      userData.on('value', (snapshot) => {
-        const userObject = snapshot.val();
-
-        if (userObject !== null) {
-          userDefault.tutorial = userObject.tutorial;
-          userDefault.level = userObject.level;
-        }
-  
-        this.setState({
-          isLogged: true,
-          user: userDefault 
-        });
-      })
-    }
-
-    if (user === null) {
-      const ui = new firebaseui.auth.AuthUI(firebase.auth());
-      ui.start('#firebaseui-auth-container', uiConfig);
-    }
+    if (user) {
+      this.setState({
+        user: user,
+        logged: true,
+        loading: false
+      });
+    } else {
+      this.setState({
+        user: null,
+        logged: false,
+        loading: false
+      }); 
+    } 
   }
 
-  onLogout() {
-    firebase.auth().signOut();
-
-    this.setState({
-      isLogged: false,
-      user: null,
-    });
+  componentDidMount() {
+    const ui = new firebaseui.auth.AuthUI(firebase.auth());
+    ui.start('#firebaseui-auth-container', uiConfig);
   }
 
   render() {
-    if (this.state.isLogged) {
+    if (this.state.logged && this.state.user.tutorial) {
       return (
-        <Map user={this.state.user} isTutorial={this.state.user.tutorial}/>
-      )
+        <Redirect to={{
+          pathname: "/tutorial",
+          state: this.state
+        }} />
+      );
+    }
+
+    if (this.state.logged && this.state.user.tutorial === false) {
+      return (
+        <Redirect to={{
+          pathname: "/intro",
+          state: this.state
+        }} />
+      );
     }
 
     return (
-      <div>
-        <div id="firebaseui-auth-container"></div>
-      </div>
+      <React.Fragment>
+        <h1 className={this.state.loading ? "" : "hidden"}>Loading</h1>
+        <div
+          className={
+            this.state.loading
+              ? "hidden"
+              : "flex flex-col justify-center items-center h-screen"
+          }
+          id="firebaseui-auth-container"
+        />
+      </React.Fragment>
     );
   }
 }

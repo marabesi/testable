@@ -5,8 +5,7 @@ body {
   overflow: hidden;
 }
 
-.stars:before,
-.stars:after {
+.stars:before {
   content: "";
   background-image: url("/assets/stars.png");
   position: absolute;
@@ -15,13 +14,13 @@ body {
   right: -50%;
   bottom: -50%;
   pointer-events: none;
-  animation: sky 600s linear infinite;
+  /* animation: sky 400s linear infinite; */
   opacity: 0.1;
 }
 
 @keyframes sky {
   0% {
-    background-position: 110% 0;
+    background-position: 100% 0;
   }
 
   100% {

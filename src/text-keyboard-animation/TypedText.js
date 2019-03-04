@@ -6,9 +6,9 @@ export default class TypedText extends Component {
     const { strings } = this.props;
     const options = {
       strings: strings,
-      typeSpeed: 70,
+      typeSpeed: 40,
       showCursor: false,
-      onComplete: () => this.props.onCompleted()
+      onComplete: this.props.onComplete
     };
     this.typed = new Typed(this.el, options);
   }

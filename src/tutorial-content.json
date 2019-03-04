@@ -26,6 +26,9 @@
         },
         {
             "step": 3,
+            "onCompleted": {
+                "showBug": true
+            },
             "button": "Um bug?",
             "content": [
                 {"key": 0, "line": "_ E o segundo ...", "style": "p-2"},
@@ -60,6 +63,7 @@
         {
             "step": 6,
             "button": "Foguetes?",
+            "showAlien": true,
             "content": [
                 {"key": 0, "line": "_[", "style": "p-2"},
                 {"key": 1, "line": "Eu não perco tempo com testes unitários!", "style": "p-2 ml-4"},
@@ -72,11 +76,14 @@
          {
             "step":7,
             "button": "Estou dentro!",
+            "showAlien": true,
+            "lastScene": true,
             "content": [
                 {"key": 0, "line": "_[", "style": "p-2"},
                 {"key": 1, "line": "Ei Buggy!", "style": "p-2 ml-4"},
-                {"key": 2, "line": "Por que não construímos um foguete e mandamos pro espaço?", "style": "p-2 ml-4"},
-                {"key": 3, "line": "]", "style": "p-2"}
+                {"key": 2, "line": "Por que não construímos um foguete", "style": "p-2 ml-4"},
+                {"key": 3, "line": "e mandamos pro espaço?", "style": "p-2 ml-4"},
+                {"key": 4, "line": "]", "style": "p-2"}
             ]
         }
     ]

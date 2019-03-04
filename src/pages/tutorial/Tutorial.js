@@ -1,19 +1,19 @@
 import React, { Component } from 'react';
-import Profile from '../profile/Profile';
-import Tutorial from '../tutorial/Tutorial';
-import Level from '../level/Level';
+import Profile from '../../profile/Profile';
+import Level from '../../level/Level';
 import { Helmet } from 'react-helmet';
-import SvgBuggy from '../buggy/SvgBuggy';
-import Editor from '../editor/Editor';
-import AnimatedText from '../text-keyboard-animation/AnimatedText';
+import SvgBuggy from '../../buggy/SvgBuggy';
+import Editor from '../../editor/Editor';
+import AnimatedText from '../../text-keyboard-animation/AnimatedText';
 
-import './map.scss';
+import './tutorial.scss'
 
-export default class Map extends Component {
+export default class Tutorial extends Component {
 
   constructor() {
     super();
     this.state = {
+      user: {},
       code: 'var = 1;',
       options: {
         mode: 'javascript',
@@ -22,13 +22,12 @@ export default class Map extends Component {
     };
   }
 
+  componentDidMount() {
+    this.setState({
+      user: this.props.location.state.user
+    })
+  }
   render() {
-    if (this.props.isTutorial) {
-      return (
-        <Tutorial/>
-      );
-    }
-
     return (
       <div className="map">
         <Helmet>
@@ -45,10 +44,10 @@ export default class Map extends Component {
 
         <div className="flex justify-between items-center h-16 p-3 bg-grey-darkest">
           <div className="user-info">
-            <Profile user={this.props.user} />
+            <Profile user={this.state.user} />
           </div>
 
-          <img src="assets/logo.png"className="h-8" />
+          <img src="assets/logo.png" className="h-8" alt="logotipo" />
 
           <div className="user-progress">
             <Level progress="10" level="1" />
@@ -63,13 +62,12 @@ export default class Map extends Component {
         </div>
         <SvgBuggy className="w-1/5 absolute invisible" />
 
-        <div className="flex justify-center bg-grey-darkest h-8">
-        </div>
+        <div className="flex justify-center bg-grey-darkest h-8"></div>
 
         <div className="flex justify-center">
           <AnimatedText
             className="w-2/3 text-white text-xl"
-            text={[{"line": "testi uahsuahsusahu as auauauau  ", "key": 0}]}
+            text={[{ "line": "testi uahsuahsusahu as auauauau  ", "key": 0 }]}
           />
         </div>
       </div>

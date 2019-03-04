@@ -1,17 +1,22 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import Scene from './Scene';
-import content from '../tutorial-content.json';
+import Scene from '../../tutorial/Scene';
+import content from '../../tutorial-content.json';
 
-import './tutorial.scss';
+import './introduction.scss';
 
 const isDebug = process.env.REACT_APP_DEBUG || false;
 
-export default class Tutorial extends Component {
+export default class Introduction extends Component {
 
   constructor() {
     super();
     this.state = {
+      code: 'var = 1;',
+      options: {
+        mode: 'javascript',
+        lineNumbers: false,
+      },
       tutorial: content.tutorial,
       currentStep: 1
     };
@@ -70,7 +75,7 @@ export default class Tutorial extends Component {
   render() {
     return (
       <div className="tutorial flex">
-        { isDebug && <button onClick={this.handlePreviousScene}>previous</button>}
+        {isDebug && <button onClick={this.handlePreviousScene}>previous</button>}
 
         <Helmet>
           <style>
@@ -84,7 +89,7 @@ export default class Tutorial extends Component {
         </Helmet>
         {this.renderStep()}
 
-        { isDebug && <button onClick={this.handleNextScene}>next</button>}
+        {isDebug && <button onClick={this.handleNextScene}>next</button>}
       </div>
     );
   }
