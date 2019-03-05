@@ -6,7 +6,7 @@ import Tutorial from './pages/tutorial/Tutorial';
 import ProtectedRoute from './pages/login/router/ProtectedRoute';
 import NotFound from './pages/notfound/NotFound';
 
-import './App.css';
+import './app.scss';
 
 class App extends Component {
 
