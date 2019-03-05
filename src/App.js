@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 import Login from './pages/login/Login';
 import Introduction from './pages/introduction/Introduction';
 import Tutorial from './pages/tutorial/Tutorial';
 import ProtectedRoute from './pages/login/router/ProtectedRoute';
+import NotFound from './pages/notfound/NotFound';
 
 import './App.css';
 
@@ -14,9 +15,12 @@ class App extends Component {
       <React.Fragment>
         <div className="App">
         <div className="stars"></div>
-          <Route exact path="/" component={Login}/>
-          <ProtectedRoute path="/intro" component={Introduction} />
-          <ProtectedRoute path="/tutorial" component={Tutorial} />
+          <Switch>
+            <Route exact path="/" component={Login}/>
+            <ProtectedRoute path="/intro" component={Introduction} />
+            <ProtectedRoute path="/tutorial" component={Tutorial} />
+            <Route path="*" component={NotFound} />
+          </Switch>
         </div>
       </React.Fragment>
     );
