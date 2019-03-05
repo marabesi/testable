@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
-import Scene from '../../tutorial/Scene';
+import Scene from '../../components/introduction/Scene';
 import content from '../../tutorial-content.json';
 
 import './introduction.scss';

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 const SvgBuggy = props => (
   <svg width={490} {...props} viewBox="0 0 490 682">

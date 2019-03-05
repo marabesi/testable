@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import Profile from '../../profile/Profile';
-import Level from '../../level/Level';
+import Profile from '../../components/profile/Profile';
+import Level from '../../components/level/Level';
 import { Helmet } from 'react-helmet';
-import SvgBuggy from '../../buggy/SvgBuggy';
-import Editor from '../../editor/Editor';
-import AnimatedText from '../../text-keyboard-animation/AnimatedText';
+import SvgBuggy from '../../components/buggy/SvgBuggy';
+import Editor from '../../components/editor/Editor';
+import AnimatedText from '../../components/text-keyboard-animation/AnimatedText';
 
 import './tutorial.scss'
 

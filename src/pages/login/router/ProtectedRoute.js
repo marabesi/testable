@@ -1,6 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { fakeAuth } from '../login/Auth';
+import { fakeAuth } from '../Auth';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => (
   <Route

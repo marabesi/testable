@@ -1,5 +1,5 @@
 import firebase from 'firebase/app';
-import env from '../env.json';
+import env from '../../env.json';
 
 require('firebase/database');
 

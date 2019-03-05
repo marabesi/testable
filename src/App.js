@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Login from './login/Login';
+import Login from './pages/login/Login';
 import Introduction from './pages/introduction/Introduction';
 import Tutorial from './pages/tutorial/Tutorial';
-import ProtectedRoute from './router/ProtectedRoute';
+import ProtectedRoute from './pages/login/router/ProtectedRoute';
 
 import './App.css';
 

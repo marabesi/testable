@@ -1,0 +1,27 @@
+.scene {
+  background-color: rgba(238, 155, 250, 0.1);
+  border-radius: 1.5em;
+  min-height: 60vh;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+
+  .content {
+    width: 100%;
+  }
+
+  .scale-in-center {
+    animation: scale-in-center 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+  }
+}
+
+@keyframes scale-in-center {
+  0% {
+    -webkit-transform: scale(0);
+    transform: scale(0);
+    opacity: 1;
+  }
+  100% {
+    -webkit-transform: scale(1);
+    transform: scale(1);
+    opacity: 1;
+  }
+}
