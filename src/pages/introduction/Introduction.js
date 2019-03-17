@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import Scene from '../../components/introduction/Scene';
 import content from '../../tutorial-content.json';
+import { fakeAuth } from '../login/Auth';
+import { Redirect } from 'react-router-dom';
 
 import './introduction.scss';
 
@@ -23,6 +25,7 @@ export default class Introduction extends Component {
 
     this.handleNextScene = this.handleNextScene.bind(this);
     this.handlePreviousScene = this.handlePreviousScene.bind(this);
+    this.handleLastScene = this.handleLastScene.bind(this);
   }
 
   handlePreviousScene() {
@@ -58,7 +61,6 @@ export default class Introduction extends Component {
           next={this.handleNextScene}
           lastScene={steps[step].lastScene}
           handleLastScene={this.handleLastScene}
-
           showAlien={steps[step].showAlien}
           onCompleted={steps[step].onCompleted || {}} />
         );
@@ -69,13 +71,29 @@ export default class Introduction extends Component {
   }
 
   handleLastScene() {
-    console.log('last')
+    fakeAuth.updateUserInfo({
+      tutorial: true,
+      level: 2
+    });
+
+    this.setState({
+      redirect: true
+    });
   }
 
   render() {
+    if (this.state.redirect) {
+      return (
+        <Redirect to={{
+          pathname: "/tutorial",
+          state: this.state
+        }} />
+      )
+    }
+
     return (
-      <div className="tutorial flex">
-        {isDebug && <button onClick={this.handlePreviousScene}>previous</button>}
+      <div className="introduction flex">
+        {isDebug && <button className="bg-white m-2" onClick={this.handlePreviousScene}>previous</button>}
 
         <Helmet>
           <style>
@@ -89,7 +107,8 @@ export default class Introduction extends Component {
         </Helmet>
         {this.renderStep()}
 
-        {isDebug && <button onClick={this.handleNextScene}>next</button>}
+        {isDebug && <button className="bg-white m-2" onClick={this.handleNextScene}>next</button>}
+        {isDebug && <button className="bg-white m-2" onClick={this.handleLastScene}>skip intro</button>}
       </div>
     );
   }
