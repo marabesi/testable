@@ -56,6 +56,7 @@ const fakeAuth = {
   signout(cb) {
     firebase.auth().signOut();
     this.isAuthenticated = false;
+    this.user = {};
     cb();
   },
   updateUserInfo(data) {
