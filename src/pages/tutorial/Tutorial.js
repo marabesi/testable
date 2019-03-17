@@ -22,11 +22,6 @@ export default class Tutorial extends Component {
     };
   }
 
-  componentDidMount() {
-    this.setState({
-      user: this.props.location.state.user
-    })
-  }
   render() {
     return (
       <div className="map">
