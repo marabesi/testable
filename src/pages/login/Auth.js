@@ -13,8 +13,7 @@ const fakeAuth = {
     firebase.auth().onAuthStateChanged((user) => {
       if (!user) { cb() }
       if (user !== null) {
-        this.isAuthenticated = true;
-
+        const vm = this;
         const userDefault = {
           uid: user.uid,
           name: user.displayName,
@@ -33,15 +32,35 @@ const fakeAuth = {
             userDefault.level = userObject.level;
           }
 
+          vm.isAuthenticated = true;
+          vm.user = userDefault;
+
           cb(userDefault);
         })
       }
     })
   },
+  canEnter(location) {
+    if (!this.isAuthenticated) {
+      return '/';
+    }
+
+    if (location.pathname !== '/intro' && !this.user.tutorial) {
+      return '/intro';
+    }
+
+    if (location.pathname !== '/tutorial' && this.user.tutorial) {
+      return '/tutorial';
+    }
+  },
   signout(cb) {
     firebase.auth().signOut();
     this.isAuthenticated = false;
     cb();
+  },
+  updateUserInfo(data) {
+    const userData = firebase.database().ref().child('users/' + this.user.uid);
+    userData.set(data)
   }
 };
 

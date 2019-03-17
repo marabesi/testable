@@ -45,16 +45,7 @@ export default class Login extends Component {
   }
 
   render() {
-    if (this.state.logged && this.state.user.tutorial) {
-      return (
-        <Redirect to={{
-          pathname: "/tutorial",
-          state: this.state
-        }} />
-      );
-    }
-
-    if (this.state.logged && this.state.user.tutorial === false) {
+    if (this.state.logged) {
       return (
         <Redirect to={{
           pathname: "/intro",
