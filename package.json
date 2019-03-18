@@ -4,6 +4,7 @@
   "homepage": "https://marabesi.github.io/testable/",
   "private": true,
   "dependencies": {
+    "cypress": "^3.2.0",
     "firebase": "^5.5.9",
     "firebaseui": "^3.4.1",
     "material-design-lite": "^1.2.0",
@@ -27,6 +28,7 @@
     "deploy": "gh-pages -d build",
     "build": "npm run tailwind:css && react-scripts build",
     "test": "react-scripts test --env=jsdom",
+    "cypress": "cypress open",
     "eject": "react-scripts eject",
     "tailwind:css": "tailwind build src/tailwind.src.css -c tailwind.js -o src/tailwind.css"
   },
