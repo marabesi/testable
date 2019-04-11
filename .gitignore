@@ -25,3 +25,5 @@ env.json
 tailwind.css
 
 .vscode
+
+.netlify
