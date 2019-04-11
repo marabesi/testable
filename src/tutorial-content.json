@@ -42,7 +42,7 @@
             "button": "Que amigo?",
             "content": [
                 {"key": 0, "line": "_{", "style": "p-2"},
-                {"key": 1, "line": "Não temos credibilidade nessa área,", "style": "p-2 ml-4"},
+                {"key": 1, "line": "Não temos credibilidade", "style": "p-2 ml-4"},
                 {"key": 2, "line": "pelo simples fato de não sermos bem vistos nessa área...", "style": "p-2 ml-4"},
                 {"key": 3, "line": "Ao contrário do meu amigo...", "style": "p-2 ml-4"},
                 {"key": 4, "line": "}", "style": "p-2"}
