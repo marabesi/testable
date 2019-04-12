@@ -12,7 +12,7 @@ export default class AnimatedText extends Component {
     this.props.text.forEach(element => {
       text.push(
         <p key={element.key} className={element.style}>{element.line}</p>
-      )
+      );
     });
 
     return [ReactDOMServer.renderToStaticMarkup(text)];
@@ -30,4 +30,4 @@ export default class AnimatedText extends Component {
 
 AnimatedText.propTypes = {
   onFinishedTyping: PropTypes.func
-}
+};

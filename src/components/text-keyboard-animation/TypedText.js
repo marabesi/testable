@@ -8,8 +8,12 @@ export default class TypedText extends Component {
       strings: strings,
       typeSpeed: 40,
       showCursor: false,
-      onComplete: this.props.onComplete
     };
+
+    if (typeof this.props.onComplete === 'function') {
+      options.onComplete = this.props.onComplete;
+    }
+
     this.typed = new Typed(this.el, options);
   }
 
