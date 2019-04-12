@@ -15,7 +15,8 @@ export default class Editor extends Component {
         <CodeMirror
           value={this.props.value}
           optins={this.props.options}
-          className="editor m-5"
+          className="editor"
+          onChange={this.props.codeChanged}
         />
       </div>);
   }
