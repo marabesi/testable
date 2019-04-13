@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import Scene from '../../components/introduction/Scene';
-import content from '../../tutorial-content.json';
+import content from '../../introduction-content.json';
 import { fakeAuth } from '../login/Auth';
 import { Redirect } from 'react-router-dom';
 
