@@ -1,0 +1,19 @@
+.myTooltipClass {
+  .introjs-skipbutton {
+    display: none;
+  }
+}
+
+.last-step {
+  .introjs-skipbutton {
+    display: inline-block;
+    color: #000;
+  }
+  .introjs-disabled {
+    display: none;
+  }
+  .introjs-prevbutton {
+    border: 1px solid #d4d4d4;
+    border-radius: 0.2em;
+  }
+}
