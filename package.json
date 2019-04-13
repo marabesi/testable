@@ -1,7 +1,6 @@
 {
   "name": "testable",
   "version": "0.1.0",
-  "homepage": "https://marabesi.github.io/testable/",
   "private": true,
   "dependencies": {
     "cypress": "^3.2.0",
