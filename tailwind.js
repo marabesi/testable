@@ -127,6 +127,9 @@ let colors = {
   'pink-light': '#fa7ea8',
   'pink-lighter': '#ffbbca',
   'pink-lightest': '#ffebef',
+
+  'testable-overlay': 'rgba(0, 0, 0, 0.3)',
+  'testable-blue-overlay': '#00ffdf52'
 }
 
 module.exports = {
