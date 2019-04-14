@@ -9,7 +9,7 @@ $border-radius: 100px;
     border-radius: $border-radius;
 
     .progress {
-      background-color: #ccc;
+      background: linear-gradient(to right, #012345, #00ffdf);
       border-radius: $border-radius;
     }
 
