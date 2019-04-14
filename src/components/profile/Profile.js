@@ -10,7 +10,7 @@ export default class Profile extends Component {
     }`;
     return (
       <div className={className}>
-        <div className="picture-holder border-2 border-white">
+        <div className="picture-holder">
           <img
             src="https://placeimg.com/200/200/any"
             alt={name}
@@ -18,10 +18,9 @@ export default class Profile extends Component {
           />
         </div>
         <div className="info">
-          <h2 className="title text-white" alt={name} title={name}>
+          <h2 className="title text-white text-base uppercase font-medium" alt={name} title={name}>
             {name}
           </h2>
-          <span className="icon text-white">}</span>
         </div>
       </div>
     );
