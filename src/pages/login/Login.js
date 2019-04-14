@@ -3,10 +3,13 @@ import React, { Component } from 'react';
 import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
 import uiConfig from './Firebase';
+import Loading from '../../components/loading/Loading';
 import { Redirect } from 'react-router-dom';
-import {fakeAuth} from '../login/Auth';
+import { fakeAuth } from '../login/Auth';
+
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
+import './login.scss';
 
 export default class Login extends Component {
   state = {
@@ -32,8 +35,8 @@ export default class Login extends Component {
         user: null,
         logged: false,
         loading: false
-      }); 
-    } 
+      });
+    }
   }
 
   componentDidMount() {
@@ -56,7 +59,8 @@ export default class Login extends Component {
 
     return (
       <React.Fragment>
-        <h1 className={this.state.loading ? "" : "hidden"}>Loading</h1>
+        { this.state.loading && <Loading loading={this.state.loading} /> }
+
         <div
           className={
             this.state.loading
