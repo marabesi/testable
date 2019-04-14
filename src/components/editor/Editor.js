@@ -5,6 +5,7 @@ import './editor.scss';
 
 require('codemirror/mode/javascript/javascript');
 require('codemirror/lib/codemirror.css');
+require('codemirror/theme/erlang-dark.css');
 
 export default class Editor extends Component {
 
@@ -14,7 +15,7 @@ export default class Editor extends Component {
       <div className={`editor ${className} `}>
         <CodeMirror
           value={this.props.value}
-          optins={this.props.options}
+          options={this.props.options}
           className="editor"
           onChange={this.props.codeChanged}
         />
