@@ -5,7 +5,7 @@ import { Helmet } from 'react-helmet';
 import SvgBuggy from '../../components/buggy/SvgBuggy';
 import Editor from '../../components/editor/Editor';
 import AnimatedText from '../../components/text-keyboard-animation/AnimatedText';
-import { Steps, Hints } from 'intro.js-react';
+import { Steps } from 'intro.js-react';
 import { fakeAuth } from '../../pages/login/Auth';
 
 import 'intro.js/introjs.css';
@@ -28,9 +28,11 @@ export default class Tutorial extends Component {
       code: 'var a = 1;',
       testCode: testCode,
       showTestCase: 'hidden',
+      currentHint: 'my text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centurie',
       options: {
         mode: 'javascript',
         lineNumbers: true,
+        theme: 'erlang-dark'
       },
       intro: {
         introEnabled: false,
@@ -121,16 +123,18 @@ export default class Tutorial extends Component {
           }}
         />
 
-        <div className="flex flex-col md:flex-row lg:justify-between md:items-center pl-3 pr-3 bg-grey-darkest">
-          <div className="user-info">
-            <Profile user={this.state.user} />
-          </div>
-
-          <img src="assets/logo.png" className="h-8 hidden lg:block" alt="logotipo" />
-
+        <div className="flex justify-between pl-3 pr-3 mt-3">
           <div className="user-progress">
             <Level progress="10" level={this.state.user.level} />
           </div>
+
+          <div className="user-info">
+            <Profile user={this.state.user} />
+          </div>
+        </div>
+
+        <div class="flex w-full justify-center relative">
+          <img src="assets/logo.png" className="h-8 hidden lg:block" alt="logotipo" />
         </div>
 
         <div className="mt-5">
@@ -139,7 +143,7 @@ export default class Tutorial extends Component {
               value={this.state.code}
               options={this.state.options}
               codeChanged={this.codeChanged}
-              className="source-code bg-grey p-5"
+              className="source-code p-5"
             />
 
             <Editor
@@ -152,13 +156,13 @@ export default class Tutorial extends Component {
           {this.state.codeResult}
         </div>
 
-        <div className="flex justify-center bg-grey p-12 mt-5 relative">
-          <SvgBuggy className="w-1/4 absolute pin-l -mt-32" style={{ transform: 'scaleX(-1)' }} />
-          <div className="flex justify-center">
+        <div className="flex justify-center p-12 min-h-screen" style={{ 'background-color': 'rgba(238, 155, 250, 0.1)' }}>
+          <div class="flex flex-col justify-start relative" style={{ 'min-width': '45%', 'max-width': '45%'}}>
+            <SvgBuggy className="absolute pin-t" style={{ transform: 'scaleX(-1)', width: '250px', 'margin-top': '-180px', 'margin-left': '-250px' }} />
             <AnimatedText
-              className="w-2/3 text-white text-xl"
-              text={[{ "line": "testi uahsuahsusahu as auauauau  ", "key": 0 }]}
+              text={[{ 'line': this.state.currentHint, 'key': 0, 'style': 'text-white font-semibold text-xl' }]}
             />
+            <a href="#" className="self-end no-underline text-white font-bold p-3">Proximo ></a>
           </div>
         </div>
       </div>
