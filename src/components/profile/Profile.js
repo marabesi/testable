@@ -35,7 +35,9 @@ export default class Profile extends Component {
   }
 
   onBlur() {
-    this.showMenu();
+    this.setState({
+      menu: false
+    });
   }
 
   render() {
