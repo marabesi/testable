@@ -1,16 +1,11 @@
-$leve-width: 300px;
+$leve-width: 150px;
 $level-height: 15px;
 $border-radius: 100px;
 
 .level {
-  .title {
-    text-transform: uppercase;
-    font-weight: bold;
-  }
-
   .progress-holder {
     width: $leve-width;
-    border: 2px solid #fff;
+    border: 1px solid #fff;
     border-radius: $border-radius;
 
     .progress {
