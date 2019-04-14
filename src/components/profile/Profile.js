@@ -11,10 +11,11 @@ export default class Profile extends Component {
     successfullLoggedOut: false
   }
 
-  constructor(){
+  constructor() {
     super();
 
     this.showMenu = this.showMenu.bind(this);
+    this.onBlur = this.onBlur.bind(this);
     this.onLogout = this.onLogout.bind(this);
   }
 
@@ -33,6 +34,10 @@ export default class Profile extends Component {
     })
   }
 
+  onBlur() {
+    this.showMenu();
+  }
+
   render() {
     if (this.state.successfullLoggedOut) {
       return (
@@ -43,26 +48,27 @@ export default class Profile extends Component {
     }
 
     const name = this.props.user.name;
-    const className = `profile relative cursor-pointer ${
+    const className = `profile flex cursor-pointer ${
       this.props.className ? this.props.className : ''
-    }`;
+      }`;
     return (
-      <div className={className} onClick={this.showMenu}>
-        <div className="picture-holder">
-          <img
-            src="https://placeimg.com/200/200/any"
-            alt={name}
-            className="picture"
-          />
+      <div className="relative outline-none" tabIndex="0" onBlur={this.onBlur} >
+        <div className={className} onClick={this.showMenu}>
+          <div className="picture-holder">
+            <img
+              src="https://placeimg.com/200/200/any"
+              alt={name}
+              className="picture"
+            />
+          </div>
+          <div className="info">
+            <h2 className="title text-white text-base uppercase font-medium truncate" alt={name} title={name}>
+              {name}
+            </h2>
+          </div>
         </div>
-        <div className="info">
-          <h2 className="title text-white text-base uppercase font-medium" alt={name} title={name}>
-            {name}
-          </h2>
-        </div>
-
-        <ul className={`absolute mt-12 w-full bg-testable-overlay list-reset p-2 z-20 ${this.state.menu ? 'block' : 'hidden'}`}>
-          <li className="cursor-pointer text-white" onClick={this.onLogout}>Logout</li>
+        <ul className={`w-full bg-testable-overlay list-reset p-1 mt-2 z-40 absolute ${this.state.menu ? 'block' : 'hidden'}`}>
+          <li className="cursor-pointer text-white text-center" onClick={this.onLogout}>Logout</li>
         </ul>
       </div>
     );
