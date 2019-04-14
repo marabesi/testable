@@ -14,9 +14,9 @@ class App extends Component {
     return (
       <React.Fragment>
         <div className="App">
-        <div className="stars"></div>
+          <div className="stars"></div>
           <Switch>
-            <Route exact path="/" component={Login}/>
+            <Route exact path="/" component={Login} />
             <ProtectedRoute path="/intro" component={Introduction} />
             <ProtectedRoute path="/tutorial" component={Tutorial} />
             <Route path="*" component={NotFound} />

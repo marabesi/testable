@@ -85,10 +85,10 @@ export default class Introduction extends Component {
     if (this.state.redirect) {
       return (
         <Redirect to={{
-          pathname: "/tutorial",
+          pathname: '/tutorial',
           state: this.state
         }} />
-      )
+      );
     }
 
     return (
