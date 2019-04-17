@@ -26,16 +26,17 @@ export default class Tutorial extends Component {
       user: {},
       codeResult: '',
       code: 'var a = 1;',
+      showNext: false,
       testCode: testCode,
       showTestCase: 'hidden',
-      currentHint: 'my text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.It has survived not only five centurie',
+      currentHint: 'Mas antes de começar vamos ver algumas coisas  .  .  . ',
       options: {
         mode: 'javascript',
         lineNumbers: true,
         theme: 'erlang-dark'
       },
+      introEnabled: false,
       intro: {
-        introEnabled: false,
         initialStep: 0,
         steps: [
           {
@@ -57,7 +58,7 @@ export default class Tutorial extends Component {
           },
           {
             element: '.source-code',
-            intro: 'Aqui é onde o código fonte é escrito',
+            intro: 'e é aqui que passaremos a maior parte da nossa jornada!',
             tooltipClass: 'last-step',
           },
         ],
@@ -65,24 +66,39 @@ export default class Tutorial extends Component {
     };
 
     this.codeChanged = this.codeChanged.bind(this);
+    this.onEnableTooltip = this.onEnableTooltip.bind(this);
+    this.onFinishedTyping = this.onFinishedTyping.bind(this);
+    this.onExit = this.onExit.bind(this);
   }
 
   onExit() {
+    this.setState({
+      ...this.state.introEnabled, introEnabled: false
+    });
+  }
 
+  onEnableTooltip() {
+    this.setState({
+      ...this.state.introEnabled, introEnabled: true
+    });
+  }
+
+  onFinishedTyping() {
+    this.setState({
+      ...this.state.showNext, showNext: true
+    });
   }
 
   codeChanged(code) {
-    setTimeout(() => {
-      try {
-        this.setState({
-          ...this.state.codeResult, codeResult: eval(code)
-        });
-      } catch (error) {
-        this.setState({
-          ...this.state.codeResult, codeResult: error.message
-        });
-      }
-    }, 600);
+    try {
+      this.setState({
+        ...this.state.codeResult, codeResult: eval(code)
+      });
+    } catch (error) {
+      this.setState({
+        ...this.state.codeResult, codeResult: error.message
+      });
+    }
   }
 
   componentDidMount() {
@@ -98,7 +114,7 @@ export default class Tutorial extends Component {
           <style>
             {`
               body {
-                background-image: url("assets/bg.png");
+                background: url("assets/bg-loading.png"), #012345;
                 background-position: center center;
                 height: 100vh;
               }
@@ -107,7 +123,7 @@ export default class Tutorial extends Component {
         </Helmet>
 
         <Steps
-          enabled={this.state.intro.introEnabled}
+          enabled={this.state.introEnabled}
           steps={this.state.intro.steps}
           initialStep={this.state.intro.initialStep}
           onExit={this.onExit}
@@ -125,7 +141,7 @@ export default class Tutorial extends Component {
 
         <div className="flex justify-between pl-3 pr-3 mt-3">
           <div className="user-progress">
-            <Level progress="10" level={this.state.user.level} />
+            <Level progress="50" level={this.state.user.level} />
           </div>
 
           <div className="user-info">
@@ -133,7 +149,7 @@ export default class Tutorial extends Component {
           </div>
         </div>
 
-        <div class="flex w-full justify-center relative">
+        <div className="flex w-full justify-center relative">
           <img src="assets/logo.png" className="h-8 hidden lg:block" alt="logotipo" />
         </div>
 
@@ -143,26 +159,29 @@ export default class Tutorial extends Component {
               value={this.state.code}
               options={this.state.options}
               codeChanged={this.codeChanged}
-              className="source-code p-5"
+              className="source-code m-5 border-2 border-testable-blue-overlay"
             />
 
             <Editor
               value={this.state.testCode}
               options={this.state.options}
-              className={`test-code bg-grey p-5 pl-0 ${this.state.showTestCase}`}
+              className={`test-code m-5 border-2 border-testable-blue-overlay ${this.state.showTestCase}`}
             />
           </div>
 
-          {this.state.codeResult}
+          <p className="m-auto mb-5 text-red font-medium" style={{ minWidth: '45%', maxWidth: '45%' }}>
+            {this.state.codeResult}
+          </p>
         </div>
 
-        <div className="flex justify-center p-12 min-h-screen" style={{ 'background-color': 'rgba(238, 155, 250, 0.1)' }}>
-          <div class="flex flex-col justify-start relative" style={{ 'min-width': '45%', 'max-width': '45%'}}>
-            <SvgBuggy className="absolute pin-t" style={{ transform: 'scaleX(-1)', width: '250px', 'margin-top': '-180px', 'margin-left': '-250px' }} />
+        <div className="flex justify-center p-12 min-h-screen bg-testable-overlay">
+          <div className="flex flex-col justify-start relative" style={{ minWidth: '45%', maxWidth: '45%' }}>
+            <SvgBuggy className="absolute pin-t" style={{ transform: 'scaleX(-1)', width: '250px', marginTop: '-180px', marginLeft: '-270px' }} />
             <AnimatedText
               text={[{ 'line': this.state.currentHint, 'key': 0, 'style': 'text-white font-semibold text-xl' }]}
+              onFinishedTyping={this.onFinishedTyping}
             />
-            <a href="#" className="self-end no-underline text-white font-bold p-3">Proximo ></a>
+            {this.state.showNext && <button onClick={this.onEnableTooltip} className="self-end no-underline text-white font-bold p-3">Proximo ></button>}
           </div>
         </div>
       </div>

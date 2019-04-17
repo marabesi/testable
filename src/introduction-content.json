@@ -55,9 +55,8 @@
                 {"key": 0, "line": "_{", "style": "p-2"},
                 {"key": 1, "line": "Que é um alien, pois são super valorizados porque muitos trabalham", "style": "p-2 ml-4"},
                 {"key": 2, "line": "para aquelas empresa famosa, a Nazah.", "style": "p-2 ml-4"},
-                {"key": 3, "line": ". . .", "style": "p-2 ml-4"},
-                {"key": 5, "line": "pfff", "style": "p-2 ml-4"},
-                {"key": 6, "line": "}", "style": "p-2"}
+                {"key": 3, "line": ". . . pfff", "style": "p-2 ml-4"},
+                {"key": 4, "line": "}", "style": "p-2"}
             ]
         },
         {
@@ -67,9 +66,7 @@
             "content": [
                 {"key": 0, "line": "_[", "style": "p-2"},
                 {"key": 1, "line": "Eu não perco tempo com testes unitários!", "style": "p-2 ml-4"},
-                {"key": 2, "line": "Por isso sempre faço as coisas mais rápidas!", "style": "p-2 ml-4"},
-                {"key": 3, "line": "Até já programei alguns foguetes por aí", "style": "p-2 ml-4"},
-                {"key": 4, "line": ". . .", "style": "p-2 ml-4"},
+                {"key": 2, "line": "Por isso sempre faço as coisas mais rápidas! Até já programei alguns foguetes por aí.", "style": "p-2 ml-4"},
                 {"key": 5, "line": "]", "style": "p-2"}
             ]
         },

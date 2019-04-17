@@ -56,7 +56,7 @@ export default class Introduction extends Component {
           key={step}
           text={steps[step].content}
           button={steps[step].button}
-          step="{this.state.currentStep}"
+          step={this.state.currentStep}
           className="m-auto w-3/5"
           next={this.handleNextScene}
           lastScene={steps[step].lastScene}
@@ -99,7 +99,7 @@ export default class Introduction extends Component {
           <style>
             {`
               body {
-                background-image: url("assets/bg.png");
+                background: url("assets/bg-loading.png"), #012345;
                 background-position: center center;
               }
             `}
