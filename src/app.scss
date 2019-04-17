@@ -7,14 +7,12 @@ body {
 
 .stars:before {
   content: "";
-  background-image: url("/assets/stars.png");
   position: absolute;
   left: -50%;
   top: -50%;
   right: -50%;
   bottom: -50%;
   pointer-events: none;
-  /* animation: sky 400s linear infinite; */
   opacity: 0.1;
 }
 
