@@ -50,15 +50,18 @@ export default class Profile extends Component {
     }
 
     const name = this.props.user.name;
+    const email = this.props.user.email;
+    const photo = this.props.user.photo;
+
     const className = `profile flex cursor-pointer ${
       this.props.className ? this.props.className : ''
       }`;
     return (
-      <div className="relative outline-none" tabIndex="0" onBlur={this.onBlur} >
+      <div className="relative outline-none" tabIndex="0" onBlur={this.onBlur} title={`${name} - ${email}`}>
         <div className={className} onClick={this.showMenu}>
           <div className="picture-holder">
             <img
-              src="https://placeimg.com/200/200/any"
+              src={photo ? photo : 'https://placeimg.com/200/200/any'}
               alt={name}
               className="picture"
             />
