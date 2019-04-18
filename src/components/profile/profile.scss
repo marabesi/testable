@@ -2,10 +2,15 @@
   display: flex;
   align-items: center;
 
-  .picture-holder {
-    width: 40px;
+  img {
+    width: 50px;
     height: 40px;
-    border-radius: 50%;
+  }
+  
+  .picture-holder {
+    width: 50px;
+    height: 40px;
+    border-radius: 999px;
     overflow: hidden;
   }
 
