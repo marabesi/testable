@@ -8,10 +8,11 @@ firebase.initializeApp(env);
 const fakeAuth = {
   isAuthenticated: false,
   user: {},
+  firebaseRef: null,
 
   authenticate(cb) {
     firebase.auth().onAuthStateChanged((user) => {
-      if (!user) { cb() }
+      if (!user) { cb(); }
       if (user !== null) {
         const vm = this;
         const userDefault = {
@@ -23,8 +24,8 @@ const fakeAuth = {
           tutorial: false,
         };
 
-        const userData = firebase.database().ref().child('users/' + user.uid);
-        userData.on('value', (snapshot) => {
+        vm.firebaseRef = firebase.database().ref().child('users/' + user.uid);
+        vm.firebaseRef.on('value', (snapshot) => {
           const userObject = snapshot.val();
 
           if (userObject !== null) {
@@ -36,9 +37,14 @@ const fakeAuth = {
           vm.user = userDefault;
 
           cb(userDefault);
-        })
+        });
       }
-    })
+    });
+  },
+  unsubscribe() {
+    if (this.firebaseRef) {
+      this.firebaseRef.off();
+    }
   },
   canEnter(location) {
     if (!this.isAuthenticated) {
@@ -60,9 +66,9 @@ const fakeAuth = {
     cb();
   },
   updateUserInfo(data) {
-    const userData = firebase.database().ref().child('users/' + this.user.uid);
-    userData.set(data)
+    const firebaseRef = firebase.database().ref().child('users/' + this.user.uid);
+    firebaseRef.set(data);
   }
 };
 
-export {fakeAuth}
+export {fakeAuth};

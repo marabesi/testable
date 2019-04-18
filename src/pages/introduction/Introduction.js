@@ -4,6 +4,7 @@ import Scene from '../../components/introduction/Scene';
 import content from '../../introduction-content.json';
 import { fakeAuth } from '../login/Auth';
 import { Redirect } from 'react-router-dom';
+import Loading from '../../components/loading/Loading';
 
 import './introduction.scss';
 
@@ -14,6 +15,8 @@ export default class Introduction extends Component {
   constructor() {
     super();
     this.state = {
+      redirect: false,
+      loading: false,
       code: 'var = 1;',
       options: {
         mode: 'javascript',
@@ -77,11 +80,22 @@ export default class Introduction extends Component {
     });
 
     this.setState({
-      redirect: true
+      loading: true
     });
+
+    setTimeout(() => {
+      this.setState({
+        loading: false,
+        redirect: true
+      });
+    }, 1000);
   }
 
   render() {
+    if (this.state.loading) {
+      return (<Loading loading={this.state.loading} />);
+    }
+
     if (this.state.redirect) {
       return (
         <Redirect to={{
