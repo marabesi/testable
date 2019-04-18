@@ -5,7 +5,7 @@ import firebase from 'firebase/app';
 import uiConfig from './Firebase';
 import Loading from '../../components/loading/Loading';
 import { Redirect } from 'react-router-dom';
-import { fakeAuth } from '../login/Auth';
+import { auth } from '../login/Auth';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
@@ -20,7 +20,7 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
 
-    fakeAuth.authenticate(this.authStatusChanged.bind(this));
+    auth.authenticate(this.authStatusChanged.bind(this));
   }
 
   authStatusChanged(user) {
@@ -48,7 +48,7 @@ export default class Login extends Component {
   }
 
   componentWillUnmount() {
-    fakeAuth.unsubscribe();
+    auth.unsubscribe();
   }
 
   render() {

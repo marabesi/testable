@@ -5,7 +5,7 @@ require('firebase/database');
 
 firebase.initializeApp(env);
 
-const fakeAuth = {
+const auth = {
   isAuthenticated: false,
   user: {},
   firebaseRef: null,
@@ -74,4 +74,4 @@ const fakeAuth = {
   }
 };
 
-export {fakeAuth};
+export {auth};

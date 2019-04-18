@@ -6,7 +6,7 @@ import SvgBuggy from '../../components/buggy/SvgBuggy';
 import Editor from '../../components/editor/Editor';
 import AnimatedText from '../../components/text-keyboard-animation/AnimatedText';
 import { Steps } from 'intro.js-react';
-import { fakeAuth } from '../../pages/login/Auth';
+import { auth } from '../../pages/login/Auth';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
@@ -103,7 +103,7 @@ export default class Tutorial extends Component {
 
   componentDidMount() {
     this.setState({
-      ...this.state.user, user: fakeAuth.user
+      ...this.state.user, user: auth.user
     });
   }
 

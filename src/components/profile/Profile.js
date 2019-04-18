@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { fakeAuth } from '../../pages/login/Auth';
+import { auth } from '../../pages/login/Auth';
 
 import './profile.scss';
 
@@ -20,7 +20,7 @@ export default class Profile extends Component {
   }
 
   onLogout() {
-    fakeAuth.signout(() => {
+    auth.signout(() => {
       this.setState({
         successfullLoggedOut: true,
         menu: false

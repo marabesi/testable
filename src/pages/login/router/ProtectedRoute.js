@@ -1,13 +1,13 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom';
-import { fakeAuth } from '../Auth';
+import { auth } from '../Auth';
 
 const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) => {
-        const redirectTo = fakeAuth.canEnter(props.location);
+        const redirectTo = auth.canEnter(props.location);
         return !redirectTo ? (
           <Component {...props} />
         ) : (

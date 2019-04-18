@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
 import Scene from '../../components/introduction/Scene';
 import content from '../../introduction-content.json';
-import { fakeAuth } from '../login/Auth';
+import { auth } from '../login/Auth';
 import { Redirect } from 'react-router-dom';
 import Loading from '../../components/loading/Loading';
 
@@ -74,7 +74,7 @@ export default class Introduction extends Component {
   }
 
   handleLastScene() {
-    fakeAuth.updateUserInfo({
+    auth.updateUserInfo({
       tutorial: true,
       level: 2
     });
