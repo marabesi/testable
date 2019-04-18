@@ -1,3 +1,4 @@
+/* eslint no-eval: 0 */
 import React, { Component } from 'react';
 import Profile from '../../components/profile/Profile';
 import Level from '../../components/level/Level';
