@@ -17,11 +17,6 @@ export default class Introduction extends Component {
     this.state = {
       redirect: false,
       loading: false,
-      code: 'var = 1;',
-      options: {
-        mode: 'javascript',
-        lineNumbers: false,
-      },
       tutorial: content.tutorial,
       currentStep: 1
     };

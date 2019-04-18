@@ -24,7 +24,11 @@ const auth = {
           tutorial: false,
         };
 
-        vm.firebaseRef = firebase.database().ref().child('users/' + user.uid);
+        vm.firebaseRef = firebase
+          .database()
+          .ref()
+          .child('users/' + user.uid);
+
         vm.firebaseRef.on('value', (snapshot) => {
           const userObject = snapshot.val();
 
@@ -66,7 +70,11 @@ const auth = {
     cb();
   },
   updateUserInfo(data) {
-    const firebaseRef = firebase.database().ref().child('users/' + this.user.uid);
+    const firebaseRef = firebase
+      .database()
+      .ref()
+      .child('users/' + this.user.uid);
+
     firebaseRef.set(data);
 
     this.user.tutorial = data.tutorial;
