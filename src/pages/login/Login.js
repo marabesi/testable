@@ -47,6 +47,10 @@ export default class Login extends Component {
     ui.start('#firebaseui-auth-container', uiConfig);
   }
 
+  componentWillUnmount() {
+    fakeAuth.unsubscribe();
+  }
+
   render() {
     if (this.state.logged) {
       return (

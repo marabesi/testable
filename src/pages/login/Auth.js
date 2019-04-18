@@ -68,6 +68,9 @@ const fakeAuth = {
   updateUserInfo(data) {
     const firebaseRef = firebase.database().ref().child('users/' + this.user.uid);
     firebaseRef.set(data);
+
+    this.user.tutorial = data.tutorial;
+    this.user.level = data.level;
   }
 };
 
