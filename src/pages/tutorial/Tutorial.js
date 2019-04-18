@@ -7,10 +7,12 @@ import Editor from '../../components/editor/Editor';
 import AnimatedText from '../../components/text-keyboard-animation/AnimatedText';
 import { Steps } from 'intro.js-react';
 import { auth } from '../../pages/login/Auth';
+import intro from './intro';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
 
+const isDebug = process.env.REACT_APP_DEBUG || false;
 const testCode = `describe('comportamento', function() {
   it('deve somar um mais um', function() {
 
@@ -36,39 +38,14 @@ export default class Tutorial extends Component {
         theme: 'erlang-dark'
       },
       introEnabled: false,
-      intro: {
-        initialStep: 0,
-        steps: [
-          {
-            element: '.user-info',
-            intro: 'Aqui é onde mostramos sua foto e seu nome',
-            position: 'right',
-            tooltipClass: 'myTooltipClass',
-            highlightClass: 'myHighlightClass',
-          },
-          {
-            element: '.user-progress',
-            intro: 'Acompanhe seu progresso nessa barra',
-            tooltipClass: 'myTooltipClass',
-          },
-          {
-            element: '.source-code',
-            intro: 'Aqui é onde o código fonte é escrito',
-            tooltipClass: 'myTooltipClass',
-          },
-          {
-            element: '.source-code',
-            intro: 'e é aqui que passaremos a maior parte da nossa jornada!',
-            tooltipClass: 'last-step',
-          },
-        ],
-      }
+      intro: intro
     };
 
     this.codeChanged = this.codeChanged.bind(this);
     this.onEnableTooltip = this.onEnableTooltip.bind(this);
     this.onFinishedTyping = this.onFinishedTyping.bind(this);
     this.onExit = this.onExit.bind(this);
+    this.goToIntroduction = this.goToIntroduction.bind(this);
   }
 
   onExit() {
@@ -107,9 +84,17 @@ export default class Tutorial extends Component {
     });
   }
 
+  goToIntroduction() {
+    auth.updateUserInfo({
+      tutorial: false,
+      level: 2
+    });
+    window.location.reload();
+  }
+
   render() {
     return (
-      <div className="map">
+      <div className="tutorial">
         <Helmet>
           <style>
             {`
@@ -138,6 +123,9 @@ export default class Tutorial extends Component {
             showProgress: true,
           }}
         />
+
+        {isDebug && <button className="bg-white m-2" onClick={this.goToIntroduction}>go back to introduction</button>}
+        {isDebug && <button className="bg-white m-2" onClick={this.onEnableTooltip}>enable introjs</button>}
 
         <div className="flex justify-between pl-3 pr-3 mt-3">
           <div className="user-progress">
