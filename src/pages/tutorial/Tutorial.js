@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import Profile from '../../components/profile/Profile';
 import Level from '../../components/level/Level';
-import { Helmet } from 'react-helmet';
 import SvgBuggy from '../../components/buggy/SvgBuggy';
 import Editor from '../../components/editor/Editor';
 import AnimatedText from '../../components/text-keyboard-animation/AnimatedText';
-import { Steps } from 'intro.js-react';
-import { auth } from '../../pages/login/Auth';
+import TutorialSteps from './TutorialSteps';
+import Background from '../../components/background/Background';
 import intro from './intro';
+import { auth } from '../../pages/login/Auth';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
@@ -25,18 +25,20 @@ export default class Tutorial extends Component {
   constructor() {
     super();
     this.state = {
+      currentProgress: 0,
       user: {},
       codeResult: '',
       code: 'var a = 1;',
       showNext: false,
       testCode: testCode,
       showTestCase: 'hidden',
-      currentHint: 'Mas antes de começar vamos ver algumas coisas  .  .  . ',
-      options: {
-        mode: 'javascript',
-        lineNumbers: true,
-        theme: 'erlang-dark'
-      },
+      currentHint: [
+        {
+          'line': 'Mas antes de começar vamos ver algumas coisas  .  .  . ',
+          'key': 0,
+          'style': 'text-white font-semibold text-xl'
+        }
+      ],
       introEnabled: false,
       intro: intro
     };
@@ -92,36 +94,18 @@ export default class Tutorial extends Component {
     window.location.reload();
   }
 
+  handleProgress() {
+
+  }
+
   render() {
     return (
-      <div className="tutorial">
-        <Helmet>
-          <style>
-            {`
-              body {
-                background: url("assets/bg-loading.png"), #012345;
-                background-position: center center;
-                height: 100vh;
-              }
-            `}
-          </style>
-        </Helmet>
-
-        <Steps
+      <Background>
+        <TutorialSteps
           enabled={this.state.introEnabled}
           steps={this.state.intro.steps}
           initialStep={this.state.intro.initialStep}
           onExit={this.onExit}
-          options={{
-            disableInteraction: true,
-            showStepNumbers: false,
-            exitOnEsc: false,
-            hidePrev: true,
-            exitOnOverlayClick: false,
-            showButtons: true,
-            showBullets: false,
-            showProgress: true,
-          }}
         />
 
         {isDebug && <button className="bg-white m-2" onClick={this.goToIntroduction}>go back to introduction</button>}
@@ -145,14 +129,12 @@ export default class Tutorial extends Component {
           <div className="flex justify-center">
             <Editor
               value={this.state.code}
-              options={this.state.options}
               codeChanged={this.codeChanged}
               className="source-code m-5 border-2 border-testable-blue-overlay"
             />
 
             <Editor
               value={this.state.testCode}
-              options={this.state.options}
               className={`test-code m-5 border-2 border-testable-blue-overlay ${this.state.showTestCase}`}
             />
           </div>
@@ -164,15 +146,23 @@ export default class Tutorial extends Component {
 
         <div className="flex justify-center p-12 min-h-screen bg-testable-overlay">
           <div className="flex flex-col justify-start relative" style={{ minWidth: '45%', maxWidth: '45%' }}>
-            <SvgBuggy className="absolute pin-t" style={{ transform: 'scaleX(-1)', width: '250px', marginTop: '-180px', marginLeft: '-270px' }} />
+            <SvgBuggy
+              className="absolute pin-t"
+              style={{
+                transform: 'scaleX(-1)',
+                width: '250px',
+                marginTop: '-180px',
+                marginLeft: '-270px'
+              }}
+            />
             <AnimatedText
-              text={[{ 'line': this.state.currentHint, 'key': 0, 'style': 'text-white font-semibold text-xl' }]}
+              text={this.state.currentHint}
               onFinishedTyping={this.onFinishedTyping}
             />
             {this.state.showNext && <button onClick={this.onEnableTooltip} className="self-end no-underline text-white font-bold p-3">Proximo ></button>}
           </div>
         </div>
-      </div>
+      </Background>
     );
   }
 }

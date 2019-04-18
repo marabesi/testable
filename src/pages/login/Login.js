@@ -9,7 +9,6 @@ import { auth } from '../login/Auth';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
-import './login.scss';
 
 export default class Login extends Component {
   state = {
@@ -63,7 +62,7 @@ export default class Login extends Component {
 
     return (
       <React.Fragment>
-        { this.state.loading && <Loading loading={this.state.loading} /> }
+        { this.state.loading && <Loading /> }
 
         <div
           className={

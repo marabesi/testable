@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
-import { Helmet } from 'react-helmet';
+import Background from '../../components/background/Background';
 import Scene from '../../components/introduction/Scene';
 import content from '../../introduction-content.json';
-import { auth } from '../login/Auth';
-import { Redirect } from 'react-router-dom';
 import Loading from '../../components/loading/Loading';
+import { Redirect } from 'react-router-dom';
+import { auth } from '../login/Auth';
 
 import './introduction.scss';
 
@@ -88,7 +88,7 @@ export default class Introduction extends Component {
 
   render() {
     if (this.state.loading) {
-      return (<Loading loading={this.state.loading} />);
+      return (<Loading />);
     }
 
     if (this.state.redirect) {
@@ -101,24 +101,16 @@ export default class Introduction extends Component {
     }
 
     return (
-      <div className="introduction flex">
-        {isDebug && <button className="bg-white m-2" onClick={this.handlePreviousScene}>previous</button>}
+      <Background>
+        <div className="introduction flex">
+          {isDebug && <button className="bg-white m-2" onClick={this.handlePreviousScene}>previous</button>}
 
-        <Helmet>
-          <style>
-            {`
-              body {
-                background: url("assets/bg-loading.png"), #012345;
-                background-position: center center;
-              }
-            `}
-          </style>
-        </Helmet>
-        {this.renderStep()}
+          {this.renderStep()}
 
-        {isDebug && <button className="bg-white m-2" onClick={this.handleNextScene}>next</button>}
-        {isDebug && <button className="bg-white m-2" onClick={this.handleLastScene}>skip intro</button>}
-      </div>
+          {isDebug && <button className="bg-white m-2" onClick={this.handleNextScene}>next</button>}
+          {isDebug && <button className="bg-white m-2" onClick={this.handleLastScene}>skip intro</button>}
+        </div>
+      </Background>
     );
   }
 }

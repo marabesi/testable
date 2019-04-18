@@ -10,12 +10,17 @@ require('codemirror/theme/erlang-dark.css');
 export default class Editor extends Component {
 
   render() {
+    const options = {
+      mode: 'javascript',
+      lineNumbers: true,
+      theme: 'erlang-dark'
+    };
     const { className } = this.props;
     return (
       <div className={`editor ${className} `}>
         <CodeMirror
           value={this.props.value}
-          options={this.props.options}
+          options={options}
           className="editor"
           onChange={this.props.codeChanged}
         />

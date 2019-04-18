@@ -3,7 +3,7 @@ import firebase from 'firebase/app';
 const firebaseOauth = firebase.auth;
 
 const uiConfig = {
-  signInSuccessUrl: process.env.REACT_APP_BASE_NAME,
+  signInSuccessUrl: process.env.REACT_APP_BASE_NAME || '/',
   signInOptions: [
     firebaseOauth.GoogleAuthProvider.PROVIDER_ID,
     firebase.auth.FacebookAuthProvider.PROVIDER_ID,
