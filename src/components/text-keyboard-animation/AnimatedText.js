@@ -9,7 +9,9 @@ export default class AnimatedText extends Component {
 
   renderText() {
     const text = [];
-    this.props.text.forEach(element => {
+    const prop = this.props.text || [];
+
+    prop.forEach(element => {
       text.push(
         <p key={element.key} className={element.style}>{element.line}</p>
       );

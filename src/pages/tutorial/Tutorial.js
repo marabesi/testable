@@ -26,17 +26,22 @@ export default class Tutorial extends Component {
   constructor() {
     super();
     this.state = {
-      currentProgress: 0,
       user: {},
       codeResult: '',
       code: 'var a = 1;',
       showNext: false,
       testCode: testCode,
       showTestCase: 'hidden',
-      currentHint: [
+      currentHint: 0,
+      hints: [
         {
           'line': 'Mas antes de começar vamos ver algumas coisas  .  .  . ',
           'key': 0,
+          'style': 'text-white font-semibold text-xl'
+        },
+        {
+          'line': 'Vamos praticar! Como você faria para escrever uma função de soma?',
+          'key': 1,
           'style': 'text-white font-semibold text-xl'
         }
       ],
@@ -50,11 +55,14 @@ export default class Tutorial extends Component {
     this.onExit = this.onExit.bind(this);
     this.goToIntroduction = this.goToIntroduction.bind(this);
     this.handleProgress = this.handleProgress.bind(this);
+    this.renderHint = this.renderHint.bind(this);
   }
 
   onExit() {
     this.setState({
-      ...this.state.introEnabled, introEnabled: false
+      ...this.state.introEnabled, introEnabled: false,
+      ...this.state.showNext, showNext: false,
+      ...this.state.currentHint, currentHint: this.state.currentHint + 1
     });
   }
 
@@ -65,6 +73,11 @@ export default class Tutorial extends Component {
   }
 
   onFinishedTyping() {
+    const total = this.state.hints.length;
+    if (total === 2) {
+      return;
+    }
+
     this.setState({
       ...this.state.showNext, showNext: true
     });
@@ -72,8 +85,9 @@ export default class Tutorial extends Component {
 
   codeChanged(code) {
     try {
+      const result = eval(code);
       this.setState({
-        ...this.state.codeResult, codeResult: eval(code)
+        ...this.state.codeResult, codeResult: result ? result.toString(): ''
       });
     } catch (error) {
       this.setState({
@@ -97,12 +111,23 @@ export default class Tutorial extends Component {
   }
 
   handleProgress() {
-    if (this.state.currentProgress === 0) {
+    if (this.state.currentHint === 0) {
       this.onEnableTooltip();
     }
+  }
 
-    this.setState({
-      ...this.state.currentProgress, currentProgress: ++this.state.currentProgress
+  renderHint() {
+    return this.state.hints.map((item, index) => {
+      if (index === this.state.currentHint) {
+        return <AnimatedText
+          text={[
+            item
+          ]}
+          onFinishedTyping={this.onFinishedTyping}
+        />;
+      }
+
+      return false;
     });
   }
 
@@ -118,6 +143,7 @@ export default class Tutorial extends Component {
 
         {isDebug && <button className="bg-white m-2" onClick={this.goToIntroduction}>go back to introduction</button>}
         {isDebug && <button className="bg-white m-2" onClick={this.onEnableTooltip}>enable introjs</button>}
+        {isDebug && <button className="bg-white m-2" onClick={this.onExit}>end introjs</button>}
 
         <div className="flex justify-between pl-3 pr-3 mt-3">
           <div className="user-progress">
@@ -163,10 +189,7 @@ export default class Tutorial extends Component {
                 marginLeft: '-270px'
               }}
             />
-            <AnimatedText
-              text={this.state.currentHint}
-              onFinishedTyping={this.onFinishedTyping}
-            />
+            {this.renderHint()}
             {this.state.showNext && <button onClick={this.handleProgress} className="self-end no-underline text-white font-bold p-3">Proximo ></button>}
           </div>
         </div>
