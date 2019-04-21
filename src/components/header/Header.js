@@ -15,7 +15,7 @@ export default class Header extends Component {
   goToIntroduction() {
     auth.updateUserInfo({
       tutorial: false,
-      level: 2
+      level: 1
     });
     window.location.reload();
   }

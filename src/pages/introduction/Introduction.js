@@ -5,6 +5,7 @@ import content from '../../introduction-content.json';
 import Loading from '../../components/loading/Loading';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../login/Auth';
+import Header from '../../components/header/Header';
 
 import './introduction.scss';
 
@@ -102,7 +103,9 @@ export default class Introduction extends Component {
 
     return (
       <Background>
-        <div className="introduction flex">
+        <Header />
+
+        <div className="flex mt-10">
           {isDebug && <button className="bg-white m-2" onClick={this.handlePreviousScene}>previous</button>}
 
           {this.renderStep()}
