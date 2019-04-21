@@ -4,7 +4,9 @@
   "private": true,
   "dependencies": {
     "cypress": "^3.2.0",
-    "firebase": "^5.9.4",
+    "enzyme": "^3.9.0",
+    "enzyme-adapter-react-16": "^1.12.1",
+    "firebase": "^5.10.0",
     "firebaseui": "^3.4.1",
     "intro.js": "^2.9.3",
     "intro.js-react": "^0.2.0",
@@ -18,6 +20,7 @@
     "react-router-dom": "^4.3.1",
     "react-router-transition": "^1.3.0",
     "react-scripts": "^2.1.8",
+    "react-test-renderer": "^16.8.6",
     "react-typing-animation": "^1.6.2",
     "tailwindcss": "^0.7.4",
     "typed.js": "^2.0.10"

@@ -49,6 +49,7 @@ export default class Tutorial extends Component {
     this.onFinishedTyping = this.onFinishedTyping.bind(this);
     this.onExit = this.onExit.bind(this);
     this.goToIntroduction = this.goToIntroduction.bind(this);
+    this.handleProgress = this.handleProgress.bind(this);
   }
 
   onExit() {
@@ -96,7 +97,13 @@ export default class Tutorial extends Component {
   }
 
   handleProgress() {
+    if (this.state.currentProgress === 0) {
+      this.onEnableTooltip();
+    }
 
+    this.setState({
+      ...this.state.currentProgress, currentProgress: ++this.state.currentProgress
+    });
   }
 
   render() {
@@ -160,7 +167,7 @@ export default class Tutorial extends Component {
               text={this.state.currentHint}
               onFinishedTyping={this.onFinishedTyping}
             />
-            {this.state.showNext && <button onClick={this.onEnableTooltip} className="self-end no-underline text-white font-bold p-3">Proximo ></button>}
+            {this.state.showNext && <button onClick={this.handleProgress} className="self-end no-underline text-white font-bold p-3">Proximo ></button>}
           </div>
         </div>
       </Background>
