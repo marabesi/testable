@@ -6,13 +6,14 @@ import AnimatedText from '../../components/text-keyboard-animation/AnimatedText'
 import TutorialSteps from './TutorialSteps';
 import Background from '../../components/background/Background';
 import Header from '../../components/header/Header';
+import DebugButton from '../../components/debug/Button';
 import intro from './intro';
 import hints from './hints';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
 
-const isDebug = process.env.REACT_APP_DEBUG || false;
+const esprima = require('esprima');
 const testCode = `describe('comportamento', function() {
   it('deve somar um mais um', function() {
 
@@ -70,8 +71,27 @@ export default class Tutorial extends Component {
     });
   }
 
-  codeChanged(code) {
+  async codeChanged(code) {
     try {
+      const ast = esprima.parseScript(code);
+
+      if (ast.type === 'Program') {
+        for(let node in ast.body) {
+          if (ast.body[node].type === 'FunctionDeclaration') {
+            console.log('function');
+          }
+
+          if (ast.body[node].params.length === 2) {
+            console.log('has two params');
+          }
+
+          if (ast.body[node].body.body[0].argument.operator === '+') {
+            console.log('has +');
+          }
+
+        }
+      }
+
       const result = eval(code);
       this.setState({
         ...this.state.codeResult, codeResult: result ? result.toString(): ''
@@ -93,6 +113,7 @@ export default class Tutorial extends Component {
     return this.state.hints.map((item, index) => {
       if (index === this.state.currentHint) {
         return <AnimatedText
+          key={index}
           text={[
             item
           ]}
@@ -111,13 +132,13 @@ export default class Tutorial extends Component {
           enabled={this.state.introEnabled}
           steps={this.state.intro.steps}
           initialStep={this.state.intro.initialStep}
-          onFinishTooltip={this.onFinishTooltip}
+          onExit={this.onFinishTooltip}
         />
 
         <Header />
 
-        {isDebug && <button className="bg-white m-2" onClick={this.onEnableTooltip}>enable introjs</button>}
-        {isDebug && <button className="bg-white m-2" onClick={this.onFinishTooltip}>end introjs</button>}
+        <DebugButton onClick={this.onEnableTooltip} value="enable introjs"/>
+        <DebugButton onClick={this.onFinishTooltip} value="end introjs"/>
 
         <div className="mt-5">
           <div className="flex justify-center">

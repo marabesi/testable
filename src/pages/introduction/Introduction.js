@@ -3,13 +3,12 @@ import Background from '../../components/background/Background';
 import Scene from '../../components/introduction/Scene';
 import content from '../../introduction-content.json';
 import Loading from '../../components/loading/Loading';
+import Header from '../../components/header/Header';
+import DebugButton from '../../components/debug/Button';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../login/Auth';
-import Header from '../../components/header/Header';
 
 import './introduction.scss';
-
-const isDebug = process.env.REACT_APP_DEBUG || false;
 
 export default class Introduction extends Component {
 
@@ -84,7 +83,7 @@ export default class Introduction extends Component {
         loading: false,
         redirect: true
       });
-    }, 1000);
+    }, 2000);
   }
 
   render() {
@@ -106,12 +105,12 @@ export default class Introduction extends Component {
         <Header />
 
         <div className="flex mt-10">
-          {isDebug && <button className="bg-white m-2" onClick={this.handlePreviousScene}>previous</button>}
+          <DebugButton onClick={this.handlePreviousScene} value="previous"/>
 
           {this.renderStep()}
 
-          {isDebug && <button className="bg-white m-2" onClick={this.handleNextScene}>next</button>}
-          {isDebug && <button className="bg-white m-2" onClick={this.handleLastScene}>skip intro</button>}
+          <DebugButton onClick={this.handleNextScene} value="next"/>
+          <DebugButton onClick={this.handleLastScene} value="skip intro"/>
         </div>
       </Background>
     );

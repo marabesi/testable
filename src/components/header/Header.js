@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import Profile from '../../components/profile/Profile';
 import Level from '../../components/level/Level';
+import DebugButton from '../../components/debug/Button';
 import { auth } from '../../pages/login/Auth';
-
-const isDebug = process.env.REACT_APP_DEBUG || false;
 
 export default class Header extends Component {
 
@@ -23,7 +22,7 @@ export default class Header extends Component {
   render() {
     return (
       <React.Fragment>
-        {isDebug && <button className="bg-white m-2" onClick={this.goToIntroduction}>go back to introduction</button>}
+        <DebugButton onClick={this.goToIntroduction} value="go back to introduction"/>
 
         <div className="flex justify-between pl-3 pr-3 mt-3">
           <div className="user-progress">

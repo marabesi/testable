@@ -1,3 +1,11 @@
 .editor {
   min-width: 45%;
+
+  .CodeMirror-gutter-elt {
+    width: 25px;
+  }
+  
+  .CodeMirror-gutters {
+    left: 0 !important;
+  }
 }
