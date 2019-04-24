@@ -1,14 +1,19 @@
 import firebase from 'firebase/app';
 
-const firebaseOauth = firebase.auth;
-
 const uiConfig = {
   signInSuccessUrl: process.env.REACT_APP_BASE_NAME || '/',
   signInOptions: [
-    firebaseOauth.GoogleAuthProvider.PROVIDER_ID,
-    firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+    {
+      provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID
+    },
+    {
+      provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      scopes: [
+        'public_profile',
+        'email',
+      ]
+    },
     firebase.auth.TwitterAuthProvider.PROVIDER_ID,
-    firebase.auth.GithubAuthProvider.PROVIDER_ID,
     firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
 
