@@ -27,6 +27,7 @@
     "typed.js": "^2.0.10"
   },
   "scripts": {
+    "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",
     "debug": "export REACT_APP_DEBUG=true && npm run tailwind:css && react-scripts start",
     "start": "npm run tailwind:css && react-scripts start",
     "predeploy": "npm run build",
@@ -44,6 +45,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "gh-pages": "^2.0.1"
+    "gh-pages": "^2.0.1",
+    "source-map-explorer": "^1.8.0"
   }
 }
