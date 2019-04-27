@@ -1,12 +1,19 @@
 import React from 'react';
 import Profile from './Profile';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 
-describe('Profile component', () => {
-  it('allows us to set props', () => {
-    const wrapper = mount(<Profile />);
-    expect(wrapper.props().bar).to.equal('baz');
-    wrapper.setProps({ bar: 'foo' });
-    expect(wrapper.props().bar).to.equal('foo');
+describe('profile component', () => {
+  it('should place image from placeimg when user image does not exists', () => {
+    const wrapper = shallow(<Profile user={{}} />);
+    const imgSrc = wrapper.find('img');
+
+    expect(imgSrc.prop('src')).toEqual('https://placeimg.com/200/200/any');
+  });
+
+  it('it should place user image when it exists', () => {
+    const wrapper = shallow(<Profile user={{ photo: 'my.photo.com'}} />);
+    const imgSrc = wrapper.find('img');
+
+    expect(imgSrc.prop('src')).toEqual('my.photo.com'); 
   });
 });
