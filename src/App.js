@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import Login from './pages/login/Login';
-import Introduction from './pages/introduction/Introduction';
-import Tutorial from './pages/tutorial/Tutorial';
+import AsyncComponent from './components/AsyncComponent';
 import ProtectedRoute from './pages/login/router/ProtectedRoute';
-import NotFound from './pages/notfound/NotFound';
 import { spring, AnimatedSwitch } from 'react-router-transition';
 
 import './app.scss';
+
+const Introduction = AsyncComponent(() => {
+  return import('./pages/introduction/Introduction');
+});
+const Tutorial = AsyncComponent(() => {
+  return import('./pages/tutorial/Tutorial');
+});
+const NotFound = AsyncComponent(() => {
+   return import('./pages/notfound/NotFound');
+});
 
 function mapStyles(styles) {
   return {
