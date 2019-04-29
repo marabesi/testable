@@ -1,6 +1,8 @@
 language: node_js
 node_js:
   - "7"
+  - "8"
+  - "9"
 before_script:
 - chmod +x ./prebuild.sh
 - chmod +x ./deploy.sh
@@ -18,5 +20,3 @@ env:
 branches:
   only:
   - master
-after_script:
-- sudo ./deploy.sh
