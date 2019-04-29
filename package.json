@@ -7,12 +7,12 @@
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "esprima": "^4.0.1",
-    "firebase": "^5.10.0",
-    "firebaseui": "^3.4.1",
+    "firebase": "^5.10.1",
+    "firebaseui": "^3.6.0",
     "intro.js": "^2.9.3",
     "intro.js-react": "^0.2.0",
     "material-design-lite": "^1.2.0",
-    "node-sass": "^4.11.0",
+    "node-sass": "^4.12.0",
     "react": "^16.8.6",
     "react-codemirror": "^1.0.0",
     "react-dom": "^16.8.6",
@@ -32,11 +32,12 @@
     "start": "npm run tailwind:css && react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "npm run tailwind:css && export NODE_ENV=production && react-scripts build",
+    "build": "npm run lint && npm run tailwind:css && export NODE_ENV=production && react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "cypress": "cypress open",
     "eject": "react-scripts eject",
-    "tailwind:css": "tailwind build src/tailwind.src.css -c tailwind.js -o src/tailwind.css"
+    "tailwind:css": "tailwind build src/tailwind.src.css -c tailwind.js -o src/tailwind.css",
+    "lint": "eslint src/**/*.js"
   },
   "browserslist": [
     ">0.2%",
@@ -45,6 +46,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "babel-eslint": "^9.0.0",
+    "eslint-plugin-react": "^7.12.4",
     "gh-pages": "^2.0.1",
     "source-map-explorer": "^1.8.0"
   }

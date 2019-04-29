@@ -1,14 +1,20 @@
 {
     "env": {
         "browser": true,
-        "es6": true
+        "es6": true,
+        "jest": true
     },
-    "extends": "eslint:recommended",
+    "extends": [
+        "eslint:recommended",
+        "plugin:react/recommended"
+    ],
+    "parser": "babel-eslint",
     "parserOptions": {
         "ecmaFeatures": {
-            "jsx": true
+            "jsx": true,
+            "experimentalObjectRestSpread": true
         },
-        "ecmaVersion": 2018,
+        "ecmaVersion": 6,
         "sourceType": "module"
     },
     "plugins": [
@@ -30,6 +36,31 @@
         "semi": [
             "error",
             "always"
+        ]
+    },
+    "settings": {
+        "react": {
+            "createClass": "createReactClass",
+            "pragma": "React",
+            "version": "detect",
+            "flowVersion": "0.53"
+        },
+        "propWrapperFunctions": [
+            "forbidExtraProps",
+            {
+                "property": "freeze",
+                "object": "Object"
+            },
+            {
+                "property": "myFavoriteWrapper"
+            }
+        ],
+        "linkComponents": [
+            "Hyperlink",
+            {
+                "name": "Link",
+                "linkAttribute": "to"
+            }
         ]
     }
 }
