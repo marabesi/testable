@@ -16,4 +16,11 @@ describe('profile component', () => {
 
     expect(imgSrc.prop('src')).toEqual('my.photo.com'); 
   });
+
+  it('should have name and email on title property', () => {
+    const wrapper = shallow(<Profile user={{ name: 'john', email: 'john@john.com' }} />);
+    const container = wrapper.find('div');
+
+    expect(container.at(0).prop('title')).toEqual('john - john@john.com'); 
+  });
 });
