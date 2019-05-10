@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './level.scss';
 
@@ -14,3 +15,8 @@ export default class Level extends Component {
     );
   }
 }
+
+Level.propTypes = {
+  level: PropTypes.number,
+  progress: PropTypes.number
+};
