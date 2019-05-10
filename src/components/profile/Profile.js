@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../../pages/login/Auth';
+import PropTypes from 'prop-types';
 
 import './profile.scss';
 
@@ -25,13 +26,13 @@ export default class Profile extends Component {
         successfullLoggedOut: true,
         menu: false
       });
-    })
+    });
   }
 
   showMenu() {
     this.setState({
       menu: !this.state.menu
-    })
+    });
   }
 
   onBlur() {
@@ -52,12 +53,19 @@ export default class Profile extends Component {
     const name = this.props.user.name;
     const email = this.props.user.email;
     const photo = this.props.user.photo;
+    const propClass = this.props.className;
 
     const className = `profile flex cursor-pointer ${
-      this.props.className ? this.props.className : ''
-      }`;
+      propClass ? propClass : ''
+    }`;
+
     return (
-      <div className="relative outline-none" tabIndex="0" onBlur={this.onBlur} title={`${name} - ${email}`}>
+      <div 
+        className="relative outline-none"
+        tabIndex="0"
+        onBlur={this.onBlur}
+        title={`${name} - ${email}`}
+      >
         <div className={className} onClick={this.showMenu}>
           <div className="picture-holder">
             <img
@@ -79,3 +87,8 @@ export default class Profile extends Component {
     );
   }
 }
+
+Profile.propTypes = {
+  user: PropTypes.object,
+  className: PropTypes.string
+};

@@ -10,7 +10,7 @@ describe('profile component', () => {
     expect(imgSrc.prop('src')).toEqual('https://placeimg.com/200/200/any');
   });
 
-  it('it should place user image when it exists', () => {
+  it('should place user image when it exists', () => {
     const wrapper = shallow(<Profile user={{ photo: 'my.photo.com'}} />);
     const imgSrc = wrapper.find('img');
 
