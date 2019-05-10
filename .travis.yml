@@ -17,6 +17,3 @@ env:
   global:
   - GH_REPO="marabesi/testable"
   - REACT_APP_BASE_NAME="/testable"
-branches:
-  only:
-  - master
