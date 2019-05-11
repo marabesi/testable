@@ -7,13 +7,14 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
     <Route
       {...rest}
       render={(props) => {
-        const redirectTo = auth.canEnter(props.location);
-        return !redirectTo ? (
+        const can = auth.canEnter(props.history, props.location);
+        return  can.flag ? (
           <Component {...props} />
         ) : (
           <Redirect
+            push
             to={{
-              pathname: redirectTo,
+              pathname: can.to,
               state: { from: props.location }
             }}
           />

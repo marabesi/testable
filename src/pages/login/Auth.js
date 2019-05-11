@@ -46,23 +46,46 @@ const auth = {
       }
     });
   },
+  /**
+   * Unsubscribe from the firebase database to prevent react warnings.
+   */
   unsubscribe() {
     if (this.firebaseRef) {
       this.firebaseRef.off();
     }
   },
-  canEnter(location) {
+  canEnter(from, to) {
     if (!this.isAuthenticated) {
-      return '/';
+      return {
+        flag: false,
+        to: '/'
+      };
     }
 
-    if (location.pathname !== '/intro' && !this.user.tutorial) {
-      return '/intro';
+    if (to.pathname !== '/intro' && this.user.level === 1) {
+      return {
+        flag: false,
+        to: '/intro'
+      };
     }
 
-    if (location.pathname !== '/tutorial' && this.user.tutorial) {
-      return '/tutorial';
+    if (to.pathname !== '/tutorial' && this.user.level === 2) {
+      return {
+        flag: false,
+        to: '/tutorial'
+      };
     }
+
+    if (to.pathname !== '/end' && this.user.level >= 3) {
+      return {
+        flag: false,
+        to: '/end'
+      };
+    }
+
+    return {
+      flag: true
+    };
   },
   signout(cb) {
     firebase.auth().signOut();
