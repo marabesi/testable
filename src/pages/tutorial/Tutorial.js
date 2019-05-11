@@ -9,25 +9,26 @@ import Header from '../../components/header/Header';
 import DebugButton from '../../components/debug/Button';
 import intro from './intro';
 import hints from './hints';
+import Reason from '../../engine/Reason';
+import Sum from '../../engine/strategies/Sum';
+import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
 
-const esprima = require('esprima');
 const testCode = `describe('comportamento', function() {
   it('deve somar um mais um', function() {
 
   })
 })
 `;
-
 export default class Tutorial extends Component {
 
   constructor() {
     super();
     this.state = {
-      user: {},
-      codeResult: '',
+      codeOutput: '',
+      codeError: '',
       code: 'var a = 1;',
       showNext: false,
       testCode: testCode,
@@ -44,6 +45,7 @@ export default class Tutorial extends Component {
     this.onFinishTooltip = this.onFinishTooltip.bind(this);
     this.handleProgress = this.handleProgress.bind(this);
     this.renderHint = this.renderHint.bind(this);
+    this.nextHint = this.nextHint.bind(this);
   }
 
   onFinishTooltip() {
@@ -61,8 +63,8 @@ export default class Tutorial extends Component {
   }
 
   onFinishedTyping() {
-    const total = this.state.hints.length;
-    if (total === 2) {
+    const total = this.state.currentHint;
+    if (total === 1) {
       return;
     }
 
@@ -71,34 +73,44 @@ export default class Tutorial extends Component {
     });
   }
 
-  async codeChanged(code) {
+  codeChanged(code) {
+    // when it is not time to do the code yet and when
+    // it is done with the sum and tries to add code again
+    if (this.state.currentHint < 1 || this.state.currentHint >= 2) {
+      return;
+    }
+
     try {
-      const ast = esprima.parseScript(code);
-
-      if (ast.type === 'Program') {
-        for(let node in ast.body) {
-          if (ast.body[node].type === 'FunctionDeclaration') {
-            console.log('function');
-          }
-
-          if (ast.body[node].params.length === 2) {
-            console.log('has two params');
-          }
-
-          if (ast.body[node].body.body[0].argument.operator === '+') {
-            console.log('has +');
-          }
-
-        }
-      }
+      this.setState({
+        ...this.state.codeError, codeError: ''
+      });
 
       const result = eval(code);
+      const stringify = result ? result.toString(): '';
+
       this.setState({
-        ...this.state.codeResult, codeResult: result ? result.toString(): ''
+        ...this.state.codeOutput, codeOutput: stringify
       });
+
+      if (Reason(code, Sum)) {
+        Emitter.emit(LEVEL_UP, {increase: 1});
+        this.nextHint();
+      }
     } catch (error) {
       this.setState({
-        ...this.state.codeResult, codeResult: error.message
+        ...this.state.codeError, codeError: error.message
+      });
+    }
+  }
+
+  nextHint() {
+    const next = this.state.currentHint + 1;
+    const total = hints.length;
+
+    if (next < total) {
+      this.setState({
+        ...this.state.currentHint, currentHint: next,
+        ...this.state.showNext, showNext: false
       });
     }
   }
@@ -106,26 +118,36 @@ export default class Tutorial extends Component {
   handleProgress() {
     if (this.state.currentHint === 0) {
       this.onEnableTooltip();
+
+      return;
     }
+
+    this.nextHint();
   }
 
   renderHint() {
     return this.state.hints.map((item, index) => {
       if (index === this.state.currentHint) {
-        return <AnimatedText
-          key={index}
-          text={[
-            item
-          ]}
-          onFinishedTyping={this.onFinishedTyping}
-        />;
+        return (
+          <React.Fragment
+            key={index}
+          >
+            <AnimatedText
+              text={[
+                item
+              ]}
+              onFinishedTyping={this.onFinishedTyping}
+            />
+            {this.state.showNext && <button onClick={this.handleProgress} className="self-end no-underline text-white font-bold p-3">Proximo ></button>}
+          </React.Fragment>
+        );
       }
 
       return false;
     });
   }
 
-  render() {
+  render() {  
     return (
       <Background>
         <TutorialSteps
@@ -138,7 +160,7 @@ export default class Tutorial extends Component {
         <Header />
 
         <DebugButton onClick={this.onEnableTooltip} value="enable introjs"/>
-        <DebugButton onClick={this.onFinishTooltip} value="end introjs"/>
+        <DebugButton onClick={this.nextHint} value="Forward"/>
 
         <div className="mt-5">
           <div className="flex justify-center">
@@ -154,9 +176,10 @@ export default class Tutorial extends Component {
             />
           </div>
 
-          <p className="m-auto mb-5 text-red font-medium" style={{ minWidth: '45%', maxWidth: '45%' }}>
-            {this.state.codeResult}
-          </p>
+          <div className="m-auto mb-5 bg-blue-dark" style={{ minWidth: '45%', maxWidth: '45%' }}>
+            <p className="text-white">{this.state.codeOutput}</p>
+            <p className="text-red font-medium">{this.state.codeError}</p>
+          </div>
         </div>
 
         <div className="flex justify-center p-12 min-h-screen bg-testable-overlay">
@@ -171,7 +194,6 @@ export default class Tutorial extends Component {
               }}
             />
             {this.renderHint()}
-            {this.state.showNext && <button onClick={this.handleProgress} className="self-end no-underline text-white font-bold p-3">Proximo ></button>}
           </div>
         </div>
       </Background>
