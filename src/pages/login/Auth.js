@@ -22,6 +22,7 @@ const auth = {
           photo: user.photoURL,
           level: 1,
           tutorial: false,
+          introduction: true,
         };
 
         vm.firebaseRef = firebase
@@ -69,16 +70,22 @@ const auth = {
     this.user = {};
     cb();
   },
+  /**
+   * updates the user info based on the javascript object passed in the data
+   * param. For instance, an object with a single key named "level", will update
+   * only the key level on firebase and here, in the user property.
+   */
   updateUserInfo(data) {
     const firebaseRef = firebase
       .database()
       .ref()
       .child('users/' + this.user.uid);
 
-    firebaseRef.set(data);
+    firebaseRef.update(data);
 
-    this.user.tutorial = data.tutorial;
-    this.user.level = data.level;
+    for (let prop in data) {
+      this.user[prop] = data[prop];
+    }
   }
 };
 
