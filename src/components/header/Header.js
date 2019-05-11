@@ -23,6 +23,7 @@ export default class Header extends Component {
       });
     }, 500);
   }
+
   componentDidMount() {
     Emitter.addListener(LEVEL_UP, (data) => {
       this.setState({
@@ -36,6 +37,10 @@ export default class Header extends Component {
 
       this.resetLevelUpAnimation();
     });
+  }
+
+  componentWillUnmount() {
+    Emitter.removeAllListeners(LEVEL_UP);
   }
 
   goToIntroduction() {
