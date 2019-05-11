@@ -1,0 +1,4 @@
+{
+  "testFiles": "**/*.*",
+  "defaultCommandTimeout": 20000
+}

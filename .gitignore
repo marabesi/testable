@@ -27,3 +27,6 @@ tailwind.css
 .vscode
 
 .netlify
+
+cypress.env.json
+cypress/screenshots
