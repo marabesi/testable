@@ -3,6 +3,7 @@ import Button from './Button';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import SvgBuggy from '../buggy/SvgBuggy';
 import AlienSvg from '../alien/AlienSvg';
+import PropTypes from 'prop-types';
 
 import './scene.scss';
 
@@ -15,6 +16,7 @@ export default class Scene extends Component {
     };
     this.onClick = this.onClick.bind(this);
   }
+
 
   onFinishedTyping() {
     setTimeout(() => {
@@ -70,3 +72,18 @@ export default class Scene extends Component {
     );
   }
 }
+
+Scene.propTypes = {
+  onCompleted: PropTypes.object,
+  showAlien: PropTypes.bool,
+  text: PropTypes.array,
+  className: PropTypes.string,
+  next: PropTypes.func,
+  lastScene: PropTypes.bool,
+  handleLastScene: PropTypes.func,
+  button: PropTypes.string
+};
+
+Scene.defaultProps = {
+  onCompleted: {}
+};
