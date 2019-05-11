@@ -14,7 +14,11 @@ const Tutorial = AsyncComponent(() => {
   return import('./pages/tutorial/Tutorial');
 });
 const NotFound = AsyncComponent(() => {
-   return import('./pages/notfound/NotFound');
+  return import('./pages/notfound/NotFound');
+});
+
+const End = AsyncComponent(() => {
+  return import('./pages/end/End');
 });
 
 function mapStyles(styles) {
@@ -60,6 +64,7 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <ProtectedRoute path="/intro" component={Introduction} />
           <ProtectedRoute path="/tutorial" component={Tutorial} />
+          <ProtectedRoute path="/end" component={End} />
           <Route path="*" component={NotFound} />
         </AnimatedSwitch>
       </React.Fragment>
