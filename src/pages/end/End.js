@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Background from '../../components/background/Background';
+import SceneManager from '../../components/scene-manager/SceneManager';
+import content from './end-content.json';
 
 export default class End extends Component {
 
   render() {
     return (
-      <Background>
-      </Background>
+      <SceneManager content={content} />
     );
   }
 }

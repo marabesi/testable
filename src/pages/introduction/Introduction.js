@@ -1,118 +1,12 @@
 import React, { Component } from 'react';
-import Background from '../../components/background/Background';
-import Scene from '../../components/introduction/Scene';
-import content from '../../introduction-content.json';
-import Loading from '../../components/loading/Loading';
-import DebugButton from '../../components/debug/Button';
-import { Redirect } from 'react-router-dom';
-import { auth } from '../login/Auth';
-import Emitter, { LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
-
-import './introduction.scss';
+import SceneManager from '../../components/scene-manager/SceneManager';
+import content from './introduction-content.json';
 
 export default class Introduction extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      redirect: false,
-      loading: false,
-      tutorial: content.tutorial,
-      currentStep: 1
-    };
-
-    this.handleNextScene = this.handleNextScene.bind(this);
-    this.handlePreviousScene = this.handlePreviousScene.bind(this);
-    this.handleLastScene = this.handleLastScene.bind(this);
-  }
-
-  handlePreviousScene() {
-    const current = this.state.currentStep;
-
-    this.setState({
-      tutorial: content.tutorial,
-      currentStep: current - 1
-    });
-
-    Emitter.emit(PROGRESS_DOWN, { amount: auth.user.progress - 10});
-  }
-
-  handleNextScene() {
-    const current = this.state.currentStep;
-
-    this.setState({
-      tutorial: content.tutorial,
-      currentStep: current + 1
-    });
-
-    Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10});
-  }
-
-  renderStep() {
-    const steps = this.state.tutorial.steps;
-    const scenes = [];
-
-    for (let step in steps) {
-      if (steps[step].step === this.state.currentStep) {
-        scenes.push(<Scene
-          key={step}
-          text={steps[step].content}
-          button={steps[step].button}
-          step={this.state.currentStep}
-          className="m-auto w-3/5"
-          next={this.handleNextScene}
-          lastScene={steps[step].lastScene}
-          handleLastScene={this.handleLastScene}
-          showAlien={steps[step].showAlien}
-          onCompleted={steps[step].onCompleted || {}} />
-        );
-      }
-    }
-
-    return scenes;
-  }
-
-  handleLastScene() {
-    Emitter.emit(LEVEL_UP, {
-      tutorial: true,
-    });
-
-    this.setState({
-      loading: true
-    });
-
-    setTimeout(() => {
-      this.setState({
-        loading: false,
-        redirect: true
-      });
-    }, 2000);
-  }
-
   render() {
-    if (this.state.loading) {
-      return (<Loading />);
-    }
-
-    if (this.state.redirect) {
-      return (
-        <Redirect to={{
-          pathname: '/tutorial',
-        }} />
-      );
-    }
-
     return (
-      <Background>
-        <div className="flex mt-10">
-          <DebugButton onClick={this.handlePreviousScene} value="previous"/>
-
-          {this.renderStep()}
-
-          <DebugButton onClick={this.handleNextScene} value="next"/>
-          <DebugButton onClick={this.handleLastScene} value="skip intro"/>
-        </div>
-      </Background>
+      <SceneManager content={content} />
     );
   }
 }

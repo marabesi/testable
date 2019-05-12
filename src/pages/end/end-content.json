@@ -1,0 +1,27 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "step": 1,
+      "button": "eita",
+      "content": [
+        {
+          "key": 0,
+          "line": "Acabou!!!",
+          "style": "p-2"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "button": "E o segundo?",
+      "content": [
+        {
+          "key": 0,
+          "line": "_ O primeiro você sabe bem...",
+          "style": "p-2"
+        }
+      ]
+    }
+  ]
+}
