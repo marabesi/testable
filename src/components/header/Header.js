@@ -94,7 +94,7 @@ export default class Header extends Component {
         </div>
 
         <div className="flex w-full justify-center relative">
-          <img src="assets/logo.png" className="h-8 hidden lg:block" alt="logotipo" title="Testable - Ferramenta gamificada"/>
+          <img src="assets/logo.png" className="hover:pulsate-fwd h-8 hidden lg:block" alt="logotipo" title="Testable - Ferramenta gamificada"/>
         </div>
       </React.Fragment>
     );
