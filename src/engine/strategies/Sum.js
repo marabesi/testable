@@ -1,5 +1,5 @@
 var name, params;
-const Sum = function (ast) {
+export const Sum = function (ast) {
   for (let node in ast.body) {
     if (!ast.body[node].type === 'FunctionDeclaration') {
       return;
@@ -24,4 +24,6 @@ const Sum = function (ast) {
   return { name, params };
 };
 
-export default Sum;
+export const testCase = function() {
+
+};

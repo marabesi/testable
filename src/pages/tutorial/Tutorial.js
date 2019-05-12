@@ -9,7 +9,7 @@ import DebugButton from '../../components/debug/Button';
 import intro from './intro';
 import tutorialContent from './tutorial-content';
 import Reason from '../../engine/Reason';
-import Sum from '../../engine/strategies/Sum';
+import { Sum } from '../../engine/strategies/Sum';
 import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';
 import { Redirect } from 'react-router';
 import { auth } from '../login/Auth';
@@ -58,7 +58,7 @@ export default class Tutorial extends Component {
 
   onFinishedTyping() {
     const total = this.state.currentHint;
-    if (total === 1) {
+    if (total === 3) {
       return;
     }
 
@@ -70,7 +70,7 @@ export default class Tutorial extends Component {
   codeChanged(code) {
     // when it is not time to do the code yet and when
     // it is done with the sum and tries to add code again
-    if (this.state.currentHint < 1 || this.state.currentHint >= 2) {
+    if (this.state.currentHint !== 3) {
       return;
     }
 

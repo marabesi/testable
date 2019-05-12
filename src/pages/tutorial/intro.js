@@ -36,7 +36,13 @@ export default {
     },
     {
       element: '.source-code',
-      intro: 'e é aqui que passaremos a maior parte da nossa jornada!',
+      intro: 'E funciona como um interpretaror, igual ao do navegador',
+      tooltipClass: 'myTooltipClass',
+      highlightClass: 'myHighlightClass',
+    },
+    {
+      element: '.source-code',
+      intro: 'Aqui passaremos a maior parte da nossa jornada!',
       tooltipClass: 'last-step',
       highlightClass: 'myHighlightClass',
     },
