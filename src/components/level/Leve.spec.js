@@ -11,11 +11,18 @@ describe('Level component', () => {
     expect(level).toBe('level 2');
   });
 
-  test.each([[10], [20], [30], [40], [50], [60], [70], [80], [90], [100]])(
-    'should render user progress through css class (progress: %i)',
+  describe.each([[10], [20], [30], [40], [50], [60], [70], [80], [90], [100]])(
+    'user progress bar',
     (progress) => {
-      const wrapper = shallow(<Level progress={progress} />);
-      expect(wrapper.find(`.progress-${progress}`).length).toEqual(1);
-    },
+      it('should render user progress through css class (progress: %i)',() => {
+        const wrapper = shallow(<Level progress={progress} />);
+        expect(wrapper.find(`.progress-${progress}`).length).toEqual(1);
+      });
+
+      it('should render user progress in percentage (progress: %i)',() => {
+        const wrapper = shallow(<Level progress={progress} />);
+        expect(wrapper.find(`[title="${progress} %"]`).length).toEqual(1);
+      });
+    }
   );
 });

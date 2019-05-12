@@ -3,10 +3,10 @@ import Background from '../../components/background/Background';
 import Scene from '../../components/introduction/Scene';
 import content from '../../introduction-content.json';
 import Loading from '../../components/loading/Loading';
-import Header from '../../components/header/Header';
 import DebugButton from '../../components/debug/Button';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../login/Auth';
+import Emitter, { LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 
 import './introduction.scss';
 
@@ -33,6 +33,8 @@ export default class Introduction extends Component {
       tutorial: content.tutorial,
       currentStep: current - 1
     });
+
+    Emitter.emit(PROGRESS_DOWN, { amount: auth.user.progress - 10});
   }
 
   handleNextScene() {
@@ -42,6 +44,8 @@ export default class Introduction extends Component {
       tutorial: content.tutorial,
       currentStep: current + 1
     });
+
+    Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10});
   }
 
   renderStep() {
@@ -69,9 +73,8 @@ export default class Introduction extends Component {
   }
 
   handleLastScene() {
-    auth.updateUserInfo({
+    Emitter.emit(LEVEL_UP, {
       tutorial: true,
-      level: 2
     });
 
     this.setState({
@@ -95,15 +98,12 @@ export default class Introduction extends Component {
       return (
         <Redirect to={{
           pathname: '/tutorial',
-          state: this.state
         }} />
       );
     }
 
     return (
       <Background>
-        <Header />
-
         <div className="flex mt-10">
           <DebugButton onClick={this.handlePreviousScene} value="previous"/>
 

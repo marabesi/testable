@@ -23,6 +23,7 @@ const auth = {
           level: 1,
           tutorial: false,
           introduction: true,
+          progress: 10,
         };
 
         vm.firebaseRef = firebase
@@ -36,11 +37,12 @@ const auth = {
           if (userObject !== null) {
             userDefault.tutorial = userObject.tutorial;
             userDefault.level = userObject.level;
+            userDefault.progress = userObject.progress;
           }
-
+          
           vm.isAuthenticated = true;
           vm.user = userDefault;
-
+          
           cb(userDefault);
         });
       }

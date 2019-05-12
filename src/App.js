@@ -4,6 +4,8 @@ import Login from './pages/login/Login';
 import AsyncComponent from './components/AsyncComponent';
 import ProtectedRoute from './pages/login/router/ProtectedRoute';
 import { spring, AnimatedSwitch } from 'react-router-transition';
+import Header from './components/header/Header';
+import { auth } from './pages/login/Auth';
 
 import './app.scss';
 
@@ -54,6 +56,8 @@ class App extends Component {
   render() {
     return (
       <React.Fragment>
+        { auth.isAuthenticated && <Header /> }
+
         <AnimatedSwitch
           atEnter={bounceTransition.atEnter}
           atLeave={bounceTransition.atLeave}

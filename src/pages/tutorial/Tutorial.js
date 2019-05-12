@@ -5,13 +5,14 @@ import Editor from '../../components/editor/Editor';
 import AnimatedText from '../../components/text-keyboard-animation/AnimatedText';
 import TutorialSteps from './TutorialSteps';
 import Background from '../../components/background/Background';
-import Header from '../../components/header/Header';
 import DebugButton from '../../components/debug/Button';
 import intro from './intro';
 import hints from './hints';
 import Reason from '../../engine/Reason';
 import Sum from '../../engine/strategies/Sum';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import { Redirect } from 'react-router';
+import { auth } from '../login/Auth';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
@@ -46,6 +47,7 @@ export default class Tutorial extends Component {
     this.handleProgress = this.handleProgress.bind(this);
     this.renderHint = this.renderHint.bind(this);
     this.nextHint = this.nextHint.bind(this);
+    this.levelUp = this.levelUp.bind(this);
   }
 
   onFinishTooltip() {
@@ -93,7 +95,7 @@ export default class Tutorial extends Component {
       });
 
       if (Reason(code, Sum)) {
-        Emitter.emit(LEVEL_UP, {increase: 1});
+        Emitter.emit(LEVEL_UP);
         this.nextHint();
       }
     } catch (error) {
@@ -112,7 +114,25 @@ export default class Tutorial extends Component {
         ...this.state.currentHint, currentHint: next,
         ...this.state.showNext, showNext: false
       });
+
+      return;
     }
+
+    this.levelUp();
+
+    auth.updateUserInfo({
+      tutorial: false
+    });
+
+    setTimeout(() => {
+      this.setState({
+        tutorialDone: true
+      });
+    }, 1300);
+  }
+
+  levelUp() {
+    Emitter.emit(LEVEL_UP);
   }
 
   handleProgress() {
@@ -138,7 +158,7 @@ export default class Tutorial extends Component {
               ]}
               onFinishedTyping={this.onFinishedTyping}
             />
-            {this.state.showNext && <button onClick={this.handleProgress} className="self-end no-underline text-white font-bold p-3">Proximo ></button>}
+            {this.state.showNext && <button onClick={this.handleProgress} className="self-end no-underline text-white font-bold p-3">Próximo ></button>}
           </React.Fragment>
         );
       }
@@ -147,7 +167,11 @@ export default class Tutorial extends Component {
     });
   }
 
-  render() {  
+  render() {
+    if (this.state.tutorialDone) {
+      return (<Redirect to="/end" />);
+    }
+
     return (
       <Background>
         <TutorialSteps
@@ -157,10 +181,9 @@ export default class Tutorial extends Component {
           onExit={this.onFinishTooltip}
         />
 
-        <Header />
-
         <DebugButton onClick={this.onEnableTooltip} value="enable introjs"/>
         <DebugButton onClick={this.nextHint} value="Forward"/>
+        <DebugButton onClick={this.levelUp} value="level up"/>
 
         <div className="mt-5">
           <div className="flex justify-center">
