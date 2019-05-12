@@ -7,22 +7,16 @@ import TutorialSteps from './TutorialSteps';
 import Background from '../../components/background/Background';
 import DebugButton from '../../components/debug/Button';
 import intro from './intro';
-import hints from './hints';
+import tutorialContent from './tutorial-content';
 import Reason from '../../engine/Reason';
 import Sum from '../../engine/strategies/Sum';
-import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';
 import { Redirect } from 'react-router';
 import { auth } from '../login/Auth';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
 
-const testCode = `describe('comportamento', function() {
-  it('deve somar um mais um', function() {
-
-  })
-})
-`;
 export default class Tutorial extends Component {
 
   constructor() {
@@ -32,10 +26,8 @@ export default class Tutorial extends Component {
       codeError: '',
       code: 'var a = 1;',
       showNext: false,
-      testCode: testCode,
-      showTestCase: 'hidden',
       currentHint: 0,
-      hints: hints,
+      tutorialContent: tutorialContent,
       introEnabled: false,
       intro: intro
     };
@@ -107,9 +99,11 @@ export default class Tutorial extends Component {
 
   nextHint() {
     const next = this.state.currentHint + 1;
-    const total = hints.length;
+    const total = tutorialContent.length;
 
     if (next < total) {
+      Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10});
+
       this.setState({
         ...this.state.currentHint, currentHint: next,
         ...this.state.showNext, showNext: false
@@ -146,7 +140,7 @@ export default class Tutorial extends Component {
   }
 
   renderHint() {
-    return this.state.hints.map((item, index) => {
+    return this.state.tutorialContent.map((item, index) => {
       if (index === this.state.currentHint) {
         return (
           <React.Fragment
@@ -191,11 +185,6 @@ export default class Tutorial extends Component {
               value={this.state.code}
               codeChanged={this.codeChanged}
               className="source-code m-5 border-2 border-testable-blue-overlay"
-            />
-
-            <Editor
-              value={this.state.testCode}
-              className={`test-code m-5 border-2 border-testable-blue-overlay ${this.state.showTestCase}`}
             />
           </div>
 
