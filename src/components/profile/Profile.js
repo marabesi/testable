@@ -81,7 +81,7 @@ export default class Profile extends Component {
           </div>
         </div>
         <ul className={`w-full bg-testable-overlay list-reset p-1 mt-2 z-40 absolute ${this.state.menu ? 'block' : 'hidden'}`}>
-          <li className="cursor-pointer text-white text-center" onClick={this.onLogout}>Logout</li>
+          <li className="cursor-pointer text-white text-center p-1" onClick={this.onLogout}>Logout</li>
         </ul>
       </div>
     );

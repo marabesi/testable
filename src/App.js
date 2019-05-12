@@ -51,6 +51,7 @@ const bounceTransition = {
     scale: 1,
   }
 };
+
 class App extends Component {
 
   render() {
