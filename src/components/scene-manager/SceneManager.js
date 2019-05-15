@@ -72,7 +72,6 @@ export default class SceneManager extends Component {
   }
 
   render() {
-
     return (
       <Background>
         <DebugButton onClick={this.handlePreviousScene} value="previous" />

@@ -61,7 +61,7 @@ export default class Scene extends Component {
             onFinishedTyping={ () => this.onFinishedTyping() }
           />
           {this.props.onCompleted.showBug && this.state.showNextButton && <SvgBuggy className="absolute pin-r w-1/3 mt-10" />}
-          {this.props.showAlien && <AlienSvg className="w-3/3 absolute w-1/3 pin-r pin-t"/>}
+          {this.props.showAlien && <AlienSvg className="w-3/3 absolute w-1/3 pin-r pin-t -mt-6"/>}
         </div>
 
         {next}
