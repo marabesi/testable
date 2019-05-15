@@ -18,7 +18,16 @@ export default class Guide extends Component {
               ]}
               onFinishedTyping={this.props.onFinishedTyping}
             />
-            {this.props.showNext && <button onClick={this.props.handleProgress} className="self-end no-underline text-white font-bold p-3">Próximo &gt;</button>}
+            {
+              this.props.showNext
+              &&
+              <button
+                onClick={this.props.handleProgress}
+                className="self-end no-underline text-white font-bold p-3 focus:outline-none"
+              >
+                Próximo &gt;
+              </button>
+            }
           </React.Fragment>
         );
       }
@@ -37,7 +46,7 @@ export default class Guide extends Component {
               transform: 'scaleX(-1)',
               width: '250px',
               marginTop: '-180px',
-              marginLeft: '-270px'
+              marginLeft: '-290px'
             }}
           />
           {this.renderHint()}

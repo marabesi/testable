@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import CodeMirror from 'react-codemirror';
+import PropTypes from 'prop-types';
 
 import './editor.scss';
 
@@ -24,6 +25,13 @@ export default class Editor extends Component {
           className="editor"
           onChange={this.props.codeChanged}
         />
-      </div>);
+      </div>
+    );
   }
 }
+
+Editor.propTypes = {
+  className: PropTypes.string,
+  value: PropTypes.string,
+  codeChanged: PropTypes.func,
+};

@@ -39,9 +39,10 @@ export default class EditorManager extends Component {
   }
 
   render() {
+    const { className } = this.props;
     return (
       <Background>
-        <div className="mt-5">
+        <div className={`mt-5 ${className}`}>
           <div className="flex justify-center">
             <Editor
               value={this.state.code}
@@ -50,7 +51,7 @@ export default class EditorManager extends Component {
             />
           </div>
 
-          <div className="m-auto mb-5 bg-blue-dark" style={{ minWidth: '45%', maxWidth: '45%' }}>
+          <div className="m-auto mb-5 bg-blue-dark break-words">
             <p className="text-white">{this.state.codeOutput}</p>
             <p className="text-red font-medium">{this.state.codeError}</p>
           </div>
@@ -62,4 +63,5 @@ export default class EditorManager extends Component {
 
 EditorManager.propTypes = {
   onValidCode: PropTypes.func,
+  className: PropTypes.string
 };
