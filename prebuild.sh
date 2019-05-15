@@ -15,6 +15,12 @@ git config remote.origin.url $REPO_URL
 
 echo $FIREBASE >> src/env.json
 
+echo "{
+  \"host\": \"$CYPRESS_HOST\",
+  \"email\": \"$CYPRESS_EMAIL\",
+  \"password\": \"$CYPRESS_PASSWORD\"
+}" >> cypress.env.json
+
 echo "DEBUG, cd out"
 test -d out && (
   cd out

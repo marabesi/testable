@@ -10,6 +10,7 @@ before_script:
 
 script:
   - yarn test
+  - yarn cypress-run
   - yarn build
 
 env:

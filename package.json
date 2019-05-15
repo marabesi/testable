@@ -37,6 +37,7 @@
     "test": "react-scripts test --env=jsdom",
     "coverage": "react-scripts test --env=jsdom --collectCoverage",
     "cypress": "cypress open",
+    "cypress-run": "cypress run",
     "eject": "react-scripts eject",
     "tailwind:css": "tailwind build src/tailwind.src.scss -c tailwind.js -o src/tailwind.css",
     "lint": "eslint src/**/*.js"
