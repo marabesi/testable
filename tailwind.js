@@ -75,7 +75,7 @@ let colors = {
   'yellow-darkest': '#453411',
   'yellow-darker': '#684f1d',
   'yellow-dark': '#f2d024',
-  'yellow': '#ffed4a',
+  'yellow': '#fcc632',
   'yellow-light': '#fff382',
   'yellow-lighter': '#fff9c2',
   'yellow-lightest': '#fcfbeb',
@@ -100,7 +100,7 @@ let colors = {
   'blue-darker': '#1c3d5a',
   'blue-dark': '#012345',
   'blue': '#3490dc',
-  'blue-light': '#6cb2eb',
+  'blue-light': '#32ccff',
   'blue-lighter': '#bcdefa',
   'blue-lightest': '#eff8ff',
 

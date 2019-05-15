@@ -17,7 +17,6 @@ export default class Scene extends Component {
     this.onClick = this.onClick.bind(this);
   }
 
-
   onFinishedTyping() {
     setTimeout(() => {
       this.setState({
@@ -29,9 +28,7 @@ export default class Scene extends Component {
   onClick(event) {
     if (this.props.lastScene) {
       this.props.handleLastScene();
-      return {
-        isLastScene: true
-      };
+      return;
     }
 
     this.props.next(event);
@@ -52,7 +49,7 @@ export default class Scene extends Component {
     let next = '';
 
     if (this.state.showNextButton){
-      next = <Button className="absolute pin-b mb-8 scale-in-center" description={this.props.button} onClick={this.onClick} />
+      next = <Button className="absolute pin-b mb-8 scale-in-center" description={this.props.button} onClick={this.onClick} />;
     }
 
     return (

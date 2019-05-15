@@ -1,18 +1,16 @@
 /* eslint no-eval: 0 */
 import React, { Component } from 'react';
-import SvgBuggy from '../../components/buggy/SvgBuggy';
-import Editor from '../../components/editor/Editor';
-import AnimatedText from '../../components/text-keyboard-animation/AnimatedText';
-import TutorialSteps from './TutorialSteps';
-import Background from '../../components/background/Background';
-import DebugButton from '../../components/debug/Button';
-import intro from './intro';
+import EditorManager from '../../components/editor-manager/EditorManager';
 import tutorialContent from './tutorial-content';
-import Reason from '../../engine/Reason';
-import { Sum } from '../../engine/strategies/Sum';
+import TutorialSteps from '../tutorial/TutorialSteps';
+import intro from './intro';
+import Guide from '../../components/editor-manager/Guide';
+import DebugButton from '../../components/debug/Button';
+import { auth } from '../../pages/login/Auth';
 import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';
 import { Redirect } from 'react-router';
-import { auth } from '../login/Auth';
+import Reason from '../../engine/Reason';
+import { Sum } from '../../engine/strategies/Sum';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
@@ -21,25 +19,21 @@ export default class Tutorial extends Component {
 
   constructor() {
     super();
+
     this.state = {
-      codeOutput: '',
-      codeError: '',
-      code: 'var a = 1;',
+      introEnabled: false,
+      intro: intro,
       showNext: false,
       currentHint: 0,
-      tutorialContent: tutorialContent,
-      introEnabled: false,
-      intro: intro
     };
 
-    this.codeChanged = this.codeChanged.bind(this);
+    this.onFinishTooltip = this.onFinishTooltip.bind(this);
     this.onEnableTooltip = this.onEnableTooltip.bind(this);
     this.onFinishedTyping = this.onFinishedTyping.bind(this);
-    this.onFinishTooltip = this.onFinishTooltip.bind(this);
     this.handleProgress = this.handleProgress.bind(this);
-    this.renderHint = this.renderHint.bind(this);
     this.nextHint = this.nextHint.bind(this);
     this.levelUp = this.levelUp.bind(this);
+    this.onValidCode = this.onValidCode.bind(this);
   }
 
   onFinishTooltip() {
@@ -47,12 +41,6 @@ export default class Tutorial extends Component {
       ...this.state.introEnabled, introEnabled: false,
       ...this.state.showNext, showNext: false,
       ...this.state.currentHint, currentHint: this.state.currentHint + 1
-    });
-  }
-
-  onEnableTooltip() {
-    this.setState({
-      ...this.state.introEnabled, introEnabled: true
     });
   }
 
@@ -67,33 +55,22 @@ export default class Tutorial extends Component {
     });
   }
 
-  codeChanged(code) {
+  onEnableTooltip() {
+    this.setState({
+      ...this.state.introEnabled, introEnabled: true
+    });
+  }
+
+  onValidCode(code) {
     // when it is not time to do the code yet and when
     // it is done with the sum and tries to add code again
     if (this.state.currentHint !== 3) {
       return;
     }
 
-    try {
-      this.setState({
-        ...this.state.codeError, codeError: ''
-      });
-
-      const result = eval(code);
-      const stringify = result ? result.toString(): '';
-
-      this.setState({
-        ...this.state.codeOutput, codeOutput: stringify
-      });
-
-      if (Reason(code, Sum)) {
-        Emitter.emit(LEVEL_UP);
-        this.nextHint();
-      }
-    } catch (error) {
-      this.setState({
-        ...this.state.codeError, codeError: error.message
-      });
+    if (Reason(code, Sum)) {
+      Emitter.emit(LEVEL_UP);
+      this.nextHint();
     }
   }
 
@@ -102,7 +79,7 @@ export default class Tutorial extends Component {
     const total = tutorialContent.length;
 
     if (next < total) {
-      Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10});
+      Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10 });
 
       this.setState({
         ...this.state.currentHint, currentHint: next,
@@ -139,35 +116,17 @@ export default class Tutorial extends Component {
     this.nextHint();
   }
 
-  renderHint() {
-    return this.state.tutorialContent.map((item, index) => {
-      if (index === this.state.currentHint) {
-        return (
-          <React.Fragment
-            key={index}
-          >
-            <AnimatedText
-              text={[
-                item
-              ]}
-              onFinishedTyping={this.onFinishedTyping}
-            />
-            {this.state.showNext && <button onClick={this.handleProgress} className="self-end no-underline text-white font-bold p-3">Próximo ></button>}
-          </React.Fragment>
-        );
-      }
-
-      return false;
-    });
-  }
-
   render() {
     if (this.state.tutorialDone) {
       return (<Redirect to="/end" />);
     }
 
     return (
-      <Background>
+      <React.Fragment>
+        <DebugButton onClick={this.onEnableTooltip} value="enable introjs" />
+        <DebugButton onClick={this.nextHint} value="Forward" />
+        <DebugButton onClick={this.levelUp} value="level up" />
+
         <TutorialSteps
           enabled={this.state.introEnabled}
           steps={this.state.intro.steps}
@@ -175,40 +134,21 @@ export default class Tutorial extends Component {
           onExit={this.onFinishTooltip}
         />
 
-        <DebugButton onClick={this.onEnableTooltip} value="enable introjs"/>
-        <DebugButton onClick={this.nextHint} value="Forward"/>
-        <DebugButton onClick={this.levelUp} value="level up"/>
+        <EditorManager
+          onEnableTooltip={this.onEnableTooltip}
+          onFinishedTyping={this.onFinishedTyping}
+          showNext={this.state.showNext}
+          onValidCode={this.onValidCode}
+        />
 
-        <div className="mt-5">
-          <div className="flex justify-center">
-            <Editor
-              value={this.state.code}
-              codeChanged={this.codeChanged}
-              className="source-code m-5 border-2 border-testable-blue-overlay"
-            />
-          </div>
-
-          <div className="m-auto mb-5 bg-blue-dark" style={{ minWidth: '45%', maxWidth: '45%' }}>
-            <p className="text-white">{this.state.codeOutput}</p>
-            <p className="text-red font-medium">{this.state.codeError}</p>
-          </div>
-        </div>
-
-        <div className="flex justify-center p-12 min-h-screen bg-testable-overlay">
-          <div className="flex flex-col justify-start relative" style={{ minWidth: '45%', maxWidth: '45%' }}>
-            <SvgBuggy
-              className="absolute pin-t"
-              style={{
-                transform: 'scaleX(-1)',
-                width: '250px',
-                marginTop: '-180px',
-                marginLeft: '-270px'
-              }}
-            />
-            {this.renderHint()}
-          </div>
-        </div>
-      </Background>
+        <Guide
+          guideContent={tutorialContent}
+          showNext={this.state.showNext}
+          handleProgress={this.handleProgress}
+          currentHint={this.state.currentHint}
+          onFinishedTyping={this.onFinishedTyping}
+        />
+      </React.Fragment>
     );
   }
 }

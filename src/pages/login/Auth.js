@@ -34,12 +34,17 @@ const auth = {
         vm.firebaseRef.on('value', (snapshot) => {
           const userObject = snapshot.val();
 
-          if (userObject !== null) {
+          if (userObject && userObject.tutorial) {
             userDefault.tutorial = userObject.tutorial;
+          }
+
+          if (userObject && userObject.level) {
             userDefault.level = userObject.level;
+          }
+          if (userObject && userObject.progress) {
             userDefault.progress = userObject.progress;
           }
-          
+
           vm.isAuthenticated = true;
           vm.user = userDefault;
           
