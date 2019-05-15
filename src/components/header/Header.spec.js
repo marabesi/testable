@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 
 describe('header component', () => {
 
@@ -12,7 +12,12 @@ describe('header component', () => {
   });
 
   it('should render user progress', () => {
-    const wrapper = shallow(<Header />);
+    const wrapper = mount(<Header />);
     expect(wrapper.find('.user-progress').length).toEqual(1);
+  });
+
+  it('should render profile', () => {
+    const wrapper = mount(<Header />);
+    expect(wrapper.find('.profile').length).toEqual(1);
   });
 });
