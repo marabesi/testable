@@ -83,10 +83,17 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/end' && this.user.level >= 3) {
+    if (to.pathname !== '/end' && this.user.level === 3) {
       return {
         flag: false,
         to: '/end'
+      };
+    }
+
+    if (to.pathname !== '/tdd' && this.user.level >= 4) {
+      return {
+        flag: false,
+        to: '/tdd'
       };
     }
 

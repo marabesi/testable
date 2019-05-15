@@ -23,6 +23,10 @@ const End = AsyncComponent(() => {
   return import('./pages/end/End');
 });
 
+const Tdd = AsyncComponent(() => {
+  return import('./pages/tdd/Tdd');
+});
+
 function mapStyles(styles) {
   return {
     opacity: styles.opacity,
@@ -70,6 +74,7 @@ class App extends Component {
           <ProtectedRoute path="/intro" component={Introduction} />
           <ProtectedRoute path="/tutorial" component={Tutorial} />
           <ProtectedRoute path="/end" component={End} />
+          <ProtectedRoute path="/tdd" component={Tdd} />
           <Route path="*" component={NotFound} />
         </AnimatedSwitch>
       </React.Fragment>
