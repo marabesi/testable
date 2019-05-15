@@ -135,9 +135,8 @@ export default class Tutorial extends Component {
         />
 
         <EditorManager
+          className="w-1/2 m-auto"
           onEnableTooltip={this.onEnableTooltip}
-          onFinishedTyping={this.onFinishedTyping}
-          showNext={this.state.showNext}
           onValidCode={this.onValidCode}
         />
 

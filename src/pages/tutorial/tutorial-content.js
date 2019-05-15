@@ -1,6 +1,6 @@
 export default [
   {
-    line: 'Mas antes de começar vamos ver algumas coisas  .  .  . ',
+    line: 'Mas antes de começar vamos ver algumas coisas. ',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
