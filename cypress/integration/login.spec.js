@@ -12,6 +12,13 @@ context('login', () => {
     cy.visit(URL);
   });
 
+  afterEach(() => {
+    cy.clearLocalStorage();
+    cy.clearCookies();
+
+    indexedDB.deleteDatabase('firebaseLocalStorageDb');
+  });
+
   it('should login with email', () => {
     cy.contains('Sign in with email').click();
     cy.get('input[type="email"').type(email);
