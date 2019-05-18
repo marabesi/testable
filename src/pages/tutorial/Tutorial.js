@@ -25,6 +25,7 @@ export default class Tutorial extends Component {
       intro: intro,
       showNext: false,
       currentHint: 0,
+      code: 'var a = 1'
     };
 
     this.onFinishTooltip = this.onFinishTooltip.bind(this);
@@ -138,6 +139,7 @@ export default class Tutorial extends Component {
           className="w-1/2 m-auto"
           onEnableTooltip={this.onEnableTooltip}
           onValidCode={this.onValidCode}
+          code={this.state.code}
         />
 
         <Guide

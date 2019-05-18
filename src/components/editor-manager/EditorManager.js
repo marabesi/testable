@@ -11,7 +11,6 @@ export default class EditorManager extends Component {
     this.state = {
       codeOutput: '',
       codeError: '',
-      code: 'var a = 1;',
     };
 
     this.codeChanged = this.codeChanged.bind(this);
@@ -45,7 +44,7 @@ export default class EditorManager extends Component {
         <div className={`mt-5 ${className}`}>
           <div className="flex justify-center">
             <Editor
-              value={this.state.code}
+              value={this.props.code}
               codeChanged={this.codeChanged}
               className="source-code m-5 border-2 border-testable-blue-overlay"
             />
@@ -63,5 +62,6 @@ export default class EditorManager extends Component {
 
 EditorManager.propTypes = {
   onValidCode: PropTypes.func,
-  className: PropTypes.string
+  className: PropTypes.string,
+  code: PropTypes.string,
 };
