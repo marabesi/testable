@@ -39,7 +39,7 @@
     "cypress": "cypress open",
     "cypress-run": "cypress run",
     "eject": "react-scripts eject",
-    "tailwind:css": "tailwind build src/tailwind.src.scss -c tailwind.js -o src/tailwind.css",
+    "tailwind:css": "tailwind build src/tailwind.src.scss -c src/tailwind.js -o src/tailwind.css",
     "lint": "eslint src/**/*.js"
   },
   "browserslist": [

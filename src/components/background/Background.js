@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Helmet } from 'react-helmet';
+import PropTypes from 'prop-types';
+import { colors } from '../../tailwind';
 
-export default class TutorialSteps extends Component {
+export default class Background extends Component {
 
   render() {
     return (
@@ -10,7 +12,7 @@ export default class TutorialSteps extends Component {
           <style>
             {`
               body {
-                background: url("assets/bg-loading.png"), #012345;
+                background: url("assets/bg-loading.png"), ${colors['blue-dark']};
                 background-position: center center;
                 height: 100vh;
               }
@@ -22,3 +24,7 @@ export default class TutorialSteps extends Component {
     );
   }
 }
+
+Background.propTypes = {
+  children: PropTypes.object
+};
