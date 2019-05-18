@@ -35,7 +35,8 @@ export default class Scene extends Component {
   }
 
   render() {
-    const className = `
+    const { className } = this.props;
+    const classes = `
       scene
       flex
       flex-col
@@ -43,28 +44,36 @@ export default class Scene extends Component {
       text-2xl
       text-white
       relative
-      ${this.props.className ? this.props.className: ''}
+      ${className}
     `;
 
-    let next = '';
-
-    if (this.state.showNextButton){
-      next = <Button className="absolute pin-b mb-8 scale-in-center" description={this.props.button} onClick={this.onClick} />;
-    }
-
     return (
-      <div className={className}>
+      <div className={classes}>
         <div className="flex">
           <AnimatedText
             className="w-2/3"
             text={this.props.text}
             onFinishedTyping={ () => this.onFinishedTyping() }
           />
-          {this.props.onCompleted.showBug && this.state.showNextButton && <SvgBuggy className="absolute pin-r w-1/3 mt-10" />}
-          {this.props.showAlien && <AlienSvg className="w-3/3 absolute w-1/3 pin-r pin-t -mt-6"/>}
+          {
+            this.props.onCompleted.showBug &&
+            this.state.showNextButton &&
+            <SvgBuggy className="absolute pin-r w-1/3 mt-10" />
+          }
+          {
+            this.props.showAlien &&
+            <AlienSvg className="w-3/3 absolute w-1/3 pin-r pin-t -mt-6"/>
+          }
         </div>
 
-        {next}
+        {
+          this.state.showNextButton &&
+          <Button
+            className="absolute pin-b mb-8 scale-in-center"
+            description={this.props.button}
+            onClick={this.onClick}
+          />
+        }
       </div>
     );
   }

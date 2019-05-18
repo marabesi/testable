@@ -53,17 +53,19 @@ export default class SceneManager extends Component {
 
     for (let step in steps) {
       if (steps[step].step === this.state.currentStep) {
-        scenes.push(<Scene
-          key={step}
-          text={steps[step].content}
-          button={steps[step].button}
-          step={this.state.currentStep}
-          className="m-auto w-3/5"
-          next={this.handleNextScene}
-          lastScene={steps[step].lastScene}
-          handleLastScene={this.props.handleLastScene}
-          showAlien={steps[step].showAlien}
-          onCompleted={steps[step].onCompleted || {}} />
+        scenes.push(
+          <Scene
+            key={step}
+            text={steps[step].content}
+            button={steps[step].button}
+            step={this.state.currentStep}
+            className="m-auto w-3/5"
+            next={this.handleNextScene}
+            lastScene={steps[step].lastScene}
+            handleLastScene={this.props.handleLastScene}
+            showAlien={steps[step].showAlien}
+            onCompleted={steps[step].onCompleted || {}}
+          />
         );
       }
     }
