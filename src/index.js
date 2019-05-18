@@ -10,7 +10,7 @@ const env = process.env.NODE_ENV;
 const basename = process.env.REACT_APP_BASE_NAME;
 const debug = process.env.REACT_APP_DEBUG;
 
-if (env === 'production' || debug) {
+if (env === 'production') {
   ReactGA.initialize('UA-135081264-1', {debug: debug});
   ReactGA.pageview(window.location.pathname + window.location.search);
 }
