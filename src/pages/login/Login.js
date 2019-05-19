@@ -6,6 +6,7 @@ import uiConfig from './Firebase';
 import Loading from '../../components/loading/Loading';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../login/Auth';
+import Background from '../../components/background/Background';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
@@ -54,25 +55,25 @@ export default class Login extends Component {
     if (this.state.logged) {
       return (
         <Redirect to={{
-          pathname: "/intro",
+          pathname: '/intro',
           state: this.state
         }} />
       );
     }
 
     return (
-      <React.Fragment>
+      <Background>
         { this.state.loading && <Loading /> }
 
         <div
           className={
             this.state.loading
-              ? "hidden"
-              : "flex flex-col justify-center items-center h-screen"
+              ? 'hidden'
+              : 'flex flex-col justify-center items-center h-screen'
           }
-          id="firebaseui-auth-container"
+          id='firebaseui-auth-container'
         />
-      </React.Fragment>
+      </Background>
     );
   }
 }
