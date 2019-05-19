@@ -8,7 +8,7 @@ import { Redirect } from 'react-router-dom';
 
 export default class End extends Component {
 
-  state ={
+  state = {
     redirect: false
   };
 
@@ -18,9 +18,7 @@ export default class End extends Component {
   }
 
   handleLastScene() {
-    Emitter.emit(LEVEL_UP, {
-      tutorial: true,
-    });
+    Emitter.emit(LEVEL_UP);
 
     this.setState({
       loading: true

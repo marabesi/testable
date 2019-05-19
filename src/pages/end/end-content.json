@@ -42,6 +42,7 @@
     {
       "step": 4,
       "button": "Próximo",
+      "lastScene": true,
       "content": [
         {
           "line": "E provavelmente, é como você faz também!",
