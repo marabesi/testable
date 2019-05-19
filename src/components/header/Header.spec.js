@@ -1,8 +1,17 @@
 import React from 'react';
 import Header from './Header';
 import { shallow, mount } from 'enzyme';
+import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import { auth } from '../../pages/login/Auth';
+import sinon from 'sinon';
 
 describe('header component', () => {
+
+  it('should not show debug button by default', () => {
+    const wrapper = mount(<Header />);
+
+    expect(wrapper.find('input[type="button"]').length).toEqual(0);
+  });
 
   it('should render logo', () => {
     const wrapper = shallow(<Header />);
@@ -19,5 +28,25 @@ describe('header component', () => {
   it('should render profile', () => {
     const wrapper = mount(<Header />);
     expect(wrapper.find('.profile').length).toEqual(1);
+  });
+
+  it('should add level up animation and remove after 600 ms', done => {
+    auth.updateUserInfo = sinon.spy();
+    const wrapper = mount(<Header />);
+
+    expect(wrapper.find('.wobble-ver-right').length).toEqual(0);
+
+    Emitter.emit(LEVEL_UP);
+
+    wrapper.update();
+
+    expect(wrapper.find('.wobble-ver-right').length).toEqual(1);
+    expect(auth.updateUserInfo.called).toBeTruthy();
+
+    setTimeout(() => {
+      wrapper.update();
+      expect(wrapper.find('.wobble-ver-right').length).toEqual(0);
+      done();
+    }, 600);
   });
 });
