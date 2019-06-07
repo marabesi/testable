@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Background from '../background/Background';
 import Scene from './Scene';
 import DebugButton from '../debug/Button';
 import { auth } from '../../pages/login/Auth';
@@ -75,7 +74,7 @@ export default class SceneManager extends Component {
 
   render() {
     return (
-      <Background>
+      <React.Fragment>
         <DebugButton onClick={this.handlePreviousScene} value="previous" />
         <DebugButton onClick={this.handleNextScene} value="next" />
         <DebugButton onClick={this.props.handleLastScene} value="trigger last scene" />
@@ -83,7 +82,7 @@ export default class SceneManager extends Component {
         <div className="flex mt-10">
           {this.renderStep()}
         </div>
-      </Background>
+      </React.Fragment>
     );
   }
 }

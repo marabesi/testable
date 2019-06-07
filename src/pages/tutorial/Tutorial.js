@@ -11,6 +11,7 @@ import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';
 import { Redirect } from 'react-router';
 import Reason from '../../engine/Reason';
 import { Sum } from '../../engine/strategies/Sum';
+import Background from '../../components/background/Background';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
@@ -123,7 +124,7 @@ export default class Tutorial extends Component {
     }
 
     return (
-      <React.Fragment>
+      <Background>
         <DebugButton onClick={this.onEnableTooltip} value="enable introjs" />
         <DebugButton onClick={this.nextHint} value="Forward" />
         <DebugButton onClick={this.levelUp} value="level up" />
@@ -138,8 +139,8 @@ export default class Tutorial extends Component {
         <EditorManager
           className="w-1/2 m-auto"
           onEnableTooltip={this.onEnableTooltip}
-          onValidCode={this.onValidCode}
-          code={this.state.code}
+          onValidCode={{ 0: this.onValidCode} }
+          code={{ 0: this.state.code} }
         />
 
         <Guide
@@ -149,7 +150,7 @@ export default class Tutorial extends Component {
           currentHint={this.state.currentHint}
           onFinishedTyping={this.onFinishedTyping}
         />
-      </React.Fragment>
+      </Background>
     );
   }
 }
