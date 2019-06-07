@@ -8,7 +8,7 @@ const reason = function (code, strategy) {
       return strategy(ast);
     }
   } catch (error) {
-    return {};
+    return false;
   }
 };
 

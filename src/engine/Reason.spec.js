@@ -13,7 +13,8 @@ describe('Reason', () => {
   test('should not buble up the error when a invalid source code is provided', () => {
     const strategy = sinon.spy();
 
-    Reason('function', strategy);
+    const result = Reason('function', strategy);
     expect(strategy.called).toBeFalsy();
+    expect(result).toBeFalsy();
   });
 });
