@@ -9,6 +9,7 @@
     "firebaseui": "^3.6.0",
     "intro.js": "^2.9.3",
     "intro.js-react": "^0.2.0",
+    "lodash": "^4.17.11",
     "material-design-lite": "^1.2.0",
     "node-sass": "^4.12.0",
     "react": "^16.8.6",
@@ -46,8 +47,8 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "cypress": "^3.2.0",
     "babel-eslint": "^9.0.0",
+    "cypress": "^3.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "eslint-plugin-react": "^7.13.0",

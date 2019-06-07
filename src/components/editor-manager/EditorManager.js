@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import Editor from '../editor/Editor';
 import PropTypes from 'prop-types';
+import _ from 'lodash';
 
 export default class EditorManager extends Component {
 
@@ -12,7 +13,7 @@ export default class EditorManager extends Component {
       codeError: {},
     };
 
-    this.codeChanged = this.codeChanged.bind(this);
+    this.codeChanged = _.debounce(this.codeChanged.bind(this), 400);
   }
 
   codeChanged(code, editorIndexChanged) {
