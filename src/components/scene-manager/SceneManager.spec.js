@@ -61,4 +61,30 @@ describe('Scene manager component', () => {
       done();
     }, 1000);
   });
+
+  it('should not go to previous when is in the first step already', () => {
+    const wrapper = mount(
+      <SceneManager
+        content={content}
+      />
+    );
+
+    const previous = wrapper.instance().handlePreviousScene();
+
+    expect(previous).toBeFalsy();
+  });
+
+  it('should not go beyond last step', () => {
+    const wrapper = mount(
+      <SceneManager
+        content={content}
+      />
+    );
+
+    const goToLastStep = wrapper.instance().handleNextScene();
+    const beyondLastStep = wrapper.instance().handleNextScene();
+
+    expect(goToLastStep).toBeUndefined();
+    expect(beyondLastStep).toBeFalsy();
+  });
 });

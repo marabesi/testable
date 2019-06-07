@@ -21,7 +21,7 @@ export default class SceneManager extends Component {
     const current = this.state.currentStep;
 
     if (current === 1) {
-      return;
+      return false;
     }
 
     this.setState({
@@ -36,7 +36,7 @@ export default class SceneManager extends Component {
     const total = this.props.content.steps.length;
 
     if (current === total) {
-      return;
+      return false;
     }
 
     this.setState({
