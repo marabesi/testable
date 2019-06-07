@@ -9,4 +9,11 @@ describe('Reason', () => {
     Reason('const a = 12;', strategy);
     expect(strategy.called).toBeTruthy();
   });
+
+  test('should not buble up the error when a invalid source code is provided', () => {
+    const strategy = sinon.spy();
+
+    Reason('function', strategy);
+    expect(strategy.called).toBeFalsy();
+  });
 });
