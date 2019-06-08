@@ -78,8 +78,6 @@ export default class Tutorial extends Component {
       return;
     }
 
-    this.levelUp();
-
     auth.updateUserInfo({
       tutorial: false
     });
