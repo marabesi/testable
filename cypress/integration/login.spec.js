@@ -19,6 +19,16 @@ context('login', () => {
     indexedDB.deleteDatabase('firebaseLocalStorageDb');
   });
 
+  it('should show up login options', () => {
+    cy.contains('Sign in with Google').should('be.visible');
+    cy.contains('Sign in with Facebook').should('be.visible');
+    cy.contains('Sign in with Twitter').should('be.visible');
+    cy.contains('Sign in with email').should('be.visible');
+
+    cy.get('.user-progress').should('not.exist');
+    cy.get('.user-info').should('not.exist');
+  });
+
   it('should login with email', () => {
     cy.contains('Sign in with email').click();
     cy.get('input[type="email"').type(email);
@@ -27,5 +37,18 @@ context('login', () => {
     cy.contains('Sign In').click();
     cy.wait(10000);
     cy.get('.profile').should('be.visible');
+  });
+
+  it('should logout with email', () => {
+    cy.contains('Sign in with email').click();
+    cy.get('input[type="email"').type(email);
+    cy.contains('Next').click();
+    cy.get('input[type="password"]').type(password);
+    cy.contains('Sign In').click();
+    cy.wait(10000);
+    cy.get('.picture-holder img').click();
+    cy.contains('Logout').click();
+    cy.wait(5000);
+    cy.get('.firebaseui-container').should('be.visible');
   });
 });
