@@ -13,12 +13,7 @@ export default class End extends Component {
     redirect: false
   };
 
-  constructor() {
-    super();
-    this.handleLastScene = this.handleLastScene.bind(this);
-  }
-
-  handleLastScene() {
+  handleLastScene = () => {
     Emitter.emit(LEVEL_UP);
 
     this.setState({
@@ -33,7 +28,7 @@ export default class End extends Component {
     }, 2000);
   }
 
-  goToTutorial() {
+  goToTutorial = () => {
     auth.updateUserInfo({
       tutorial: true,
       level: 2

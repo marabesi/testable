@@ -13,12 +13,7 @@ export default class Introduction extends Component {
     loading: false,
   };
 
-  constructor() {
-    super();
-    this.handleLastScene = this.handleLastScene.bind(this);
-  }
-
-  handleLastScene() {
+  handleLastScene = () => {
     Emitter.emit(LEVEL_UP, {
       tutorial: true,
     });
