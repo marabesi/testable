@@ -6,11 +6,15 @@ import Guide from '../../components/editor-manager/Guide';
 
 const code = `function somar(a, b) {
   return a + b
-}`;
+}
+`;
 
 const test = `function testeSomarNumerosPositivos() {
+  var total = somar(1,2)
   
-}`;
+  return total === 3;
+}
+`;
 
 export default class Tdd extends Component {
 
@@ -23,13 +27,7 @@ export default class Tdd extends Component {
     currentHint: 0,
   };
 
-  constructor() {
-    super();
-
-    this.onValidCode = this.onValidCode.bind(this);
-  }
-
-  onValidCode(code, i) {
+  onValidCode = (code, i) => {
     let current = Object.assign({}, this.state.code);
 
     current[i] = code;
@@ -37,6 +35,26 @@ export default class Tdd extends Component {
     this.setState({
       ...this.state.code, code: current
     });
+  }
+
+  onGuideFinishedTyping = () => {
+    this.setState({
+      ...this.state.showNext, showNext: true
+    });
+  }
+
+  handleProgress = () => {
+    const next = this.state.currentHint + 1;
+    const total = tddContent.length;
+
+    if (next < total) {
+      this.setState({
+        ...this.state.currentHint, currentHint: next,
+        ...this.state.showNext, showNext: false
+      });
+
+      return;
+    }
   }
 
   render() {
@@ -57,7 +75,7 @@ export default class Tdd extends Component {
             showNext={this.state.showNext}
             handleProgress={this.handleProgress}
             currentHint={this.state.currentHint}
-            onFinishedTyping={this.onFinishedTyping}
+            onFinishedTyping={this.onGuideFinishedTyping}
           />
         </div>
       </Background>

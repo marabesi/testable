@@ -2,21 +2,15 @@
 import React, { Component } from 'react';
 import Editor from '../editor/Editor';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
 
 export default class EditorManager extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      codeOutput: {},
-      codeError: {},
-    };
+  state = {
+    codeOutput: {},
+    codeError: {},
+  };
 
-    this.codeChanged = _.debounce(this.codeChanged.bind(this), 400);
-  }
-
-  codeChanged(code, editorIndexChanged) {
+  codeChanged = (code, editorIndexChanged) => {
     let codeError = Object.assign({}, this.state.codeError);
     codeError[editorIndexChanged] = '';
 
@@ -25,6 +19,7 @@ export default class EditorManager extends Component {
     });
 
     let codeOutput = Object.assign({}, this.state.codeOutput);
+    codeOutput[editorIndexChanged] = '';
 
     let sourceCode = code;
 
@@ -34,32 +29,34 @@ export default class EditorManager extends Component {
       }
     }
 
-    const lemming = new window.Lemming(sourceCode);
+    const lemming = new window.Lemming(code);
 
-    lemming.onResult(function (result) {
+    lemming.onResult(result => {
       codeOutput[editorIndexChanged] = result;
       this.setState({
         ...this.state.codeOutput, codeOutput: codeOutput
       });
-    }.bind(this));
+    });
 
-    lemming.onError(function (error) {
+    lemming.onError(error => {
       codeError[editorIndexChanged] = error;
 
       this.setState({
         ...this.state.codeError, codeError: codeError
       });
-    }.bind(this));
+    });
 
-    lemming.onCompleted(function () {
+    lemming.onCompleted(() => {
       const done = this.props.onValidCode[editorIndexChanged];
-      done(sourceCode, editorIndexChanged);
-    }.bind(this));
+      done(this.props.code[editorIndexChanged], editorIndexChanged);
+    });
 
-    lemming.run();
+    lemming.run({
+      context: sourceCode
+    });
   }
 
-  resolveEditor() {
+  resolveEditor = () => {
     const editors = [];
     const { className } = this.props;
 
