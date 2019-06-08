@@ -21,14 +21,6 @@ export default class EditorManager extends Component {
     let codeOutput = Object.assign({}, this.state.codeOutput);
     codeOutput[editorIndexChanged] = '';
 
-    let sourceCode = code;
-
-    for (let i = 0; i < this.props.editor; i++) {
-      if (i !== editorIndexChanged) {
-        sourceCode += this.props.code[i];
-      }
-    }
-
     const lemming = new window.Lemming(code);
 
     lemming.onResult(result => {
@@ -48,18 +40,26 @@ export default class EditorManager extends Component {
 
     lemming.onCompleted(() => {
       const done = this.props.onValidCode[editorIndexChanged];
-      done(this.props.code[editorIndexChanged], editorIndexChanged);
+      done(code, editorIndexChanged);
     });
+
+    let sourceCode = code;
+
+    for (let i = 0; i < this.props.editor; i++) {
+      if (i !== editorIndexChanged) {
+        sourceCode += this.props.code[i];
+      }
+    }
 
     lemming.run({
       context: sourceCode
     });
   }
 
-  resolveEditor = () => {
+  render() {
     const editors = [];
     const { className } = this.props;
-
+  
     for (let i = 0; i < this.props.editor; i++) {
       editors.push(
         <div key={i} className={ `flex flex-col ${className}` }>
@@ -76,14 +76,10 @@ export default class EditorManager extends Component {
         </div>
       );
     }
-
-    return editors;
-  }
-
-  render() {
+  
     return (
       <React.Fragment>
-        {this.resolveEditor()}
+        {editors}
       </React.Fragment>
     );
   }
