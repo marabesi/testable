@@ -22,7 +22,9 @@
 
     scripts: [],
 
-    enableXHR: false
+    enableXHR: false,
+
+    context: ''
   };
 
   /**
@@ -48,15 +50,18 @@
       clearTimeout(handle);
       lemming.handleResult(e.data);
       lemming.handleCompleted();
+      worker.terminate();
     });
 
     worker.addEventListener('error', function (e) {
       clearTimeout(handle);
       lemming.handleError(e.message || e);
       lemming.handleCompleted();
+      worker.terminate();
     });
 
     var message = JSON.stringify({
+      context: options.context,
       source: this.script,
       scripts: options.scripts,
       enableXHR: options.enableXHR
@@ -114,7 +119,9 @@
         delete this.XMLHttpRequest;
       }
 
-      var result = eval(data.source);
+      var source = data.context + ' ' + data.source;
+
+      var result = eval(source);
 
       this.postMessage(result);
     };
