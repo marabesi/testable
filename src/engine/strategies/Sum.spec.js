@@ -3,6 +3,7 @@ import { Sum } from './Sum';
 
 const invalidSumExamples = [
   'var a = 1;',
+  'var b = 1;',
   '',
   'auhsuashuasas',
   'function a() {}',
@@ -21,13 +22,7 @@ describe('Sum strategy', () => {
     'test should not handle when it is not a sum function (%s)',
     (code) => {
       const result = Reason(code, Sum);
-      expect(result).toBeFalsy();
+      expect(result).toBeUndefined();
     },
   );
-
-  // test.only('should handle multiple function declaration, and find the sum wherever it is', () => {
-  //   const code = 'function minus(a, b) { return a - b;}; function sum(a, b) { return a + b;}';
-  //   const result = Reason(code, Sum);
-  //   expect(result.name).toEqual('sum');
-  // });
 });

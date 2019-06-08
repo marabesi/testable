@@ -1,7 +1,7 @@
 var name, params;
 export const Sum = function (ast) {
   for (let node in ast.body) {
-    if (!ast.body[node].type === 'FunctionDeclaration') {
+    if (ast.body[node].type !== 'FunctionDeclaration') {
       return;
     }
 

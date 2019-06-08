@@ -8,6 +8,8 @@ const reason = function (code, strategy) {
       return strategy(ast);
     }
   } catch (error) {
+    /* eslint-disable-next-line */
+    console.warn(error);
     return false;
   }
 };
