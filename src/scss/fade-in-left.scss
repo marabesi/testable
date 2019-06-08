@@ -1,0 +1,14 @@
+.fade-in-left {
+  animation: fade-in-left 0.6s ease-in backwards;
+}
+
+@keyframes fade-in-left {
+  0% {
+    transform: translateX(-500px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}

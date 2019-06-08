@@ -4,6 +4,7 @@ import Level from '../../components/level/Level';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../../pages/login/Auth';
 import Emitter, { LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
+import PropTypes from 'prop-types';
 
 export default class Header extends Component {
 
@@ -91,6 +92,7 @@ export default class Header extends Component {
 
           <div className="user-info">
             <Profile user={auth.user} />
+            <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
           </div>
         </div>
 
@@ -101,3 +103,7 @@ export default class Header extends Component {
     );
   }
 }
+
+Header.propTypes = {
+  onSidebar: PropTypes.func
+};
