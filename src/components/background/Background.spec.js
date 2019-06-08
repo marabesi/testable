@@ -3,7 +3,7 @@ import Background from './Background';
 import { mount } from 'enzyme';
 
 describe('Background component', () => {
-  it('should mount children components', () => {
+  test('should mount children components', () => {
     const wrapper = mount(
       <Background>
         <h1>children</h1>

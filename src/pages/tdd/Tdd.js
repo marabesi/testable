@@ -11,8 +11,8 @@ const code = `function somar(a, b) {
 
 const test = `function testeSomarNumerosPositivos() {
   var total = somar(1,2)
-  
-  return total === 3;
+  var esperado = 3;
+  return total === esperado;
 }
 `;
 

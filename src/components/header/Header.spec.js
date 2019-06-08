@@ -7,30 +7,30 @@ import sinon from 'sinon';
 
 describe('header component', () => {
 
-  it('should not show debug button by default', () => {
+  test('should not show debug button by default', () => {
     const wrapper = mount(<Header />);
 
     expect(wrapper.find('input[type="button"]').length).toEqual(0);
   });
 
-  it('should render logo', () => {
+  test('should render logo', () => {
     const wrapper = shallow(<Header />);
     const imgSrc = wrapper.find('[alt="logotipo"]');
 
     expect(imgSrc.prop('src')).toBe('assets/logo.png');
   });
 
-  it('should render user progress', () => {
+  test('should render user progress', () => {
     const wrapper = mount(<Header />);
     expect(wrapper.find('.user-progress').length).toEqual(1);
   });
 
-  it('should render profile', () => {
+  test('should render profile', () => {
     const wrapper = mount(<Header />);
     expect(wrapper.find('.profile').length).toEqual(1);
   });
 
-  it('should add level up animation and remove after 600 ms', done => {
+  test('should add level up animation and remove after 600 ms', done => {
     auth.updateUserInfo = sinon.spy();
     const wrapper = mount(<Header />);
 

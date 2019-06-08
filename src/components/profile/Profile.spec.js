@@ -6,28 +6,28 @@ import { auth } from '../../pages/login/Auth';
 const userData = { name: 'fake user', email: 'fake@john.com' };
 
 describe('profile component', () => {
-  it('should place image from placeimg when user image does not exists', () => {
+  test('should place image from placeimg when user image does not exists', () => {
     const wrapper = shallow(<Profile user={{}} />);
     const imgSrc = wrapper.find('img');
 
     expect(imgSrc.prop('src')).toEqual('https://placeimg.com/200/200/any');
   });
 
-  it('should place user image when it exists', () => {
+  test('should place user image when it exists', () => {
     const wrapper = shallow(<Profile user={{ photo: 'my.photo.com'}} />);
     const imgSrc = wrapper.find('img');
 
     expect(imgSrc.prop('src')).toEqual('my.photo.com'); 
   });
 
-  it('should have name and email on title property', () => {
+  test('should have name and email on title property', () => {
     const wrapper = shallow(<Profile user={userData} />);
     const container = wrapper.find('div');
 
     expect(container.at(0).prop('title')).toEqual('fake user - fake@john.com'); 
   });
 
-  it('should logout', () => {
+  test('should logout', () => {
     auth.signout = (cb) => { cb(); };
     const wrapper = shallow(
       <Profile
@@ -45,7 +45,7 @@ describe('profile component', () => {
     expect(wrapper.state().menu).toBeFalsy();
   });
 
-  it('should close menu on blur', () => {
+  test('should close menu on blur', () => {
     const wrapper = shallow(
       <Profile
         className="menu-wrapper"

@@ -30,7 +30,7 @@ describe('Scene manager component', () => {
     ]
   };
 
-  it('should initialize manager with scene 1', done => {
+  test('should initialize manager with scene 1', done => {
     const wrapper = mount(
       <SceneManager
         content={content}
@@ -46,7 +46,7 @@ describe('Scene manager component', () => {
     }, 1500);
   });
 
-  it('should go to scene 2', done => {
+  test('should go to scene 2', done => {
     const wrapper = mount(
       <SceneManager
         content={content}
@@ -62,7 +62,7 @@ describe('Scene manager component', () => {
     }, 1000);
   });
 
-  it('should not go to previous when is in the first step already', () => {
+  test('should not go to previous when is in the first step already', () => {
     const wrapper = mount(
       <SceneManager
         content={content}
@@ -74,7 +74,7 @@ describe('Scene manager component', () => {
     expect(previous).toBeFalsy();
   });
 
-  it('should not go beyond last step', () => {
+  test('should not go beyond last step', () => {
     const wrapper = mount(
       <SceneManager
         content={content}

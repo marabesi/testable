@@ -1,36 +1,32 @@
 import React from 'react';
 import EditorManager from './EditorManager';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 
 describe('EditorManager component', () => {
 
-  it('should populate code error', () => {
-    const wrapper = shallow(<EditorManager />);
+  global.Lemming = function(code) {
+    this.onResult = function(cb) {
+      cb();
+    };
+    this.onError = function(cb) {
+      cb();
+    };
+    this.onCompleted = function(cb) {
+      cb();
+    };
+    this.run = function() {
+      return;
+    };
+  };
 
-    wrapper.instance().codeChanged('b');
-
-    const error = wrapper.find('div p');
-
-    expect(error.at(0).text()).toEqual('');
-    expect(error.at(1).text()).toEqual('b is not defined');
-  });
-
-  it('should populate code output', () => {
-    const onValidCode = sinon.spy();
+  test('code output and code error should be empty', () => {
     const wrapper = shallow(
       <EditorManager
-        onValidCode={onValidCode}
+        code={{0: ''}}
       />
     );
 
-    wrapper.instance().codeChanged('var b = 1; b');
-
-    const error = wrapper.find('div p');
-
-    expect(onValidCode.called).toBeTruthy();
-
-    expect(error.at(0).text()).toEqual('1');
-    expect(error.at(1).text()).toEqual('');
+    expect(wrapper.instance().state.codeOutput).toEqual({});
+    expect(wrapper.instance().state.codeError).toEqual({});
   });
 });

@@ -10,13 +10,13 @@ const content = [
 ];
 
 describe('guide component', () => {
-  it('should start with next button hidden', () => {
+  test('should start with next button hidden', () => {
     const wrapper = shallow(<Guide guideContent={content} />);
 
     expect(wrapper.find('button').length).toEqual(0);
   });
 
-  it('should show up next button', () => {
+  test('should show up next button', () => {
     const wrapper = mount(
       <Guide
         guideContent={content}
@@ -28,7 +28,7 @@ describe('guide component', () => {
     expect(wrapper.find('button').length).toEqual(1);
   });
 
-  it('should handle next buton click action', () => {
+  test('should handle next buton click action', () => {
     const progress = sinon.spy();
     const wrapper = mount(
       <Guide

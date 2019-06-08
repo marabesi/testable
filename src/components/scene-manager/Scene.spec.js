@@ -4,7 +4,7 @@ import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
 describe('Scene component', () => {
-  it('by default, does not show up the next button', () => {
+  test('by default, does not show up the next button', () => {
     const wrapper = shallow(<Scene />);
 
     expect(wrapper.find('button').length).toEqual(0);
