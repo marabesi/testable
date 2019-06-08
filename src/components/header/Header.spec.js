@@ -1,11 +1,23 @@
 import React from 'react';
 import Header from './Header';
 import { shallow, mount } from 'enzyme';
-import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import Emitter, { LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 import { auth } from '../../pages/login/Auth';
 import sinon from 'sinon';
 
 describe('header component', () => {
+  const { reload } = window.location;
+
+  beforeAll(() => {
+    Object.defineProperty(window.location, 'reload', {
+      configurable: true,
+    });
+    window.location.reload = jest.fn();
+  });
+
+  afterAll(() => {
+    window.location.reload = reload;
+  });
 
   test('should not show debug button by default', () => {
     const wrapper = mount(<Header />);
@@ -48,5 +60,27 @@ describe('header component', () => {
       expect(wrapper.find('.wobble-ver-right').length).toEqual(0);
       done();
     }, 600);
+  });
+
+  test.each([LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN])(
+    'unbind events on unmount - event: %s',
+    (currentEvent) => {
+      auth.updateUserInfo = sinon.spy();
+      const wrapper = mount(<Header />);
+      wrapper.unmount();
+
+      Emitter.emit(currentEvent);
+      expect(auth.updateUserInfo.called).toBeFalsy();
+    },
+  );
+
+  test('should go to the introduction', () => {
+    auth.updateUserInfo = sinon.spy();
+
+    const wrapper = mount(<Header />);
+
+    wrapper.instance().goToIntroduction();
+
+    expect(auth.updateUserInfo.called).toBeTruthy();
   });
 });

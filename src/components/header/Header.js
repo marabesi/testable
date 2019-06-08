@@ -68,6 +68,7 @@ export default class Header extends Component {
   componentWillUnmount() {
     Emitter.removeAllListeners(LEVEL_UP);
     Emitter.removeAllListeners(PROGRESS_UP);
+    Emitter.removeAllListeners(PROGRESS_DOWN);
   }
 
   goToIntroduction() {
