@@ -1,4 +1,3 @@
-/* eslint no-eval: 0 */
 import React, { Component } from 'react';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import tutorialContent from './tutorial-content';
@@ -18,27 +17,15 @@ import './tutorial.scss';
 
 export default class Tutorial extends Component {
 
-  constructor() {
-    super();
+  state = {
+    introEnabled: false,
+    intro: intro,
+    showNext: false,
+    currentHint: 0,
+    code: 'var a = 1'
+  };
 
-    this.state = {
-      introEnabled: false,
-      intro: intro,
-      showNext: false,
-      currentHint: 0,
-      code: 'var a = 1'
-    };
-
-    this.onFinishTooltip = this.onFinishTooltip.bind(this);
-    this.onEnableTooltip = this.onEnableTooltip.bind(this);
-    this.onFinishedTyping = this.onFinishedTyping.bind(this);
-    this.handleProgress = this.handleProgress.bind(this);
-    this.nextHint = this.nextHint.bind(this);
-    this.levelUp = this.levelUp.bind(this);
-    this.onValidCode = this.onValidCode.bind(this);
-  }
-
-  onFinishTooltip() {
+  onFinishTooltip = () => {
     this.setState({
       ...this.state.introEnabled, introEnabled: false,
       ...this.state.showNext, showNext: false,
@@ -46,7 +33,7 @@ export default class Tutorial extends Component {
     });
   }
 
-  onFinishedTyping() {
+  onFinishedTyping = () => {
     const total = this.state.currentHint;
     if (total === 3) {
       return;
@@ -57,13 +44,13 @@ export default class Tutorial extends Component {
     });
   }
 
-  onEnableTooltip() {
+  onEnableTooltip = () => {
     this.setState({
       ...this.state.introEnabled, introEnabled: true
     });
   }
 
-  onValidCode(code) {
+  onValidCode = (code) => {
     // when it is not time to do the code yet and when
     // it is done with the sum and tries to add code again
     if (this.state.currentHint !== 3) {
@@ -76,7 +63,7 @@ export default class Tutorial extends Component {
     }
   }
 
-  nextHint() {
+  nextHint = () => {
     const next = this.state.currentHint + 1;
     const total = tutorialContent.length;
 
@@ -104,11 +91,11 @@ export default class Tutorial extends Component {
     }, 1300);
   }
 
-  levelUp() {
+  levelUp = () => {
     Emitter.emit(LEVEL_UP);
   }
 
-  handleProgress() {
+  handleProgress = () => {
     if (this.state.currentHint === 0) {
       this.onEnableTooltip();
 
