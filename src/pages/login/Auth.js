@@ -90,10 +90,17 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/tdd' && this.user.level >= 4) {
+    if (to.pathname !== '/tdd' && this.user.level === 4) {
       return {
         flag: false,
         to: '/tdd'
+      };
+    }
+
+    if (to.pathname !== '/completed' && this.user.level > 4) {
+      return {
+        flag: false,
+        to: '/completed'
       };
     }
 

@@ -26,6 +26,10 @@ const Tdd = AsyncComponent(() => {
   return import('./pages/tdd/Tdd');
 });
 
+const Completed = AsyncComponent(() => {
+  return import('./pages/completed/Completed');
+});
+
 function mapStyles(styles) {
   return {
     opacity: styles.opacity,
@@ -72,6 +76,7 @@ class App extends Component {
           <ProtectedRoute path="/tutorial" component={Tutorial} />
           <ProtectedRoute path="/tutorial-end" component={TutorialEnd} />
           <ProtectedRoute path="/tdd" component={Tdd} />
+          <ProtectedRoute path="/completed" component={Completed} />
           <Route path="*" component={NotFound} />
         </AnimatedSwitch>
       </Sidebar>
