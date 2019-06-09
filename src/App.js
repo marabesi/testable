@@ -18,8 +18,8 @@ const NotFound = AsyncComponent(() => {
   return import('./pages/notfound/NotFound');
 });
 
-const End = AsyncComponent(() => {
-  return import('./pages/end/End');
+const TutorialEnd = AsyncComponent(() => {
+  return import('./pages/tutorial-end/TutorialEnd');
 });
 
 const Tdd = AsyncComponent(() => {
@@ -70,7 +70,7 @@ class App extends Component {
           <Route exact path="/" component={Login} />
           <ProtectedRoute path="/intro" component={Introduction} />
           <ProtectedRoute path="/tutorial" component={Tutorial} />
-          <ProtectedRoute path="/end" component={End} />
+          <ProtectedRoute path="/tutorial-end" component={TutorialEnd} />
           <ProtectedRoute path="/tdd" component={Tdd} />
           <Route path="*" component={NotFound} />
         </AnimatedSwitch>

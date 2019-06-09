@@ -105,7 +105,7 @@ export default class Tutorial extends Component {
 
   render() {
     if (this.state.tutorialDone) {
-      return (<Redirect to="/end" />);
+      return (<Redirect to="/tutorial-end" />);
     }
 
     return (

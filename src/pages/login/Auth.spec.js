@@ -2,7 +2,7 @@ import { auth } from './Auth';
 
 describe('Auth class', () => {
 
-  describe.each(['/', '/intro', '/tutorial', '/end'])(
+  describe.each(['/', '/intro', '/tutorial', '/tutorial-end'])(
     'should redirect unauthenticated user ',
     (route) => {
       test(`trying to access: ${route}`, () => {
@@ -14,7 +14,7 @@ describe('Auth class', () => {
     },
   );
 
-  test.each([ ['/'], ['/tutorial'], ['/end'] ])(
+  test.each([ ['/'], ['/tutorial'], ['/tutorial-end'] ])(
     'should keep the user leve 1 in the introduction section, trying to access: %s',
     (currentRoute) => {
       auth.isAuthenticated = true;
@@ -26,7 +26,7 @@ describe('Auth class', () => {
     },
   );
 
-  test.each([['/'], ['/intro'], ['/end']])(
+  test.each([['/'], ['/intro'], ['/tutorial-end']])(
     'should keep the user leve 2 in the tutorial section, trying to access: %s',
     (currentRoute) => {
       auth.isAuthenticated = true;
@@ -46,12 +46,12 @@ describe('Auth class', () => {
       const can = auth.canEnter({}, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
-      expect(can.to).toEqual('/end');
+      expect(can.to).toEqual('/tutorial-end');
     },
   );
 
 
-  test.each([['/intro', 1], ['/tutorial', 2], ['/end', 3]])(
+  test.each([['/intro', 1], ['/tutorial', 2], ['/tutorial-end', 3]])(
     'should render the related component  based on the level, trying to access route %s, level %s',
     (currentRoute, level) => {
       auth.isAuthenticated = true;
