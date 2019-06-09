@@ -1,0 +1,54 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "step": 1,
+      "button": "Próximo",
+      "content": [
+        {
+          "line": "Criar funções é frequentemente utilizado para separar lógica...",
+          "style": "p-2 text-blue-light"
+        },
+        {
+          "line": "E é até uma boa prática! Mas ...",
+          "style": "p-2 text-blue-light"
+        },
+        {
+          "line": "É preciso tomar cuidado para não deixar tudo em uma única função!",
+          "style": "p-2 text-blue-light"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "button": "Próximo",
+      "content": [
+        {
+          "line": "Essa abordagem é conhecida como testar depois de fazer o código!",
+          "style": "p-2 text-blue-light"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "button": "Próximo",
+      "content": [
+        {
+          "line": "E é exatamente o que o Alien está fazendo ...",
+          "style": "p-2 text-blue-light"
+        }
+      ]
+    },
+    {
+      "step": 4,
+      "button": "Próximo",
+      "lastScene": true,
+      "content": [
+        {
+          "line": "E provavelmente, é como você faz também!",
+          "style": "p-2 text-blue-light"
+        }
+      ]
+    }
+  ]
+}
