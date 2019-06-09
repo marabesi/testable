@@ -3828,9 +3828,9 @@ ejs@^2.6.1:
   integrity sha512-0xy4A/twfrRCnkhfk8ErDi5DqdAsAqeGxht4xkCUrsvhhbQNs7E+4jV0CN7+NKIY0aHE72+XvqtBIXzD31ZbXQ==
 
 electron-to-chromium@^1.3.103, electron-to-chromium@^1.3.150:
-  version "1.3.153"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.153.tgz#9b7b21566bbbe542213286eefb05e51ecc023b26"
-  integrity sha512-FtjRc/vpfWzR6WX1FXUlNoFZIRFPwN/XOw+2oAFEk33V1frukrXuUZimAWL0mXIdOlbzJOnI4Wu8qMs/ChDd3g==
+  version "1.3.154"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.154.tgz#e5b73beecd4db9f024d807ba1faad93fe1fb98aa"
+  integrity sha512-r3jVJRWvQIKDdjAbtmvJ7NihBFNUpU4VJKsslAzruv9dnYde3v8U2T7J62Vap3c6l6Ku4J56kxlciIO/E93cQg==
 
 elegant-spinner@^1.0.1:
   version "1.0.1"
@@ -3884,7 +3884,7 @@ encoding@^0.1.11:
 
 end-of-stream@^1.0.0, end-of-stream@^1.1.0:
   version "1.4.1"
-  resolved "https://registry.yarnpkg.com/tutorial-end-of-stream/-/tutorial-end-of-stream-1.4.1.tgz#ed29634d19baba463b6ce6b80a37213eab71ec43"
+  resolved "https://registry.yarnpkg.com/end-of-stream/-/end-of-stream-1.4.1.tgz#ed29634d19baba463b6ce6b80a37213eab71ec43"
   integrity sha512-1MkrZNvWTKCaigbn+W15elq2BB/L22nqrSY5DKlo3X6+vclJm8Bb5djXJBmEX6fS3+zCh/F4VBK5Z2KxJt4s2Q==
   dependencies:
     once "^1.4.0"
