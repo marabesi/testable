@@ -12,15 +12,7 @@ export default class Profile extends Component {
     successfullLoggedOut: false
   }
 
-  constructor() {
-    super();
-
-    this.showMenu = this.showMenu.bind(this);
-    this.onBlur = this.onBlur.bind(this);
-    this.onLogout = this.onLogout.bind(this);
-  }
-
-  onLogout() {
+  onLogout = () => {
     auth.signout(() => {
       this.setState({
         successfullLoggedOut: true,
@@ -29,13 +21,13 @@ export default class Profile extends Component {
     });
   }
 
-  showMenu() {
+  showMenu = () => {
     this.setState({
       menu: !this.state.menu
     });
   }
 
-  onBlur() {
+  onBlur = () => {
     this.setState({
       menu: false
     });
@@ -50,9 +42,7 @@ export default class Profile extends Component {
       );
     }
 
-    const name = this.props.user.name;
-    const email = this.props.user.email;
-    const photo = this.props.user.photo;
+    const { name, email, photo } = this.props.user;
     const propClass = this.props.className;
 
     const className = `profile flex cursor-pointer ${

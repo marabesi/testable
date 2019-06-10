@@ -65,4 +65,17 @@ describe('profile component', () => {
 
     expect(wrapper.state().menu).toBeFalsy();
   });
+
+  test('should close menu invoking onBlur method', () => {
+    const wrapper = shallow(
+      <Profile
+        className="menu-wrapper"
+        user={userData}
+      />
+    );
+
+    wrapper.instance().onBlur();
+
+    expect(wrapper.state().menu).toBeFalsy();
+  });
 });

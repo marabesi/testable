@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import TypedText from './TypedText';
-import ReactDOMServer from "react-dom/server";
-
-import './animated-text.scss';
+import ReactDOMServer from 'react-dom/server';
 
 export default class AnimatedText extends Component {
 
@@ -31,5 +29,6 @@ export default class AnimatedText extends Component {
 }
 
 AnimatedText.propTypes = {
+  text: PropTypes.array,
   onFinishedTyping: PropTypes.func
 };

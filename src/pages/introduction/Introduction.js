@@ -8,7 +8,7 @@ import Background from '../../components/background/Background';
 
 export default class Introduction extends Component {
 
-  state ={
+  state = {
     redirect: false,
     loading: false,
   };
