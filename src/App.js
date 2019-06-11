@@ -39,8 +39,8 @@ function mapStyles(styles) {
 
 function bounce(val) {
   return spring(val, {
-    stiffness: 330,
-    damping: 42,
+    stiffness: 180,
+    damping: 12,
   });
 }
 
@@ -55,7 +55,7 @@ const bounceTransition = {
   },
   atActive: {
     opacity: bounce(1),
-    scale: 1,
+    scale: 1
   }
 };
 

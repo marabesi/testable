@@ -26,8 +26,10 @@ export default class Sidebar extends Component {
           style={{ width: '400px'}}
         >
         </div>
-        {this.state.open && <div className="z-30 h-screen w-full absolute bg-testable-overlay" onClick={this.onSidebar}></div>}
-        { auth.isAuthenticated && <Header onSidebar={this.onSidebar} /> }
+        <div className="header">
+          {this.state.open && <div className="z-30 h-screen w-full absolute bg-testable-overlay" onClick={this.onSidebar}></div>}
+          { auth.isAuthenticated && <Header onSidebar={this.onSidebar} /> }
+        </div>
         {this.props.children}
       </React.Fragment>
     );

@@ -9,13 +9,9 @@ import './scene.scss';
 
 export default class Scene extends Component {
 
-  constructor() {
-    super();
-    this.state = {
-      showNextButton: false
-    };
-    this.onClick = this.onClick.bind(this);
-  }
+  state = {
+    showNextButton: false
+  };
 
   onFinishedTyping() {
     setTimeout(() => {
@@ -25,7 +21,7 @@ export default class Scene extends Component {
     }, 900);
   }
 
-  onClick(event) {
+  onClick = (event) => {
     if (this.props.lastScene) {
       this.props.handleLastScene();
       return;

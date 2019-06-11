@@ -67,11 +67,11 @@ export default class EditorManager extends Component {
             key={i}
             value={this.props.code[i]}
             codeChanged={(code) => this.codeChanged(code, i)}
-            className="source-code m-5 border-2 border-testable-blue-overlay"
+            className="source-code border-2 border-testable-blue-overlay"
           />
           <div className="m-auto mb-5 bg-blue-dark break-words">
-            <p className="text-white">{this.state.codeOutput[i]}</p>
-            <p className="text-red font-medium">{this.state.codeError[i]}</p>
+            <p className="text-white h-6">{this.state.codeOutput[i]}</p>
+            <p className="text-red font-medium h-6">{this.state.codeError[i]}</p>
           </div>
         </div>
       );

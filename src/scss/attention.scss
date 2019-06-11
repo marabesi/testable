@@ -1,0 +1,40 @@
+button {
+  z-index: 1;
+  position: relative;
+  font-size: inherit;
+  font-family: inherit;
+  color: white;
+  padding: 0.5em 1em;
+  outline: none;
+  border: none;
+  background-color: hsl(236, 32%, 26%);
+}
+
+.next:hover {
+  cursor: pointer;
+}
+
+.next::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  animation: attention 0.75s ease-in-out infinite;
+}
+
+@keyframes attention {
+  0% {
+    transform-origin: center;
+    transform: scale(1.2);
+  }
+  100% {
+    transform-origin: center;
+    transform: scale(2);
+    opacity: 0;
+  }
+}

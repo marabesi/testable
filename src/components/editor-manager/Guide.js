@@ -5,6 +5,22 @@ import PropTypes from 'prop-types';
 
 export default class Guide extends Component {
 
+  state = {
+    hovered: false
+  };
+
+  onHover = () => {
+    this.setState({
+      hovered: true
+    });
+  }
+
+  offHover = () => {
+    this.setState({
+      hovered: false
+    });
+  }
+
   renderHint() {
     return this.props.guideContent.map((item, index) => {
       if (index === this.props.currentHint) {
@@ -23,9 +39,15 @@ export default class Guide extends Component {
               &&
               <button
                 onClick={this.props.handleProgress}
-                className="self-end no-underline text-white font-bold p-3 focus:outline-none"
+                onMouseEnter={this.onHover}
+                onMouseLeave={this.offHover}
+                className={ `w-6 h-6 self-end no-underline text-white font-bold focus:outline-none ${!this.state.hovered && this.props.showNext ? 'next': ''}` }
               >
-                Próximo &gt;
+                <svg className="fill-current py-1 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xlink="http://www.w3.org/1999/xlink" enableBackground="new 0 0 129 129">
+                  <g>
+                    <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
+                  </g>
+                </svg>
               </button>
             }
           </React.Fragment>
@@ -38,7 +60,7 @@ export default class Guide extends Component {
 
   render() {
     return (
-      <div className="flex justify-center p-12 min-h-screen bg-testable-overlay">
+      <div className="flex justify-center p-12 bg-testable-overlay" style={{ minHeight: '220px' }}>
         <div className="flex flex-col justify-start relative" style={{ minWidth: '45%', maxWidth: '45%' }}>
           <SvgBuggy
             className="absolute pin-t"

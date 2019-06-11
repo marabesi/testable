@@ -3,6 +3,8 @@ import Background from '../../components/background/Background';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import tddContent from './tdd-content';
 import Guide from '../../components/editor-manager/Guide';
+import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import { Redirect } from 'react-router';
 
 const code = `function somar(a, b) {
   return a + b
@@ -25,6 +27,7 @@ export default class Tdd extends Component {
     },
     showNext: false,
     currentHint: 0,
+    done: false,
   };
 
   onValidCode = (code, i) => {
@@ -55,9 +58,19 @@ export default class Tdd extends Component {
 
       return;
     }
+
+    Emitter.emit(LEVEL_UP);
+
+    this.setState({
+      ...this.state.done, done: true
+    });
   }
 
   render() {
+    if (this.state.tutorialDone) {
+      return (<Redirect to="/completed" />);
+    }
+
     return (
       <Background>
         <div className="flex flex-col">

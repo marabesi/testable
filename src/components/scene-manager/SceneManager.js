@@ -6,18 +6,12 @@ import Emitter, { PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 import PropTypes from 'prop-types';
 
 export default class SceneManager extends Component {
+  
+  state = {
+    currentStep: 1
+  };
 
-  constructor() {
-    super();
-    this.state = {
-      currentStep: 1
-    };
-
-    this.handleNextScene = this.handleNextScene.bind(this);
-    this.handlePreviousScene = this.handlePreviousScene.bind(this);
-  }
-
-  handlePreviousScene() {
+  handlePreviousScene = () => {
     const current = this.state.currentStep;
 
     if (current === 1) {
@@ -31,7 +25,7 @@ export default class SceneManager extends Component {
     Emitter.emit(PROGRESS_DOWN, { amount: auth.user.progress - 10 });
   }
 
-  handleNextScene() {
+  handleNextScene = () => {
     const current = this.state.currentStep;
     const total = this.props.content.steps.length;
 
@@ -78,8 +72,7 @@ export default class SceneManager extends Component {
         <DebugButton onClick={this.handlePreviousScene} value="previous" />
         <DebugButton onClick={this.handleNextScene} value="next" />
         <DebugButton onClick={this.props.handleLastScene} value="trigger last scene" />
-
-        <div className="flex mt-10">
+        <div className="w-full">
           {this.renderStep()}
         </div>
       </React.Fragment>
