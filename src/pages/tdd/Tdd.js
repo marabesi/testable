@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import Background from '../../components/background/Background';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import tddContent from './tdd-content';
 import Guide from '../../components/editor-manager/Guide';
@@ -72,7 +71,7 @@ export default class Tdd extends Component {
     }
 
     return (
-      <Background>
+      <React.Fragment>
         <div className="flex flex-col">
           <div className="flex justify-center">
             <EditorManager
@@ -91,7 +90,7 @@ export default class Tdd extends Component {
             onFinishedTyping={this.onGuideFinishedTyping}
           />
         </div>
-      </Background>
+      </React.Fragment>
     );
   }
 }

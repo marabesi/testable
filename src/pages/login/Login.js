@@ -6,7 +6,6 @@ import uiConfig from './Firebase';
 import Loading from '../../components/loading/Loading';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../login/Auth';
-import Background from '../../components/background/Background';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
@@ -62,7 +61,7 @@ export default class Login extends Component {
     }
 
     return (
-      <Background>
+      <React.Fragment>
         { this.state.loading && <Loading /> }
 
         <div
@@ -73,7 +72,7 @@ export default class Login extends Component {
           }
           id='firebaseui-auth-container'
         />
-      </Background>
+      </React.Fragment>
     );
   }
 }

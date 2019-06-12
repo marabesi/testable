@@ -5,7 +5,6 @@ import DebugButton from '../../components/debug/Button';
 import { auth } from '../login/Auth';
 import Emitter, {LEVEL_UP} from '../../emitter/Emitter';
 import { Redirect } from 'react-router-dom';
-import Background from '../../components/background/Background';
 
 export default class TutorialEnd extends Component {
 
@@ -45,13 +44,13 @@ export default class TutorialEnd extends Component {
       );
     }
     return (
-      <Background>
+      <React.Fragment>
         <DebugButton onClick={this.goToTutorial} value="tutorial" />
         <SceneManager
           content={content}
           handleLastScene={this.handleLastScene}
         />
-      </Background>
+      </React.Fragment>
     );
   }
 }

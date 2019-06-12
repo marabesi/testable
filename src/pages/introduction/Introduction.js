@@ -4,7 +4,6 @@ import Loading from '../../components/loading/Loading';
 import { Redirect } from 'react-router-dom';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 import content from './introduction-content.json';
-import Background from '../../components/background/Background';
 
 export default class Introduction extends Component {
 
@@ -44,12 +43,10 @@ export default class Introduction extends Component {
     }
 
     return (
-      <Background>
-        <SceneManager
-          content={content}
-          handleLastScene={this.handleLastScene}
-        />
-      </Background>
+      <SceneManager
+        content={content}
+        handleLastScene={this.handleLastScene}
+      />
     );
   }
 }
