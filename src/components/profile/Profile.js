@@ -61,7 +61,6 @@ export default class Profile extends Component {
             <img
               src={photo ? photo : 'https://placeimg.com/200/200/any'}
               alt={name}
-              className="picture"
             />
           </div>
           <div className="info">
