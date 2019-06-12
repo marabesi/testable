@@ -21,6 +21,14 @@ export default class Guide extends Component {
     });
   }
 
+  handleProgress = () => {
+    this.setState({
+      hovered: false
+    });
+
+    this.props.handleProgress();
+  }
+
   renderHint() {
     return this.props.guideContent.map((item, index) => {
       if (index === this.props.currentHint) {
@@ -38,7 +46,7 @@ export default class Guide extends Component {
               this.props.showNext
               &&
               <button
-                onClick={this.props.handleProgress}
+                onClick={this.handleProgress}
                 onMouseEnter={this.onHover}
                 onMouseLeave={this.offHover}
                 className={ `w-6 h-6 self-end no-underline text-white font-bold focus:outline-none ${!this.state.hovered && this.props.showNext ? 'next': ''}` }
