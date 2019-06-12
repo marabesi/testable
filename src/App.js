@@ -5,8 +5,10 @@ import AsyncComponent from './components/AsyncComponent';
 import ProtectedRoute from './pages/login/router/ProtectedRoute';
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import Sidebar from './components/sidebar/Sidebar';
+import { fetcher } from './queue';
 
 import './app.scss';
+import Loading from './components/loading/Loading';
 
 const Introduction = AsyncComponent(() => {
   return import('./pages/introduction/Introduction');
@@ -61,7 +63,28 @@ const bounceTransition = {
 
 class App extends Component {
 
+  state = {
+    isFetchingAssets: true
+  }
+
+  async componentDidMount() {
+    await fetcher([
+      'assets/buggy.png',
+      'assets/alien.png',
+    ]);
+
+    this.setState({
+      isFetchingAssets: false
+    });
+  }
+
   render() {
+    if (this.state.isFetchingAssets) {
+      return (
+        <Loading />
+      );
+    }
+
     return (
       <Sidebar>
         <AnimatedSwitch

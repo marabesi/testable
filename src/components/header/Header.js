@@ -85,14 +85,12 @@ export default class Header extends Component {
             <Level progress={this.state.user.progress} level={this.state.user.level} />
           </div>
 
+          <img src="assets/logo.png" className="hover:pulsate-fwd h-8 hidden md:block" alt="logotipo" title="Testable - Ferramenta gamificada"/>
+
           <div className="user-info">
             <Profile user={auth.user} />
             <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
           </div>
-        </div>
-
-        <div className="flex w-full justify-center relative">
-          <img src="assets/logo.png" className="hover:pulsate-fwd h-8 hidden lg:block" alt="logotipo" title="Testable - Ferramenta gamificada"/>
         </div>
       </React.Fragment>
     );

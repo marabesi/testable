@@ -1,6 +1,7 @@
 import React from 'react';
+import Base64Image from '../base64image/Base64Image';
 
 const AlienSvg = props => (
-  <img src="assets/alien.png" {...props} alt="alien" />
+  <Base64Image image="testable.alien.png" alt="alien" {...props}/>
 );
 export default AlienSvg;
