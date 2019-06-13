@@ -3,7 +3,32 @@ import Scene from './Scene';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
+const localStorageMock = (function () {
+  let store = {};
+
+  return {
+    getItem(key) {
+      return store[key] || null;
+    },
+    setItem(key, value) {
+      store[key] = value.toString();
+    },
+    clear() {
+      store = {};
+    },
+  };
+
+}());
+
 describe('Scene component', () => {
+
+  beforeEach(() => {
+    Object.defineProperty(window, 'localStorage', {
+      value: localStorageMock,
+    });
+    window.localStorage.clear();
+  });
+
   test('by default, does not show up the next button', () => {
     const wrapper = shallow(<Scene />);
 
@@ -38,6 +63,7 @@ describe('Scene component', () => {
   });
 
   test('should show up buggy character', done => {
+    window.localStorage.setItem('testable.buggy.png', 'img buggy content');
     const wrapper = mount(
       <Scene
         onCompleted={{showBug: true}}
@@ -48,20 +74,24 @@ describe('Scene component', () => {
     setTimeout(() => {
       wrapper.update();
 
-      expect(wrapper.find('img').prop('src')).toEqual('assets/buggy.png');
+      expect(wrapper.find('img').at(0).prop('src')).toEqual('img buggy content');
       done();
     }, 1500);
   });
 
   test('should show up alien character', () => {
+    window.localStorage.setItem('testable.alien.png', 'img content');
     const wrapper = mount(
       <Scene
-        showAlien={true}
+        showAlien={{
+          'show': true,
+          'animate': false
+        }}
         text={[ {key: 0, line: 'my'} ]}
       />
     );
 
-    expect(wrapper.find('img').prop('src')).toEqual('assets/alien.png');
+    expect(wrapper.find('img').at(1).prop('src')).toEqual('img content');
   });
 
   test('should handle last scene', done => {

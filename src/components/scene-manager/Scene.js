@@ -43,6 +43,16 @@ export default class Scene extends Component {
       ${className}
     `;
 
+    let alienClass = 'hidden';
+
+    if (this.props.showAlien) {
+      alienClass = 'block';
+    }
+    
+    if (this.props.showAlien && this.props.showAlien.animate) {
+      alienClass = 'slide-in-bck-top';
+    }
+
     return (
       <div className={classes}>
         <div className="flex">
@@ -51,15 +61,16 @@ export default class Scene extends Component {
             text={this.props.text}
             onFinishedTyping={ () => this.onFinishedTyping() }
           />
-          {
-            this.props.onCompleted.showBug &&
-            this.state.showNextButton &&
-            <SvgBuggy className="absolute pin-r w-1/3 mt-10" />
-          }
-          {
-            this.props.showAlien &&
-            <AlienSvg className="w-3/3 absolute w-1/3 pin-r pin-t -mt-6"/>
-          }
+
+          <SvgBuggy className={
+            `absolute pin-r w-1/3 mt-10 ${
+              this.props.onCompleted.showBug && this.state.showNextButton ? 'slide-in-bck-right' : 'hidden'
+            }
+          `} />
+
+          <AlienSvg className={
+            `w-3/3 absolute w-1/3 pin-r pin-t -mt-6 ${alienClass}`
+          }/>
         </div>
 
         {
@@ -77,7 +88,7 @@ export default class Scene extends Component {
 
 Scene.propTypes = {
   onCompleted: PropTypes.object,
-  showAlien: PropTypes.bool,
+  showAlien: PropTypes.object,
   text: PropTypes.array,
   className: PropTypes.string,
   next: PropTypes.func,
