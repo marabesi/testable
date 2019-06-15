@@ -1,13 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './tailwind.css';
-import App from './App';
+import App from './components/app/App';
 import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { Provider } from 'react-redux';
 import Store from './store';
 import Background from './components/background/Background';
+
+import './css/index.css';
 
 const env = process.env.NODE_ENV;
 const basename = process.env.REACT_APP_BASE_NAME;

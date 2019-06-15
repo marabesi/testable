@@ -1,35 +1,35 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Login from './pages/login/Login';
-import AsyncComponent from './components/AsyncComponent';
-import ProtectedRoute from './pages/login/router/ProtectedRoute';
+import Login from '../../pages/login/Login';
+import AsyncComponent from './AsyncComponent';
+import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
 import { spring, AnimatedSwitch } from 'react-router-transition';
-import Sidebar from './components/sidebar/Sidebar';
-import { fetcher } from './queue';
+import Sidebar from '../sidebar/Sidebar';
+import { fetcher } from '../../queue';
 
 import './app.scss';
-import Loading from './components/loading/Loading';
+import Loading from '../loading/Loading';
 
 const Introduction = AsyncComponent(() => {
-  return import('./pages/introduction/Introduction');
+  return import('../../pages/introduction/Introduction');
 });
 const Tutorial = AsyncComponent(() => {
-  return import('./pages/tutorial/Tutorial');
+  return import('../../pages/tutorial/Tutorial');
 });
 const NotFound = AsyncComponent(() => {
-  return import('./pages/notfound/NotFound');
+  return import('../../pages/notfound/NotFound');
 });
 
 const TutorialEnd = AsyncComponent(() => {
-  return import('./pages/tutorial-end/TutorialEnd');
+  return import('../../pages/tutorial-end/TutorialEnd');
 });
 
 const Tdd = AsyncComponent(() => {
-  return import('./pages/tdd/Tdd');
+  return import('../../pages/tdd/Tdd');
 });
 
 const Completed = AsyncComponent(() => {
-  return import('./pages/completed/Completed');
+  return import('../../pages/completed/Completed');
 });
 
 function mapStyles(styles) {

@@ -191,9 +191,6 @@ module.exports = {
     'lg': '1.125rem',   // 18px
     'xl': '1.25rem',    // 20px
     '2xl': '1.5rem',    // 24px
-    '3xl': '1.875rem',  // 30px
-    '4xl': '2.25rem',   // 36px
-    '5xl': '3rem',      // 48px
   },
 
 
@@ -220,8 +217,6 @@ module.exports = {
     'medium': 500,
     'semibold': 600,
     'bold': 700,
-    'extrabold': 800,
-    'black': 900,
   },
 
 

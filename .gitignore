@@ -22,7 +22,8 @@ yarn-error.log*
 
 env.json
 
-tailwind.css
+src/css/tailwind.css
+src/css/index.css
 
 .vscode
 

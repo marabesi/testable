@@ -5,6 +5,9 @@ import SvgBuggy from '../buggy/SvgBuggy';
 import AlienSvg from '../alien/AlienSvg';
 import PropTypes from 'prop-types';
 
+import '../../scss/slide-in-bck-right.scss';
+import '../../scss/slide-in-bck-top.scss';
+
 import './scene.scss';
 
 export default class Scene extends Component {

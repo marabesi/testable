@@ -6,6 +6,9 @@ import { auth } from '../../pages/login/Auth';
 import Emitter, { LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 import PropTypes from 'prop-types';
 
+import '../../scss/levelup-animation.scss';
+import '../../scss/logo-animation.scss';
+
 export default class Header extends Component {
 
   state = { 

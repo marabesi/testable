@@ -28,6 +28,7 @@
     "typed.js": "^2.0.10"
   },
   "scripts": {
+    "post:css": "postcss -c postcss.config.js src/css/tailwind.css -o src/css/index.css",
     "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",
     "debug": "export REACT_APP_DEBUG=true && npm run tailwind:css && react-scripts start",
     "start": "npm run tailwind:css && react-scripts start",
@@ -39,7 +40,7 @@
     "cypress": "cypress open",
     "cypress-run": "cypress run",
     "eject": "react-scripts eject",
-    "tailwind:css": "tailwind build src/tailwind.src.scss -c src/tailwind.js -o src/tailwind.css",
+    "tailwind:css": "tailwind build src/scss/tailwind.src.scss -c src/tailwind.js -o src/css/tailwind.css && npm run post:css",
     "lint": "eslint src/**/*.js"
   },
   "browserslist": [
@@ -49,12 +50,14 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "@fullhuman/postcss-purgecss": "^1.2.0",
     "babel-eslint": "^9.0.0",
     "cypress": "^3.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "eslint-plugin-react": "^7.13.0",
     "gh-pages": "^2.0.1",
+    "postcss-cli": "^6.1.2",
     "sinon": "^7.3.2",
     "source-map-explorer": "^1.8.0"
   }

@@ -3,6 +3,9 @@ import Header from '../header/Header';
 import { auth } from '../../pages/login/Auth';
 import PropTypes from 'prop-types';
 
+import '../../scss/fade-in-left.scss';
+import '../../scss/fade-out-left.scss';
+
 import './sidebar.scss';
 
 export default class Sidebar extends Component {
