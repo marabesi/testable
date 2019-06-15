@@ -1,5 +1,5 @@
 import React from 'react';
-import Guide from './Guide';
+import { Guide } from './Guide';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 
@@ -30,12 +30,14 @@ describe('guide component', () => {
 
   test('should handle next buton click action', () => {
     const progress = sinon.spy();
+    const onHover = sinon.spy();
     const wrapper = mount(
       <Guide
         guideContent={content}
         currentHint={0}
         showNext={true}
         handleProgress={progress}
+        onHover={onHover}
       />
     );
 

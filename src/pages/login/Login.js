@@ -6,11 +6,23 @@ import uiConfig from './Firebase';
 import Loading from '../../components/loading/Loading';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../login/Auth';
+import { connect } from 'react-redux';
+import { setUser } from '../../actions/userAction';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
 
-export default class Login extends Component {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    setUser: loggedUser => dispatch(setUser(loggedUser))
+  };
+};
+
+const mapStateToProps = (state) => ({
+  user: state.userReducer.user
+});
+
+export class Login extends Component {
   state = {
     logged: false,
     loading: true
@@ -19,23 +31,26 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
 
-    auth.authenticate(this.authStatusChanged.bind(this));
+    auth.authenticate(this.authStatusChanged);
   }
 
-  authStatusChanged(user) {
+  authStatusChanged = (user) => {
     if (user) {
+      this.props.setUser(user);
       this.setState({
         user: user,
         logged: true,
         loading: false
       });
-    } else {
-      this.setState({
-        user: null,
-        logged: false,
-        loading: false
-      });
+      return;
     }
+
+    this.props.setUser({});
+    this.setState({
+      user: null,
+      logged: false,
+      loading: false
+    });
   }
 
   componentDidMount() {
@@ -76,3 +91,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

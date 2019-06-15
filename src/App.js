@@ -71,6 +71,7 @@ class App extends Component {
     await fetcher([
       'assets/buggy.png',
       'assets/alien.png',
+      'assets/mp3/keyboard.mp3',
     ]);
 
     this.setState({

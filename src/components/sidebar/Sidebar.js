@@ -22,9 +22,14 @@ export default class Sidebar extends Component {
     return (
       <React.Fragment>
         <div
-          className={`bg-white h-screen z-50 absolute fade-in-left ${this.state.open ? 'block' : 'hidden'}`}
+          className={`sidebar bg-blue-dark h-screen z-50 absolute fade-in-left ${this.state.open ? 'block' : 'hidden'}`}
           style={{ width: '400px'}}
         >
+          <h1 className="uppercase text-center m-auto text-blue-lightest p-2">Conquistas</h1>
+
+          <ul className="p-2 text-white">
+            <li>ashdoiasjoiasdhioasd asdaosdoahsdoashodashdoa sda diahosd</li>
+          </ul>
         </div>
         <div className="header">
           {this.state.open && <div className="z-30 h-screen w-full absolute bg-testable-overlay" onClick={this.onSidebar}></div>}

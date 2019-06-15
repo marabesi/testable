@@ -56,7 +56,7 @@ let colors = {
   'blue': '#3490dc',
   'blue-light': '#32ccff',
   'blue-lighter': '#bcdefa',
-  'blue-lightest': '#eff8ff',
+  'blue-lightest': '#04edf6',
 
   'testable-overlay': 'rgba(0, 0, 0, 0.3)',
   'testable-blue-overlay': '#00ffdf52'

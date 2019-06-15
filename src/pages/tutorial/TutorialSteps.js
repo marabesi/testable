@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Steps } from 'intro.js-react';
 
+const isDebug = process.env.REACT_APP_DEBUG || false;
+
 export default class TutorialSteps extends Component {
 
   render() {
@@ -10,7 +12,7 @@ export default class TutorialSteps extends Component {
         options={{
           disableInteraction: true,
           showStepNumbers: false,
-          exitOnEsc: false,
+          exitOnEsc: isDebug ? true : false,
           hidePrev: true,
           exitOnOverlayClick: false,
           showButtons: true,

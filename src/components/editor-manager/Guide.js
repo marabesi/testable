@@ -2,30 +2,31 @@ import React, { Component } from 'react';
 import SvgBuggy from '../buggy/SvgBuggy';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import PropTypes from 'prop-types';
+import { onHover } from '../../actions/guideAction';
+import { connect } from 'react-redux';
 
-export default class Guide extends Component {
-
-  state = {
-    hovered: false
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onHover: hovered => dispatch(onHover(hovered))
   };
+};
+
+const mapStateToProps = (state) => ({
+  hovered: state.guideReducer.hovered
+});
+
+export class Guide extends Component {
 
   onHover = () => {
-    this.setState({
-      hovered: true
-    });
+    this.props.onHover(true);
   }
 
   offHover = () => {
-    this.setState({
-      hovered: false
-    });
+    this.props.onHover(false);
   }
 
   handleProgress = () => {
-    this.setState({
-      hovered: false
-    });
-
+    this.offHover();
     this.props.handleProgress();
   }
 
@@ -49,7 +50,7 @@ export default class Guide extends Component {
                 onClick={this.handleProgress}
                 onMouseEnter={this.onHover}
                 onMouseLeave={this.offHover}
-                className={ `w-6 h-6 self-end no-underline text-white font-bold focus:outline-none ${!this.state.hovered && this.props.showNext ? 'next': ''}` }
+                className={ `w-6 h-6 self-end no-underline text-white font-bold focus:outline-none ${!this.props.hovered ? 'next': ''}` }
               >
                 <svg className="fill-current py-1 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xlink="http://www.w3.org/1999/xlink" enableBackground="new 0 0 129 129">
                   <g>
@@ -92,4 +93,8 @@ Guide.propTypes = {
   showNext: PropTypes.bool,
   onFinishedTyping: PropTypes.func,
   handleProgress: PropTypes.func,
+  onHover: PropTypes.func,
+  hovered: PropTypes.bool,
 };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Guide);

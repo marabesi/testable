@@ -10,21 +10,34 @@ import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';
 import { Redirect } from 'react-router';
 import Reason from '../../engine/Reason';
 import { Sum } from '../../engine/strategies/Sum';
+import { connect } from 'react-redux';
+import { onHover } from '../../actions/guideAction';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
 
-export default class Tutorial extends Component {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onHover: hovered => dispatch(onHover(hovered))
+  };
+};
+
+const mapStateToProps = (state) => ({
+  // hovered: state.guideReducer.hovered
+});
+
+export class Tutorial extends Component {
 
   state = {
     introEnabled: false,
     intro: intro,
     showNext: false,
     currentHint: 0,
-    code: 'var a = 1'
+    code: '// seu código javascript'
   };
 
   onFinishTooltip = () => {
+    this.props.onHover(false);
     this.setState({
       ...this.state.introEnabled, introEnabled: false,
       ...this.state.showNext, showNext: false,
@@ -47,6 +60,7 @@ export default class Tutorial extends Component {
     this.setState({
       ...this.state.introEnabled, introEnabled: true
     });
+    setTimeout(() => this.props.onHover(true), 100);
   }
 
   onValidCode = (code) => {
@@ -95,7 +109,6 @@ export default class Tutorial extends Component {
   handleProgress = () => {
     if (this.state.currentHint === 0) {
       this.onEnableTooltip();
-
       return;
     }
 
@@ -138,3 +151,5 @@ export default class Tutorial extends Component {
     );
   }
 }
+
+export default connect(mapStateToProps, mapDispatchToProps)(Tutorial);
