@@ -4,10 +4,12 @@ import AsyncComponent from './AsyncComponent';
 import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import Sidebar from '../sidebar/Sidebar';
-import { fetcher } from '../../queue/queue';
+import Queue from '../../queue/queue';
 
 import './app.scss';
 import Loading from '../loading/Loading';
+
+const queue = new Queue();
 
 const Introduction = AsyncComponent(() => {
   return import('../../pages/introduction/Introduction');
@@ -73,7 +75,7 @@ class App extends Component {
   }
 
   async componentDidMount() {
-    await fetcher([
+    await queue.fetch([
       'assets/buggy.png',
       'assets/alien.png',
       'assets/mp3/keyboard.mp3',
