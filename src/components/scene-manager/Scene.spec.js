@@ -2,23 +2,7 @@ import React from 'react';
 import Scene from './Scene';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
-
-const localStorageMock = (function () {
-  let store = {};
-
-  return {
-    getItem(key) {
-      return store[key] || null;
-    },
-    setItem(key, value) {
-      store[key] = value.toString();
-    },
-    clear() {
-      store = {};
-    },
-  };
-
-}());
+import { localStorageMock } from '../../__test__/stubs/localStorage';
 
 describe('Scene component', () => {
 

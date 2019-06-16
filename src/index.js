@@ -5,7 +5,7 @@ import registerServiceWorker from './registerServiceWorker';
 import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { Provider } from 'react-redux';
-import Store from './store';
+import Store from './store/store';
 import Background from './components/background/Background';
 
 import './css/index.css';

@@ -5,7 +5,7 @@ import AsyncComponent from './AsyncComponent';
 import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
 import { spring, AnimatedSwitch } from 'react-router-transition';
 import Sidebar from '../sidebar/Sidebar';
-import { fetcher } from '../../queue';
+import { fetcher } from '../../queue/queue';
 
 import './app.scss';
 import Loading from '../loading/Loading';

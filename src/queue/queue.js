@@ -14,12 +14,14 @@ export const fetcher = function (assets) {
     for (let response of data) {
       response.blob()
         .then(blob => {
-          var reader = new FileReader();
-          reader.onload = function () {
+          const reader = new FileReader();
+          reader.addEventListener('load', function () {
             const file = response.url.split('/');
             const key = `testable.${file[file.length - 1]}`;
+
             window.localStorage.setItem(key, this.result);
-          };
+          });
+
           reader.readAsDataURL(blob);
         });
     }
