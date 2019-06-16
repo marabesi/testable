@@ -22,10 +22,6 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
-const mapStateToProps = (state) => ({
-  // hovered: state.guideReducer.hovered
-});
-
 export class Tutorial extends Component {
 
   state = {
@@ -152,4 +148,4 @@ export class Tutorial extends Component {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Tutorial);
+export default connect(null, mapDispatchToProps)(Tutorial);
