@@ -8,8 +8,10 @@
   }
   
   .picture-holder {
-    width: 40px;
-    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    max-width: 40px;
+    max-height: 40px;
     border-radius: 999px;
     border: 1px solid #fff;
     overflow: hidden;

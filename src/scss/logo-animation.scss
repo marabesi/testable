@@ -10,8 +10,6 @@
   }
 }
 
-@variants hover {
-  .pulsate-fwd {
-    animation: pulsate-fwd 0.5s ease-in-out infinite both;
-  }
+.pulsate-fwd {
+  animation: pulsate-fwd 0.5s ease-in-out infinite both;
 }

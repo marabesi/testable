@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
-import Login from '../../pages/login/Login';
 import AsyncComponent from './AsyncComponent';
 import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
 import { spring, AnimatedSwitch } from 'react-router-transition';
@@ -13,9 +12,15 @@ import Loading from '../loading/Loading';
 const Introduction = AsyncComponent(() => {
   return import('../../pages/introduction/Introduction');
 });
+
+const Login = AsyncComponent(() => {
+  return import('../../pages/login/Login');
+});
+
 const Tutorial = AsyncComponent(() => {
   return import('../../pages/tutorial/Tutorial');
 });
+
 const NotFound = AsyncComponent(() => {
   return import('../../pages/notfound/NotFound');
 });
