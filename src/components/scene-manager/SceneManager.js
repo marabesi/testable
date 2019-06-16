@@ -4,6 +4,7 @@ import DebugButton from '../debug/Button';
 import { auth } from '../../pages/login/Auth';
 import Emitter, { PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 import PropTypes from 'prop-types';
+import { track } from '../../emitter/Tracking';
 
 export default class SceneManager extends Component {
   
@@ -38,6 +39,12 @@ export default class SceneManager extends Component {
     });
 
     Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10 });
+
+    track({
+      section: this.props.identifier,
+      action: 'next_scene|button_click',
+      value: current,
+    });
   }
 
   renderStep() {
@@ -81,6 +88,7 @@ export default class SceneManager extends Component {
 }
 
 SceneManager.propTypes = {
+  identifier: PropTypes.string,
   content: PropTypes.object,
   handleLastScene: PropTypes.func
 };

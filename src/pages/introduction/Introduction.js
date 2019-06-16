@@ -44,6 +44,7 @@ export default class Introduction extends Component {
 
     return (
       <SceneManager
+        identifier="introduction"
         content={content}
         handleLastScene={this.handleLastScene}
       />

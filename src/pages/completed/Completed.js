@@ -9,6 +9,7 @@ export default class Completed extends Component {
     return (
       <Background>
         <SceneManager
+          identifier="completed"
           content={content}
           handleLastScene={this.handleLastScene}
         />

@@ -8,6 +8,7 @@ import { Redirect } from 'react-router-dom';
 import { auth } from '../login/Auth';
 import { connect } from 'react-redux';
 import { setUser } from '../../actions/userAction';
+import { track } from '../../emitter/Tracking';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
@@ -36,7 +37,11 @@ export class Login extends Component {
 
   authStatusChanged = (user) => {
     if (user) {
-      this.props.setUser(user);
+      track({
+        section: 'login',
+        action: 'auth_changed'
+      });
+
       this.setState({
         user: user,
         logged: true,
@@ -45,7 +50,6 @@ export class Login extends Component {
       return;
     }
 
-    this.props.setUser({});
     this.setState({
       user: null,
       logged: false,

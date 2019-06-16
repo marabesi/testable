@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../../pages/login/Auth';
+import { track } from '../../emitter/Tracking';
 import PropTypes from 'prop-types';
 
 import './profile.scss';
@@ -18,10 +19,20 @@ export default class Profile extends Component {
         successfullLoggedOut: true,
         menu: false
       });
+
+      track({
+        section: 'profile',
+        action: 'logout'
+      });
     });
   }
 
   showMenu = () => {
+    track({
+      section: 'profile',
+      action: 'show_menu|button_click'
+    });
+
     this.setState({
       menu: !this.state.menu
     });

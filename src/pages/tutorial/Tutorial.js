@@ -12,6 +12,7 @@ import Reason from '../../engine/Reason';
 import { Sum } from '../../engine/strategies/Sum';
 import { connect } from 'react-redux';
 import { onHover } from '../../actions/guideAction';
+import { track } from '../../emitter/Tracking';
 
 import 'intro.js/introjs.css';
 import './tutorial.scss';
@@ -32,12 +33,23 @@ export class Tutorial extends Component {
     code: '// seu código javascript'
   };
 
+  componentDidMount() {
+    track({
+      section: 'tutorial',
+      action: 'tutorial_start'
+    });
+  }
+
   onFinishTooltip = () => {
     this.props.onHover(false);
     this.setState({
       ...this.state.introEnabled, introEnabled: false,
       ...this.state.showNext, showNext: false,
       ...this.state.currentHint, currentHint: this.state.currentHint + 1
+    });
+    track({
+      section: 'tutorial',
+      action: 'interface_tour_end'
     });
   }
 
@@ -57,6 +69,11 @@ export class Tutorial extends Component {
       ...this.state.introEnabled, introEnabled: true
     });
     setTimeout(() => this.props.onHover(true), 100);
+
+    track({
+      section: 'tutorial',
+      action: 'interface_tour_start'
+    });
   }
 
   onValidCode = (code) => {
@@ -67,6 +84,11 @@ export class Tutorial extends Component {
     }
 
     if (Reason(code, Sum)) {
+      track({
+        section: 'tutorial',
+        action: 'sum:valid_code',
+        value: code
+      });
       Emitter.emit(LEVEL_UP);
       this.nextHint();
     }
@@ -84,11 +106,22 @@ export class Tutorial extends Component {
         ...this.state.showNext, showNext: false
       });
 
+      track({
+        section: 'tutorial',
+        action: 'next_guide_hint:button_click',
+        value: next
+      });
+
       return;
     }
 
     auth.updateUserInfo({
       tutorial: false
+    });
+
+    track({
+      section: 'tutorial',
+      action: 'tutorial_end'
     });
 
     setTimeout(() => {

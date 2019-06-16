@@ -2,13 +2,17 @@ import React, { Component } from 'react';
 import { Route } from 'react-router-dom';
 import AsyncComponent from './AsyncComponent';
 import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
-import { spring, AnimatedSwitch } from 'react-router-transition';
+import { mapStyles, bounceTransition } from './transition';
+import { AnimatedSwitch } from 'react-router-transition';
 import Sidebar from '../sidebar/Sidebar';
 import Queue from '../../queue/queue';
+import Loading from '../loading/Loading';
+import Emitter, { TRACKING } from '../../emitter/Emitter';
+import { auth } from '../../pages/login/Auth';
 
 import './app.scss';
-import Loading from '../loading/Loading';
 
+const isDebug = process.env.REACT_APP_DEBUG || false;
 const queue = new Queue();
 
 const Introduction = AsyncComponent(() => {
@@ -39,35 +43,6 @@ const Completed = AsyncComponent(() => {
   return import('../../pages/completed/Completed');
 });
 
-function mapStyles(styles) {
-  return {
-    opacity: styles.opacity,
-    transform: `scale(${styles.scale})`,
-  };
-}
-
-function bounce(val) {
-  return spring(val, {
-    stiffness: 180,
-    damping: 12,
-  });
-}
-
-const bounceTransition = {
-  atEnter: {
-    opacity: 0,
-    scale: 1.2,
-  },
-  atLeave: {
-    opacity: bounce(0),
-    scale: bounce(0.8),
-  },
-  atActive: {
-    opacity: bounce(1),
-    scale: 1
-  }
-};
-
 class App extends Component {
 
   state = {
@@ -75,6 +50,17 @@ class App extends Component {
   }
 
   async componentDidMount() {
+    Emitter.addListener(TRACKING, data => {
+
+      if (isDebug) {
+        /* eslint-disable-next-line */
+        console.warn(data);
+        return;
+      }
+
+      auth.insertUserInfo(data, 'tracking');
+    });
+
     await queue.fetch([
       'assets/buggy.png',
       'assets/alien.png',
@@ -84,6 +70,10 @@ class App extends Component {
     this.setState({
       isFetchingAssets: false
     });
+  }
+
+  componentWillUnmount() {
+    Emitter.removeAllListeners(TRACKING);
   }
 
   render() {

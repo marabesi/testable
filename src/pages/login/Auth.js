@@ -31,7 +31,7 @@ const auth = {
           .ref()
           .child('users/' + user.uid);
 
-        vm.firebaseRef.on('value', (snapshot) => {
+        vm.firebaseRef.once('value', (snapshot) => {
           const userObject = snapshot.val();
 
           if (userObject && userObject.tutorial) {
@@ -130,7 +130,14 @@ const auth = {
     for (let prop in data) {
       this.user[prop] = data[prop];
     }
-  }
+  },
+  insertUserInfo(data, child) {
+    const firebaseRef = firebase
+      .database()
+      .ref()
+      .child('users/' + this.user.uid + '/' + child);
+    firebaseRef.push(data);
+  },
 };
 
 export {auth};

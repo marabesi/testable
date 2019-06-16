@@ -1,6 +1,8 @@
 const {EventEmitter} = require('fbemitter');
 const Emitter = new EventEmitter();
 
+export const TRACKING = 0;
+
 export const LEVEL_UP = 1;
 
 export const PROGRESS_UP = 2;

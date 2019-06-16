@@ -47,6 +47,7 @@ export default class TutorialEnd extends Component {
       <React.Fragment>
         <DebugButton onClick={this.goToTutorial} value="tutorial" />
         <SceneManager
+          identifier="post_tutorial"
           content={content}
           handleLastScene={this.handleLastScene}
         />
