@@ -5,6 +5,8 @@ import PropTypes from 'prop-types';
 import { onHover } from '../../actions/guideAction';
 import { connect } from 'react-redux';
 
+import '../../scss/attention.scss';
+
 const mapDispatchToProps = (dispatch) => {
   return {
     onHover: hovered => dispatch(onHover(hovered))
