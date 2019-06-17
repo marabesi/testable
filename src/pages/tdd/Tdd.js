@@ -4,6 +4,7 @@ import tddContent from './tdd-content';
 import Guide from '../../components/editor-manager/Guide';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 import { Redirect } from 'react-router';
+import { track } from '../../emitter/Tracking';
 
 const code = `function somar(a, b) {
   return a + b
@@ -28,6 +29,13 @@ export default class Tdd extends Component {
     currentHint: 0,
     done: false,
   };
+
+  componentDidMount() {
+    track({
+      section: 'tdd',
+      action: 'tdd_start'
+    });
+  }
 
   onValidCode = (code, i) => {
     let current = Object.assign({}, this.state.code);
@@ -55,10 +63,20 @@ export default class Tdd extends Component {
         ...this.state.showNext, showNext: false
       });
 
+      track({
+        section: 'tdd',
+        action: 'next_guide_hint:button_click',
+        value: next
+      });
       return;
     }
 
     Emitter.emit(LEVEL_UP);
+
+    track({
+      section: 'tdd',
+      action: 'tdd_end'
+    });
 
     this.setState({
       ...this.state.done, done: true
@@ -66,7 +84,7 @@ export default class Tdd extends Component {
   }
 
   render() {
-    if (this.state.tutorialDone) {
+    if (this.state.done) {
       return (<Redirect to="/completed" />);
     }
 
