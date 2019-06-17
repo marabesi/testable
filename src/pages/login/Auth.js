@@ -1,5 +1,12 @@
 import firebase from 'firebase/app';
-import env from '../../env.json';
+
+let env = {};
+
+if (process.env.NODE_ENV === 'production') {
+  env = require('../../env.prod.json');
+} else {
+  env = require('../../env.json');
+}
 
 require('firebase/database');
 
