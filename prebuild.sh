@@ -13,13 +13,18 @@ git remote -v
 git remote add origin $REPO_URL
 git config remote.origin.url $REPO_URL
 
+# real creds from firebase
 echo $FIREBASE >> src/env.prod.json
+
+# testing purpose
+echo "{}" >> src/env.json
 
 echo "{
   \"host\": \"$CYPRESS_HOST\",
   \"email\": \"$CYPRESS_EMAIL\",
   \"password\": \"$CYPRESS_PASSWORD\"
 }" >> cypress.env.json
+
 
 echo "DEBUG, cd out"
 test -d out && (
