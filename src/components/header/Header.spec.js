@@ -25,13 +25,6 @@ describe('header component', () => {
     expect(wrapper.find('input[type="button"]').length).toEqual(0);
   });
 
-  test('should render logo', () => {
-    const wrapper = shallow(<Header />);
-    const imgSrc = wrapper.find('[alt="logotipo"]');
-
-    expect(imgSrc.prop('src')).toBe('assets/logo.png');
-  });
-
   test('should render user progress', () => {
     const wrapper = mount(<Header />);
     expect(wrapper.find('.user-progress').length).toEqual(1);
