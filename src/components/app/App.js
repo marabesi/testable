@@ -64,6 +64,7 @@ class App extends Component {
     await queue.fetch([
       'assets/buggy.png',
       'assets/alien.png',
+      'assets/logo.png',
       'assets/mp3/keyboard.mp3',
     ]);
 

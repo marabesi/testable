@@ -88,8 +88,6 @@ export default class Header extends Component {
             <Level progress={this.state.user.progress} level={this.state.user.level} />
           </div>
 
-          <img src="assets/logo.png" className="hover:pulsate-fwd h-8 hidden md:block" alt="logotipo" title="Testable - Ferramenta gamificada"/>
-
           <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
 
           <div className="user-info">

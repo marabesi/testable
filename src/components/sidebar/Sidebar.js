@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Header from '../header/Header';
 import { auth } from '../../pages/login/Auth';
 import PropTypes from 'prop-types';
+import Logo from '../logo/Logo';
 
 import '../../scss/fade-in-left.scss';
 import '../../scss/fade-out-left.scss';
@@ -38,7 +39,10 @@ export default class Sidebar extends Component {
           {this.state.open && <div className="z-30 h-screen w-full absolute bg-testable-overlay" onClick={this.onSidebar}></div>}
           { auth.isAuthenticated && <Header onSidebar={this.onSidebar} /> }
         </div>
+
         {this.props.children}
+
+        <Logo className="h-8 hidden md:block absolute pin-b pin-r mr-5 mb-5" />
       </React.Fragment>
     );
   }
