@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Profile from '../../components/profile/Profile';
+import UserMenu from '../../components/user-menu/UserMenu';
 import Level from '../../components/level/Level';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../../pages/login/Auth';
@@ -82,17 +82,14 @@ export default class Header extends Component {
     return (
       <React.Fragment>
         <DebugButton onClick={this.goToIntroduction} value="go back to introduction"/>
+        <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
 
         <div className="flex justify-between pl-3 pr-3 pt-5 ml-5 mr-5">
           <div className={ `user-progress ${this.state.levelup ? 'wobble-ver-right' : ''}`}>
             <Level progress={this.state.user.progress} level={this.state.user.level} />
           </div>
 
-          <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
-
-          <div className="user-info">
-            <Profile user={auth.user} />
-          </div>
+          <UserMenu user={auth.user} onNotification={this.props.onSidebar} />
         </div>
       </React.Fragment>
     );
