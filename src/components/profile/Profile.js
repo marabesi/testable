@@ -61,7 +61,7 @@ export default class Profile extends Component {
     }`;
 
     return (
-      <div 
+      <div
         className="relative outline-none"
         tabIndex="0"
         onBlur={this.onBlur}

@@ -43,6 +43,18 @@ export default {
     {
       element: '.source-code',
       intro: 'Aqui passaremos a maior parte da nossa jornada!',
+      tooltipClass: 'myTooltipClass',
+      highlightClass: 'myHighlightClass',
+    },
+    {
+      element: '.source-code',
+      intro: 'O código escrito aqui é automaticamente interpretado',
+      tooltipClass: 'myTooltipClass',
+      highlightClass: 'myHighlightClass',
+    },
+    {
+      element: '.source-code',
+      intro: 'Se algum erro acontecer, uma mensage vermelha aparecerá em baixo do editor',
       tooltipClass: 'last-step',
       highlightClass: 'myHighlightClass',
     },

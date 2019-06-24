@@ -1,5 +1,5 @@
 import Reason from '../Reason';
-import { Sum } from './Sum';
+import { Sum, testCase } from './Sum';
 
 const invalidSumExamples = [
   'var a = 1;',
@@ -25,4 +25,11 @@ describe('Sum strategy', () => {
       expect(result).toBeUndefined();
     },
   );
+
+
+  describe('sum test case', () => {
+    test('should have sum test cases to make sure that the code works as expected', () => {
+      expect(testCase().length).toEqual(2);
+    });
+  });
 });

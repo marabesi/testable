@@ -1,4 +1,3 @@
-
 import React, { Component } from 'react';
 import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';

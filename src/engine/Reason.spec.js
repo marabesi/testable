@@ -21,7 +21,7 @@ describe('Reason', () => {
     'should not buble up the error when a invalid source code is provided',
     (code) => {
       const strategy = sinon.spy();
-    
+
       const result = Reason(code, strategy);
       expect(strategy.called).toBeFalsy();
       expect(result).toBeFalsy();

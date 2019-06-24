@@ -10,9 +10,11 @@ import Background from './components/background/Background';
 
 import './css/index.css';
 
+/* eslint-disable */
 const env = process.env.NODE_ENV;
 const basename = process.env.REACT_APP_BASE_NAME;
 const debug = process.env.REACT_APP_DEBUG;
+/* eslint-enable */
 
 const store = Store();
 
