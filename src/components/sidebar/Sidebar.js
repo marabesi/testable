@@ -12,7 +12,33 @@ import './sidebar.scss';
 export default class Sidebar extends Component {
 
   state = {
-    open: false
+    open: false,
+    achievements: [
+      {
+        title: 'Desafio aceito!',
+        description: 'bla bla blab lablab asudh hausdhuahsuduhasd asdlabl'
+      },
+      {
+        title: 'Desafio aceito!',
+        description: 'bla bla blab lablab asudh hausdhuahsuduhasd asdlabl'
+      },
+      {
+        title: 'Desafio aceito!',
+        description: 'bla bla blab lablab asudh aiushd iuahsd iuahsd iuashd iuahsdiuhasiduhaisudh iuasdh iuashd iuashd iuashd iuashdhausdhuahsuduhasd asdlabl'
+      },
+      {
+        title: 'Desafio aceito!',
+        description: 'bla bla blab lablab asudh hausdhuahsuduhasd asdlabl'
+      },
+      {
+        title: 'Desafio aceito!',
+        description: 'bla bla blab lablab asudh hausdhuahsuduhasd asdlabl'
+      },
+      {
+        title: 'Desafio aceito!',
+        description: 'bla bla blab lablab asudh hausdhuahsuduhasd asdlabl'
+      }
+    ]
   }
 
   onSidebar = () => {
@@ -23,16 +49,33 @@ export default class Sidebar extends Component {
   }
 
   render() {
+    const achievements = [];
+
+    for (const [index, achievement] of this.state.achievements.entries()) {
+      achievements.push(
+        <li key={index} className="p-2">
+          <ul>
+            <h3>{ achievement.title }</h3>
+            <li>
+              <span>{ achievement.description }</span>
+            </li>
+          </ul>
+        </li>
+      );
+    }
+
     return (
       <React.Fragment>
         <div
-          className={`sidebar bg-blue-dark h-screen z-50 absolute fade-in-left ${this.state.open ? 'block' : 'hidden'}`}
+          className={`sidebar bg-blue-dark h-screen z-50 overflow-y-auto absolute fade-in-left ${this.state.open ? 'block' : 'hidden'}`}
           style={{ width: '400px'}}
         >
-          <h1 className="uppercase text-center m-auto text-blue-lightest p-2">Conquistas</h1>
+          <h1 className="uppercase text-center m-auto text-blue-lightest p-2">
+            Conquistas
+          </h1>
 
           <ul className="p-2 text-white">
-            <li>ashdoiasjoiasdhioasd asdaosdoahsdoashodashdoa sda diahosd</li>
+            { achievements }
           </ul>
         </div>
         <div className="header">

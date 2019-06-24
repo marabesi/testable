@@ -35,4 +35,13 @@ describe('sidebar component', () => {
 
     expect(wrapper.find('Header').exists()).toBeTruthy();
   });
+
+  test('should render achievements based on the state', () => {
+    auth.isAuthenticated = true;
+    const wrapper = mount(<Sidebar />);
+
+    wrapper.instance().onSidebar();
+
+    expect(wrapper.find('li ul h3').length).toBe(6);
+  });
 });
