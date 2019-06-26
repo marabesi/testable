@@ -65,6 +65,7 @@ class App extends Component {
       'assets/buggy.png',
       'assets/alien.png',
       'assets/logo.png',
+      'assets/placeholder.svg',
       'assets/mp3/keyboard.mp3',
     ]);
 

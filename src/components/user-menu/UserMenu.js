@@ -7,11 +7,11 @@ export default class UserMenu extends Component {
 
   render() {
     return (
-      <div className="flex">
+      <div className="flex justify-end items-center">
         <svg
           xmlns="http://www.w3.org/2000/svg"
           onClick={this.props.onNotification}
-          className="fill-current w-8 text-white mr-5 hover:text-blue-lightest"
+          className="fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
           viewBox="0 0 512 512"
         >
           <g>

@@ -3,6 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { auth } from '../../pages/login/Auth';
 import { track } from '../../emitter/Tracking';
 import PropTypes from 'prop-types';
+import PlaceholderImage from './PlaceholderImage';
 
 import './profile.scss';
 
@@ -10,7 +11,8 @@ export default class Profile extends Component {
 
   state = {
     menu: false,
-    successfullLoggedOut: false
+    successfullLoggedOut: false,
+    photo: null
   }
 
   onLogout = () => {
@@ -44,6 +46,29 @@ export default class Profile extends Component {
     });
   }
 
+  componentDidMount = () => {
+    const { photo } = this.props.user;
+
+    if (photo) {
+      fetch(photo)
+        .then(response => response.blob())
+        .then(image => {
+          const photo = URL.createObjectURL(image);
+          this.setState({
+            ...this.state.photo, photo
+          });
+        });
+    }
+  }
+
+  renderUserPhoto() {
+    if (this.state.photo) {
+      return (<img src={this.state.photo} alt="" />);
+    }
+
+    return (< PlaceholderImage />);
+  }
+
   render() {
     if (this.state.successfullLoggedOut) {
       return (
@@ -53,36 +78,33 @@ export default class Profile extends Component {
       );
     }
 
-    const { name, email, photo } = this.props.user;
+    const { name, email } = this.props.user;
     const propClass = this.props.className;
 
-    const className = `profile flex cursor-pointer ${
+    const className = `profile flex cursor-pointer group ${
       propClass ? propClass : ''
     }`;
 
     return (
       <div
-        className="relative outline-none"
+        className="relative outline-none user-info"
         tabIndex="0"
         onBlur={this.onBlur}
         title={`${name} - ${email}`}
       >
         <div className={className} onClick={this.showMenu}>
-          <div className="picture-holder">
-            <img
-              src={photo ? photo : 'https://placeimg.com/200/200/any'}
-              alt={name}
-            />
+          <div className="picture-holder group-hover:border-blue-lightest">
+            {this.renderUserPhoto()}
           </div>
           <div className="info">
-            <h2 className="title text-white text-base uppercase font-medium truncate" alt={name} title={name}>
+            <h2 className="title text-white text-base uppercase font-medium truncate group-hover:text-blue-lightest" alt={name} title={name}>
               {name}
             </h2>
           </div>
+          <ul className={`w-full bg-testable-overlay list-reset p-1 mt-10 z-40 absolute ${this.state.menu ? 'block' : 'hidden'}`}>
+            <li className="cursor-pointer text-white text-center p-1" onClick={this.onLogout}>Logout</li>
+          </ul>
         </div>
-        <ul className={`w-full bg-testable-overlay list-reset p-1 mt-2 z-40 absolute ${this.state.menu ? 'block' : 'hidden'}`}>
-          <li className="cursor-pointer text-white text-center p-1" onClick={this.onLogout}>Logout</li>
-        </ul>
       </div>
     );
   }

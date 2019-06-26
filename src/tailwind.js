@@ -59,6 +59,7 @@ let colors = {
   'blue-lightest': '#04edf6',
 
   'testable-overlay': 'rgba(0, 0, 0, 0.3)',
+  'testable-overlay-sidebar': 'rgba(0, 0, 0, 0.7)',
   'testable-blue-overlay': '#00ffdf52'
 }
 
@@ -821,7 +822,7 @@ module.exports = {
     backgroundRepeat: ['responsive'],
     backgroundSize: ['responsive'],
     borderCollapse: [],
-    borderColors: ['responsive', 'hover', 'focus'],
+    borderColors: ['responsive', 'hover', 'focus', 'group-hover'],
     borderRadius: ['responsive'],
     borderStyle: ['responsive'],
     borderWidths: ['responsive'],
@@ -854,7 +855,7 @@ module.exports = {
     svgStroke: [],
     tableLayout: ['responsive'],
     textAlign: ['responsive'],
-    textColors: ['responsive', 'hover', 'focus'],
+    textColors: ['responsive', 'hover', 'focus', 'group-hover'],
     textSizes: ['responsive'],
     textStyle: ['responsive', 'hover', 'focus'],
     tracking: ['responsive'],
