@@ -42,6 +42,6 @@ describe('sidebar component', () => {
 
     wrapper.instance().onSidebar();
 
-    expect(wrapper.find('li ul h3').length).toBe(6);
+    expect(wrapper.find('li ul h3').length).toBe(3);
   });
 });

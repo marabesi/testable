@@ -3,6 +3,7 @@ import Header from '../header/Header';
 import { auth } from '../../pages/login/Auth';
 import PropTypes from 'prop-types';
 import Logo from '../logo/Logo';
+import achievements from './sidebar-content';
 
 import '../../scss/fade-in-left.scss';
 import '../../scss/fade-out-left.scss';
@@ -13,38 +14,7 @@ export default class Sidebar extends Component {
 
   state = {
     open: false,
-    achievements: [
-      {
-        title: 'Desafio aceito 1 !',
-        description: 'bla bla blab lablab asudh hausdhuahsuduhasd asdlabl',
-        active: false
-      },
-      {
-        title: 'Desafio aceito 2!',
-        description: 'bla bla blab lablab asudh hausdhuahsuduhasd asdlabl',
-        active: false
-      },
-      {
-        title: 'Desafio aceito 3!',
-        description: 'bla bla blab lablab asudh aiushd iuahsd iuahsd iuashd iuahsdiuhasiduhaisudh iuasdh iuashd iuashd iuashd iuashdhausdhuahsuduhasd asdlabl',
-        active: false
-      },
-      {
-        title: 'Desafio aceito 4!',
-        description: 'bla bla blab lablab asudh hausdhuahsuduhasd asdlabl',
-        active: false
-      },
-      {
-        title: 'Desafio aceito 5!',
-        description: 'bla bla blab lablab asudh hausdhuahsuduhasd asdlabl',
-        active: false
-      },
-      {
-        title: 'Desafio aceito 6!',
-        description: 'bla bla blab lablab asudh hausdhuahsuduhasd asdlabl',
-        active: false
-      }
-    ]
+    achievements: achievements
   }
 
   onSidebar = () => {
