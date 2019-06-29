@@ -4,7 +4,7 @@ export default [
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'Precisamos ir um passo a frente e usar teste unitário!',
+    line: 'Precisamos usar teste unitário!',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
 ];

@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import tddContent from './tdd-content';
+import introContent from './intro-content';
+import Intro from '../../components/intro/Intro';
 import Guide from '../../components/editor-manager/Guide';
-import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import Emitter, { PROGRESS_UP } from '../../emitter/Emitter';
 import { Redirect } from 'react-router';
 import { track } from '../../emitter/Tracking';
+import { auth } from '../../pages/login/Auth';
+import DebugButton from '../../components/debug/Button';
 
 const code = `function somar(a, b) {
   return a + b
@@ -25,9 +29,13 @@ export default class Tdd extends Component {
       0: code,
       1: test
     },
+    done: false,
+
     showNext: false,
     currentHint: 0,
-    done: false,
+    initialStep: 0,
+    introEnabled: false,
+    intro: introContent,
   };
 
   componentDidMount() {
@@ -56,31 +64,44 @@ export default class Tdd extends Component {
   handleProgress = () => {
     const next = this.state.currentHint + 1;
     const total = tddContent.length;
+    const isNotLast = next < total;
 
-    if (next < total) {
+    if (isNotLast) {
       this.setState({
         ...this.state.currentHint, currentHint: next,
         ...this.state.showNext, showNext: false
       });
+
+      Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10 });
 
       track({
         section: 'tdd',
         action: 'next_guide_hint:button_click',
         value: next
       });
+
       return;
     }
 
-    Emitter.emit(LEVEL_UP);
 
-    track({
-      section: 'tdd',
-      action: 'tdd_end'
-    });
 
+    // track({
+    //   section: 'tdd',
+    //   action: 'tdd_end'
+    // });
+
+    // this.setState({
+    //   ...this.state.done, done: true
+    // });
+  }
+
+  toogleToolTip = () => {
     this.setState({
-      ...this.state.done, done: true
+      ...this.state.introEnabled, introEnabled: true
     });
+  }
+
+  onFinishTooltip = () => {
   }
 
   render() {
@@ -90,8 +111,17 @@ export default class Tdd extends Component {
 
     return (
       <React.Fragment>
+        <DebugButton onClick={this.toogleToolTip} value="enable tooltip"/>
+
+        <Intro
+          enabled={this.state.introEnabled}
+          steps={this.state.intro.steps}
+          initialStep={this.state.intro.initialStep}
+          onExit={this.onFinishTooltip}
+        />
+
         <div className="flex flex-col">
-          <div className="flex justify-center">
+          <div className="flex justify-center editor-container">
             <EditorManager
               editor={2}
               className="w-2/5 m-5"

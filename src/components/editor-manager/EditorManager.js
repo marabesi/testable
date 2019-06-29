@@ -67,7 +67,7 @@ export default class EditorManager extends Component {
             key={i}
             value={this.props.code[i]}
             codeChanged={(code) => this.codeChanged(code, i)}
-            className="source-code border-2 border-testable-blue-overlay"
+            className={ `source-code border-2 border-testable-blue-overlay editor-${i}` }
           />
           <div className="m-auto mb-5 bg-blue-dark break-words">
             <p className="text-white h-6">{this.state.codeOutput[i]}</p>

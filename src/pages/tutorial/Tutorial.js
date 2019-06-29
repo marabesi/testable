@@ -14,9 +14,6 @@ import { connect } from 'react-redux';
 import { onHover } from '../../actions/guideAction';
 import { track } from '../../emitter/Tracking';
 
-import 'intro.js/introjs.css';
-import './tutorial.scss';
-
 const mapDispatchToProps = (dispatch) => {
   return {
     onHover: hovered => dispatch(onHover(hovered))
