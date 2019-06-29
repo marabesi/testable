@@ -66,7 +66,7 @@ export default class Profile extends Component {
       return (<img src={this.state.photo} alt="" />);
     }
 
-    return (< PlaceholderImage />);
+    return (<PlaceholderImage />);
   }
 
   render() {

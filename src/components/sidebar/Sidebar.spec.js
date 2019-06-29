@@ -24,7 +24,7 @@ describe('sidebar component', () => {
 
     wrapper.instance().onSidebar();
 
-    expect(wrapper.find('.bg-testable-overlay').exists()).toBeTruthy();
+    expect(wrapper.find('.bg-testable-overlay-sidebar').exists()).toBeTruthy();
   });
 
   test('display header', () => {

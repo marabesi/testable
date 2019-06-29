@@ -1,20 +1,24 @@
 import React from 'react';
 import Profile from './Profile';
-import { shallow } from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { auth } from '../../pages/login/Auth';
+import PlaceholderImage from '../../components/profile/PlaceholderImage';
 
 const userData = { name: 'fake user', email: 'fake@john.com' };
 
 describe('profile component', () => {
   test('should place image from placeimg when user image does not exists', () => {
-    const wrapper = shallow(<Profile user={{}} />);
-    const imgSrc = wrapper.find('img');
+    const wrapper = mount(<Profile user={{}} />);
 
-    expect(imgSrc.prop('src')).toEqual('https://placeimg.com/200/200/any');
+    expect(wrapper.find(PlaceholderImage).length).toEqual(1);
   });
 
   test('should place user image when it exists', () => {
-    const wrapper = shallow(<Profile user={{ photo: 'my.photo.com'}} />);
+    const wrapper = shallow(<Profile user={{}} />);
+    wrapper.setState({
+      photo: 'my.photo.com'
+    })
+
     const imgSrc = wrapper.find('img');
 
     expect(imgSrc.prop('src')).toEqual('my.photo.com'); 
