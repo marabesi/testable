@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import tutorialContent from './tutorial-content';
-import TutorialSteps from '../tutorial/TutorialSteps';
-import intro from './intro';
+import Intro from '../../components/intro/Intro';
+import introContent from './intro-content';
 import Guide from '../../components/editor-manager/Guide';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../../pages/login/Auth';
@@ -27,7 +27,7 @@ export class Tutorial extends Component {
 
   state = {
     introEnabled: false,
-    intro: intro,
+    intro: introContent,
     showNext: false,
     currentHint: 0,
     code: '// seu código javascript'
@@ -155,7 +155,7 @@ export class Tutorial extends Component {
         <DebugButton onClick={this.nextHint} value="Forward" />
         <DebugButton onClick={this.levelUp} value="level up" />
 
-        <TutorialSteps
+        <Intro
           enabled={this.state.introEnabled}
           steps={this.state.intro.steps}
           initialStep={this.state.intro.initialStep}

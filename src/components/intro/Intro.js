@@ -3,7 +3,7 @@ import { Steps } from 'intro.js-react';
 
 const isDebug = process.env.REACT_APP_DEBUG || false;
 
-export default class TutorialSteps extends Component {
+export default class Intro extends Component {
 
   render() {
     return (
