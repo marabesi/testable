@@ -56,14 +56,8 @@ export default {
     {
       element: '.editor-1',
       intro: 'Se os dois forem iguais, o resultado é verdadeiro, caso contrário o resultado é falso',
-      tooltipClass: 'myTooltipClass',
-      highlightClass: 'myHighlightClass',
-    },
-    {
-      element: '.editor-1',
-      intro: '',
       tooltipClass: 'last-step',
       highlightClass: 'myHighlightClass',
-    },
+    }
   ],
 };

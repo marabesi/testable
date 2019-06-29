@@ -4,7 +4,7 @@ import tddContent from './tdd-content';
 import introContent from './intro-content';
 import Intro from '../../components/intro/Intro';
 import Guide from '../../components/editor-manager/Guide';
-import Emitter, { PROGRESS_UP } from '../../emitter/Emitter';
+import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../emitter/Emitter';
 import { Redirect } from 'react-router';
 import { track } from '../../emitter/Tracking';
 import { auth } from '../../pages/login/Auth';
@@ -12,15 +12,13 @@ import DebugButton from '../../components/debug/Button';
 
 const code = `function somar(a, b) {
   return a + b
-}
-`;
+}`;
 
 const test = `function testeSomarNumerosPositivos() {
   var total = somar(1,2)
   var esperado = 3;
   return total === esperado;
-}
-`;
+}`;
 
 export default class Tdd extends Component {
 
@@ -62,6 +60,16 @@ export default class Tdd extends Component {
   }
 
   handleProgress = () => {
+    if (this.state.currentHint === 1) {
+      this.toogleToolTip();
+      track({
+        section: 'tdd',
+        action: 'next_guide_hint:started_unit_test_tooltip'
+      });
+      
+      return;
+    }
+    
     const next = this.state.currentHint + 1;
     const total = tddContent.length;
     const isNotLast = next < total;
@@ -83,16 +91,19 @@ export default class Tdd extends Component {
       return;
     }
 
+    Emitter.emit(LEVEL_UP);
+    
+    track({
+      section: 'tdd',
+      action: 'tdd_end',
+      value: next
+    });
 
-
-    // track({
-    //   section: 'tdd',
-    //   action: 'tdd_end'
-    // });
-
-    // this.setState({
-    //   ...this.state.done, done: true
-    // });
+    setTimeout(() => {
+      this.setState({
+        ...this.state.done, done: true
+      });
+    }, 700);
   }
 
   toogleToolTip = () => {
@@ -102,6 +113,11 @@ export default class Tdd extends Component {
   }
 
   onFinishTooltip = () => {
+    this.setState({
+      ...this.state.introEnabled, introEnabled: false,
+      ...this.state.currentHint, currentHint: 1 + this.state.currentHint,
+      ...this.state.showNext, showNext: false
+    });
   }
 
   render() {
