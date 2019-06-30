@@ -4,7 +4,7 @@ export default [
     description: [
       'Vamos construir um foguete!'
     ],
-    level: 1,
+    level: 2,
     active: false
   },
   {
@@ -20,6 +20,14 @@ export default [
     level: 4,
     description: [
       'Não deixe tudo em uma única função',
+    ],
+    active: false
+  },
+  {
+    title: 'Teste unitário',
+    level: 5,
+    description: [
+      'Previne possíveis mudanças indesejadas e testa pequenas unidades de código como as funções',
     ],
     active: false
   }

@@ -36,12 +36,16 @@ describe('sidebar component', () => {
     expect(wrapper.find('Header').exists()).toBeTruthy();
   });
 
-  test('should render achievements based on the state', () => {
+  test('should toggle sidebar', () => {
     auth.isAuthenticated = true;
     const wrapper = mount(<Sidebar />);
 
-    wrapper.instance().onSidebar();
+    expect(wrapper.find('.sidebar').prop('className').includes('hidden')).toBeTruthy();
 
-    expect(wrapper.find('li ul h3').length).toBe(3);
+    wrapper.setState({
+      open: true
+    });
+
+    expect(wrapper.find('.sidebar').prop('className').includes('block')).toBeTruthy();
   });
 });
