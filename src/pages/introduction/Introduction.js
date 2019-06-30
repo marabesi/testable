@@ -26,7 +26,7 @@ export default class Introduction extends Component {
         loading: false,
         redirect: true
       });
-    }, 2000);
+    }, 1000);
   }
 
   render() {
