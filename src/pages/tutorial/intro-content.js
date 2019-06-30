@@ -55,6 +55,12 @@ export default {
     {
       element: '.source-code',
       intro: 'Se algum erro acontecer, uma mensage vermelha aparecerá em baixo do editor',
+      tooltipClass: 'myTooltipClass',
+      highlightClass: 'myHighlightClass',
+    },
+    {
+      element: '.source-code',
+      intro: 'E o código correto é automaticamente detectado!',
       tooltipClass: 'last-step',
       highlightClass: 'myHighlightClass',
     },

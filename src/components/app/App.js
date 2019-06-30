@@ -11,7 +11,8 @@ import Emitter, { TRACKING } from '../../emitter/Emitter';
 import { auth } from '../../pages/login/Auth';
 
 import './app.scss';
-
+ 
+/* eslint-disable-next-line */
 const isDebug = process.env.REACT_APP_DEBUG || false;
 const queue = new Queue();
 

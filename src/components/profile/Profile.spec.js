@@ -17,7 +17,7 @@ describe('profile component', () => {
     const wrapper = shallow(<Profile user={{}} />);
     wrapper.setState({
       photo: 'my.photo.com'
-    })
+    });
 
     const imgSrc = wrapper.find('img');
 

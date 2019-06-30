@@ -1,10 +1,10 @@
 export default [
   {
-    line: 'Mas antes de começar vamos ver algumas coisas. ',
+    line: 'Mas antes de começar vamos ver algumas coisas . . .',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'Agora que você já conhece o meu mundo...',
+    line: 'Agora que você já conhece o meu mundo . . .',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
@@ -12,7 +12,7 @@ export default [
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: ' Como você faria para escrever uma função de soma?',
+    line: ' Como você faria para escrever uma função de soma? Lember-se que o código é automaticamente detectado!',
     style: 'text-white font-semibold text-xl text-blue-light',
     enableEditor: true
   },

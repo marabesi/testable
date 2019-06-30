@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 
 const uiConfig = {
+  /* eslint-disable-next-line */
   signInSuccessUrl: process.env.REACT_APP_BASE_NAME || '/',
   signInOptions: [
     {

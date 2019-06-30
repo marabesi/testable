@@ -2,6 +2,7 @@ import firebase from 'firebase/app';
 
 let env = {};
 
+/* eslint-disable-next-line */
 if (process.env.NODE_ENV === 'production') {
   env = require('../../env.prod.json');
 } else {
