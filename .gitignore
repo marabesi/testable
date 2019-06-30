@@ -33,3 +33,5 @@ src/css/index.css
 cypress.env.json
 cypress/screenshots
 cypress/videos
+
+.firebase
