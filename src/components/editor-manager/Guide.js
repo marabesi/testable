@@ -4,6 +4,7 @@ import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import PropTypes from 'prop-types';
 import { onHover } from '../../actions/guideAction';
 import { connect } from 'react-redux';
+import Next from '../icons/Next';
 
 import '../../scss/attention.scss';
 
@@ -54,11 +55,7 @@ export class Guide extends Component {
                 onMouseLeave={this.offHover}
                 className={ `w-6 h-6 self-end no-underline text-white font-bold focus:outline-none ${!this.props.hovered ? 'next': ''}` }
               >
-                <svg className="fill-current py-1 w-6 h-6" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xlink="http://www.w3.org/1999/xlink" enableBackground="new 0 0 129 129">
-                  <g>
-                    <path d="m40.4,121.3c-0.8,0.8-1.8,1.2-2.9,1.2s-2.1-0.4-2.9-1.2c-1.6-1.6-1.6-4.2 0-5.8l51-51-51-51c-1.6-1.6-1.6-4.2 0-5.8 1.6-1.6 4.2-1.6 5.8,0l53.9,53.9c1.6,1.6 1.6,4.2 0,5.8l-53.9,53.9z"/>
-                  </g>
-                </svg>
+                <Next className="fill-current text-white py-1 w-6 h-6" />
               </button>
             }
           </React.Fragment>
@@ -78,7 +75,7 @@ export class Guide extends Component {
             style={{
               transform: 'scaleX(-1)',
               width: '250px',
-              marginTop: '-180px',
+              marginTop: '-165px',
               marginLeft: '-290px'
             }}
           />

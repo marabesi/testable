@@ -4,6 +4,7 @@ import { auth } from '../../pages/login/Auth';
 import PropTypes from 'prop-types';
 import Logo from '../logo/Logo';
 import Achievements from '../achievement/Achievement';
+import { track } from '../../emitter/Tracking';
 
 import '../../scss/fade-in-left.scss';
 import '../../scss/fade-out-left.scss';
@@ -17,8 +18,16 @@ export default class Sidebar extends Component {
   }
 
   onSidebar = () => {
+    const toggle = !this.state.open;
+
     this.setState({
-      open: !this.state.open
+      open: toggle
+    });
+
+    track({
+      section: 'sidebar',
+      action: 'toggle_sidebar|button_click',
+      value: toggle,
     });
   }
 
