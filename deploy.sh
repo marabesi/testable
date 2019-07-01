@@ -8,7 +8,6 @@ git init && \
 git config user.name "$GIT_NAME" && \
 git config user.email "$GIT_EMAIL" && \
 git add -f build && \
-git add -f coverage && \
 git add -f cypress && \
 git commit -m 'build' && \
 git push --force $remote_repo master:$remote_branch && \
