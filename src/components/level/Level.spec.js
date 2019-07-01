@@ -1,14 +1,28 @@
 import React from 'react';
-import Level from './Level';
 import { shallow } from 'enzyme';
+import Level from './Level';
+import Emitter, { TRACKING } from '../../emitter/Emitter';
 
 describe('Level component', () => {
+
+  afterEach(() => {
+    Emitter.removeAllListeners(TRACKING);
+  });
 
   test('should render user level', () => {
     const wrapper = shallow(<Level level={2} />);
     const level = wrapper.find('h1').text();
 
     expect(level).toBe('level 2');
+  });
+
+  test('should track on click', done => {
+    Emitter.addListener(TRACKING, () => {
+      expect(true).toBe(true);
+      done();
+    });
+    const wrapper = shallow(<Level level={2} />);
+    wrapper.find('.py-3').simulate('click');
   });
 
   describe.each([[10], [20], [30], [40], [50], [60], [70], [80], [90], [100]])(

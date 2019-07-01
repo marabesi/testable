@@ -65,7 +65,7 @@ export default class EditorManager extends Component {
         <div key={i} className={ `flex flex-col ${className}` }>
           <Editor
             key={i}
-            value={this.props.code[i]}
+            value={this.props.code ? this.props.code[i] : ''}
             codeChanged={(code) => this.codeChanged(code, i)}
             className={ `source-code border-2 border-testable-blue-overlay editor-${i}` }
           />

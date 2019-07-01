@@ -5,27 +5,16 @@ import uiConfig from './Firebase';
 import Loading from '../../components/loading/Loading';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../login/Auth';
-import { connect } from 'react-redux';
-import { setUser } from '../../actions/userAction';
 import { track } from '../../emitter/Tracking';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    setUser: loggedUser => dispatch(setUser(loggedUser))
-  };
-};
-
-const mapStateToProps = (state) => ({
-  user: state.userReducer.user
-});
-
-export class Login extends Component {
+export default class Login extends Component {
   state = {
     logged: false,
-    loading: true
+    loading: true,
+    user: {}
   }
 
   constructor(props) {
@@ -50,18 +39,21 @@ export class Login extends Component {
     }
 
     this.setState({
-      user: null,
+      user: {},
       logged: false,
       loading: false
     });
   }
 
   componentDidMount() {
-    let ui = firebaseui.auth.AuthUI.getInstance();
-    if (!ui) {
-      ui = new firebaseui.auth.AuthUI(firebase.auth());
+    /* eslint-disable-next-line */
+    if (process.env.NODE_ENV !== 'test') {
+      let ui = firebaseui.auth.AuthUI.getInstance();
+      if (!ui) {
+        ui = new firebaseui.auth.AuthUI(firebase.auth());
+      }
+      ui.start('#firebaseui-auth-container', uiConfig);
     }
-    ui.start('#firebaseui-auth-container', uiConfig);
   }
 
   componentWillUnmount() {
@@ -71,10 +63,7 @@ export class Login extends Component {
   render() {
     if (this.state.logged) {
       return (
-        <Redirect to={{
-          pathname: '/intro',
-          state: this.state
-        }} />
+        <Redirect to={{ pathname: '/intro' }} />
       );
     }
 
@@ -94,5 +83,3 @@ export class Login extends Component {
     );
   }
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(Login);

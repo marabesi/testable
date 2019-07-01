@@ -17,7 +17,7 @@ git config remote.origin.url $REPO_URL
 echo $FIREBASE >> src/env.prod.json
 
 # testing purpose
-echo "{}" >> src/env.json
+echo $FIREBASE >> src/env.json
 
 echo "{
   \"host\": \"$CYPRESS_HOST\",

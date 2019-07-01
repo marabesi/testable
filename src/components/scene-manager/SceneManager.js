@@ -79,6 +79,7 @@ export default class SceneManager extends Component {
         <DebugButton onClick={this.handlePreviousScene} value="previous" />
         <DebugButton onClick={this.handleNextScene} value="next" />
         <DebugButton onClick={this.props.handleLastScene} value="trigger last scene" />
+
         <div className="w-full">
           {this.renderStep()}
         </div>
