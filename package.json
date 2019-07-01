@@ -42,7 +42,8 @@
     "cypress-run": "cypress run",
     "eject": "react-scripts eject",
     "tailwind:css": "tailwind build src/scss/tailwind.src.scss -c src/tailwind.js -o src/css/tailwind.css && npm run post:css",
-    "lint": "eslint src/**/*.js"
+    "lint": "eslint src/**/*.js",
+    "coveralls": "react-scripts test --coverage --coverageReporters=text-lcov | coveralls"
   },
   "browserslist": [
     ">0.2%",
@@ -53,6 +54,7 @@
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^1.2.0",
     "babel-eslint": "^9.0.0",
+    "coveralls": "^3.0.4",
     "cypress": "^3.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",

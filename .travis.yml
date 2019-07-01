@@ -11,7 +11,7 @@ script:
   - yarn build
   - yarn test
   - yarn cypress-run
-  - yarn coverage
+  - yarn coveralls
   - sh deploy.sh
 
 env:
