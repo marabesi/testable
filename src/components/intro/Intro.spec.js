@@ -16,7 +16,7 @@ describe('Intro component', () => {
   
       const options = wrapper.find('Steps').props('options');
   
-      expect(options.exitOnEsc).toBeFalsy()
+      expect(options.exitOnEsc).toBeFalsy();
     });
 
     it('should not exit on overlay click', () => {
@@ -30,7 +30,7 @@ describe('Intro component', () => {
   
       const options = wrapper.find('Steps').props('options');
   
-      expect(options.exitOnOverlayClick).toBeFalsy()
+      expect(options.exitOnOverlayClick).toBeFalsy();
     });
   });
 });

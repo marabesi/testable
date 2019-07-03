@@ -61,7 +61,7 @@ let colors = {
   'testable-overlay': 'rgba(0, 0, 0, 0.3)',
   'testable-overlay-sidebar': 'rgba(0, 0, 0, 0.7)',
   'testable-blue-overlay': '#00ffdf52'
-}
+};
 
 module.exports = {
 
@@ -906,4 +906,4 @@ module.exports = {
     separator: ':',
   },
 
-}
+};

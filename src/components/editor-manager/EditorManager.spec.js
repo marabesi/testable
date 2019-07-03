@@ -2,6 +2,7 @@ import React from 'react';
 import EditorManager from './EditorManager';
 import { shallow, mount } from 'enzyme';
 describe('EditorManager component', () => {
+  /* eslint-disable-next-line */
   global.document.body.createTextRange = function () {
     return {
       setEnd: function () { },
@@ -14,11 +15,12 @@ describe('EditorManager component', () => {
           length: 0,
           left: 0,
           right: 0
-        }
+        };
       }
-    }
+    };
   };
 
+  /* eslint-disable-next-line */
   global.Lemming = function(code) {
     this.onResult = function(cb) {
       cb();

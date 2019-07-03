@@ -15,7 +15,7 @@ describe('Introduction page', () => {
   });
 
   afterEach(() => {
-    wrapper = null
+    wrapper = null;
   });
 
   test('should render loading component', () => {
@@ -35,6 +35,6 @@ describe('Introduction page', () => {
       done();
       wrapper.update();
       expect(wrapper.find('Redirect').length).toEqual(1);
-    }, 1100)
+    }, 1100);
   });
 });

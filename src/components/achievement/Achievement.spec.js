@@ -8,7 +8,7 @@ describe('Achievement component', () => {
     const wrapper = mount(<Achievement />);
     wrapper.setState({
       achievements: []
-    })
+    });
 
     expect(wrapper.find('h1').text()).toEqual('Conquistas');
   });
@@ -17,7 +17,7 @@ describe('Achievement component', () => {
     const wrapper = mount(<Achievement />);
     wrapper.setState({
       achievements: []
-    })
+    });
 
     expect(wrapper.find('span').text()).toEqual('A lista de conquista está vazia');
   });
@@ -83,7 +83,7 @@ describe('Achievement component', () => {
         ]
       });
 
-      expect(wrapper.find('span').text()).toEqual('A lista de conquista está vazia')
-    })
+      expect(wrapper.find('span').text()).toEqual('A lista de conquista está vazia');
+    });
   });
 });
