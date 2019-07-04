@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 
 import './button.scss';
 
@@ -11,3 +12,9 @@ export default class Button extends Component {
     );
   }
 }
+
+Button.propTypes = {
+  className: PropTypes.string,
+  description: PropTypes.string,
+  onClick: PropTypes.func
+};

@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from './Header';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Emitter, { LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 import { auth } from '../../pages/login/Auth';
 import sinon from 'sinon';

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import tutorialContent from './tutorial-content';
 import Intro from '../../components/intro/Intro';
@@ -177,5 +178,9 @@ export class Tutorial extends Component {
     );
   }
 }
+
+Tutorial.propTypes = {
+  onHover: PropTypes.func
+};
 
 export default connect(null, mapDispatchToProps)(Tutorial);

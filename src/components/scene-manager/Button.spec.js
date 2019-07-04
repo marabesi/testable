@@ -7,4 +7,27 @@ describe('Scene component', () => {
     const wrapper = mount(<Button />);
     expect(wrapper.find('button').length).toBe(1);
   });
+
+  test('should fire click event', () => {
+    const click = jest.fn();
+    const wrapper = mount(<Button onClick={click} />);
+
+    wrapper.find('button').simulate('click');
+
+    expect(click).toBeCalled();
+  });
+
+  test('pass in custom class', () => {
+    const wrapper = mount(<Button className="custom-test" />);
+    const button = wrapper.find('button.custom-test');
+
+    expect(button.length).toBe(1);
+  });
+
+  test('pass in description', () => {
+    const wrapper = mount(<Button description="my button" />);
+    const button = wrapper.find('button');
+
+    expect(button.html().match(/my button/).length).toBe(1);
+  });
 });
