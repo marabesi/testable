@@ -63,6 +63,7 @@ let colors = {
   'testable-blue-overlay': '#00ffdf52'
 };
 
+/* eslint-disable-next-line */
 module.exports = {
 
   /*
@@ -358,6 +359,7 @@ module.exports = {
   |
   */
 
+  /* eslint-disable-next-line */
   borderColors: global.Object.assign({ default: colors['grey-light'] }, colors),
 
 
