@@ -12,7 +12,7 @@ script:
   - yarn test
   - yarn coveralls
   - sh deploy.sh
-  - yarn cypress-run
+  - yarn cypress:run
 
 env:
   global:
