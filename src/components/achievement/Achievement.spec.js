@@ -24,9 +24,7 @@ describe('Achievement component', () => {
 
   describe('behavior based on the user level', () => {
     beforeEach(() => {
-      auth.user = {
-        level: 1
-      };
+      auth.user.level = 1;
     });
 
     it('should render achievement title', () => {

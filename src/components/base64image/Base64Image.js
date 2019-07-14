@@ -1,7 +1,10 @@
-import React from 'react';
+import * as React from 'react';
 import PropTypes from 'prop-types';
 import { track } from '../../emitter/Tracking';
 
+/**
+ * @param {object} props
+ */
 const Base64Image = props => (
   /* eslint-disable-next-line */
   <img

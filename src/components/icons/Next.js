@@ -1,6 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 
-export default (props) => {
+/**
+ * @param {object} props
+ */
+export default props => {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" xlink="http://www.w3.org/1999/xlink" enableBackground="new 0 0 129 129" { ...props }>
       <g>

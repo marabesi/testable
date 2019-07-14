@@ -1,5 +1,8 @@
 import { spring } from 'react-router-transition';
 
+/**
+ * @param {object} styles
+ */
 export function mapStyles(styles) {
   return {
     opacity: styles.opacity,
@@ -7,6 +10,9 @@ export function mapStyles(styles) {
   };
 }
 
+/**
+ * @param {Number} val
+ */
 function bounce(val) {
   return spring(val, {
     stiffness: 180,

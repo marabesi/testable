@@ -1,16 +1,16 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import Button from './Button';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import SvgBuggy from '../buggy/SvgBuggy';
 import AlienSvg from '../alien/AlienSvg';
-import PropTypes from 'prop-types';
 
 import '../../scss/slide-in-bck-right.scss';
 import '../../scss/slide-in-bck-top.scss';
 
 import './scene.scss';
 
-export default class Scene extends Component {
+export default class Scene extends React.Component {
 
   state = {
     showNextButton: false
@@ -24,7 +24,10 @@ export default class Scene extends Component {
     }, 900);
   }
 
-  onClick = (event) => {
+  /**
+  * @param {Event} event
+  */
+  onClick = event => {
     if (this.props.lastScene) {
       this.props.handleLastScene();
       return;

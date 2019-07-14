@@ -15,48 +15,47 @@ firebase.initializeApp(env);
 
 const auth = {
   isAuthenticated: false,
-  user: {},
-  firebaseRef: null,
+  user: {
+    uid: '',
+    name: '',
+    email: '',
+    photo: '',
+    level: 1,
+    tutorial: false,
+    introduction: true,
+    progress: 10,
+  },
+  firebaseRef: {},
 
   authenticate(cb) {
-    firebase.auth().onAuthStateChanged((user) => {
+    firebase.auth().onAuthStateChanged(user => {
       if (!user) { cb(); }
       if (user !== null) {
+        this.user.uid = user.uid;
+        this.user.name = user.displayName || '';
+        this.user.email = user.email || '';
+        this.user.photo = user.photoURL || '';
+        this.firebaseRef = this.userRef(user);
+
         const vm = this;
-        const userDefault = {
-          uid: user.uid,
-          name: user.displayName,
-          email: user.email,
-          photo: user.photoURL,
-          level: 1,
-          tutorial: false,
-          introduction: true,
-          progress: 10,
-        };
 
-        vm.firebaseRef = firebase
-          .database()
-          .ref()
-          .child('users/' + user.uid);
-
-        vm.firebaseRef.once('value', (snapshot) => {
+        this.firebaseRef.once('value', snapshot => {
           const userObject = snapshot.val();
 
           if (userObject && userObject.tutorial) {
-            userDefault.tutorial = userObject.tutorial;
+            vm.user.tutorial = userObject.tutorial;
           }
 
           if (userObject && userObject.level) {
-            userDefault.level = userObject.level;
+            vm.user.level = userObject.level;
           }
           if (userObject && userObject.progress) {
-            userDefault.progress = userObject.progress;
+            vm.user.progress = userObject.progress;
           }
 
           vm.isAuthenticated = true;
-          vm.user = userDefault;
           
-          cb(userDefault);
+          cb(vm.user);
         });
       }
     });
@@ -119,7 +118,16 @@ const auth = {
   signout(cb) {
     firebase.auth().signOut();
     this.isAuthenticated = false;
-    this.user = {};
+    this.user = {
+      uid: '',
+      name: '',
+      email: '',
+      photo: '',
+      level: 1,
+      tutorial: false,
+      introduction: true,
+      progress: 10,
+    };
     cb();
   },
   /**
@@ -128,10 +136,11 @@ const auth = {
    * only the key level on firebase and here, in the user property.
    */
   updateUserInfo(data) {
+    const userRef = `users/${this.user.uid}`;
     const firebaseRef = firebase
       .database()
       .ref()
-      .child('users/' + this.user.uid);
+      .child(userRef);
 
     firebaseRef.update(data);
 
@@ -146,6 +155,12 @@ const auth = {
       .child('users/' + this.user.uid + '/' + child);
     firebaseRef.push(data);
   },
+  userRef(user) {
+    return firebase
+      .database()
+      .ref()
+      .child(`users/${user.uid}`);
+  }
 };
 
 export {auth};

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import { Route } from 'react-router-dom';
 import AsyncComponent from './AsyncComponent';
 import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
@@ -44,13 +44,14 @@ const Completed = AsyncComponent(() => {
   return import('../../pages/completed/Completed');
 });
 
-class App extends Component {
+class App extends React.Component {
 
   state = {
     isFetchingAssets: true
   }
 
   async componentDidMount() {
+    // @ts-ignore
     Emitter.addListener(TRACKING, data => {
 
       if (isDebug) {

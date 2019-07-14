@@ -5,7 +5,9 @@ import PropTypes from 'prop-types';
 import './editor.scss';
 
 require('codemirror/mode/javascript/javascript');
+// @ts-ignore
 require('codemirror/lib/codemirror.css');
+// @ts-ignore
 require('codemirror/theme/erlang-dark.css');
 
 export default class Editor extends Component {

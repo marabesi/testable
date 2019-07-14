@@ -1,14 +1,17 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import achievements from './achievements-content';
 import Close from '../icons/Close';
 import { auth } from '../../pages/login/Auth';
 
-export default class Achievement extends Component {
+export default class Achievement extends React.Component {
 
   state = {
     achievements: achievements
   }
 
+  /**
+  * @param {Number} index 
+  */
   showAchievement = (index) => {
     const current = this.state.achievements;
     const selected = current[index];

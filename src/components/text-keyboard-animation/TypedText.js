@@ -1,7 +1,7 @@
-import React, { Component } from 'react';
+import * as React from 'react';
 import Typed from 'typed.js';
 
-export default class TypedText extends Component {
+export default class TypedText extends React.Component {
   componentDidMount() {
     const { strings } = this.props;
     const options = {
@@ -14,11 +14,14 @@ export default class TypedText extends Component {
       options.onComplete = this.props.onComplete;
     }
 
+    // @ts-ignore
     this.typed = new Typed(this.el, options);
   }
 
   componentWillUnmount() {
-    this.typed.destroy();
+    if (this.typed) {
+      this.typed.destroy();
+    }
   }
 
   render() {

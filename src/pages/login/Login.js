@@ -23,7 +23,7 @@ export default class Login extends Component {
     auth.authenticate(this.authStatusChanged);
   }
 
-  authStatusChanged = (user) => {
+  authStatusChanged = user => {
     if (user) {
       track({
         section: 'login',

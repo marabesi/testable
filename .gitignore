@@ -36,3 +36,5 @@ cypress/videos
 
 .firebase
 .coveralls.yml
+
+react-app-env.d.ts

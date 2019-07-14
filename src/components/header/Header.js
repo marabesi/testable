@@ -1,19 +1,19 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import UserMenu from '../../components/user-menu/UserMenu';
 import Level from '../../components/level/Level';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../../pages/login/Auth';
 import Emitter, { LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
-import PropTypes from 'prop-types';
 
 import '../../scss/levelup-animation.scss';
 import '../../scss/logo-animation.scss';
 
-export default class Header extends Component {
+export default class Header extends React.Component {
 
   state = { 
     levelup: false,
-    user: {},
+    user: auth.user,
   };
 
   resetLevelUpAnimation() {
@@ -43,8 +43,10 @@ export default class Header extends Component {
       this.resetLevelUpAnimation();
     });
 
-    Emitter.addListener(PROGRESS_UP, (data) => {
+    // @ts-ignore
+    Emitter.addListener(PROGRESS_UP, data => {
       this.setState({
+        // @ts-ignore
         ...this.state.user.progress, progress: data.amount
       });
 
@@ -53,8 +55,10 @@ export default class Header extends Component {
       }); 
     });
 
-    Emitter.addListener(PROGRESS_DOWN, (data) => {
+    // @ts-ignore
+    Emitter.addListener(PROGRESS_DOWN, data => {
       this.setState({
+        // @ts-ignore
         ...this.state.user.progress, progress: data.amount
       });
 

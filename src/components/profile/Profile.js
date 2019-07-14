@@ -1,18 +1,18 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { auth } from '../../pages/login/Auth';
 import { track } from '../../emitter/Tracking';
-import PropTypes from 'prop-types';
 import PlaceholderImage from './PlaceholderImage';
 
 import './profile.scss';
 
-export default class Profile extends Component {
+export default class Profile extends React.Component {
 
   state = {
     menu: false,
     successfullLoggedOut: false,
-    photo: null
+    photo: ''
   }
 
   onLogout = () => {
@@ -55,6 +55,7 @@ export default class Profile extends Component {
         .then(image => {
           const photo = URL.createObjectURL(image);
           this.setState({
+            //@ts-ignore
             ...this.state.photo, photo
           });
         });
@@ -88,7 +89,7 @@ export default class Profile extends Component {
     return (
       <div
         className="relative outline-none user-info"
-        tabIndex="0"
+        tabIndex={0}
         onBlur={this.onBlur}
         title={`${name} - ${email}`}
       >
@@ -97,7 +98,7 @@ export default class Profile extends Component {
             {this.renderUserPhoto()}
           </div>
           <div className="info">
-            <h2 className="title text-white text-base uppercase font-medium truncate group-hover:text-blue-lightest" alt={name} title={name}>
+            <h2 className="title text-white text-base uppercase font-medium truncate group-hover:text-blue-lightest" title={name}>
               {name}
             </h2>
           </div>

@@ -1,6 +1,9 @@
-import React from 'react';
+import * as React from 'react';
 import Base64Image from '../base64image/Base64Image';
 
+/**
+ * @param {object} props
+ */
 const Logo = props => (
   <a href="https://github.com/marabesi/testable" target="_blank" rel="noopener noreferrer">
     <Base64Image

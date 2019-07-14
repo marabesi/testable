@@ -1,24 +1,34 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+// @ts-ignore
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import SvgBuggy from '../buggy/SvgBuggy';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
-import PropTypes from 'prop-types';
 import { onHover } from '../../actions/guideAction';
-import { connect } from 'react-redux';
 import Next from '../icons/Next';
 
 import '../../scss/attention.scss';
 
-const mapDispatchToProps = (dispatch) => {
+/**
+ * @param {function} dispatch
+ */
+const mapDispatchToProps = dispatch => {
   return {
+    /**
+     * @param {boolean} hovered
+     */
     onHover: hovered => dispatch(onHover(hovered))
   };
 };
 
-const mapStateToProps = (state) => ({
+/**
+ * @param {object} state
+ */
+const mapStateToProps = state => ({
   hovered: state.guideReducer.hovered
 });
 
-export class Guide extends Component {
+export class Guide extends React.Component {
 
   onHover = () => {
     this.props.onHover(true);
@@ -34,6 +44,7 @@ export class Guide extends Component {
   }
 
   renderHint() {
+    // @ts-ignore
     return this.props.guideContent.map((item, index) => {
       if (index === this.props.currentHint) {
         return (

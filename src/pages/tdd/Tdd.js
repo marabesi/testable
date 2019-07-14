@@ -55,6 +55,7 @@ export default class Tdd extends Component {
 
   onGuideFinishedTyping = () => {
     this.setState({
+      //@ts-ignore
       ...this.state.showNext, showNext: true
     });
   }
@@ -76,6 +77,7 @@ export default class Tdd extends Component {
 
     if (isNotLast) {
       this.setState({
+        //@ts-ignore
         ...this.state.currentHint, currentHint: next,
         ...this.state.showNext, showNext: false
       });
@@ -101,6 +103,7 @@ export default class Tdd extends Component {
 
     setTimeout(() => {
       this.setState({
+        //@ts-ignore
         ...this.state.done, done: true
       });
     }, 700);
@@ -108,12 +111,14 @@ export default class Tdd extends Component {
 
   toogleToolTip = () => {
     this.setState({
+      //@ts-ignore
       ...this.state.introEnabled, introEnabled: true
     });
   }
 
   onFinishTooltip = () => {
     this.setState({
+      //@ts-ignore
       ...this.state.introEnabled, introEnabled: false,
       ...this.state.currentHint, currentHint: 1 + this.state.currentHint,
       ...this.state.showNext, showNext: false

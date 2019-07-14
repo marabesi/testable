@@ -41,6 +41,7 @@ export class Tutorial extends Component {
   onFinishTooltip = () => {
     this.props.onHover(false);
     this.setState({
+      // @ts-ignore
       ...this.state.introEnabled, introEnabled: false,
       ...this.state.showNext, showNext: false,
       ...this.state.currentHint, currentHint: this.state.currentHint + 1
@@ -58,12 +59,14 @@ export class Tutorial extends Component {
     }
 
     this.setState({
+      //@ts-ignore
       ...this.state.showNext, showNext: true
     });
   }
 
   onEnableTooltip = () => {
     this.setState({
+      //@ts-ignore
       ...this.state.introEnabled, introEnabled: true
     });
     setTimeout(() => this.props.onHover(true), 100);
@@ -74,7 +77,7 @@ export class Tutorial extends Component {
     });
   }
 
-  onValidCode = (code) => {
+  onValidCode = code => {
     // when it is not time to do the code yet and when
     // it is done with the sum and tries to add code again
     if (this.state.currentHint !== 3) {
@@ -100,6 +103,7 @@ export class Tutorial extends Component {
       Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10 });
 
       this.setState({
+        // @ts-ignore
         ...this.state.currentHint, currentHint: next,
         ...this.state.showNext, showNext: false
       });
