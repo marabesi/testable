@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 // @ts-ignore
-const asyncComponent = importComponent => {
+const AsyncComponent = importComponent => {
   return class extends React.Component {
     state = {
       displayName: 'asyncComponent',
@@ -26,4 +26,4 @@ const asyncComponent = importComponent => {
   };
 };
 
-export default asyncComponent;
+export default AsyncComponent;

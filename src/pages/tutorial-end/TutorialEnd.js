@@ -1,12 +1,12 @@
-import React, { Component } from 'react';
+import * as React from 'react';
+import { Redirect } from 'react-router-dom';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import content from './tutorial-end-content.json';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../login/Auth';
 import Emitter, {LEVEL_UP} from '../../emitter/Emitter';
-import { Redirect } from 'react-router-dom';
 
-export default class TutorialEnd extends Component {
+export default class TutorialEnd extends React.Component {
 
   state = {
     redirect: false

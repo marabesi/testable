@@ -1,10 +1,16 @@
 export default class Queue {
   prefix = 'testable.'
 
+  /**
+   * @param {FileReader} reader
+   */
   set reader(reader) {
     this.fileReader = reader;
   }
 
+  /**
+   * @returns FileReader
+   */
   get reader() {
     if (!this.fileReader) {
       return new FileReader();
@@ -62,3 +68,8 @@ export default class Queue {
     reader.readAsDataURL(blob);
   }
 }
+
+Queue.reader = FileReader;
+
+Queue.storage = localStorage;
+

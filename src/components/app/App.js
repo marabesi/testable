@@ -53,7 +53,6 @@ class App extends React.Component {
   async componentDidMount() {
     // @ts-ignore
     Emitter.addListener(TRACKING, data => {
-
       if (isDebug) {
         /* eslint-disable-next-line */
         console.warn(data);

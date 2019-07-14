@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "sourceRoot": "./src",
     "moduleResolution": "node",
     "target": "es5",
     "module": "esnext",

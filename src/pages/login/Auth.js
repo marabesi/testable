@@ -136,13 +136,9 @@ const auth = {
    * only the key level on firebase and here, in the user property.
    */
   updateUserInfo(data) {
-    const userRef = `users/${this.user.uid}`;
-    const firebaseRef = firebase
-      .database()
-      .ref()
-      .child(userRef);
+    const userRef = this.userRef(this.user);
 
-    firebaseRef.update(data);
+    userRef.update(data);
 
     for (let prop in data) {
       this.user[prop] = data[prop];

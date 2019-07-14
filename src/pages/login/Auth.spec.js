@@ -1,6 +1,20 @@
 import { auth } from './Auth';
+import firebase from 'firebase/app';
+
+firebase.auth = () => {
+  return {
+    signOut: jest.fn()
+  };
+};
 
 describe('Auth behavior', () => {
+
+  test('should logout', () => {
+    const callback = jest.fn();
+    auth.signout(callback);
+
+    expect(callback).toBeCalled();
+  });
 
   describe('route access and redirection', () => {
     describe.each(['/', '/intro', '/tutorial', '/tutorial-end'])(
@@ -56,6 +70,7 @@ describe('Auth behavior', () => {
       'should render the related component  based on the level, trying to access route %s, level %s',
       (currentRoute, level) => {
         auth.isAuthenticated = true;
+        // @ts-ignore
         auth.user.level = level;
         const can = auth.canEnter({}, { pathname: currentRoute });
   
