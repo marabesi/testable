@@ -6,6 +6,7 @@ import Logo from '../logo/Logo';
 import Achievements from '../achievement/Achievement';
 import { track } from '../../emitter/Tracking';
 
+import '../../scss/slide-in-bck-top.scss';
 import '../../scss/fade-in-left.scss';
 import '../../scss/fade-out-left.scss';
 
@@ -15,6 +16,7 @@ export default class Sidebar extends Component {
 
   state = {
     open: false,
+    hover: false
   }
 
   onSidebar = () => {
@@ -28,6 +30,20 @@ export default class Sidebar extends Component {
       section: 'sidebar',
       action: 'toggle_sidebar|button_click',
       value: toggle,
+    });
+  }
+
+  onHover = () => {
+    this.setState({
+      //@ts-ignore
+      ...this.state.hover, hover: true
+    });
+  }
+
+  offHover = () => {
+    this.setState({
+      //@ts-ignore
+      ...this.state.hover, hover: false
     });
   }
 
@@ -47,7 +63,11 @@ export default class Sidebar extends Component {
 
         {this.props.children}
 
-        <Logo className="h-8 hidden md:block absolute pin-b pin-r mr-5 mb-5" />
+        <Logo
+          className={`h-8 hidden md:block absolute pin-b pin-r mr-5 mb-5 ${this.state.hover ? 'pulsate-fwd': ''}` }
+          onMouseEnter={this.onHover}
+          onMouseLeave={this.offHover}
+        />
       </React.Fragment>
     );
   }

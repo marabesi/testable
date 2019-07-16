@@ -1,6 +1,7 @@
 import * as React from 'react';
 import Base64Image from '../base64image/Base64Image';
 
+
 /**
  * @param {object} props
  */
@@ -9,7 +10,8 @@ const Logo = props => (
     <Base64Image
       image="testable.logo.png"
       alt="logo"
-      title="Testable - Ferramenta gamificada" {...props}
+      title="Testable - Ferramenta gamificada"
+      {...props}
     />
   </a>
 );
