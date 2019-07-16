@@ -1,9 +1,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import PlaceholderImage from './PlaceholderImage';
 import { auth } from '../../pages/login/Auth';
 import { track } from '../../emitter/Tracking';
-import PlaceholderImage from './PlaceholderImage';
 
 import './profile.scss';
 

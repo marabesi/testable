@@ -1,5 +1,5 @@
-import Reason from '../Reason';
 import { Sum, testCase } from './Sum';
+import Reason from '../Reason';
 
 const invalidSumExamples = [
   'var a = 1;',

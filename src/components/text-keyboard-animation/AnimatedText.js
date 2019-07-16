@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import TypedText from './TypedText';
-import ReactDOMServer from 'react-dom/server';
 
 export default class AnimatedText extends Component {
 

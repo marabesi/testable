@@ -1,6 +1,6 @@
 import React from 'react';
-import Profile from './Profile';
 import { shallow, mount } from 'enzyme';
+import Profile from './Profile';
 import { auth } from '../../pages/login/Auth';
 import PlaceholderImage from '../../components/profile/PlaceholderImage';
 

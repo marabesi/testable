@@ -1,17 +1,17 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import EditorManager from '../../components/editor-manager/EditorManager';
 import tutorialContent from './tutorial-content';
-import Intro from '../../components/intro/Intro';
 import introContent from './intro-content';
+import EditorManager from '../../components/editor-manager/EditorManager';
+import Intro from '../../components/intro/Intro';
 import Guide from '../../components/editor-manager/Guide';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../../pages/login/Auth';
 import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';
-import { Redirect } from 'react-router';
 import Reason from '../../engine/Reason';
 import { Sum } from '../../engine/strategies/Sum';
-import { connect } from 'react-redux';
 import { onHover } from '../../actions/guideAction';
 import { track } from '../../emitter/Tracking';
 

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
-import SceneManager from '../../components/scene-manager/SceneManager';
 import content from './tutorial-end-content.json';
+import SceneManager from '../../components/scene-manager/SceneManager';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../login/Auth';
 import Emitter, {LEVEL_UP} from '../../emitter/Emitter';

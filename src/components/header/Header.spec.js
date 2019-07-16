@@ -1,9 +1,9 @@
 import React from 'react';
-import Header from './Header';
 import { mount } from 'enzyme';
+import sinon from 'sinon';
+import Header from './Header';
 import Emitter, { LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 import { auth } from '../../pages/login/Auth';
-import sinon from 'sinon';
 
 describe('header component', () => {
   const { reload } = window.location;

@@ -1,6 +1,6 @@
 import React from 'react';
-import Background from './Background';
 import { mount } from 'enzyme';
+import Background from './Background';
 
 describe('Background component', () => {
   test('should mount children components', () => {

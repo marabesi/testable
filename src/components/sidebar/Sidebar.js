@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Header from '../header/Header';
 import { auth } from '../../pages/login/Auth';
-import PropTypes from 'prop-types';
 import Logo from '../logo/Logo';
 import Achievements from '../achievement/Achievement';
 import { track } from '../../emitter/Tracking';

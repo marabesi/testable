@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
+import content from './introduction-content.json';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import Loading from '../../components/loading/Loading';
-import { Redirect } from 'react-router-dom';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
-import content from './introduction-content.json';
 
 export default class Introduction extends Component {
 

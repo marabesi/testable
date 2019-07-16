@@ -1,22 +1,22 @@
 import React, { Component } from 'react';
-import EditorManager from '../../components/editor-manager/EditorManager';
+import { Redirect } from 'react-router';
 import tddContent from './tdd-content';
 import introContent from './intro-content';
+import EditorManager from '../../components/editor-manager/EditorManager';
 import Intro from '../../components/intro/Intro';
 import Guide from '../../components/editor-manager/Guide';
 import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../emitter/Emitter';
-import { Redirect } from 'react-router';
 import { track } from '../../emitter/Tracking';
 import { auth } from '../../pages/login/Auth';
 import DebugButton from '../../components/debug/Button';
 
-const code = `function somar(a, b) {
+const code = `function subtrair(a, b) {
   return a + b
 }`;
 
-const test = `function testeSomarNumerosPositivos() {
-  var total = somar(1,2)
-  var esperado = 3;
+const test = `function testeSubtrairNumerosPositivos() {
+  var total = subtrair(2, 1)
+  var esperado = 1;
   return total === esperado;
 }`;
 
@@ -28,7 +28,7 @@ export default class Tdd extends Component {
       1: test
     },
     done: false,
-
+    currentExercise: 0,
     showNext: false,
     currentHint: 0,
     initialStep: 0,

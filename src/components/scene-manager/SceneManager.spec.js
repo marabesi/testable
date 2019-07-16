@@ -1,6 +1,6 @@
 import React from 'react';
-import SceneManager from './SceneManager';
 import { mount } from 'enzyme';
+import SceneManager from './SceneManager';
 
 describe('Scene manager component', () => {
 

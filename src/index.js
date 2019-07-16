@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import App from './components/app/App';
-import registerServiceWorker from './registerServiceWorker';
-import { BrowserRouter } from 'react-router-dom';
 import ReactGA from 'react-ga';
 import { Provider } from 'react-redux';
+import { BrowserRouter } from 'react-router-dom';
+import App from './components/app/App';
+import registerServiceWorker from './registerServiceWorker';
 import Store from './store/store';
 import Background from './components/background/Background';
 

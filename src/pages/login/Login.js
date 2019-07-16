@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
 import uiConfig from './Firebase';
 import Loading from '../../components/loading/Loading';
-import { Redirect } from 'react-router-dom';
 import { auth } from '../login/Auth';
 import { track } from '../../emitter/Tracking';
 

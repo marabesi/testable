@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Scene from './Scene';
 import DebugButton from '../debug/Button';
 import { auth } from '../../pages/login/Auth';
 import Emitter, { PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
-import PropTypes from 'prop-types';
 import { track } from '../../emitter/Tracking';
 
 export default class SceneManager extends Component {

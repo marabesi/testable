@@ -1,5 +1,5 @@
-import { auth } from './Auth';
 import firebase from 'firebase/app';
+import { auth } from './Auth';
 
 firebase.auth = () => {
   return {

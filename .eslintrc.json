@@ -18,7 +18,8 @@
         "sourceType": "module"
     },
     "plugins": [
-        "react"
+        "react",
+        "import"
     ],
     "rules": {
         "indent": [
@@ -36,6 +37,18 @@
         "semi": [
             "error",
             "always"
+        ],
+        "import/order": [
+            "error", {
+                "groups": [
+                    "builtin",
+                    "external",
+                    "sibling",
+                    "parent",
+                    "internal",
+                    "index"
+                ]
+            }
         ]
     },
     "settings": {

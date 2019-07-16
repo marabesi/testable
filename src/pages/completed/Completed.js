@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import SceneManager from '../../components/scene-manager/SceneManager';
 import content from './completed-content.json';
+import SceneManager from '../../components/scene-manager/SceneManager';
 
 export default class Completed extends Component {
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import EditorManager from './EditorManager';
 import { shallow, mount } from 'enzyme';
+import EditorManager from './EditorManager';
 describe('EditorManager component', () => {
   /* eslint-disable-next-line */
   global.document.body.createTextRange = function () {

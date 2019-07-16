@@ -1,5 +1,5 @@
-import Reason from '../engine/Reason';
 import sinon from 'sinon';
+import Reason from '../engine/Reason';
 
 describe('Reason', () => {
 

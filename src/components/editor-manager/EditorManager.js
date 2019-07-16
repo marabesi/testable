@@ -1,8 +1,8 @@
 /* eslint no-eval: 0 */
 import * as React from 'react';
-import Editor from '../editor/Editor';
 // @ts-ignore
 import PropTypes from 'prop-types';
+import Editor from '../editor/Editor';
 
 export default class EditorManager extends React.Component {
 

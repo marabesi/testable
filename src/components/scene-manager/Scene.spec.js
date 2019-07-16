@@ -1,7 +1,7 @@
 import React from 'react';
-import Scene from './Scene';
-import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
+import { shallow, mount } from 'enzyme';
+import Scene from './Scene';
 import { localStorageMock } from '../../__test__/stubs/localStorage';
 
 describe('Scene component', () => {

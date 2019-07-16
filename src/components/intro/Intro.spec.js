@@ -1,6 +1,6 @@
 import React from 'react';
-import Intro from './Intro';
 import { mount } from 'enzyme';
+import Intro from './Intro';
 
 describe('Intro component', () => {
 

@@ -1,6 +1,6 @@
 import React from 'react';
-import Editor from './Editor';
 import { shallow } from 'enzyme';
+import Editor from './Editor';
 
 describe('Editor component', () => {
   // test('should emit event when the code changes', () => {

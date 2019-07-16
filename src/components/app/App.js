@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Route } from 'react-router-dom';
-import AsyncComponent from './AsyncComponent';
-import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
-import { mapStyles, bounceTransition } from './transition';
 import { AnimatedSwitch } from 'react-router-transition';
+import AsyncComponent from './AsyncComponent';
+import { mapStyles, bounceTransition } from './transition';
+import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
 import Sidebar from '../sidebar/Sidebar';
 import Queue from '../../queue/queue';
 import Loading from '../loading/Loading';

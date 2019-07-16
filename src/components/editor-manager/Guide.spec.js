@@ -1,7 +1,7 @@
 import React from 'react';
-import { Guide } from './Guide';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
+import { Guide } from './Guide';
 
 const content = [
   { line: 'my text' },
