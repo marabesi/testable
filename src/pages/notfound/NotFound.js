@@ -1,12 +1,14 @@
 import React, { Component } from 'react';
 
+import '../../scss/shake-horizontal.scss';
+
 export default class NotFound extends Component {
 
   render() {
     return (
-      <React.Fragment>
-        <h1>Not found</h1>
-      </React.Fragment>
+      <div className="flex justify-center items-center text-white">
+        <h1 className="shake-horizontal">Página não encontrada!</h1>
+      </div>
     );
   }
 }
