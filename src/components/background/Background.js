@@ -19,6 +19,7 @@ export default class Background extends Component {
             `}
           </style>
         </Helmet>
+        <div className="stars"></div>
         {this.props.children}
       </React.Fragment>
     );

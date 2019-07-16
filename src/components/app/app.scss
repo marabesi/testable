@@ -30,13 +30,15 @@ body {
 
 .stars:before {
   content: "";
+  background: url('/assets/stars.png');
   position: absolute;
   left: -50%;
   top: -50%;
   right: -50%;
   bottom: -50%;
   pointer-events: none;
-  opacity: 0.1;
+  opacity: 0.4;
+  animation: sky 1000s linear infinite;
 }
 
 @keyframes sky {
