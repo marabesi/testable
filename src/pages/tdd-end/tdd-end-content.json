@@ -1,0 +1,30 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "step": 1,
+      "button": "Próximo",
+      "showBug": true,
+      "content": [
+        {
+          "line": "Conseguimos!",
+          "style": "p-2 text-blue-light"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "button": "Próximo",
+      "content": [
+        {
+          "line": "Obrigado por participar dessa demo...",
+          "style": "p-2 text-blue-light"
+        },
+        {
+          "line": "E ai, preparado para construir o foguete?",
+          "style": "p-2 text-blue-light"
+        }
+      ]
+    }
+  ]
+}

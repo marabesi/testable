@@ -44,8 +44,8 @@ const Tdd = AsyncComponent(() => {
   return import('../../pages/tdd/Tdd');
 });
 
-const Completed = AsyncComponent(() => {
-  return import('../../pages/completed/Completed');
+const TddEnd = AsyncComponent(() => {
+  return import('../../pages/tdd-end/TddEnd');
 });
 
 class App extends React.Component {
@@ -106,7 +106,7 @@ class App extends React.Component {
           <ProtectedRoute path="/tutorial-end" component={TutorialEnd} />
           <ProtectedRoute path="/tdd-intro" component={TddIntro} />
           <ProtectedRoute path="/tdd" component={Tdd} />
-          <ProtectedRoute path="/completed" component={Completed} />
+          <ProtectedRoute path="/tdd-end" component={TddEnd} />
           <Route path="*" component={NotFound} />
         </AnimatedSwitch>
       </Sidebar>

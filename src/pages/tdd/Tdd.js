@@ -11,14 +11,11 @@ import { auth } from '../login/Auth';
 import DebugButton from '../../components/debug/Button';
 import Loading from '../../components/loading/Loading';
 
-const code = `function subtrair(a, b) {
-  return a - b
+const code = `function somar(a, b) {
+  return a + b
 }`;
 
-const test = `function testeSubtrairNumerosPositivos() {
-  var total = subtrair(2, 1)
-  var esperado = 1;
-  return total === esperado;
+const test = `function testeSomarNumerosPositivos() {
 }`;
 
 export default class Tdd extends Component {
