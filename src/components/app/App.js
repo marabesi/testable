@@ -37,7 +37,7 @@ const TutorialEnd = AsyncComponent(() => {
 });
 
 const Tdd = AsyncComponent(() => {
-  return import('../../pages/tdd/Tdd');
+  return import('../../pages/intro-tdd/IntroTdd');
 });
 
 const Completed = AsyncComponent(() => {

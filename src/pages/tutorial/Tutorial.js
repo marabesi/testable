@@ -130,7 +130,7 @@ export class Tutorial extends Component {
       this.setState({
         tutorialDone: true
       });
-    }, 1300);
+    }, 1000);
   }
 
   levelUp = () => {

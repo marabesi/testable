@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
-import tddContent from './tdd-content';
-import introContent from './intro-content';
+import tddContent from './guide-content';
+import introContent from './intro-tdd-content';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import Intro from '../../components/intro/Intro';
 import Guide from '../../components/editor-manager/Guide';
 import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../emitter/Emitter';
 import { track } from '../../emitter/Tracking';
-import { auth } from '../../pages/login/Auth';
+import { auth } from '../login/Auth';
 import DebugButton from '../../components/debug/Button';
 
 const code = `function subtrair(a, b) {
