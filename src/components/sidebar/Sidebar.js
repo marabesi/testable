@@ -16,14 +16,16 @@ export default class Sidebar extends Component {
 
   state = {
     open: false,
-    hover: false
+    hover: false,
+    hideSidebarClass: 'hidden'
   }
 
   onSidebar = () => {
     const toggle = !this.state.open;
 
     this.setState({
-      open: toggle
+      open: toggle,
+      hideSidebarClass: 'fade-out-left'
     });
 
     track({
@@ -51,7 +53,7 @@ export default class Sidebar extends Component {
     return (
       <React.Fragment>
         <div
-          className={`sidebar bg-blue-dark h-screen z-50 overflow-y-auto absolute fade-in-left ${this.state.open ? 'block' : 'hidden'}`}
+          className={`sidebar bg-blue-dark h-screen z-50 overflow-y-auto absolute fade-in-left ${this.state.open ? 'block' : this.state.hideSidebarClass}`}
           style={{ width: '400px'}}
         >
           <Achievements onClose={this.onSidebar} />
