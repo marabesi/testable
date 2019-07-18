@@ -1,6 +1,7 @@
 import * as React from 'react';
 import achievements from './achievements-content';
 import Close from '../icons/Close';
+import { track } from '../../emitter/Tracking';
 import { auth } from '../../pages/login/Auth';
 
 export default class Achievement extends React.Component {
@@ -15,13 +16,20 @@ export default class Achievement extends React.Component {
   showAchievement = (index) => {
     const current = this.state.achievements;
     const selected = current[index];
+    const active = !selected.active;
 
-    selected.active = !selected.active;
+    selected.active = active;
 
     current[index] = selected;
 
     this.setState({
       ...this.state.achievements, current
+    });
+
+    track({
+      section: 'achievements',
+      action: `toggle_achievement_${index}|button_click`,
+      value: active,
     });
   }
 
