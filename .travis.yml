@@ -6,6 +6,7 @@ before_script:
 - chmod +x ./deploy.sh
 - ./prebuild.sh
 - yarn install
+- ./node_modules/.bin/cypress install
 
 script:
   - yarn build
