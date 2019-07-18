@@ -66,6 +66,7 @@ class App extends React.Component {
       'assets/buggy.png',
       'assets/alien.png',
       'assets/logo.png',
+      'assets/stars.png',
       'assets/placeholder.svg',
       'assets/mp3/keyboard.mp3',
     ]);
