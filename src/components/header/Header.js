@@ -4,7 +4,7 @@ import UserMenu from '../../components/user-menu/UserMenu';
 import Level from '../../components/level/Level';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../../pages/login/Auth';
-import Emitter, { LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
+import Emitter, { LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 
 import '../../scss/levelup-animation.scss';
 import '../../scss/logo-animation.scss';
@@ -35,6 +35,20 @@ export default class Header extends React.Component {
       });
 
       const level = 1 + auth.user.level;
+      auth.updateUserInfo({
+        level: level,
+        progress: 10
+      });
+
+      this.resetLevelUpAnimation();
+    });
+
+    Emitter.addListener(LEVEL_DOWN, () => {
+      this.setState({
+        levelup: true
+      });
+
+      const level = auth.user.level - 1;
       auth.updateUserInfo({
         level: level,
         progress: 10
@@ -82,9 +96,14 @@ export default class Header extends React.Component {
     window.location.reload();
   }
 
+  levelDown = () => {
+    Emitter.emit(LEVEL_DOWN);
+  }
+
   render() {
     return (
       <React.Fragment>
+        <DebugButton onClick={this.levelDown} value="level down"/>
         <DebugButton onClick={this.goToIntroduction} value="go back to introduction"/>
         <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
 

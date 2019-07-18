@@ -9,9 +9,10 @@ import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../emitter/Emitter';
 import { track } from '../../emitter/Tracking';
 import { auth } from '../login/Auth';
 import DebugButton from '../../components/debug/Button';
+import Loading from '../../components/loading/Loading';
 
 const code = `function subtrair(a, b) {
-  return a + b
+  return a - b
 }`;
 
 const test = `function testeSubtrairNumerosPositivos() {
@@ -34,6 +35,7 @@ export default class Tdd extends Component {
     initialStep: 0,
     introEnabled: false,
     intro: introContent,
+    loading: false,
   };
 
   componentDidMount() {
@@ -93,6 +95,11 @@ export default class Tdd extends Component {
       return;
     }
 
+    this.setState({
+      //@ts-ignore
+      ...this.state.loading, loading: true
+    });
+
     Emitter.emit(LEVEL_UP);
     
     track({
@@ -104,6 +111,7 @@ export default class Tdd extends Component {
     setTimeout(() => {
       this.setState({
         //@ts-ignore
+        ...this.state.loading, loading: false,
         ...this.state.done, done: true
       });
     }, 700);
@@ -126,6 +134,12 @@ export default class Tdd extends Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <Loading />
+      );
+    }
+
     if (this.state.done) {
       return (<Redirect to="/completed" />);
     }

@@ -5,6 +5,7 @@ import SceneManager from '../../components/scene-manager/SceneManager';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../login/Auth';
 import Emitter, {LEVEL_UP} from '../../emitter/Emitter';
+import Loading from '../../components/loading/Loading.js';
 
 export default class TutorialEnd extends React.Component {
 
@@ -36,6 +37,12 @@ export default class TutorialEnd extends React.Component {
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <Loading />
+      );
+    }
+
     if (this.state.redirect) {
       return (
         <Redirect to={{
