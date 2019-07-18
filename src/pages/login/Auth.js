@@ -97,14 +97,21 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/tdd' && this.user.level === 4) {
+    if (to.pathname !== '/tdd-intro' && this.user.level === 4) {
+      return {
+        flag: false,
+        to: '/tdd-intro'
+      };
+    }
+
+    if (to.pathname !== '/tdd' && this.user.level === 5) {
       return {
         flag: false,
         to: '/tdd'
       };
     }
 
-    if (to.pathname !== '/completed' && this.user.level > 4) {
+    if (to.pathname !== '/completed' && this.user.level > 5) {
       return {
         flag: false,
         to: '/completed'

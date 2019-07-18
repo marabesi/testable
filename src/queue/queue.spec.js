@@ -17,6 +17,10 @@ describe('queue behavior', () => {
     expect(Queue.reader).toBe(reader);
   });
 
+  test('return FileReader instance by default', () => {
+    expect(Queue.reader).toBeTruthy();
+  });
+
   test('by default should use FileReade from window object', () => {
     expect(instance.reader).toBeTruthy();
   });

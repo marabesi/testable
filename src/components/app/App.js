@@ -36,8 +36,12 @@ const TutorialEnd = AsyncComponent(() => {
   return import('../../pages/tutorial-end/TutorialEnd');
 });
 
+const TddIntro = AsyncComponent(() => {
+  return import('../../pages/tdd-intro/TddIntro');
+});
+
 const Tdd = AsyncComponent(() => {
-  return import('../../pages/intro-tdd/IntroTdd');
+  return import('../../pages/tdd/Tdd');
 });
 
 const Completed = AsyncComponent(() => {
@@ -100,6 +104,7 @@ class App extends React.Component {
           <ProtectedRoute path="/intro" component={Introduction} />
           <ProtectedRoute path="/tutorial" component={Tutorial} />
           <ProtectedRoute path="/tutorial-end" component={TutorialEnd} />
+          <ProtectedRoute path="/tdd-intro" component={TddIntro} />
           <ProtectedRoute path="/tdd" component={Tdd} />
           <ProtectedRoute path="/completed" component={Completed} />
           <Route path="*" component={NotFound} />

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import tddContent from './guide-content';
-import introContent from './intro-tdd-content';
+import introContent from './tdd-content';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import Intro from '../../components/intro/Intro';
 import Guide from '../../components/editor-manager/Guide';

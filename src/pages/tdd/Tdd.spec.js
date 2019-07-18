@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Tdd from './IntroTdd';
+import Tdd from './Tdd';
 
 describe('Tutorial page', () => {
   test('renders without crashing', () => {
