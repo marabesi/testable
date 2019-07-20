@@ -17,10 +17,6 @@
       "button": "Próximo",
       "content": [
         {
-          "line": "Obrigado por participar dessa demo...",
-          "style": "p-2 text-blue-light"
-        },
-        {
           "line": "E ai, preparado para construir o foguete?",
           "style": "p-2 text-blue-light"
         }

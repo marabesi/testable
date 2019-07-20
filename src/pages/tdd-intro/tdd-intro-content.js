@@ -10,7 +10,7 @@ export default {
     },
     {
       element: '.editor-0',
-      intro: 'Aqui é onde nosso código de verdadde é escrito',
+      intro: 'Aqui é onde nosso código de verdade é escrito',
       position: 'right',
       tooltipClass: 'myTooltipClass',
       highlightClass: 'myHighlightClass',
@@ -24,7 +24,7 @@ export default {
     },
     {
       element: '.editor-1',
-      intro: 'A linha 1 define o nome do nosso teste a través de uma função',
+      intro: 'A linha 1 define o nome do nosso teste através de uma função',
       position: 'right',
       tooltipClass: 'myTooltipClass',
       highlightClass: 'myHighlightClass',

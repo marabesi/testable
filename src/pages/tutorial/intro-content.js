@@ -36,7 +36,7 @@ export default {
     },
     {
       element: '.source-code',
-      intro: 'E funciona como um interpretaror, igual ao do navegador',
+      intro: 'E funciona como um interpretador, igual ao do navegador',
       tooltipClass: 'myTooltipClass',
       highlightClass: 'myHighlightClass',
     },
@@ -54,7 +54,7 @@ export default {
     },
     {
       element: '.source-code',
-      intro: 'Se algum erro acontecer, uma mensage vermelha aparecerá em baixo do editor',
+      intro: 'Se algum erro acontecer, uma mensagem vermelha aparecerá embaixo do editor',
       tooltipClass: 'myTooltipClass',
       highlightClass: 'myHighlightClass',
     },

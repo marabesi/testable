@@ -12,7 +12,7 @@ export default [
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: ' Como você faria para escrever uma função de soma? Lember-se que o código é automaticamente detectado!',
+    line: ' Como você faria para escrever uma função para somar dois números em Javascript? Lembre-se que o código é automaticamente detectado!',
     style: 'text-white font-semibold text-xl text-blue-light',
     enableEditor: true
   },
