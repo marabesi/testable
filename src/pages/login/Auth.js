@@ -111,10 +111,17 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/tdd-end' && this.user.level > 5) {
+    if (to.pathname !== '/tdd-end' && this.user.level === 6) {
       return {
         flag: false,
         to: '/tdd-end'
+      };
+    }
+
+    if (to.pathname !== '/survey' && this.user.level > 6) {
+      return {
+        flag: false,
+        to: '/survey'
       };
     }
 

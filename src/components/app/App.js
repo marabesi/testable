@@ -48,6 +48,10 @@ const TddEnd = AsyncComponent(() => {
   return import('../../pages/tdd-end/TddEnd');
 });
 
+const Survey = AsyncComponent(() => {
+  return import('../../pages/survey/Survey');
+});
+
 class App extends React.Component {
 
   state = {
@@ -107,6 +111,7 @@ class App extends React.Component {
           <ProtectedRoute path="/tdd-intro" component={TddIntro} />
           <ProtectedRoute path="/tdd" component={Tdd} />
           <ProtectedRoute path="/tdd-end" component={TddEnd} />
+          <ProtectedRoute path="/survey" component={Survey} />
           <Route path="*" component={NotFound} />
         </AnimatedSwitch>
       </Sidebar>
