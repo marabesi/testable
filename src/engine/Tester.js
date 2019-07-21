@@ -1,7 +1,7 @@
 /**
  * executes a series of test cases to make sure that the code given
  * has the desired behavior. This phase is executed after the strategy that
- * extract the code function name and the parameters, the strategy is in charge
+ * extract the code function name and parameters, the strategy is in charge
  * of execute the parser, which give as a result a working code and the desired
  * structure.
  * @param {string} code 

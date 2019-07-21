@@ -11,9 +11,10 @@ import DebugButton from '../../components/debug/Button';
 import { auth } from '../../pages/login/Auth';
 import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';
 import Reason from '../../engine/Reason';
-import { Sum } from '../../engine/strategies/Sum';
+import { Sum, testCase as sumTestCase } from '../../engine/strategies/Sum';
 import { onHover } from '../../actions/guideAction';
 import { track } from '../../emitter/Tracking';
+import { executeTestCase } from '../../engine/Tester';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -84,7 +85,9 @@ export class Tutorial extends Component {
       return;
     }
 
-    if (Reason(code, Sum)) {
+    const strategyResult = Reason(code, Sum);
+
+    if (strategyResult && executeTestCase(code, strategyResult, sumTestCase)) {
       track({
         section: 'tutorial',
         action: 'sum:valid_code',

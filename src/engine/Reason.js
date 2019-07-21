@@ -6,7 +6,7 @@ const esprima = require('esprima');
  * @param {string} code plain javascript code
  * @param {function} strategy the desired strategy to be applied on the code
  */
-const reason = function (code, strategy) {
+const reason = function(code, strategy) {
   try {
     const ast = esprima.parseScript(code);
 

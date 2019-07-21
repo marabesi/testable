@@ -35,9 +35,7 @@ export const Sum = function (ast) {
   return { name, params };
 };
 
-export const testCase = function() {
-  return [
-    { params: '1,2', expected: 3 },
-    { params: '1,1', expected: 2 },
-  ];
-};
+export const testCase = [
+  { params: '1,2', expected: 3 },
+  { params: '1,1', expected: 2 },
+];
