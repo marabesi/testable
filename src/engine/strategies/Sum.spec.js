@@ -29,7 +29,7 @@ describe('Sum strategy', () => {
 
   describe('sum test case', () => {
     test('should have sum test cases to make sure that the code works as expected', () => {
-      expect(testCase().length).toEqual(2);
+      expect(testCase.length).toEqual(2);
     });
   });
 });

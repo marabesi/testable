@@ -11,7 +11,7 @@ describe('integration with test cases', () => {
     `;
 
     const strategy = Reason(code, Sum);
-    const result = executeTestCase(code, strategy, testCase());
+    const result = executeTestCase(code, strategy, testCase);
 
     expect(result).toBeTruthy();
   });
