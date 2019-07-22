@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import tddContent from './guide-content';
-import introContent from './tdd-content';
 import EditorManager from '../../components/editor-manager/EditorManager';
-import Intro from '../../components/intro/Intro';
 import Guide from '../../components/editor-manager/Guide';
 import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../emitter/Emitter';
 import { track } from '../../emitter/Tracking';
 import { auth } from '../login/Auth';
-import DebugButton from '../../components/debug/Button';
 import Loading from '../../components/loading/Loading';
+import { SumBehavior } from '../../engine/strategies/behavior/SumBehavior';
+import Reason from '../../engine/Reason';
 
 const code = `function somar(a, b) {
   return a + b
@@ -31,7 +30,6 @@ export default class Tdd extends Component {
     currentHint: 0,
     initialStep: 0,
     introEnabled: false,
-    intro: introContent,
     loading: false,
   };
 
@@ -43,6 +41,10 @@ export default class Tdd extends Component {
   }
 
   onValidCode = (code, i) => {
+    if (this.state.currentHint !== 1) {
+      return;
+    }
+
     let current = Object.assign({}, this.state.code);
 
     current[i] = code;
@@ -50,9 +52,29 @@ export default class Tdd extends Component {
     this.setState({
       ...this.state.code, code: current
     });
+
+    if (Reason(code, SumBehavior)) {
+      Emitter.emit(LEVEL_UP);
+
+      track({
+        section: 'tdd',
+        action: 'tdd:valid_code',
+        value: code
+      });
+
+      this.setState({
+        //@ts-ignore
+        ...this.state.currentHint, currentHint: this.state.currentHint + 1,
+        ...this.state.showNext, showNext: false
+      });
+    }
   }
 
   onGuideFinishedTyping = () => {
+    if (this.state.currentHint === 1) {
+      return;
+    }
+
     this.setState({
       //@ts-ignore
       ...this.state.showNext, showNext: true
@@ -60,16 +82,6 @@ export default class Tdd extends Component {
   }
 
   handleProgress = () => {
-    if (this.state.currentHint === 1) {
-      this.toogleToolTip();
-      track({
-        section: 'tdd',
-        action: 'next_guide_hint:started_unit_test_tooltip'
-      });
-      
-      return;
-    }
-    
     const next = this.state.currentHint + 1;
     const total = tddContent.length;
     const isNotLast = next < total;
@@ -92,19 +104,6 @@ export default class Tdd extends Component {
       return;
     }
 
-    this.setState({
-      //@ts-ignore
-      ...this.state.loading, loading: true
-    });
-
-    Emitter.emit(LEVEL_UP);
-    
-    track({
-      section: 'tdd',
-      action: 'tdd_end',
-      value: next
-    });
-
     setTimeout(() => {
       this.setState({
         //@ts-ignore
@@ -112,22 +111,6 @@ export default class Tdd extends Component {
         ...this.state.done, done: true
       });
     }, 700);
-  }
-
-  toogleToolTip = () => {
-    this.setState({
-      //@ts-ignore
-      ...this.state.introEnabled, introEnabled: true
-    });
-  }
-
-  onFinishTooltip = () => {
-    this.setState({
-      //@ts-ignore
-      ...this.state.introEnabled, introEnabled: false,
-      ...this.state.currentHint, currentHint: 1 + this.state.currentHint,
-      ...this.state.showNext, showNext: false
-    });
   }
 
   render() {
@@ -143,15 +126,6 @@ export default class Tdd extends Component {
 
     return (
       <React.Fragment>
-        <DebugButton onClick={this.toogleToolTip} value="enable tooltip"/>
-
-        <Intro
-          enabled={this.state.introEnabled}
-          steps={this.state.intro.steps}
-          initialStep={this.state.intro.initialStep}
-          onExit={this.onFinishTooltip}
-        />
-
         <div className="flex flex-col">
           <div className="flex justify-center editor-container">
             <EditorManager
