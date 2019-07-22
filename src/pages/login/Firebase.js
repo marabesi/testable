@@ -1,8 +1,13 @@
 import firebase from 'firebase/app';
 
+/* eslint-disable */
+const tosUrl = process.env.REACT_APP_TOS_URL || '';
+const privacyUrl = process.env.REACT_APP_PRIVACY_URL || '';
+const signInUrl = process.env.REACT_APP_BASE_NAME || '/';
+/* eslint-enable */
+
 const uiConfig = {
-  /* eslint-disable-next-line */
-  signInSuccessUrl: process.env.REACT_APP_BASE_NAME || '/',
+  signInSuccessUrl: signInUrl,
   signInOptions: [
     {
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID
@@ -18,10 +23,8 @@ const uiConfig = {
     firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
 
-  tosUrl: '<your-tos-url>',
-  privacyPolicyUrl: function() {
-    window.location.assign('<your-privacy-policy-url>');
-  }
+  tosUrl: tosUrl,
+  privacyPolicyUrl: () => window.location.assign(privacyUrl)
 };
 
 export default uiConfig;
