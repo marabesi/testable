@@ -78,7 +78,7 @@ describe('Auth behavior', () => {
       },
     );
 
-    test.each([['/intro', 1], ['/tutorial', 2], ['/tutorial-end', 3], ['/tdd-intro', 4], ['/tdd', 5], ['/tdd-end', 6], ['/survey', 7]])(
+    test.each([['/intro', 1], ['/tutorial', 2], ['/tutorial-end', 3], ['/tdd-intro', 4], ['/tdd', 5], ['/tdd-end', 6], ['/survey', 8]])(
       'should render the related component  based on the level, trying to access route %s, level %s',
       (currentRoute, level) => {
         auth.isAuthenticated = true;
