@@ -1,6 +1,7 @@
 import * as React from 'react';
 import achievements from './achievements-content';
 import Close from '../icons/Close';
+import Title from '../title/Title';
 import { track } from '../../emitter/Tracking';
 import { auth } from '../../pages/login/Auth';
 
@@ -55,10 +56,10 @@ export default class Achievement extends React.Component {
 
     return (
       <React.Fragment>
-        <h1 className="uppercase flex justify-between text-blue-lightest p-5 h-16">
+        <Title>
           Conquistas
           <Close className="fill-current w-4 text-white cursor-pointer" onClick={this.props.onClose} />
-        </h1>
+        </Title>
 
         { achievements.length === 0 && <span className="p-5 text-white">A lista de conquista está vazia</span> }
 
