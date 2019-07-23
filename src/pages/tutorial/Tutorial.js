@@ -136,10 +136,6 @@ export class Tutorial extends Component {
     }, 1000);
   }
 
-  levelUp = () => {
-    Emitter.emit(LEVEL_UP);
-  }
-
   handleProgress = () => {
     if (this.state.currentHint === 0) {
       this.onEnableTooltip();
@@ -158,7 +154,6 @@ export class Tutorial extends Component {
       <React.Fragment>
         <DebugButton onClick={this.onEnableTooltip} value="enable introjs" />
         <DebugButton onClick={this.nextHint} value="Forward" />
-        <DebugButton onClick={this.levelUp} value="level up" />
 
         <Intro
           enabled={this.state.introEnabled}

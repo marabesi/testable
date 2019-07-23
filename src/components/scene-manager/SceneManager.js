@@ -47,7 +47,7 @@ export default class SceneManager extends Component {
     });
   }
 
-  renderStep() {
+  render() {
     const steps = this.props.content.steps;
     const scenes = [];
 
@@ -70,10 +70,6 @@ export default class SceneManager extends Component {
       }
     }
 
-    return scenes;
-  }
-
-  render() {
     return (
       <React.Fragment>
         <DebugButton onClick={this.handlePreviousScene} value="previous" />
@@ -81,7 +77,7 @@ export default class SceneManager extends Component {
         <DebugButton onClick={this.props.handleLastScene} value="trigger last scene" />
 
         <div className="w-full">
-          {this.renderStep()}
+          { scenes }
         </div>
       </React.Fragment>
     );

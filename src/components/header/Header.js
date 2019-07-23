@@ -100,9 +100,14 @@ export default class Header extends React.Component {
     Emitter.emit(LEVEL_DOWN);
   }
 
+  levelUp = () => {
+    Emitter.emit(LEVEL_UP);
+  }
+
   render() {
     return (
       <React.Fragment>
+        <DebugButton onClick={this.levelUp} value="level up" />
         <DebugButton onClick={this.levelDown} value="level down"/>
         <DebugButton onClick={this.goToIntroduction} value="go back to introduction"/>
         <DebugButton onClick={this.props.onSidebar} value="sidebar"/>

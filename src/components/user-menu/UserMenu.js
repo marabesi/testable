@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Profile from '../profile/Profile';
+import Cup from '../icons/Cup';
 import { auth } from '../../pages/login/Auth';
 
 export default class UserMenu extends Component {
@@ -8,6 +9,7 @@ export default class UserMenu extends Component {
   render() {
     return (
       <div className="flex justify-end items-center">
+        <Cup className="fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer" />
         <svg
           xmlns="http://www.w3.org/2000/svg"
           onClick={this.props.onNotification}

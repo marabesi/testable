@@ -6,7 +6,6 @@ import Guide from '../../components/editor-manager/Guide';
 import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../emitter/Emitter';
 import { track } from '../../emitter/Tracking';
 import { auth } from '../login/Auth';
-import Loading from '../../components/loading/Loading';
 import { SumBehavior } from '../../engine/strategies/behavior/SumBehavior';
 import Reason from '../../engine/Reason';
 
@@ -30,7 +29,6 @@ export default class Tdd extends Component {
     currentHint: 0,
     initialStep: 0,
     introEnabled: false,
-    loading: false,
   };
 
   componentDidMount() {
@@ -104,22 +102,13 @@ export default class Tdd extends Component {
       return;
     }
 
-    setTimeout(() => {
-      this.setState({
-        //@ts-ignore
-        ...this.state.loading, loading: false,
-        ...this.state.done, done: true
-      });
-    }, 700);
+    this.setState({
+      //@ts-ignore
+      ...this.state.done, done: true
+    });
   }
 
   render() {
-    if (this.state.loading) {
-      return (
-        <Loading />
-      );
-    }
-
     if (this.state.done) {
       return (<Redirect to="/completed" />);
     }

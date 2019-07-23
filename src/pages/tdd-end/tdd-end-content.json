@@ -14,7 +14,8 @@
     },
     {
       "step": 2,
-      "button": "Próximo",
+      "button": "Vamos nessa!",
+      "lastScene": true,
       "content": [
         {
           "line": "E ai, preparado para construir o foguete?",

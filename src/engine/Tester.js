@@ -13,6 +13,7 @@ export const executeTestCase = function (code, strategyResult, testCases) {
 
   for (const testCase of testCases) {
     const preExecution = `${code} ${strategyResult.name}(${testCase.params})`;
+    /* eslint-disable-next-line */
     const execution = eval(preExecution);
 
     if (execution === testCase.expected) {
