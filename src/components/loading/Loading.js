@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Background from '../../components/background/Background';
+
 import './loading.scss';
 
 export default class Loading extends Component {
