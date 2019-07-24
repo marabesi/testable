@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import Background from '../../components/background/Background';
-
-import './loading.scss';
+import Load from '../icons/load/Load';
 
 export default class Loading extends Component {
 
   render() {
     return (
       <Background>
-        <div className="absolute loading flex justify-center items-center" />
+        <Load />
       </Background>
     );
   }
