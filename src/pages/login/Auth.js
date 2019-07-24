@@ -177,6 +177,11 @@ const auth = {
       .database()
       .ref()
       .child(`users/${user.uid}`);
+  },
+  usersRef() {
+    return firebase
+      .database()
+      .ref('users');
   }
 };
 

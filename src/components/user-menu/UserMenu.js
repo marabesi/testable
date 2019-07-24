@@ -3,10 +3,9 @@ import PropTypes from 'prop-types';
 import Profile from '../profile/Profile';
 import Modal from '../modal/Modal';
 import Cup from '../icons/Cup';
+import Ranking from '../ranking/Ranking';
 import Achievement from '../icons/Achievement';
 import { auth } from '../../pages/login/Auth';
-import Title from '../title/Title';
-import Close from '../icons/Close';
 
 export default class UserMenu extends Component {
 
@@ -37,10 +36,7 @@ export default class UserMenu extends Component {
           isOpen={this.state.ranking}
           onRequestClose={this.onRanking}
         >
-          <Title>
-            Ranking
-            <Close className="fill-current w-4 text-white cursor-pointer" onClick={this.onRanking} />
-          </Title>
+          <Ranking onClick={this.onRanking} />
         </Modal>
       </div>
     );
