@@ -125,7 +125,21 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/survey' && this.user.level > 7) {
+    if (to.pathname !== '/rocket-02' && this.user.level === 8) {
+      return {
+        flag: false,
+        to: '/rocket-02'
+      };
+    }
+
+    if (to.pathname !== '/rocket-03' && this.user.level === 9) {
+      return {
+        flag: false,
+        to: '/rocket-03'
+      };
+    }
+
+    if (to.pathname !== '/survey' && this.user.level > 9) {
       return {
         flag: false,
         to: '/survey'

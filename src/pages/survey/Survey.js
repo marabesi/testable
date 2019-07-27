@@ -4,6 +4,7 @@ import { auth } from '../login/Auth';
 import '../../scss/shake-horizontal.scss';
 import './survey.scss';
 
+/* eslint-disable-next-line */
 const survey = process.env.REACT_APP_SURVEY_URL || '';
 
 export default class Survey extends React.Component {

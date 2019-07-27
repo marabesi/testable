@@ -18,7 +18,19 @@ describe('Auth behavior', () => {
 
   describe('route access and redirection', () => {
 
-    describe.each(['/', '/intro', '/tutorial', '/tutorial-end', '/intro-tdd', '/tdd', '/tdd-end', '/survey'])(
+    describe.each([
+      '/',
+      '/intro',
+      '/tutorial',
+      '/tutorial-end',
+      '/intro-tdd',
+      '/tdd',
+      '/tdd-end',
+      '/rocket-01',
+      '/rocket-02',
+      '/rocket-03',
+      '/survey'
+    ])(
       'should redirect unauthenticated user ',
       (route) => {
         test(`trying to access: ${route}`, () => {
@@ -30,7 +42,18 @@ describe('Auth behavior', () => {
       },
     );
   
-    test.each([['/'], ['/tutorial'], ['/tutorial-end'], ['/intro-tdd'], ['/tdd'], ['/tdd-end', '/survey']])(
+    test.each([
+      ['/'],
+      ['/tutorial'],
+      ['/tutorial-end'],
+      ['/intro-tdd'],
+      ['/tdd'],
+      ['/tdd-end'],
+      ['/rocket-01'],
+      ['/rocket-02'],
+      ['/rocket-03'],
+      ['/survey']
+    ])(
       'should keep the user leve 1 in the introduction section, trying to access: %s',
       (currentRoute) => {
         auth.isAuthenticated = true;
@@ -41,8 +64,19 @@ describe('Auth behavior', () => {
         expect(can.to).toEqual('/intro');
       },
     );
-  
-    test.each([['/'], ['/intro'], ['/tutorial-end'], ['/intro-tdd'], ['/tdd'], ['/tdd-end'], ['/survey']])(
+
+    test.each([
+      ['/'],
+      ['/intro'],
+      ['/tutorial-end'],
+      ['/intro-tdd'],
+      ['/tdd'],
+      ['/tdd-end'],
+      ['/rocket-01'],
+      ['/rocket-02'],
+      ['/rocket-03'],
+      ['/survey']
+    ])(
       'should keep the user leve 2 in the tutorial section, trying to access: %s',
       (currentRoute) => {
         auth.isAuthenticated = true;
@@ -54,7 +88,18 @@ describe('Auth behavior', () => {
       },
     );
 
-    test.each([['/'], ['/intro'], ['/tutorial'], ['/intro-tdd'], ['/tdd'], ['/tdd-end'], ['/survey']])(
+    test.each([
+      ['/'],
+      ['/intro'],
+      ['/tutorial'],
+      ['/intro-tdd'],
+      ['/tdd'],
+      ['/tdd-end'],
+      ['/rocket-01'],
+      ['/rocket-02'],
+      ['/rocket-03'],
+      ['/survey']
+    ])(
       'should keep the user leve 3 in the tutorial end section, trying to access: %s',
       (currentRoute) => {
         auth.isAuthenticated = true;
@@ -66,7 +111,17 @@ describe('Auth behavior', () => {
       },
     );
 
-    test.each([['/'], ['/intro'], ['/tutorial'], ['/tdd'], ['/tdd-end'], ['/survey']])(
+    test.each([
+      ['/'],
+      ['/intro'], 
+      ['/tutorial'], 
+      ['/tdd'], 
+      ['/tdd-end'], 
+      ['/rocket-01'],
+      ['/rocket-02'],
+      ['/rocket-03'],
+      ['/survey']
+    ])(
       'should keep the user leve 4 in the tdd introduction section, trying to access: %s',
       (currentRoute) => {
         auth.isAuthenticated = true;
@@ -78,7 +133,18 @@ describe('Auth behavior', () => {
       },
     );
 
-    test.each([['/intro', 1], ['/tutorial', 2], ['/tutorial-end', 3], ['/tdd-intro', 4], ['/tdd', 5], ['/tdd-end', 6], ['/survey', 8]])(
+    test.each([
+      ['/intro', 1],
+      ['/tutorial', 2],
+      ['/tutorial-end', 3],
+      ['/tdd-intro', 4],
+      ['/tdd', 5],
+      ['/tdd-end', 6],
+      ['/rocket-01', 7],
+      ['/rocket-02', 8],
+      ['/rocket-03', 9],
+      ['/survey', 10]
+    ])(
       'should render the related component  based on the level, trying to access route %s, level %s',
       (currentRoute, level) => {
         auth.isAuthenticated = true;
