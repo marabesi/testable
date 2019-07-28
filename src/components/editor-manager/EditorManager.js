@@ -1,6 +1,5 @@
 /* eslint no-eval: 0 */
 import * as React from 'react';
-// @ts-ignore
 import PropTypes from 'prop-types';
 import Editor from '../editor/Editor';
 
@@ -84,11 +83,11 @@ export default class EditorManager extends React.Component {
           />
           <div className="m-auto mb-5 bg-blue-dark break-words">
             <p className="text-white h-6">{
-// @ts-ignore
-            this.state.codeOutput[i]}</p>
+            // @ts-ignore
+              this.state.codeOutput[i]}</p>
             <p className="text-red font-medium h-6">{
-// @ts-ignore
-            this.state.codeError[i]}</p>
+              // @ts-ignore
+              this.state.codeError[i]}</p>
           </div>
         </div>
       );
