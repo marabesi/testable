@@ -110,7 +110,7 @@ export default class Rocket01 extends Component {
 
   render() {
     if (this.state.done) {
-      return (<Redirect to="/completed" />);
+      return (<Redirect to="/rocket-02" />);
     }
 
     return (
