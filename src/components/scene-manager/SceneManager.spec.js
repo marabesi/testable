@@ -46,6 +46,23 @@ describe('Scene manager component', () => {
     }, 1500);
   });
 
+  test('should go to step 2 and then back to step 1', done => {
+    const wrapper = mount(
+      <SceneManager
+        content={content}
+      />
+    );
+
+    wrapper.instance().handleNextScene();
+    wrapper.instance().handlePreviousScene();
+
+    setTimeout(() => {
+      wrapper.update();
+      expect(wrapper.html()).toContain('_ Hello world');
+      done();
+    }, 1000);
+  });
+
   test('should go to scene 2', done => {
     const wrapper = mount(
       <SceneManager
@@ -62,7 +79,7 @@ describe('Scene manager component', () => {
     }, 1000);
   });
 
-  test('should not go to previous when is in the first step already', () => {
+  test('should not go to previous step when it is in the first step already', () => {
     const wrapper = mount(
       <SceneManager
         content={content}
@@ -86,5 +103,17 @@ describe('Scene manager component', () => {
 
     expect(goToLastStep).toBeUndefined();
     expect(beyondLastStep).toBeFalsy();
+  });
+
+  describe('debug button', () => {
+    test('should not show up debug button by default', () => {
+      const wrapper = mount(
+        <SceneManager
+          content={content}
+        />
+      );
+
+      expect(wrapper.find('DebugButton').length).toBe(0);
+    });
   });
 });

@@ -69,9 +69,9 @@ export default class EditorManager extends React.Component {
 
   render() {
     const editors = [];
-    const { className } = this.props;
-  
-    for (let i = 0; i < this.props.editor; i++) {
+    const { className, editor } = this.props;
+
+    for (let i = 0; i < editor; i++) {
       editors.push(
         <div key={i} className={ `flex flex-col ${className}` }>
           <Editor
