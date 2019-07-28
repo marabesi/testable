@@ -10,14 +10,14 @@ const code = `function somar(a, b) {
 const test = `function teste() {
 }`;
 
-class Rocket02 extends Component {
+class Rocket03 extends Component {
   render() {
     return (<React.Fragment />);
   }
 }
 
 export default Rocket(
-  Rocket02,
+  Rocket03,
   code,
   test,
   tddContent,
