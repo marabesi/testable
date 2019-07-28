@@ -52,6 +52,14 @@ const Rocket01 = AsyncComponent(() => {
   return import('../../pages/rocket-01/Rocket01');
 });
 
+const Rocket02 = AsyncComponent(() => {
+  return import('../../pages/rocket-02/Rocket02');
+});
+
+const Rocket03 = AsyncComponent(() => {
+  return import('../../pages/rocket-03/Rocket03');
+});
+
 const Survey = AsyncComponent(() => {
   return import('../../pages/survey/Survey');
 });
@@ -116,6 +124,8 @@ class App extends React.Component {
           <ProtectedRoute path="/tdd" component={Tdd} />
           <ProtectedRoute path="/tdd-end" component={TddEnd} />
           <ProtectedRoute path="/rocket-01" component={Rocket01} />
+          <ProtectedRoute path="/rocket-02" component={Rocket02} />
+          <ProtectedRoute path="/rocket-03" component={Rocket03} />
           <ProtectedRoute path="/survey" component={Survey} />
           <Route path="*" component={NotFound} />
         </AnimatedSwitch>
