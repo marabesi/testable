@@ -1,0 +1,11 @@
+version: '2'
+services:
+  app:
+    image: node:alpine
+    user: 'node'
+    volumes:
+      - ./:/var/www:delegated
+    working_dir: /var/www
+    ports:
+      - 3000:3000
+    command: sh -c "yarn && yarn start"
