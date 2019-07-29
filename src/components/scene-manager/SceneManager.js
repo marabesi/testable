@@ -48,7 +48,7 @@ export default class SceneManager extends Component {
   }
 
   render() {
-    const steps = this.props.content.steps;
+    const steps = this.props.content.steps || [];
     const scenes = [];
 
     for (const [index, step] of steps.entries()) {

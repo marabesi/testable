@@ -116,4 +116,26 @@ describe('Scene manager component', () => {
       expect(wrapper.find('DebugButton').length).toBe(0);
     });
   });
+
+  describe('empty content', () => {
+    test('empty json object', () => {
+      const wrapper = mount(
+        <SceneManager
+          content={{}}
+        />
+      );
+      expect(wrapper.find('Scene').length).toBe(0);
+    });
+
+    test('json object with empty steps', () => {
+      const wrapper = mount(
+        <SceneManager
+          content={{
+            steps: []
+          }}
+        />
+      );
+      expect(wrapper.find('Scene').length).toBe(0);
+    });
+  });
 });
