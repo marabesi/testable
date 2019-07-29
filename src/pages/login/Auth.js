@@ -27,37 +27,38 @@ const auth = {
   },
   firebaseRef: {},
 
-  authenticate(cb) {
-    firebase.auth().onAuthStateChanged(user => {
-      if (!user) { cb(); }
-      if (user !== null) {
-        this.user.uid = user.uid;
-        this.user.name = user.displayName || '';
-        this.user.email = user.email || '';
-        this.user.photo = user.photoURL || '';
-        this.firebaseRef = this.userRef(user);
+  authenticate() {
+    return new Promise((resolve, reject) => {
+      firebase.auth().onAuthStateChanged(user => {
+        if (!user) { reject(); }
+        if (user !== null) {
+          this.user.uid = user.uid;
+          this.user.name = user.displayName || '';
+          this.user.email = user.email || '';
+          this.user.photo = user.photoURL || '';
+          this.firebaseRef = this.userRef(user);
 
-        const vm = this;
+          const vm = this;
 
-        this.firebaseRef.once('value', snapshot => {
-          const userObject = snapshot.val();
+          this.firebaseRef.once('value', snapshot => {
+            const userObject = snapshot.val();
 
-          if (userObject && userObject.tutorial) {
-            vm.user.tutorial = userObject.tutorial;
-          }
+            if (userObject && userObject.tutorial) {
+              vm.user.tutorial = userObject.tutorial;
+            }
 
-          if (userObject && userObject.level) {
-            vm.user.level = userObject.level;
-          }
-          if (userObject && userObject.progress) {
-            vm.user.progress = userObject.progress;
-          }
+            if (userObject && userObject.level) {
+              vm.user.level = userObject.level;
+            }
+            if (userObject && userObject.progress) {
+              vm.user.progress = userObject.progress;
+            }
 
-          vm.isAuthenticated = true;
-          
-          cb(vm.user);
-        });
-      }
+            vm.isAuthenticated = true;
+            resolve(vm.user);
+          });
+        }
+      });
     });
   },
   /**

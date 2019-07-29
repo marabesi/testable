@@ -19,8 +19,10 @@ export default class Login extends Component {
 
   constructor(props) {
     super(props);
-
-    auth.authenticate(this.authStatusChanged);
+    auth
+      .authenticate()
+      .then(this.authStatusChanged)
+      .catch(this.authStatusChanged);
   }
 
   authStatusChanged = user => {
