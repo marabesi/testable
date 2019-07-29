@@ -140,7 +140,14 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/survey' && this.user.level > 9) {
+    if (to.pathname !== '/completed' && this.user.level === 10) {
+      return {
+        flag: false,
+        to: '/completed'
+      };
+    }
+
+    if (to.pathname !== '/survey' && this.user.level > 10) {
       return {
         flag: false,
         to: '/survey'

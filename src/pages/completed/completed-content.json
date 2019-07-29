@@ -1,0 +1,25 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "step": 1,
+      "button": "Conseguimos !!!!",
+      "content": [
+        {
+          "line": "Conseguimos!!!!!",
+          "style": "p-2 text-blue-light"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "button": "Próximo",
+      "content": [
+        {
+          "line": "aaaaaa.",
+          "style": "p-2 text-blue-light"
+        }
+      ]
+    }
+  ]
+}
