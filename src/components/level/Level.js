@@ -14,11 +14,12 @@ export default class Level extends Component {
   }
 
   render() {
+    const { level, progress } = this.props;
     return (
       <div className="flex level py-3" onClick={this.onClick}>
-        <h1 className="title mr-3 text-white text-base uppercase font-medium">level {this.props.level}</h1>
-        <div className="progress-holder py-1 px-2" title={`${this.props.progress} %`}>
-          <div className={`progress py-1 progress-${this.props.progress}`} />
+        <h1 className="title mr-3 text-white text-base uppercase font-medium">level {level}</h1>
+        <div className="progress-holder py-1 px-2" title={`${progress} %`}>
+          <div className={`progress py-1 progress-${progress}`} />
         </div>
       </div>
     );

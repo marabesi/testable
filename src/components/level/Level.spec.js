@@ -16,13 +16,12 @@ describe('Level component', () => {
     expect(level).toBe('level 2');
   });
 
-  test('should track on click', done => {
-    Emitter.addListener(TRACKING, () => {
-      expect(true).toBe(true);
-      done();
-    });
+  test('should track on click', () => {
+    const callback = jest.fn();
+    Emitter.addListener(TRACKING, callback);
     const wrapper = shallow(<Level level={2} />);
     wrapper.find('.py-3').simulate('click');
+    expect(callback).toBeCalled();
   });
 
   describe.each([[10], [20], [30], [40], [50], [60], [70], [80], [90], [100]])(
