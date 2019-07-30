@@ -5,7 +5,8 @@ describe('store', () => {
   test('register reducers', () => {
     expect(configureStore().getState()).toEqual({
       'guideReducer': {},
-      'userReducer': {}
+      'userReducer': {},
+      'loadingReducer': { loading: true },
     });
   });
 });

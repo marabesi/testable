@@ -1,9 +1,13 @@
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
+import { Provider } from 'react-redux';
 import { mount } from 'enzyme';
 import App from './App';
+import Store from '../../store/store';
 import { auth } from '../../pages/login/Auth';
 import Emitter, { TRACKING } from '../../emitter/Emitter';
+
+const store = Store();
 
 jest.mock('../../queue/queue', () => {
   const { default: mockedQueue } = jest.requireActual('../../queue/queue');
@@ -24,9 +28,11 @@ describe('App component', () => {
 
   test('should have sidebar component', done => {
     const wrapper = mount(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     );
     wrapper.instance().setState({
       isFetchingAssets: false
@@ -40,9 +46,11 @@ describe('App component', () => {
 
   test('listen to tracking events on mount', () => {
     mount(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     );
 
     Emitter.emit(TRACKING, {});
@@ -52,9 +60,11 @@ describe('App component', () => {
 
   test('unmounted component should not listen to events', done => {
     const wrapper = mount(
-      <BrowserRouter>
-        <App />
-      </BrowserRouter>
+      <Provider store={store}>
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+      </Provider>
     );
 
     wrapper.unmount();

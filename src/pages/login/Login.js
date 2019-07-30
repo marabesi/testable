@@ -1,24 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
 import uiConfig from './Firebase';
-import Loading from '../../components/loading/Loading';
 import { auth } from '../login/Auth';
 import { track } from '../../emitter/Tracking';
+import { onLoading } from '../../actions/loadingAction';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
 
-export default class Login extends Component {
+/**
+ * @param {function} dispatch
+ */
+const mapDispatchToProps = dispatch => {
+  return {
+    /**
+     * @param {boolean} hovered
+     */
+    onLoading: loading => dispatch(onLoading(loading))
+  };
+};
+
+export class Login extends Component {
   state = {
-    logged: false,
-    loading: true,
-    user: {}
+    showFirebaseWidget: false,
+    user: null,
   }
 
   constructor(props) {
     super(props);
+
     auth
       .authenticate()
       .then(this.authStatusChanged)
@@ -26,6 +39,8 @@ export default class Login extends Component {
   }
 
   authStatusChanged = user => {
+    this.props.onLoading(false);
+
     if (user) {
       track({
         section: 'login',
@@ -33,17 +48,15 @@ export default class Login extends Component {
       });
 
       this.setState({
-        user: user,
-        logged: true,
-        loading: false
+        user,
+        showFirebaseWidget: true,
       });
       return;
     }
 
     this.setState({
-      user: {},
-      logged: false,
-      loading: false
+      user: null,
+      showFirebaseWidget: true,
     });
   }
 
@@ -63,7 +76,7 @@ export default class Login extends Component {
   }
 
   render() {
-    if (this.state.logged) {
+    if (this.state.user) {
       return (
         <Redirect to={{ pathname: '/intro' }} />
       );
@@ -71,11 +84,9 @@ export default class Login extends Component {
 
     return (
       <React.Fragment>
-        { this.state.loading && <Loading /> }
-
         <div
           className={
-            this.state.loading
+            !this.state.showFirebaseWidget
               ? 'hidden'
               : 'flex flex-col justify-center items-center h-screen'
           }
@@ -85,3 +96,5 @@ export default class Login extends Component {
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(Login);

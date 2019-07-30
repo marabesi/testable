@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Sidebar from './Sidebar';
+import { Sidebar } from './Sidebar';
 import { auth } from '../../pages/login/Auth';
 
 describe('sidebar component', () => {

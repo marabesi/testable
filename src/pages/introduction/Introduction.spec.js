@@ -1,7 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
-import Introduction from './Introduction';
+import { Introduction } from './Introduction';
 
 describe('Introduction page', () => {
   let wrapper;

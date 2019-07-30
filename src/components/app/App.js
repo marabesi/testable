@@ -68,7 +68,7 @@ const Survey = AsyncComponent(() => {
   return import('../../pages/survey/Survey');
 });
 
-class App extends React.Component {
+export default class App extends React.Component {
 
   state = {
     isFetchingAssets: true
@@ -138,5 +138,3 @@ class App extends React.Component {
     );
   }
 }
-
-export default App;

@@ -1,15 +1,22 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import content from './introduction-content.json';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import Loading from '../../components/loading/Loading';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import { onLoading } from '../../actions/loadingAction';
 
-export default class Introduction extends Component {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoading: loading => dispatch(onLoading(loading))
+  };
+};
+
+export class Introduction extends Component {
 
   state = {
     redirect: false,
-    loading: false,
   };
 
   handleLastScene = () => {
@@ -51,3 +58,5 @@ export default class Introduction extends Component {
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(Introduction);

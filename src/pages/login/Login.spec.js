@@ -1,52 +1,49 @@
 import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
-import Login from './Login';
+import { Login } from './Login';
 
 describe('Login page behavior', () => {
-
-  it('should show up loading by default', () => {
-
-    const wrapper = mount(<Login />);
-
-    expect(wrapper.find('Loading').length).toBe(1);
-  });
-
   it('should load firebase container', () => {
     const wrapper = mount(<Login />);
-
-    wrapper.setState({
-      loading: false
-    });
 
     expect(wrapper.find('#firebaseui-auth-container').length).toBe(1);
   });
 
-  it('should redirect if already logged in', () => {
-    const wrapper = shallow(
-      <BrowserRouter>
-        <Login />
-      </BrowserRouter>
-    );
+  describe('user logged in already', () => {
+    let loggedWrapper = null;
 
-    const login = wrapper.find('Login').dive();
-    login.setState({
-      logged: true,
+    beforeEach(() => {
+      loggedWrapper = shallow(
+        <BrowserRouter>
+          <Login
+            onLoading={() => true}
+          />
+        </BrowserRouter>
+      );
     });
 
-    expect(login.find('Redirect').length).toBe(1);
-  });
+    afterAll(() => {
+      loggedWrapper = null;
+    });
 
-  it('should fill in logged user data', () => {
-    const wrapper = shallow(
-      <BrowserRouter>
-        <Login />
-      </BrowserRouter>
-    );
-    const login = wrapper.find('Login').dive();
-    login.instance().authStatusChanged({ email: 'test@test.com' });
-
-    expect(login.instance().state.user.email).toEqual('test@test.com');
+    it('should redirect if already logged in', () => {
+      const login = loggedWrapper.find('Login').dive();
+      login.setState({
+        user: {
+          email: 'user@user.com'
+        },
+      });
+  
+      expect(login.find('Redirect').length).toBe(1);
+    });
+  
+    it('should fill in logged user data', () => {
+      const login = loggedWrapper.find('Login').dive();
+      login.instance().authStatusChanged({ email: 'test@test.com' });
+  
+      expect(login.instance().state.user.email).toEqual('test@test.com');
+    });
   });
 });
 
