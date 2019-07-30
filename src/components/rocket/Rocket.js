@@ -7,6 +7,17 @@ import Reason from '../../engine/Reason';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import Guide from '../../components/editor-manager/Guide';
 
+/**
+ * @param {any} OriginalComponent 
+ * @param {string} code 
+ * @param {string} test 
+ * @param {object} guideContent 
+ * @param {string} whenDoneRedirectTo 
+ * @param {Number} waitCodeToBeExecutedOnStep 
+ * @param {Number} enableEditorOnStep 
+ * @param {string} trackSection 
+ * @param {function} reasonStrategy 
+ */
 const Wrapped = (
   OriginalComponent,
   code,

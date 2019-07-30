@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router';
 import tddContent from './guide-content';
 import introContent from './tdd-intro-content';
@@ -9,7 +10,7 @@ import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../emitter/Emitter';
 import { track } from '../../emitter/Tracking';
 import { auth } from '../login/Auth';
 import DebugButton from '../../components/debug/Button';
-import Loading from '../../components/loading/Loading';
+import { onLoading } from '../../actions/loadingAction';
 
 const code = `function subtrair(a, b) {
   return a - b
@@ -21,7 +22,13 @@ const test = `function testeSubtrairNumerosPositivos() {
   return total === esperado;
 }`;
 
-export default class TddIntro extends Component {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoading: loading => dispatch(onLoading(loading))
+  };
+};
+
+export class TddIntro extends Component {
 
   state = {
     code: {
@@ -35,7 +42,6 @@ export default class TddIntro extends Component {
     initialStep: 0,
     introEnabled: false,
     intro: introContent,
-    loading: false,
   };
 
   componentDidMount() {
@@ -95,13 +101,10 @@ export default class TddIntro extends Component {
       return;
     }
 
-    this.setState({
-      //@ts-ignore
-      ...this.state.loading, loading: true
-    });
+    this.props.onLoading(true);
 
     Emitter.emit(LEVEL_UP);
-    
+
     track({
       section: 'tdd-intro',
       action: 'tdd_intro_end',
@@ -111,9 +114,9 @@ export default class TddIntro extends Component {
     setTimeout(() => {
       this.setState({
         //@ts-ignore
-        ...this.state.loading, loading: false,
         ...this.state.done, done: true
       });
+      this.props.onLoading(false);
     }, 700);
   }
 
@@ -134,12 +137,6 @@ export default class TddIntro extends Component {
   }
 
   render() {
-    if (this.state.loading) {
-      return (
-        <Loading />
-      );
-    }
-
     if (this.state.done) {
       return (<Redirect to="/completed" />);
     }
@@ -177,3 +174,5 @@ export default class TddIntro extends Component {
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(TddIntro);

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import TutorialEnd from './TutorialEnd';
+import { TutorialEnd } from './TutorialEnd';
 
 describe('TutorialEnd page', () => {
   test('render without crashing', () => {

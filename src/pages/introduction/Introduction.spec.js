@@ -5,25 +5,18 @@ import { Introduction } from './Introduction';
 
 describe('Introduction page', () => {
   let wrapper;
+  const onLoading = jest.fn();
 
   beforeEach(() => {
     wrapper = mount(
       <BrowserRouter>
-        <Introduction />
+        <Introduction onLoading={onLoading} />
       </BrowserRouter>
     );
   });
 
   afterEach(() => {
     wrapper = null;
-  });
-
-  test('should render loading component', () => {
-    wrapper.find('Introduction').instance().handleLastScene();
-
-    wrapper.update();
-
-    expect(wrapper.find('Loading').length).toEqual(1);
   });
 
   test('should redirect to tutorial page', done => {

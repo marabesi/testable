@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import TddEnd from './TddEnd';
+import { TddEnd } from './TddEnd';
 
 describe('tdd end page', () => {
 

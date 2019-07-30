@@ -1,13 +1,26 @@
 import * as React from 'react';
 import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 import content from './tutorial-end-content.json';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../login/Auth';
 import Emitter, {LEVEL_UP} from '../../emitter/Emitter';
-import Loading from '../../components/loading/Loading.js';
+import { onLoading } from '../../actions/loadingAction';
 
-export default class TutorialEnd extends React.Component {
+/**
+ * @param {function} dispatch
+ */
+const mapDispatchToProps = dispatch => {
+  return {
+    /**
+     * @param {boolean} hovered
+     */
+    onLoading: loading => dispatch(onLoading(loading))
+  };
+};
+
+export class TutorialEnd extends React.Component {
 
   state = {
     redirect: false
@@ -16,16 +29,14 @@ export default class TutorialEnd extends React.Component {
   handleLastScene = () => {
     Emitter.emit(LEVEL_UP);
 
-    this.setState({
-      loading: true
-    });
+    this.props.onLoading(true);
 
     setTimeout(() => {
+      this.props.onLoading(false);
       this.setState({
-        loading: false,
         redirect: true
       });
-    }, 2000);
+    }, 1000);
   }
 
   goToTutorial = () => {
@@ -37,12 +48,6 @@ export default class TutorialEnd extends React.Component {
   }
 
   render() {
-    if (this.state.loading) {
-      return (
-        <Loading />
-      );
-    }
-
     if (this.state.redirect) {
       return (
         <Redirect to={{
@@ -62,3 +67,5 @@ export default class TutorialEnd extends React.Component {
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(TutorialEnd);
