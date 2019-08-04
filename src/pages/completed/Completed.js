@@ -1,39 +1,37 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import content from './completed-content.json';
 import SceneManager from '../../components/scene-manager/SceneManager';
-import Loading from '../../components/loading/Loading';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import {onLoading} from '../../actions/loadingAction';
 
-export default class Introduction extends Component {
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onLoading: loading => dispatch(onLoading(loading))
+  };
+};
+
+export class Completed extends Component {
 
   state = {
     redirect: false,
-    loading: false,
   };
 
   handleLastScene = () => {
-    Emitter.emit(LEVEL_UP, {
-      tutorial: true,
-    });
+    Emitter.emit(LEVEL_UP);
 
-    this.setState({
-      loading: true
-    });
+    this.props.onLoading(true);
 
     setTimeout(() => {
       this.setState({
-        loading: false,
         redirect: true
       });
+      this.props.onLoading(false);
     }, 1000);
   }
 
   render() {
-    if (this.state.loading) {
-      return (<Loading />);
-    }
-
     if (this.state.redirect) {
       return (
         <Redirect to={{
@@ -51,3 +49,5 @@ export default class Introduction extends Component {
     );
   }
 }
+
+export default connect(null, mapDispatchToProps)(Completed);
