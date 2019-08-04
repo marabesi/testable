@@ -64,7 +64,7 @@ export class Guide extends React.Component {
                 onClick={this.handleProgress}
                 onMouseEnter={this.onHover}
                 onMouseLeave={this.offHover}
-                className={ `w-6 h-6 self-end no-underline text-white font-bold focus:outline-none ${!this.props.hovered ? 'next': ''}` }
+                className={ `w-6 h-6 self-center no-underline text-white font-bold focus:outline-none mt-5 ${!this.props.hovered ? 'next': ''}` }
               >
                 <Next className="fill-current text-white py-1 w-6 h-6" />
               </button>

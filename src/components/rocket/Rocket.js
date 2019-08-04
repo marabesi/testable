@@ -130,7 +130,8 @@ const Wrapped = (
           <div className="flex justify-center editor-container">
             <EditorManager
               editor={2}
-              className="w-2/5 m-5"
+              style={{ width: '46%'}}
+              className="m-5"
               code={this.state.code}
               onValidCode={{ 0: this.onValidCode, 1: this.onValidCode }}
             />

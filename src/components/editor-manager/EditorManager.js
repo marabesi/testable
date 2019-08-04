@@ -69,11 +69,11 @@ export default class EditorManager extends React.Component {
 
   render() {
     const editors = [];
-    const { className, editor } = this.props;
+    const { className, editor, style } = this.props;
 
     for (let i = 0; i < editor; i++) {
       editors.push(
-        <div key={i} className={ `flex flex-col ${className}` }>
+        <div key={i} className={ `flex flex-col ${className}` } style={style}>
           <Editor
             key={i}
             value={this.props.code ? this.props.code[i] : ''}
@@ -105,9 +105,11 @@ EditorManager.propTypes = {
   onValidCode: PropTypes.object,
   className: PropTypes.string,
   code: PropTypes.object,
-  editor: PropTypes.number
+  editor: PropTypes.number,
+  style: PropTypes.object
 };
 
 EditorManager.defaultProps = {
-  editor: 1
+  editor: 1,
+  style: {}
 };

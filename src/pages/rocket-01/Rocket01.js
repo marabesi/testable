@@ -22,8 +22,8 @@ export default Rocket(
   test,
   tddContent,
   '/rocket-02',
-  1,
-  1,
-  'rocket-02',
+  2,
+  2,
+  'rocket-01',
   SumBehavior
 );

@@ -78,7 +78,7 @@ export class TddIntro extends Component {
       
       return;
     }
-    
+
     const next = this.state.currentHint + 1;
     const total = tddContent.length;
     const isNotLast = next < total;

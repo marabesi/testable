@@ -15,6 +15,7 @@ export default class Background extends Component {
                 background: url("assets/bg-loading.png"), ${colors['blue-dark']};
                 background-position: center center;
                 height: 100vh;
+                overflow: hidden;
               }
             `}
           </style>

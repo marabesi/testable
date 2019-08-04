@@ -112,7 +112,7 @@ export default class Header extends React.Component {
         <DebugButton onClick={this.goToIntroduction} value="go back to introduction"/>
         <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
 
-        <div className="flex justify-between pl-3 pr-3 pt-5 ml-5 mr-5">
+        <div className="flex justify-between pl-3 pr-3 pt-5 pb-5 ml-5 mr-5">
           <div className={ `user-progress ${this.state.levelup ? 'wobble-ver-right' : ''}`}>
             <Level progress={this.state.user.progress} level={this.state.user.level} />
           </div>
