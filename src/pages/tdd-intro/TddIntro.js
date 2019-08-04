@@ -138,7 +138,7 @@ export class TddIntro extends Component {
 
   render() {
     if (this.state.done) {
-      return (<Redirect to="/completed" />);
+      return (<Redirect to="/tdd" />);
     }
 
     return (
