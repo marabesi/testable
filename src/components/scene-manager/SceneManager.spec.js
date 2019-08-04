@@ -63,7 +63,7 @@ describe('Scene manager component', () => {
     }, 1000);
   });
 
-  test('should go to scene 2', done => {
+  test('should go to the next scene (scene 2)', done => {
     const wrapper = mount(
       <SceneManager
         content={content}
@@ -105,6 +105,32 @@ describe('Scene manager component', () => {
     expect(beyondLastStep).toBeFalsy();
   });
 
+  test('should pass in lastStep from the content json', () => {
+    const contentWithLastStep = Object.assign({}, content);
+    contentWithLastStep.steps[0].lastScene = true;
+
+    const wrapper = mount(
+      <SceneManager
+        content={contentWithLastStep}
+      />
+    );
+
+    wrapper.update();
+    expect(wrapper.find('Scene').prop('lastScene')).toBe(true);
+  });
+
+  test('should pass in lastStep as true when the last step is reached', () => {
+    const wrapper = mount(
+      <SceneManager
+        content={content}
+      />
+    );
+
+    wrapper.instance().handleNextScene();
+    wrapper.update();
+    expect(wrapper.find('Scene').prop('lastScene')).toBe(true);
+  });
+
   describe('debug button', () => {
     test('should not show up debug button by default', () => {
       const wrapper = mount(
@@ -117,8 +143,8 @@ describe('Scene manager component', () => {
     });
   });
 
-  describe('empty content', () => {
-    test('empty json object', () => {
+  describe('empty content provided', () => {
+    test('should handle gracefully empty json object', () => {
       const wrapper = mount(
         <SceneManager
           content={{}}
@@ -127,7 +153,7 @@ describe('Scene manager component', () => {
       expect(wrapper.find('Scene').length).toBe(0);
     });
 
-    test('json object with empty steps', () => {
+    test('should handle gracefully json object with empty steps', () => {
       const wrapper = mount(
         <SceneManager
           content={{

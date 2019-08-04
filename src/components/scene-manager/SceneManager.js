@@ -50,6 +50,7 @@ export default class SceneManager extends Component {
   render() {
     const steps = this.props.content.steps || [];
     const scenes = [];
+    const last = steps.length - 1;
 
     for (const [index, step] of steps.entries()) {
       if (step.step === this.state.currentStep) {
@@ -61,7 +62,7 @@ export default class SceneManager extends Component {
             step={this.state.currentStep}
             className="m-auto w-3/5"
             next={this.handleNextScene}
-            lastScene={step.lastScene}
+            lastScene={step.lastScene || (last === index)}
             handleLastScene={this.props.handleLastScene}
             showAlien={step.showAlien}
             onCompleted={step.onCompleted || {}}
