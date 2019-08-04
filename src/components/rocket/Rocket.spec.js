@@ -100,7 +100,26 @@ describe('Rocket component', () => {
     expect(code).toBe(expected);
   });
 
-  describe('enalyze code on valid code execution', () => {
+  describe('analyze code on valid code execution', () => {
+    test('should disable source code editor (index 0 (zero))', () => {
+      const sourceCodeEditor = 0;
+      const HoC = Rocket(
+        fakeComponent,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1,
+        'my-section',
+        {},
+        sourceCodeEditor
+      );
+
+      const wrapper = shallow(<HoC />);
+      expect(wrapper.instance().onValidCode('code', sourceCodeEditor)).toBe(undefined);
+    });
+
     test('should level up', () => {
       const callback = jest.fn();
       Emitter.addListener(LEVEL_UP, callback);

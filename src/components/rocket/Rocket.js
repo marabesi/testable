@@ -27,7 +27,8 @@ const Wrapped = (
   waitCodeToBeExecutedOnStep,
   enableEditorOnStep,
   trackSection,
-  reasonStrategy) => {
+  reasonStrategy,
+  disableEditor) => {
   class Rocket extends Component {
 
     state = {
@@ -50,7 +51,7 @@ const Wrapped = (
     }
 
     onValidCode = (code, i) => {
-      if (this.state.currentHint !== enableEditorOnStep) {
+      if (this.state.currentHint !== enableEditorOnStep || i === disableEditor) {
         return;
       }
 
