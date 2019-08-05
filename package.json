@@ -82,5 +82,11 @@
     "sinon": "^7.3.2",
     "source-map-explorer": "^1.8.0",
     "typescript": "^3.5.3"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "src/**/*.{js,jsx}",
+      "!src/registerServiceWorker.js"
+    ]
   }
 }
