@@ -42,7 +42,7 @@ export default class Survey extends React.Component {
           }
 
           <iframe
-            style={ { height: '60vh', width: '100%' } }
+            style={ { height: '65vh', width: '100%' } }
             src={this.state.surveyUrl}
             title="survey form"
             onLoad={this.onSurveyLoaded}
