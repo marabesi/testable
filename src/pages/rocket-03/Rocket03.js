@@ -26,5 +26,7 @@ export default Rocket(
   1,
   '/completed',
   SumBehavior,
+  null,
+  {},
   null
 );

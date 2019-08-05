@@ -26,5 +26,7 @@ export default Rocket(
   2,
   'rocket-01',
   SumBehavior,
+  null,
+  {},
   null
 );

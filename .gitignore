@@ -29,6 +29,8 @@ src/css/index.css
 
 .vscode
 
+.idea
+
 .netlify
 
 cypress.env.json

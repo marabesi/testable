@@ -6,6 +6,7 @@ import { auth } from '../../pages/login/Auth';
 import Reason from '../../engine/Reason';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import Guide from '../../components/editor-manager/Guide';
+import Intro from '../intro/Intro';
 
 /**
  * @param {any} OriginalComponent 
@@ -28,7 +29,9 @@ const Wrapped = (
   enableEditorOnStep,
   trackSection,
   reasonStrategy,
-  disableEditor) => {
+  disableEditor,
+  introContent,
+  enableIntroOnStep) => {
   class Rocket extends Component {
 
     state = {
@@ -40,7 +43,11 @@ const Wrapped = (
       showNext: false,
       currentHint: 0,
       initialStep: 0,
-      introEnabled: false
+      introEnabled: false,
+      intro: introContent || {
+        steps: [],
+        initialStep: 0
+      }
     };
 
     componentDidMount() {
@@ -91,6 +98,16 @@ const Wrapped = (
     }
 
     handleProgress = () => {
+      if (this.state.currentHint === enableIntroOnStep) {
+        this.toogleToolTip();
+        track({
+          section: trackSection,
+          action: `next_guide_hint:started_tooltip_${trackSection}`
+        });
+
+        return;
+      }
+
       const next = this.state.currentHint + 1;
       const total = guideContent.length;
       const isNotLast = next < total;
@@ -119,6 +136,27 @@ const Wrapped = (
       });
     }
 
+    toogleToolTip = () => {
+      this.setState({
+        //@ts-ignore
+        ...this.state.introEnabled, introEnabled: true
+      });
+    }
+
+    onFinishTooltip = () => {
+      if (this.state.currentHint !== enableIntroOnStep) {
+        return;
+      }
+
+      Emitter.emit(LEVEL_UP);
+      this.setState({
+        //@ts-ignore
+        ...this.state.introEnabled, introEnabled: false,
+        ...this.state.currentHint, currentHint: 1 + this.state.currentHint,
+        ...this.state.showNext, showNext: false
+      });
+    }
+
     render() {
       if (this.state.done) {
         return (<Redirect to={whenDoneRedirectTo} />);
@@ -126,7 +164,14 @@ const Wrapped = (
 
       return (
         <div className="flex flex-col">
-          <OriginalComponent />
+          <OriginalComponent state={this.state} />
+
+          <Intro
+            enabled={this.state.introEnabled}
+            steps={this.state.intro.steps}
+            initialStep={this.state.intro.initialStep}
+            onExit={this.onFinishTooltip}
+          />
 
           <div className="flex justify-center editor-container">
             <EditorManager

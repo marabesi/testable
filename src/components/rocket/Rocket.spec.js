@@ -48,7 +48,11 @@ describe('Rocket component', () => {
       showNext: false,
       currentHint: 0,
       initialStep: 0,
-      introEnabled: false
+      introEnabled: false,
+      intro: {
+        steps: [],
+        initialStep: 0
+      }
     });
   });
 
