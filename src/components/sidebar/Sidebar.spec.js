@@ -5,6 +5,10 @@ import { auth } from '../../pages/login/Auth';
 
 describe('sidebar component', () => {
 
+  afterEach(() => {
+    auth.isAuthenticated = false;
+  });
+
   test('should be hidden by default', () => {
     const wrapper = shallow(<Sidebar />);
 
@@ -47,5 +51,12 @@ describe('sidebar component', () => {
     });
 
     expect(wrapper.find('.sidebar').prop('className').includes('block')).toBeTruthy();
+  });
+
+  test('should not show up logo when authenticated', () => {
+    auth.isAuthenticated = true;
+    const wrapper = mount(<Sidebar />);
+
+    expect(wrapper.find('Logo').length).toBe(0)
   });
 });

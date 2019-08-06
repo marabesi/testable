@@ -73,11 +73,11 @@ export class Sidebar extends Component {
 
         {this.props.children}
 
-        <Logo
+        { !auth.isAuthenticated && <Logo
           className={`h-6 hidden md:block absolute pin-b pin-r mr-5 mb-5 ${this.state.hover ? 'pulsate-fwd': ''}` }
           onMouseEnter={this.onHover}
           onMouseLeave={this.offHover}
-        />
+        /> }
       </React.Fragment>
     );
   }
