@@ -63,7 +63,10 @@ export default class EditorManager extends React.Component {
     }
 
     lemming.run({
-      context: sourceCode
+      context: sourceCode,
+      options: {
+        timeout: 100
+      }
     });
   }
 

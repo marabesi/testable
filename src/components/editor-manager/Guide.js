@@ -84,7 +84,6 @@ export class Guide extends React.Component {
           <SvgBuggy
             className="absolute pin-t"
             style={{
-              transform: 'scaleX(-1)',
               width: '250px',
               marginTop: '-165px',
               marginLeft: '-290px'

@@ -87,7 +87,9 @@ export default class App extends React.Component {
     });
 
     await queue.fetch([
-      'assets/buggy.png',
+      'assets/buggy.svg',
+      'assets/buggy-bug.svg',
+      'assets/buggy-zzz.svg',
       'assets/alien.png',
       'assets/logo.png',
       'assets/stars.png',
