@@ -1,18 +1,18 @@
 export default [
   {
-    line: 'O foguete que temos que construir, é feito de dois sitemas princpais...',
+    line: 'O foguete deve possuir dois motores, mas até agora só foi feito uma parte',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'O primeiro que vamos trabalhar aqui são os motores...',
+    line: 'Para fazer a segunda parte temos que multiplicar a parte que já temos por dois!',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'Para que os motores funcionem precisamos escrever uma função de teste...',
+    line: 'Dessa forma, teremos dois motores idênticos para lançar nosso foguete!',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'E essa função deve verificar se a cadeira de caracteres está ao contrário',
+    line: 'Escreva uma função de teste de multiplicação para duplicar o motor que temos',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
 ];

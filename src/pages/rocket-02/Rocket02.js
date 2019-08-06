@@ -3,11 +3,11 @@ import tddContent from './rocket02-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import { SumBehavior } from '../../engine/strategies/behavior/SumBehavior';
 
-const code = `function somar(a, b) {
-  return a + b
+const code = `function dividirGps(a, b) {
+  return a / b
 }`;
 
-const test = `function teste() {
+const test = `function testeDividirGpsEmDuasPartes() {
 }`;
 
 class Rocket02 extends Component {
@@ -22,8 +22,8 @@ export default Rocket(
   test,
   tddContent,
   '/rocket-03',
-  1,
-  1,
+  3,
+  3,
   'rocket-02',
   SumBehavior,
   null,

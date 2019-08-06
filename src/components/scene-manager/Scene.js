@@ -2,7 +2,7 @@ import * as React from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
-import SvgBuggy from '../buggy/SvgBuggy';
+import { SvgBuggyLeft } from '../buggy/SvgBuggy';
 import AlienSvg from '../alien/AlienSvg';
 
 import '../../scss/slide-in-bck-right.scss';
@@ -68,7 +68,7 @@ export default class Scene extends React.Component {
             onFinishedTyping={ () => this.onFinishedTyping() }
           />
 
-          <SvgBuggy className={
+          <SvgBuggyLeft className={
             `absolute pin-r w-1/3 mt-10 ${
               this.props.onCompleted.showBug && this.state.showNextButton ? 'slide-in-bck-right' : 'hidden'
             }

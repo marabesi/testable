@@ -8,3 +8,7 @@ const SvgBuggy = props => (
   <Base64Image image="testable.buggy.svg" alt="buggy" {...props}/>
 );
 export default SvgBuggy;
+
+export const SvgBuggyLeft = props => (
+  <Base64Image image="testable.buggy.png" alt="buggy" {...props}/>
+);

@@ -3,11 +3,11 @@ import tddContent from './rocket03-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import { SumBehavior } from '../../engine/strategies/behavior/SumBehavior';
 
-const code = `function somar(a, b) {
-  return a + b
+const code = `function subtrairTravaDoTremDePouso(a, b) {
+  return a - b
 }`;
 
-const test = `function teste() {
+const test = `function testeDeveRemoverAtravaDoTremDePouso() {
 }`;
 
 class Rocket03 extends Component {
@@ -22,11 +22,11 @@ export default Rocket(
   test,
   tddContent,
   '/rocket-03',
-  1,
-  1,
+  3,
+  3,
   '/completed',
   SumBehavior,
   null,
-  {},
+  null,
   null
 );

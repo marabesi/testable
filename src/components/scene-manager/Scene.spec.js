@@ -47,7 +47,7 @@ describe('Scene component', () => {
   });
 
   test('should show up buggy character', done => {
-    window.localStorage.setItem('testable.buggy.svg', 'img buggy content');
+    window.localStorage.setItem('testable.buggy.png', 'img buggy content');
     const wrapper = mount(
       <Scene
         onCompleted={{showBug: true}}
