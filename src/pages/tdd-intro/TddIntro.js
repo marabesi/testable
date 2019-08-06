@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import tddContent from './guide-content';
 import introContent from './tdd-intro-content';
 import Rocket from '../../components/rocket/Rocket';
@@ -14,17 +13,8 @@ const test = `function testeSubtrairNumerosPositivos() {
   return total === esperado;
 }`;
 
-export class TddIntro extends Component {
-
-  render() {
-    return (
-      <React.Fragment />
-    );
-  }
-}
-
 export default Rocket(
-  TddIntro,
+  null,
   code,
   test,
   tddContent,

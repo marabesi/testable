@@ -164,7 +164,7 @@ const Wrapped = (
 
       return (
         <div className="flex flex-col">
-          <OriginalComponent state={this.state} />
+          { OriginalComponent && <OriginalComponent state={this.state} /> }
 
           <Intro
             enabled={this.state.introEnabled}

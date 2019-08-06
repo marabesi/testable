@@ -9,3 +9,34 @@
     left: 0 !important;
   }
 }
+
+.attention {
+  z-index: 1;
+  position: relative;
+  outline: none;
+}
+
+.attention::before {
+  content: '';
+  z-index: -1;
+  position: absolute;
+  top: -10px;
+  bottom: -10px;
+  left: 0px;
+  right: 0px;
+  border: 5px solid #00ffdf52;
+  animation: attention-editor 1s ease-in-out infinite;
+}
+
+@keyframes attention-editor {
+  0% {
+    transform-origin: center;
+    transform: scale(0.9);
+    opacity: 1;
+  }
+  100% {
+    transform-origin: center;
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}

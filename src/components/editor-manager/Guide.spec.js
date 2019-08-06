@@ -28,7 +28,7 @@ describe('guide component', () => {
     expect(wrapper.find('button').length).toEqual(1);
   });
 
-  test('should handle next buton click action', () => {
+  test('should handle next button click action', () => {
     const progress = sinon.spy();
     const onHover = sinon.spy();
     const wrapper = mount(
@@ -44,5 +44,38 @@ describe('guide component', () => {
     wrapper.find('button').simulate('click');
 
     expect(progress.called).toBeTruthy();
+  });
+
+  test('should dispatch hover action when hovering the next button', () => {
+    const onHover = sinon.spy();
+    const progress = sinon.spy();
+    const wrapper = mount(
+      <Guide
+        guideContent={content}
+        currentHint={0}
+        showNext={true}
+        handleProgress={progress}
+        onHover={onHover}
+      />
+    );
+    wrapper.find('button').simulate('mouseenter');
+    expect(onHover.calledWith(true)).toBeTruthy();
+
+    wrapper.find('button').simulate('mouseleave');
+    expect(onHover.calledWith(false)).toBeTruthy();
+  });
+
+  test('should not toggle next class if button is hovered', () => {
+    const progress = sinon.spy();
+    const wrapper = mount(
+      <Guide
+        guideContent={content}
+        currentHint={0}
+        showNext={true}
+        handleProgress={progress}
+        hovered={true}
+      />
+    );
+    expect(wrapper.find('.next').length).toBe(0);
   });
 });
