@@ -2,7 +2,7 @@
   "compilerOptions": {
     "sourceRoot": "./src",
     "moduleResolution": "node",
-    "target": "es5",
+    "target": "es6",
     "module": "esnext",
     "noImplicitAny": false,
     "removeComments": true,
@@ -32,10 +32,11 @@
     "src/**/*"
   ],
   "exclude": [
-    "node_modules/**/*",
-    "src/index.js",
-    "src/registerServiceWorker.js",
-    "src/tailwind.js",
-    "setupTests.js"
+    "./node_modules/**/*",
+    "./src/index.js",
+    "./src/index.spec.js",
+    "./src/registerServiceWorker.js",
+    "./src/tailwind.js",
+    "./setupTests.js"
   ]
 }
