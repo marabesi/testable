@@ -6,6 +6,6 @@ describe('Rocket 02 page', () => {
   test('mount rocket 01 component', () => {
     const wrapper = shallow(<Rocket02 />);
 
-    expect(wrapper.find('Rocket02').length).toBe(1);
+    expect(wrapper.find('EditorManager').length).toBe(1);
   });
 });

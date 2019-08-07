@@ -179,9 +179,48 @@ describe('Rocket component', () => {
     });
   });
 
-  describe('handle progress', () => {
-    test('handle last step', () => {
+  describe('handle tooltip', () => {
+    let IntroWrapper = null;
 
+    beforeEach(() => {
+      IntroWrapper = Rocket(
+        fakeComponent,
+        'my code',
+        'my test',
+        [ {}, {} ],
+        null,
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        1
+      );
+    });
+
+    afterEach(() => {
+      IntroWrapper = null;
+    });
+
+    test('should enable tooltip based on step 1', () => {
+      const wrapper = shallow(<IntroWrapper />);
+      // step 0
+      wrapper.instance().handleProgress();
+      // step 1
+      wrapper.instance().handleProgress();
+      wrapper.update();
+      expect(wrapper.find('Intro').prop('enabled')).toBeTruthy();
+    });
+
+    test('should level when tooltip tour has completed', () => {
+      const callback = jest.fn();
+      Emitter.addListener(LEVEL_UP, callback);
+
+      const wrapper = shallow(<IntroWrapper />);
+      wrapper.instance().handleProgress();
+      wrapper.instance().onFinishTooltip();
+      expect(callback).toBeCalled();
     });
   });
 });

@@ -1,4 +1,3 @@
-import React, { Component } from 'react';
 import tddContent from './guide-content';
 import { SumBehavior } from '../../engine/strategies/behavior/SumBehavior';
 import Rocket from '../../components/rocket/Rocket';
@@ -10,14 +9,8 @@ const code = `function somar(a, b) {
 const test = `function testeSomarNumerosPositivos() {
 }`;
 
-class Tdd extends Component {
-  render() {
-    return (<React.Fragment />);
-  }
-}
-
 export default Rocket(
-  Tdd,
+  null,
   code,
   test,
   tddContent,
