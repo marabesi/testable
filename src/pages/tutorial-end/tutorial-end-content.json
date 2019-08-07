@@ -42,6 +42,24 @@
     {
       "step": 4,
       "button": "Próximo",
+      "showAlien": {
+        "show": true,
+        "animate": true
+      },
+      "content": [
+        {
+          "line": "Eu escrevo o código e não testo nada!",
+          "style": "p-2 text-yellow"
+        },
+        {
+          "line": "HA HA HA HA HA!",
+          "style": "p-2 text-yellow"
+        }
+      ]
+    },
+    {
+      "step": 5,
+      "button": "E agora?",
       "lastScene": true,
       "content": [
         {
