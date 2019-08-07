@@ -22,6 +22,9 @@ export default class Intro extends Component {
           showButtons: true,
           showBullets: false,
           showProgress: true,
+          nextLabel: 'Próximo',
+          prevLabel: 'Anterior',
+          doneLabel: 'Estou pronto!'
         }}
       />
     );

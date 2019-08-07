@@ -1,11 +1,57 @@
-.myTooltipClass {
+$testable-blue: #012345;
+
+.myTooltipClass,
+.last-step {
+  background-color: $testable-blue;
+  color: #fff;
+
   .introjs-skipbutton {
     display: none;
+  }
+
+  .introjs-arrow.top-middle,
+  .introjs-arrow.top,
+  .introjs-arrow.top-right,
+  .introjs-arrow.left {
+    border-bottom-color: $testable-blue;
+    border-right-color: $testable-blue;
+  }
+
+  .introjs-progress {
+    background-color: $testable-blue;
+    border: 1px solid;
+
+    .introjs-progressbar {
+      background: #32ccff;
+    }
+  }
+
+  .introjs-tooltipbuttons {
+    border: none;
+    border-radius: 0;
+    padding: 5px;
+
+    .introjs-button {
+      background: #f11571;
+      border-width: 0;
+      text-shadow: none;
+      color: #fff;
+      margin-left: 10px;
+
+      &:hover {
+        box-shadow: none;
+      }
+    }
+    .introjs-nextbutton,
+    .introjs-prevbutton,
+    .introjs-donebutton {
+      border-radius: 0;
+    }
   }
 }
 
 .myHighlightClass {
-  background-color: #012345;
+  background-color: $testable-blue;
 }
 
 .last-step {
