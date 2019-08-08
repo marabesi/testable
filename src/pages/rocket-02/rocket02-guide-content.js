@@ -14,5 +14,9 @@ export default [
   {
     line: 'Escreva a função de teste que divide o GPS em duas partes distintas',
     style: 'text-white font-semibold text-xl text-blue-light'
+  },
+  {
+    line: 'Temos o sistema de localização pronto!',
+    style: 'text-white font-semibold text-xl text-blue-light'
   }
 ];

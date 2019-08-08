@@ -6,7 +6,7 @@
       "button": "Conseguimos !!!!",
       "content": [
         {
-          "line": "Conseguimos!!!!!",
+          "line": "Conseguimos !!!!!",
           "style": "p-2 text-blue-light"
         }
       ]
@@ -16,7 +16,7 @@
       "button": "Próximo",
       "content": [
         {
-          "line": "aaaaaa.",
+          "line": "aaaaaa",
           "style": "p-2 text-blue-light"
         }
       ]

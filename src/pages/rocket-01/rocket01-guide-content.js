@@ -15,4 +15,8 @@ export default [
     line: 'Escreva uma função de teste de multiplicação para duplicar o motor que temos',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
+  {
+    line: 'Exatamente!',
+    style: 'text-white font-semibold text-xl text-blue-light'
+  },
 ];

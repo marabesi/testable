@@ -14,5 +14,9 @@ export default [
   {
     line: 'Escreva uma função de teste que subtraia a trava do trem de pouso do foguete',
     style: 'text-white font-semibold text-xl text-blue-light'
+  },
+  {
+    line: 'Hooooorrraaay! Todos os sistemas estão preparadados!',
+    style: 'text-white font-semibold text-xl text-blue-light'
   }
 ];
