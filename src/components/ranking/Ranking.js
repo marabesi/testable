@@ -28,7 +28,7 @@ export default class Ranking extends Component {
     this.state.ranking.forEach((user, index) => {
       users.push(
         // @ts-ignore
-        <li key={index}>{ user.level }</li>
+        <li key={index}>{ user.name } { user.level }</li>
       );
     });
 
