@@ -84,6 +84,7 @@ export default class Header extends React.Component {
 
   componentWillUnmount() {
     Emitter.removeAllListeners(LEVEL_UP);
+    Emitter.removeAllListeners(LEVEL_DOWN);
     Emitter.removeAllListeners(PROGRESS_UP);
     Emitter.removeAllListeners(PROGRESS_DOWN);
   }

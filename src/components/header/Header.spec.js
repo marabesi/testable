@@ -2,8 +2,7 @@ import React from 'react';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 import Header from './Header';
-import Emitter, { LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
-import { auth } from '../../pages/login/Auth';
+import Emitter, {LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN, LEVEL_DOWN} from '../../emitter/Emitter';
 
 describe('header component', () => {
   const { reload } = window.location;
@@ -20,22 +19,27 @@ describe('header component', () => {
   });
 
   test('should not show debug button by default', () => {
-    const wrapper = mount(<Header />);
-
-    expect(wrapper.find('input[type="button"]').length).toEqual(0);
+    const localWrapper = mount(<Header />);
+    expect(localWrapper.find('input[type="button"]').length).toEqual(0);
+    localWrapper.unmount();
   });
 
   test('should render user progress', () => {
-    const wrapper = mount(<Header />);
-    expect(wrapper.find('.user-progress').length).toEqual(1);
+    const localWrapper = mount(<Header />);
+    expect(localWrapper.find('.user-progress').length).toEqual(1);
+    localWrapper.unmount();
   });
 
   test('should render profile', () => {
-    const wrapper = mount(<Header />);
-    expect(wrapper.find('.profile').length).toEqual(1);
+    const localWrapper = mount(<Header />);
+    expect(localWrapper.find('.profile').length).toEqual(1);
+    localWrapper.unmount();
   });
 
   test('should add level up animation and remove after 600 ms', done => {
+    const { auth } = require('../../pages/login/Auth');
+    const bkp = auth.updateUserInfo;
+
     auth.updateUserInfo = sinon.spy();
     const wrapper = mount(<Header />);
 
@@ -51,23 +55,31 @@ describe('header component', () => {
     setTimeout(() => {
       wrapper.update();
       expect(wrapper.find('.wobble-ver-right').length).toEqual(0);
+      wrapper.unmount();
+      auth.updateUserInfo = bkp;
       done();
     }, 600);
   });
 
-  test.each([LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN])(
+  test.each([LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN])(
     'unbind events on unmount - event: %s',
     (currentEvent) => {
+      const { auth } = require('../../pages/login/Auth');
+      const bkp = auth.updateUserInfo;
+
       auth.updateUserInfo = sinon.spy();
-      const wrapper = mount(<Header />);
-      wrapper.unmount();
+      const localWrapper = mount(<Header />);
+      localWrapper.unmount();
 
       Emitter.emit(currentEvent);
       expect(auth.updateUserInfo.called).toBeFalsy();
+      auth.updateUserInfo = bkp;
     },
   );
 
   test('should go to the introduction', () => {
+    const { auth } = require('../../pages/login/Auth');
+    const bkp = auth.updateUserInfo;
     auth.updateUserInfo = sinon.spy();
 
     const wrapper = mount(<Header />);
@@ -75,5 +87,73 @@ describe('header component', () => {
     wrapper.instance().goToIntroduction();
 
     expect(auth.updateUserInfo.called).toBeTruthy();
+
+    wrapper.unmount();
+    auth.updateUserInfo = bkp;
+  });
+
+  describe('listen to user events', () => {
+
+    test('should level up user', () => {
+      const { auth } = require('../../pages/login/Auth');
+      const wrapper = mount(<Header />);
+      expect(auth.user.level).toEqual(1);
+      Emitter.emit(LEVEL_UP);
+      expect(auth.user.level).toEqual(2);
+      wrapper.unmount();
+    });
+
+    test('should level down user', () => {
+      const { auth } = require('../../pages/login/Auth');
+      auth.user.level = 1;
+      const wrapper = mount(<Header />);
+      expect(auth.user.level).toEqual(1);
+      Emitter.emit(LEVEL_DOWN);
+      expect(auth.user.level).toEqual(0);
+      wrapper.unmount();
+    });
+
+    test('should update user progress up', () => {
+      const { auth } = require('../../pages/login/Auth');
+      auth.user.progress = 10;
+      const wrapper = mount(<Header />);
+      expect(auth.user.progress).toEqual(10);
+      Emitter.emit(PROGRESS_UP, { amount: 20 });
+      expect(auth.user.progress).toEqual(20);
+      wrapper.unmount();
+    });
+
+    test('should update user progress down', () => {
+      const { auth } = require('../../pages/login/Auth');
+      auth.user.progress = 10;
+      const wrapper = mount(<Header />);
+      expect(auth.user.progress).toEqual(10);
+      Emitter.emit(PROGRESS_DOWN, { amount: 5 });
+      expect(auth.user.progress).toEqual(5);
+      wrapper.unmount();
+    });
+
+    test('should emit LEVEL_UP event', () => {
+      const spy = sinon.spy();
+      Emitter.addListener(LEVEL_UP, spy);
+
+      const wrapper = mount(<Header />);
+      wrapper.instance().levelUp();
+      wrapper.unmount();
+
+      expect(spy.called).toBeTruthy();
+    });
+
+    test('should emit LEVEL_DOWN event', () => {
+      const spy = sinon.spy();
+      Emitter.addListener(LEVEL_DOWN, spy);
+
+      const wrapper = mount(<Header />);
+      wrapper.instance().levelDown();
+      wrapper.unmount();
+
+      expect(spy.called).toBeTruthy();
+    });
   });
 });
+
