@@ -7,6 +7,20 @@ firebase.auth = () => {
   };
 };
 
+const availableRoutes = [
+  '/',
+  '/intro',
+  '/tutorial',
+  '/intro-tdd',
+  '/tdd',
+  '/tdd-end',
+  '/rocket-01',
+  '/rocket-02',
+  '/rocket-03',
+  '/completed',
+  '/survey'
+];
+
 describe('Auth behavior', () => {
 
   test('should logout', () => {
@@ -18,20 +32,7 @@ describe('Auth behavior', () => {
 
   describe('route access and redirection', () => {
 
-    describe.each([
-      '/',
-      '/intro',
-      '/tutorial',
-      '/tutorial-end',
-      '/intro-tdd',
-      '/tdd',
-      '/tdd-end',
-      '/rocket-01',
-      '/rocket-02',
-      '/rocket-03',
-      '/completed',
-      '/survey'
-    ])(
+    describe.each(availableRoutes)(
       'should redirect unauthenticated user ',
       (route) => {
         test(`trying to access: ${route}`, () => {
@@ -43,20 +44,8 @@ describe('Auth behavior', () => {
       },
     );
   
-    test.each([
-      ['/'],
-      ['/tutorial'],
-      ['/tutorial-end'],
-      ['/intro-tdd'],
-      ['/tdd'],
-      ['/tdd-end'],
-      ['/rocket-01'],
-      ['/rocket-02'],
-      ['/rocket-03'],
-      ['/completed'],
-      ['/survey']
-    ])(
-      'should keep the user leve 1 in the introduction section, trying to access: %s',
+    test.each(availableRoutes.filter(route => route !== '/intro'))(
+      'should keep the user level 1 in the introduction section, trying to access: %s',
       (currentRoute) => {
         auth.isAuthenticated = true;
         auth.user.level = 1;
@@ -67,20 +56,8 @@ describe('Auth behavior', () => {
       },
     );
 
-    test.each([
-      ['/'],
-      ['/intro'],
-      ['/tutorial-end'],
-      ['/intro-tdd'],
-      ['/tdd'],
-      ['/tdd-end'],
-      ['/rocket-01'],
-      ['/rocket-02'],
-      ['/rocket-03'],
-      ['/completed'],
-      ['/survey']
-    ])(
-      'should keep the user leve 2 in the tutorial section, trying to access: %s',
+    test.each(availableRoutes.filter(route => route !== '/tutorial'))(
+      'should keep the user level 2 in the tutorial section, trying to access: %s',
       (currentRoute) => {
         auth.isAuthenticated = true;
         auth.user.level = 2;
@@ -91,20 +68,8 @@ describe('Auth behavior', () => {
       },
     );
 
-    test.each([
-      ['/'],
-      ['/intro'],
-      ['/tutorial'],
-      ['/intro-tdd'],
-      ['/tdd'],
-      ['/tdd-end'],
-      ['/rocket-01'],
-      ['/rocket-02'],
-      ['/rocket-03'],
-      ['/completed'],
-      ['/survey']
-    ])(
-      'should keep the user leve 3 in the tutorial end section, trying to access: %s',
+    test.each(availableRoutes.filter(route => route !== '/tutorial-end'))(
+      'should keep the user level 3 in the tutorial end section, trying to access: %s',
       (currentRoute) => {
         auth.isAuthenticated = true;
         auth.user.level = 3;
@@ -115,19 +80,8 @@ describe('Auth behavior', () => {
       },
     );
 
-    test.each([
-      ['/'],
-      ['/intro'], 
-      ['/tutorial'], 
-      ['/tdd'], 
-      ['/tdd-end'], 
-      ['/rocket-01'],
-      ['/rocket-02'],
-      ['/rocket-03'],
-      ['/completed'],
-      ['/survey']
-    ])(
-      'should keep the user leve 4 in the tdd introduction section, trying to access: %s',
+    test.each(availableRoutes.filter(route => route !== '/tdd-intro'))(
+      'should keep the user level 4 in the tdd introduction section, trying to access: %s',
       (currentRoute) => {
         auth.isAuthenticated = true;
         auth.user.level = 4;
@@ -135,6 +89,89 @@ describe('Auth behavior', () => {
   
         expect(can.flag).toBeFalsy();
         expect(can.to).toEqual('/tdd-intro');
+      },
+    );
+
+    test.each(availableRoutes.filter(route => route !== '/tdd'))(
+      'should keep the user level 5 in the tdd introduction section, trying to access: %s',
+      (currentRoute) => {
+        auth.isAuthenticated = true;
+        auth.user.level = 5;
+        const can = auth.canEnter({}, { pathname: currentRoute });
+
+        expect(can.flag).toBeFalsy();
+        expect(can.to).toEqual('/tdd');
+      },
+    );
+
+    test.each(availableRoutes.filter(route => route !== '/tdd-end'))(
+      'should keep the user level 6 in the tdd introduction section, trying to access: %s',
+      (currentRoute) => {
+        auth.isAuthenticated = true;
+        auth.user.level = 6;
+        const can = auth.canEnter({}, { pathname: currentRoute });
+
+        expect(can.flag).toBeFalsy();
+        expect(can.to).toEqual('/tdd-end');
+      },
+    );
+
+    test.each(availableRoutes.filter(route => route !== '/rocket-01'))(
+      'should keep the user level 7 in the tdd introduction section, trying to access: %s',
+      (currentRoute) => {
+        auth.isAuthenticated = true;
+        auth.user.level = 7;
+        const can = auth.canEnter({}, { pathname: currentRoute });
+
+        expect(can.flag).toBeFalsy();
+        expect(can.to).toEqual('/rocket-01');
+      },
+    );
+
+    test.each(availableRoutes.filter(route => route !== '/rocket-02'))(
+      'should keep the user level 8 in the tdd introduction section, trying to access: %s',
+      (currentRoute) => {
+        auth.isAuthenticated = true;
+        auth.user.level = 8;
+        const can = auth.canEnter({}, { pathname: currentRoute });
+
+        expect(can.flag).toBeFalsy();
+        expect(can.to).toEqual('/rocket-02');
+      },
+    );
+
+    test.each(availableRoutes.filter(route => route !== '/rocket-03'))(
+      'should keep the user level 9 in the tdd introduction section, trying to access: %s',
+      (currentRoute) => {
+        auth.isAuthenticated = true;
+        auth.user.level = 9;
+        const can = auth.canEnter({}, { pathname: currentRoute });
+
+        expect(can.flag).toBeFalsy();
+        expect(can.to).toEqual('/rocket-03');
+      },
+    );
+
+    test.each(availableRoutes.filter(route => route !== '/completed'))(
+      'should keep the user level 10 in the tdd introduction section, trying to access: %s',
+      (currentRoute) => {
+        auth.isAuthenticated = true;
+        auth.user.level = 10;
+        const can = auth.canEnter({}, { pathname: currentRoute });
+
+        expect(can.flag).toBeFalsy();
+        expect(can.to).toEqual('/completed');
+      },
+    );
+    test.each(availableRoutes.filter(route => route !== '/survey'))(
+      'should keep the user level 11 in the tdd introduction section, trying to access: %s',
+      (currentRoute) => {
+        auth.isAuthenticated = true;
+        auth.user.level = 11;
+        const can = auth.canEnter({}, { pathname: currentRoute });
+
+        expect(can.flag).toBeFalsy();
+        expect(can.to).toEqual('/survey');
       },
     );
 
