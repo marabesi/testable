@@ -179,7 +179,7 @@ const Wrapped = (
               style={{ width: '46%'}}
               className="m-5"
               code={this.state.code}
-              onValidCode={{ 0: this.onValidCode, 1: this.onValidCode }}
+              onValidCode={{ [SOURCE_CODE]: this.onValidCode, [TEST_CODE]: this.onValidCode }}
             />
           </div>
 
