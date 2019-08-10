@@ -7,6 +7,7 @@ import Reason from '../../engine/Reason';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import Guide from '../../components/editor-manager/Guide';
 import Intro from '../intro/Intro';
+import {TEST_CODE} from '../../constants/editor';
 
 /**
  * @param {any} OriginalComponent 
@@ -58,10 +59,13 @@ const Wrapped = (
     }
 
     onValidCode = (code, i) => {
-      if (this.state.currentHint !== enableEditorOnStep || i === disableEditor) {
+      if (i !== TEST_CODE) {
         return;
       }
 
+      if (this.state.currentHint !== enableEditorOnStep || i === disableEditor) {
+        return;
+      }
       let current = Object.assign({}, this.state.code);
 
       current[i] = code;

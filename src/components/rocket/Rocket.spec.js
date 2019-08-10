@@ -4,6 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { default as Rocket} from './Rocket';
 import Emitter, { TRACKING, LEVEL_UP } from '../../emitter/Emitter';
+import {TEST_CODE} from '../../constants/editor';
 
 const fakeComponent = () => <h1>fake component</h1>;
 
@@ -81,7 +82,7 @@ describe('Rocket component', () => {
 
   test.each([
     [1, undefined]
-  ])('execute code only on the provided step', (currentStep, expected) => {
+  ])('execute onValidCode function on the provided step only', (currentStep, expected) => {
     const HoC = Rocket(
       fakeComponent,
       null,
@@ -124,7 +125,7 @@ describe('Rocket component', () => {
       expect(wrapper.instance().onValidCode('code', sourceCodeEditor)).toBe(undefined);
     });
 
-    test('should level up', () => {
+    test('should level up on valid code', () => {
       const callback = jest.fn();
       Emitter.addListener(LEVEL_UP, callback);
 
@@ -145,10 +146,34 @@ describe('Rocket component', () => {
         currentHint: 1
       });
 
-      wrapper.instance().onValidCode('my code', 0);
+      wrapper.instance().onValidCode('my code', TEST_CODE);
 
       expect(callback).toBeCalled();
     });
+  });
+
+  test('should execute onValidCode function when test code is changed', () => {
+    const HoC = Rocket(
+      fakeComponent,
+      null,
+      null,
+      null,
+      null,
+      1,
+      1,
+      'my-section-test-code-only'
+    );
+
+    const wrapper = shallow(<HoC />);
+
+    wrapper.setState({
+      currentHint: 1
+    });
+
+    const code = wrapper.instance().onValidCode('my code', TEST_CODE);
+
+    expect(code).toBe(undefined);
+    expect(wrapper.instance().state.currentHint).toBe(2);
   });
 
   describe('guide helper', () => {
