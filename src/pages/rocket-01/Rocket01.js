@@ -1,6 +1,7 @@
 import tddContent from './rocket01-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import { SumBehavior } from '../../engine/strategies/behavior/SumBehavior';
+import { SOURCE_CODE } from '../../constants/editor';
 
 const code = `function multiplicarMotor(a, b) {
   return a * b
@@ -19,7 +20,7 @@ export default Rocket(
   3,
   'rocket-01',
   SumBehavior,
-  null,
+  SOURCE_CODE,
   null,
   null
 );

@@ -1,6 +1,7 @@
 import tddContent from './rocket03-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import { SumBehavior } from '../../engine/strategies/behavior/SumBehavior';
+import {SOURCE_CODE} from '../../constants/editor';
 
 const code = `function subtrairTravaDoTremDePouso(a, b) {
   return a - b
@@ -19,7 +20,7 @@ export default Rocket(
   3,
   '/completed',
   SumBehavior,
-  null,
+  SOURCE_CODE,
   null,
   null
 );
