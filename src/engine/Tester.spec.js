@@ -15,4 +15,21 @@ describe('integration with test cases', () => {
 
     expect(result).toBeTruthy();
   });
+
+  test('code invoking undefined function should be false', () => {
+    const code = `
+    function sum(a, b) {
+        return a + b
+    }
+    `;
+
+    const strategy = {
+      name: 'func_do_not_exists',
+      params: '1,233,44'
+    };
+
+    const result = executeTestCase(code, strategy, testCase);
+
+    expect(result).toBeFalsy();
+  });
 });

@@ -10,14 +10,20 @@
  */
 export const executeTestCase = function (code, strategyResult, testCases) {
   const result = [];
-
+console.log(code, strategyResult, testCases)
   for (const testCase of testCases) {
-    const preExecution = `${code} ${strategyResult.name}(${testCase.params})`;
-    /* eslint-disable-next-line */
-    const execution = eval(preExecution);
-
-    if (execution === testCase.expected) {
-      result.push(true);
+    try {
+      const preExecution = `${code} ${strategyResult.name}(${testCase.params})`;
+      console.log(preExecution)
+      /* eslint-disable-next-line */
+      const execution = eval(preExecution);
+console.log(execution)
+      if (execution === testCase.expected) {
+        result.push(true);
+      }
+    } catch (e) {
+      console.error(e);
+      return false;
     }
   }
 
