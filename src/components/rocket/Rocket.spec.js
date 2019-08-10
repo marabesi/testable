@@ -4,7 +4,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { default as Rocket} from './Rocket';
 import Emitter, { TRACKING, LEVEL_UP } from '../../emitter/Emitter';
-import {TEST_CODE} from '../../constants/editor';
+import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 
 const fakeComponent = () => <h1>fake component</h1>;
 
@@ -42,8 +42,8 @@ describe('Rocket component', () => {
 
     expect(currentState).toEqual({
       code: {
-        0: 'my code',
-        1: 'my test'
+        [SOURCE_CODE]: 'my code',
+        [TEST_CODE]:'my test'
       },
       done: false,
       showNext: false,
@@ -238,7 +238,7 @@ describe('Rocket component', () => {
       expect(wrapper.find('Intro').prop('enabled')).toBeTruthy();
     });
 
-    test('should level when tooltip tour has completed', () => {
+    test('should level up when tooltip tour has completed', () => {
       const callback = jest.fn();
       Emitter.addListener(LEVEL_UP, callback);
 
@@ -246,6 +246,20 @@ describe('Rocket component', () => {
       wrapper.instance().handleProgress();
       wrapper.instance().onFinishTooltip();
       expect(callback).toBeCalled();
+    });
+
+    test('should not level up if the current hint is different from the tooltip', () => {
+      const callback = jest.fn();
+      Emitter.addListener(LEVEL_UP, callback);
+
+      const wrapper = shallow(<IntroWrapper />);
+
+      wrapper.instance().setState({
+        currentHint: 0
+      });
+
+      wrapper.instance().onFinishTooltip();
+      expect(callback).toBeCalledTimes(0);
     });
   });
 });
