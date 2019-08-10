@@ -1,10 +1,18 @@
 import firebase from 'firebase/app';
 import { auth } from './Auth';
 
-firebase.auth = () => {
-  return {
-    signOut: jest.fn()
-  };
+const mockedUserAuthData = {
+  uid: 'asd909j-ajsdasdajs-dajs8dajs',
+  displayName: 'mocked user',
+  email: 'mocked@email.com',
+  photoURL: 'http://my.photo.com'
+};
+
+const mockedUserProgress = {
+  level: 3,
+  tutorial: true,
+  introduction: true,
+  progress: 9
 };
 
 const availableRoutes = [
@@ -23,11 +31,80 @@ const availableRoutes = [
 
 describe('Auth behavior', () => {
 
+  beforeEach(() => {
+    auth.isAuthenticated = false;
+    auth.firebaseRef = {
+      off: null
+    };
+  });
+
+  afterEach(() => {
+    auth.isAuthenticated = false;
+    auth.firebaseRef = {
+      off: null
+    };
+  });
+
   test('should logout', () => {
+    firebase.auth = () => {
+      return {
+        signOut: jest.fn()
+      };
+    };
+
     const callback = jest.fn();
     auth.signout(callback);
 
     expect(callback).toBeCalled();
+  });
+
+  test('unsubscribe to prevent event leak', () => {
+    const callback = jest.fn();
+    auth.firebaseRef = {
+      off: callback
+    };
+
+    auth.unsubscribe();
+
+    expect(callback).toBeCalled();
+  });
+
+  test('prevent to unsubscribe from null firebase reference by default', () => {
+    auth.unsubscribe();
+    expect(auth.firebaseRef.off).toBe(null);
+  });
+
+  test('update user data personal info once logged in', done => {
+    auth.userRef = user => {
+      return {
+        once: (type, data) => {
+          data({
+            val: () => mockedUserProgress
+          });
+        }
+      };
+    };
+
+    firebase.auth = () => {
+      return {
+        onAuthStateChanged: data => {
+          data(mockedUserAuthData);
+        }
+      };
+    };
+
+    auth.authenticate().then(data => {
+      expect(data.uid).toEqual(mockedUserAuthData.uid);
+      expect(data.name).toEqual(mockedUserAuthData.displayName);
+      expect(data.email).toEqual(mockedUserAuthData.email);
+      expect(data.photo).toEqual(mockedUserAuthData.photoURL);
+
+      expect(data.level).toEqual(mockedUserProgress.level);
+      expect(data.progress).toEqual(mockedUserProgress.progress);
+      expect(data.tutorial).toEqual(mockedUserProgress.tutorial);
+      expect(data.introduction).toEqual(mockedUserProgress.introduction);
+      done();
+    });
   });
 
   describe('route access and redirection', () => {

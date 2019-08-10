@@ -25,8 +25,9 @@ const auth = {
     introduction: true,
     progress: 10,
   },
-  firebaseRef: {},
-
+  firebaseRef: {
+    off: null
+  },
   authenticate() {
     return new Promise((resolve, reject) => {
       firebase.auth().onAuthStateChanged(user => {
@@ -36,6 +37,7 @@ const auth = {
           this.user.name = user.displayName || '';
           this.user.email = user.email || '';
           this.user.photo = user.photoURL || '';
+          // @ts-ignore
           this.firebaseRef = this.userRef(user);
 
           const vm = this;
@@ -65,7 +67,8 @@ const auth = {
    * Unsubscribe from the firebase database to prevent react warnings.
    */
   unsubscribe() {
-    if (this.firebaseRef) {
+    if (this.firebaseRef && typeof this.firebaseRef.off === 'function') {
+      // @ts-ignore
       this.firebaseRef.off();
     }
   },
