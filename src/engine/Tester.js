@@ -10,14 +10,11 @@
  */
 export const executeTestCase = function (code, strategyResult, testCases) {
   const result = [];
-console.log(code, strategyResult, testCases)
   for (const testCase of testCases) {
     try {
       const preExecution = `${code} ${strategyResult.name}(${testCase.params})`;
-      console.log(preExecution)
       /* eslint-disable-next-line */
       const execution = eval(preExecution);
-console.log(execution)
       if (execution === testCase.expected) {
         result.push(true);
       }

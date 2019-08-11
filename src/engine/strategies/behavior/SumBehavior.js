@@ -21,6 +21,7 @@ export const SumBehavior = function (ast) {
   return;
 };
 
-export const testCase = function () {
-
-};
+export const testCase = [
+  { params: '1,2', expected: true },
+  { params: '1,1', expected: true },
+];

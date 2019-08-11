@@ -8,6 +8,7 @@ import EditorManager from '../../components/editor-manager/EditorManager';
 import Guide from '../../components/editor-manager/Guide';
 import Intro from '../intro/Intro';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
+import {executeTestCase} from '../../engine/Tester';
 
 /**
  * @param {any} OriginalComponent 
@@ -24,6 +25,7 @@ const Wrapped = (
   OriginalComponent,
   code,
   test,
+  strategyTests,
   guideContent,
   whenDoneRedirectTo,
   waitCodeToBeExecutedOnStep,
@@ -70,7 +72,10 @@ const Wrapped = (
         ...this.state.code, code: current
       });
 
-      if (Reason(code, reasonStrategy)) {
+      const strategyResult = Reason(code, reasonStrategy);
+      const codeAndTestCase = `${this.state.code[SOURCE_CODE]} ${this.state.code[TEST_CODE]}`;
+
+      if (strategyResult && executeTestCase(codeAndTestCase, strategyResult, strategyTests)) {
         Emitter.emit(LEVEL_UP);
 
         track({

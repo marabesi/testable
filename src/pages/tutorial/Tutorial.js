@@ -15,6 +15,7 @@ import { Sum, testCase as sumTestCase } from '../../engine/strategies/Sum';
 import { onHover } from '../../actions/guideAction';
 import { track } from '../../emitter/Tracking';
 import { executeTestCase } from '../../engine/Tester';
+import {SOURCE_CODE} from '../../constants/editor';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -165,8 +166,8 @@ export class Tutorial extends Component {
         <EditorManager
           className="w-1/2 m-auto"
           onEnableTooltip={this.onEnableTooltip}
-          onValidCode={{ 0: this.onValidCode} }
-          code={{ 0: this.state.code} }
+          onValidCode={{ [SOURCE_CODE]: this.onValidCode} }
+          code={{ [SOURCE_CODE]: this.state.code} }
         />
 
         <Guide

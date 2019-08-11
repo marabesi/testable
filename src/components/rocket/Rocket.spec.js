@@ -133,6 +133,7 @@ describe('Rocket component', () => {
         fakeComponent,
         null,
         null,
+        [],
         null,
         null,
         null,
@@ -157,6 +158,7 @@ describe('Rocket component', () => {
       fakeComponent,
       null,
       null,
+      [],
       null,
       null,
       1,
@@ -178,7 +180,15 @@ describe('Rocket component', () => {
 
   describe('guide helper', () => {
     test('should show up next button on finished typing', () => {
-      const HoC = Rocket(fakeComponent, 'my code', 'my test', null, null, 1);
+      const HoC = Rocket(
+        fakeComponent,
+        'my code',
+        'my test',
+        [],
+        null,
+        null,
+        1
+      );
       const wrapper = shallow(<HoC />);
 
       expect(wrapper.instance().state.showNext).toBe(false);
@@ -191,7 +201,15 @@ describe('Rocket component', () => {
     });
 
     test('should not show up on specified step', () => {
-      const HoC = Rocket(fakeComponent, 'my code', 'my test', null, null, 0);
+      const HoC = Rocket(
+        fakeComponent,
+        'my code',
+        'my test',
+        [],
+        null,
+        null,
+        0
+      );
       const wrapper = shallow(<HoC />);
 
       expect(wrapper.instance().state.showNext).toBe(false);
@@ -212,6 +230,7 @@ describe('Rocket component', () => {
         fakeComponent,
         'my code',
         'my test',
+        [],
         [ {}, {} ],
         null,
         0,

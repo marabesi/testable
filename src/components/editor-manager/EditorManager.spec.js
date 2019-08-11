@@ -1,6 +1,7 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
 import EditorManager from './EditorManager';
+import {SOURCE_CODE} from '../../constants/editor';
 describe('EditorManager component', () => {
   /* eslint-disable-next-line */
   global.document.body.createTextRange = function () {
@@ -23,13 +24,13 @@ describe('EditorManager component', () => {
   /* eslint-disable-next-line */
   global.Lemming = function(code) {
     this.onResult = function(cb) {
-      cb();
+      cb(code);
     };
     this.onError = function(cb) {
-      cb();
+      cb(code);
     };
     this.onCompleted = function(cb) {
-      cb();
+      cb(code);
     };
     this.run = function() {
       return;
@@ -39,7 +40,7 @@ describe('EditorManager component', () => {
   test('code output and code error should be empty', () => {
     const wrapper = mount(
       <EditorManager
-        code={{0: ''}}
+        code={{[SOURCE_CODE]: ''}}
       />
     );
 

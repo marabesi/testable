@@ -1,6 +1,6 @@
 import tddContent from './guide-content';
-import { SumBehavior } from '../../engine/strategies/behavior/SumBehavior';
 import Rocket from '../../components/rocket/Rocket';
+import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 
 const code = `function somar(a, b) {
   return a + b
@@ -13,12 +13,13 @@ export default Rocket(
   null,
   code,
   test,
+  testCase,
   tddContent,
   '/tdd-end',
   1,
   1,
   'tdd',
-  SumBehavior,
+  testCaseBehavior,
   0,
   null,
   null

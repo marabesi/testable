@@ -1,7 +1,7 @@
 import tddContent from './guide-content';
 import introContent from './tdd-intro-content';
 import Rocket from '../../components/rocket/Rocket';
-import {SumBehavior} from '../../engine/strategies/behavior/SumBehavior';
+import {testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 
 const code = `function subtrair(a, b) {
   return a - b
@@ -17,12 +17,13 @@ export default Rocket(
   null,
   code,
   test,
+  testCase,
   tddContent,
   '/tdd',
   999,
   999,
   'tdd-intro',
-  SumBehavior,
+  testCaseBehavior,
   null,
   introContent,
   1
