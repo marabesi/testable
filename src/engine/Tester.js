@@ -19,6 +19,7 @@ export const executeTestCase = function (code, strategyResult, testCases) {
         result.push(true);
       }
     } catch (e) {
+      /* eslint-disable-next-line */
       console.error(e);
       return false;
     }
