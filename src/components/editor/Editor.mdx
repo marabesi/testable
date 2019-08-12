@@ -1,0 +1,30 @@
+---
+name: Editor
+---
+
+import { Playground, Props } from 'docz'
+import Editor from './Editor'
+
+# Editor
+
+<Props of={Editor} />
+
+## Basic usage
+
+Raw Editor component
+
+<Playground>
+  <Editor />
+</Playground>
+
+Default text inside the editor
+
+<Playground>
+  <Editor value={'my text'} />
+</Playground>
+
+Fire callback when the editor text has changed
+
+<Playground>
+  <Editor codeChanged={ code => alert(code) } />
+</Playground>

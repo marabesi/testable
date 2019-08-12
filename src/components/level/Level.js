@@ -27,6 +27,13 @@ export default class Level extends Component {
 }
 
 Level.propTypes = {
+  /**
+   * A number representing the level: 0, 1, 20, 2400, 9999. There is no restrictions.
+   */
   level: PropTypes.number,
+  /**
+   * A percentage representing the progress from 0 to 100. The progress is used as percentage, the minimum is 0 (zero)
+   * and the maximum is 100. Any number greater than 100, is going to be displayed as if it were 100.
+   */
   progress: PropTypes.number
 };

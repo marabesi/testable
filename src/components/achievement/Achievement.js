@@ -58,7 +58,7 @@ export default class Achievement extends React.Component {
       <React.Fragment>
         <Title>
           Conquistas
-          <Close className="fill-current w-4 text-white cursor-pointer" onClick={this.props.onClose} />
+          <Close className="fill-current w-4 h-4 text-white cursor-pointer" onClick={this.props.onClose} />
         </Title>
 
         { achievements.length === 0 && <span className="p-5 text-white">A lista de conquista está vazia</span> }

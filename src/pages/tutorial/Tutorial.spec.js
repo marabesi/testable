@@ -6,6 +6,10 @@ import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 const ENABLE_EDITOR_ON_HINT = 3;
 
 describe('Tutorial page', () => {
+  beforeEach(() => {
+    Emitter.removeAllListeners(LEVEL_UP);
+  });
+
   afterEach(() => {
     Emitter.removeAllListeners(LEVEL_UP);
   });
@@ -43,7 +47,7 @@ describe('Tutorial page', () => {
     expect(callback).toBeCalled();
   });
 
-  test('No action on invalid code provided', () => {
+  test('should not level up on invalid code provided', () => {
     const callback = jest.fn();
     Emitter.addListener(LEVEL_UP, callback);
 
@@ -62,5 +66,8 @@ describe('Tutorial page', () => {
 
     expect(wrapper.instance().state.introEnabled).toBe(true);
   });
-  
+
+  test('should toggle attention class once guide has finished to type', () => {
+
+  });
 });

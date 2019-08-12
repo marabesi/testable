@@ -41,3 +41,5 @@ cypress/videos
 .coveralls.yml
 
 react-app-env.d.ts
+
+.docz

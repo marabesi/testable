@@ -58,4 +58,19 @@ describe('EditorManager component', () => {
     expect(wrapper.find('.editor-0').length).toEqual(1);
     expect(wrapper.find('.editor-1').length).toEqual(1);
   });
+
+  test('should toggle attention class (animation to focus the editor)', () => {
+    const wrapper = shallow(
+      <EditorManager
+        editor={1}
+        options={{
+          0: {
+            className: 'attention'
+          }
+        }}
+      />
+    );
+
+    expect(wrapper.find('.editor-0 .attention').length).toEqual(1);
+  });
 });

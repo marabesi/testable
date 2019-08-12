@@ -1,4 +1,4 @@
-import { testCaseBehavior } from './testCaseBehavior';
+import { testCaseBehavior } from './TestCaseBehavior';
 import Reason from '../../Reason';
 
 describe('testCaseBehavior', () => {

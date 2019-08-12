@@ -37,7 +37,7 @@
     "start": "npm run tailwind:css && react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "npm run lint && npm run tailwind:css && export NODE_ENV=production && export REACT_APP_BASE_NAME=/testable/build/ && react-scripts build",
+    "build": "npm run lint && npm run tailwind:css && export NODE_ENV=production && export REACT_APP_BASE_NAME=/testable/build/ && react-scripts build && npm run docz:build",
     "test": "react-scripts test --env=jsdom --verbose",
     "coverage": "react-scripts test --env=jsdom --no-cache --collectCoverage",
     "cypress": "cypress open",
@@ -46,7 +46,9 @@
     "tailwind:css": "tailwind build src/scss/tailwind.src.scss -c src/tailwind.js -o src/css/tailwind.css && npm run post:css",
     "lint": "eslint src/**/*.js",
     "coveralls": "react-scripts test --coverage --coverageReporters=text-lcov | coveralls",
-    "type:check": "tsc --noEmit"
+    "type:check": "tsc --noEmit",
+    "docz:dev": "docz dev",
+    "docz:build": "docz build"
   },
   "browserslist": [
     ">0.2%",
@@ -72,7 +74,10 @@
     "babel-eslint": "^9.0.0",
     "codacy-coverage": "^3.4.0",
     "coveralls": "^3.0.4",
+    "css-loader": "^3.2.0",
     "cypress": "^3.2.0",
+    "docz": "^1.2.0",
+    "docz-theme-default": "^1.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
     "eslint-plugin-import": "^2.18.0",
@@ -81,6 +86,7 @@
     "postcss-cli": "^6.1.2",
     "sinon": "^7.3.2",
     "source-map-explorer": "^1.8.0",
+    "style-loader": "^1.0.0",
     "typescript": "^3.5.3"
   },
   "jest": {
