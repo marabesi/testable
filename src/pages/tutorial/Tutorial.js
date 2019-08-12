@@ -23,6 +23,8 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+const WAIT_FOR_CODE_ON_STEP = 3;
+
 export class Tutorial extends Component {
 
   state = {
@@ -57,7 +59,7 @@ export class Tutorial extends Component {
 
   onFinishedTyping = () => {
     const total = this.state.currentHint;
-    if (total === 3) {
+    if (total === WAIT_FOR_CODE_ON_STEP) {
       this.setState({
         //@ts-ignore
         ...this.state.toggleEditorClass, toggleEditorClass: true
@@ -95,7 +97,7 @@ export class Tutorial extends Component {
   onValidCode = code => {
     // when it is not time to do the code yet and when
     // it is done with the sum and tries to add code again
-    if (this.state.currentHint !== 3) {
+    if (this.state.currentHint !== WAIT_FOR_CODE_ON_STEP) {
       return;
     }
 
