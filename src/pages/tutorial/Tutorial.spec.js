@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow } from 'enzyme';
 import { Tutorial } from './Tutorial';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import {SOURCE_CODE} from '../../constants/editor';
 
 const ENABLE_EDITOR_ON_HINT = 3;
 
@@ -61,13 +62,38 @@ describe('Tutorial page', () => {
   });
 
   test('Enable tooltip', () => {
-    const wrapper = shallow(<Tutorial />);
+    const wrapper = shallow(<Tutorial onHover={() => {}} />);
     wrapper.instance().onEnableTooltip();
 
     expect(wrapper.instance().state.introEnabled).toBe(true);
   });
 
-  test('should toggle attention class once guide has finished to type', () => {
+  describe('toggle attention class once guide has finished to type', () => {
+    test('should not toggle class by default', () => {
+      const wrapper = shallow(<Tutorial />);
 
+      expect(wrapper.instance().state.toggleEditorClass).toBe(false);
+      expect(wrapper.find('EditorManager').prop('options')).toEqual({});
+    });
+
+    test('should toggle attention class to editor once guide has finished typing', done => {
+      const wrapper = shallow(<Tutorial onHover={hovered => hovered} />);
+
+      wrapper.instance().onEnableTooltip();
+      wrapper.instance().onFinishTooltip();
+      wrapper.instance().handleProgress();
+      wrapper.instance().handleProgress();
+
+      wrapper.instance().onFinishedTyping();
+
+      expect(wrapper.instance().state.toggleEditorClass).toBe(true);
+      expect(wrapper.find('EditorManager').prop('options')).toEqual({ [SOURCE_CODE]: { className: 'attention' }});
+
+      setTimeout(() => {
+        expect(wrapper.instance().state.toggleEditorClass).toBe(false);
+        expect(wrapper.find('EditorManager').prop('options')).toEqual({});
+        done();
+      }, 3100);
+    });
   });
 });

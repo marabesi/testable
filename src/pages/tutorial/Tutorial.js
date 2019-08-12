@@ -30,7 +30,8 @@ export class Tutorial extends Component {
     intro: introContent,
     showNext: false,
     currentHint: 0,
-    code: '// seu código javascript'
+    code: '// seu código javascript',
+    toggleEditorClass: false
   };
 
   componentDidMount() {
@@ -57,6 +58,18 @@ export class Tutorial extends Component {
   onFinishedTyping = () => {
     const total = this.state.currentHint;
     if (total === 3) {
+      this.setState({
+        //@ts-ignore
+        ...this.state.toggleEditorClass, toggleEditorClass: true
+      });
+
+      setTimeout(() => {
+        this.setState({
+          //@ts-ignore
+          ...this.state.toggleEditorClass, toggleEditorClass: false
+        });
+      }, 3000);
+
       return;
     }
 
@@ -71,7 +84,7 @@ export class Tutorial extends Component {
       //@ts-ignore
       ...this.state.introEnabled, introEnabled: true
     });
-    setTimeout(() => this.props.onHover(true), 100);
+    this.props.onHover(true);
 
     track({
       section: 'tutorial',
@@ -168,6 +181,7 @@ export class Tutorial extends Component {
           onEnableTooltip={this.onEnableTooltip}
           onValidCode={{ [SOURCE_CODE]: this.onValidCode} }
           code={{ [SOURCE_CODE]: this.state.code} }
+          options={ this.state.toggleEditorClass ? {[SOURCE_CODE]: { className: 'attention' }}: {} }
         />
 
         <Guide
