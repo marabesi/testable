@@ -48,7 +48,8 @@
     "coveralls": "react-scripts test --coverage --coverageReporters=text-lcov | coveralls",
     "type:check": "tsc --noEmit",
     "docz:dev": "docz dev",
-    "docz:build": "docz build"
+    "docz:build": "docz build",
+    "stryker:run": "stryker run"
   },
   "browserslist": [
     ">0.2%",
@@ -58,6 +59,10 @@
   ],
   "devDependencies": {
     "@fullhuman/postcss-purgecss": "^1.2.0",
+    "@stryker-mutator/core": "^2.0.2",
+    "@stryker-mutator/html-reporter": "^2.0.2",
+    "@stryker-mutator/javascript-mutator": "^2.0.2",
+    "@stryker-mutator/jest-runner": "^2.0.2",
     "@types/codemirror": "^0.0.76",
     "@types/enzyme": "^3.10.2",
     "@types/enzyme-adapter-react-16": "^1.0.5",
@@ -86,6 +91,7 @@
     "postcss-cli": "^6.1.2",
     "sinon": "^7.3.2",
     "source-map-explorer": "^1.8.0",
+    "stryker-cli": "^1.0.0",
     "style-loader": "^1.0.0",
     "typescript": "^3.5.3"
   },
