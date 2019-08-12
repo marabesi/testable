@@ -75,6 +75,8 @@ export default class EditorManager extends React.Component {
     const { className, editor, style } = this.props;
 
     for (let i = 0; i < editor; i++) {
+      const editorOptions = this.props.options[i];
+
       editors.push(
         <div key={i} className={ `flex flex-col ${className}` } style={style}>
           <Editor
@@ -82,7 +84,7 @@ export default class EditorManager extends React.Component {
             value={this.props.code ? this.props.code[i] : ''}
             // @ts-ignore
             codeChanged={(code) => this.codeChanged(code, i)}
-            className={ `source-code border-2 border-testable-blue-overlay editor-${i}` }
+            className={ `source-code border-2 border-testable-blue-overlay editor-${i} ${editorOptions ? editorOptions.className : ''}` }
           />
           <div className="m-auto mb-5 bg-blue-dark break-words">
             <p className="text-white h-6">{
@@ -109,10 +111,12 @@ EditorManager.propTypes = {
   className: PropTypes.string,
   code: PropTypes.object,
   editor: PropTypes.number,
-  style: PropTypes.object
+  style: PropTypes.object,
+  options: PropTypes.object
 };
 
 EditorManager.defaultProps = {
   editor: 1,
-  style: {}
+  style: {},
+  options: {}
 };

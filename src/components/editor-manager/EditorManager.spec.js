@@ -59,6 +59,21 @@ describe('EditorManager component', () => {
     expect(wrapper.find('.editor-1').length).toEqual(1);
   });
 
+  test('should accept options by editor', () => {
+    const wrapper = shallow(
+      <EditorManager
+        editor={1}
+        options={{
+          0: {
+            customProp: 'custom value'
+          }
+        }}
+      />
+    );
+
+    expect(wrapper.instance().props.options[0].customProp).toEqual('custom value');
+  });
+
   test('should toggle attention class (animation to focus the editor)', () => {
     const wrapper = shallow(
       <EditorManager
@@ -71,6 +86,6 @@ describe('EditorManager component', () => {
       />
     );
 
-    expect(wrapper.find('.editor-0 .attention').length).toEqual(1);
+    expect(wrapper.find('.editor-0.attention').length).toEqual(1);
   });
 });
