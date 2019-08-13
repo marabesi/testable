@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import ReactGA from 'react-ga';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
+import { Offline, Online } from 'react-detect-offline';
 import App from './components/app/App';
 import registerServiceWorker from './registerServiceWorker';
 import Store from './store/store';
@@ -26,9 +27,16 @@ if (env === 'production') {
 ReactDOM.render(
   <Provider store={store}>
     <Background>
-      <BrowserRouter basename={basename}>
-        <App />
-      </BrowserRouter>
+      <Online>
+        <BrowserRouter basename={basename}>
+          <App />
+        </BrowserRouter>
+      </Online>
+      <Offline>
+        <div className="flex justify-center items-center">
+          <h1 className="text-white">Oh snap! You are offline</h1>
+        </div>
+      </Offline>
     </Background>
   </Provider>,
   document.getElementById('root')
