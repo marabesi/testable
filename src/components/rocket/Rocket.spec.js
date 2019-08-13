@@ -15,6 +15,23 @@ describe('Rocket component', () => {
     Emitter.removeAllListeners(LEVEL_UP);
   });
 
+  test('should disable source code editor by default', () => {
+    const HoC = Rocket(
+      fakeComponent,
+      null,
+      null,
+      null,
+      null,
+      null,
+      null,
+      'my-section'
+    );
+    const wrapper = shallow(<HoC />);
+
+    expect(wrapper.instance().state.editorOptions[SOURCE_CODE].readOnly).toBe(true);
+    expect(wrapper.find('EditorManager').props().options).toEqual({ [SOURCE_CODE]: { readOnly: true }});
+  });
+
   test('track section when the component is loaded', () => {
     const callback = jest.fn();
     Emitter.addListener(TRACKING, callback);
@@ -40,21 +57,8 @@ describe('Rocket component', () => {
 
     const currentState = wrapper.instance().state;
 
-    expect(currentState).toEqual({
-      code: {
-        [SOURCE_CODE]: 'my code',
-        [TEST_CODE]:'my test'
-      },
-      done: false,
-      showNext: false,
-      currentHint: 0,
-      initialStep: 0,
-      introEnabled: false,
-      intro: {
-        steps: [],
-        initialStep: 0
-      }
-    });
+    expect(currentState.code[SOURCE_CODE]).toEqual('my code');
+    expect(currentState.code[TEST_CODE]).toEqual('my test');
   });
 
   test('should redirect to next page when done', () => {

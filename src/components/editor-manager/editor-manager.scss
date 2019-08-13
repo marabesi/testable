@@ -1,0 +1,30 @@
+.forbidden {
+  .CodeMirror-cursor { display: none !important };
+  animation: shake-horizontal 0.8s cubic-bezier(0.455, 0.030, 0.515, 0.955) both;
+}
+
+@keyframes shake-horizontal {
+  0%,
+  100% {
+    border-color: #00ffdf52;
+    transform: translateX(0);
+  }
+  10%,
+  30%,
+  50%,
+  70% {
+    border-color: #e3342fa1;
+    transform: translateX(-10px);
+  }
+  20%,
+  40%,
+  60% {
+    transform: translateX(10px);
+  }
+  80% {
+    transform: translateX(8px);
+  }
+  90% {
+    transform: translateX(-8px);
+  }
+}

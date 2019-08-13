@@ -2,6 +2,9 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import Editor from '../editor/Editor';
+import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
+
+import './editor-manager.scss';
 
 export default class EditorManager extends React.Component {
 
@@ -70,6 +73,20 @@ export default class EditorManager extends React.Component {
     });
   }
 
+  onEditorFocus = (isFocused, editorIndexChanged) => {
+    if (isFocused && (this.props.options[editorIndexChanged] && this.props.options[editorIndexChanged].readOnly)) {
+      this.props.options[editorIndexChanged].className = 'forbidden';
+      // @todo maybe popup this method to the parent?
+      this.forceUpdate();
+
+      setTimeout(() => {
+        this.props.options[editorIndexChanged].className = '';
+        this.forceUpdate();
+      }, 2000);
+    }
+    return isFocused;
+  }
+
   render() {
     const editors = [];
     const { className, editor, style } = this.props;
@@ -81,9 +98,11 @@ export default class EditorManager extends React.Component {
         <div key={i} className={ `flex flex-col ${className}` } style={style}>
           <Editor
             key={i}
+            options={editorOptions}
             value={this.props.code ? this.props.code[i] : ''}
             // @ts-ignore
-            codeChanged={(code) => this.codeChanged(code, i)}
+            codeChanged={code => this.codeChanged(code, i)}
+            onFocus={isFocused => this.onEditorFocus(isFocused, i)}
             className={ `source-code border-2 border-testable-blue-overlay editor-${i} ${editorOptions ? editorOptions.className : ''}` }
           />
           <div className="m-auto mb-5 bg-blue-dark break-words">
@@ -118,5 +137,8 @@ EditorManager.propTypes = {
 EditorManager.defaultProps = {
   editor: 1,
   style: {},
-  options: {}
+  options: {
+    [SOURCE_CODE]: {},
+    [TEST_CODE]: {}
+  }
 };

@@ -93,7 +93,6 @@ export default class App extends React.Component {
       'assets/buggy-zzz.svg',
       'assets/alien.png',
       'assets/logo.png',
-      'assets/stars.png',
       'assets/placeholder.svg',
       'assets/mp3/keyboard.mp3',
     ]);

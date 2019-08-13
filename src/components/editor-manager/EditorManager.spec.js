@@ -2,6 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import EditorManager from './EditorManager';
 import {SOURCE_CODE} from '../../constants/editor';
+import {default as Rocket} from '../rocket/Rocket';
 describe('EditorManager component', () => {
   /* eslint-disable-next-line */
   global.document.body.createTextRange = function () {
@@ -37,7 +38,7 @@ describe('EditorManager component', () => {
     };
   };
 
-  test('code output and code error should be empty', () => {
+  test('code output and code error should be empty by default', () => {
     const wrapper = mount(
       <EditorManager
         code={{[SOURCE_CODE]: ''}}
@@ -59,7 +60,7 @@ describe('EditorManager component', () => {
     expect(wrapper.find('.editor-1').length).toEqual(1);
   });
 
-  test('should accept options by editor', () => {
+  test('should pass in custom options to the editor', () => {
     const wrapper = shallow(
       <EditorManager
         editor={1}
@@ -72,6 +73,7 @@ describe('EditorManager component', () => {
     );
 
     expect(wrapper.instance().props.options[0].customProp).toEqual('custom value');
+    expect(wrapper.find('Editor').props().options.customProp).toEqual('custom value');
   });
 
   test('should toggle attention class (animation to focus the editor)', () => {
@@ -87,5 +89,39 @@ describe('EditorManager component', () => {
     );
 
     expect(wrapper.find('.editor-0.attention').length).toEqual(1);
+  });
+
+  test('try to focus an editor that does not have readOnly defined', () => {
+    const wrapper = shallow(
+      <EditorManager
+        editor={1}
+        options={{}}
+      />
+    );
+    const isFocused = wrapper.instance().onEditorFocus(true, SOURCE_CODE);
+    expect(isFocused).toBe(true);
+  });
+
+  test('should toggle forbidden animation class when focus a read only editor', done => {
+    const wrapper = shallow(
+      <EditorManager
+        editor={1}
+        options={{
+          [SOURCE_CODE]: {
+            readOnly: true
+          }
+        }}
+      />
+    );
+
+    wrapper.instance().onEditorFocus(true, SOURCE_CODE);
+    wrapper.update();
+
+    expect(wrapper.find('.editor-0.forbidden').length).toEqual(1);
+
+    setTimeout(() => {
+      expect(wrapper.find('.editor-0.forbidden').length).toEqual(0);
+      done();
+    }, 3000);
   });
 });

@@ -42,6 +42,11 @@ const Wrapped = (
         [SOURCE_CODE]: code,
         [TEST_CODE]: test
       },
+      editorOptions: {
+        [SOURCE_CODE]: {
+          readOnly: true
+        }
+      },
       done: false,
       showNext: false,
       currentHint: 0,
@@ -185,6 +190,7 @@ const Wrapped = (
               className="m-5"
               code={this.state.code}
               onValidCode={{ [SOURCE_CODE]: this.onValidCode, [TEST_CODE]: this.onValidCode }}
+              options={ this.state.editorOptions }
             />
           </div>
 

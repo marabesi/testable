@@ -1,3 +1,4 @@
+// @ts-nocheck
 import React, { Component } from 'react';
 import CodeMirror from 'react-codemirror';
 import PropTypes from 'prop-types';
@@ -5,9 +6,7 @@ import PropTypes from 'prop-types';
 import './editor.scss';
 
 require('codemirror/mode/javascript/javascript');
-// @ts-ignore
 require('codemirror/lib/codemirror.css');
-// @ts-ignore
 require('codemirror/theme/erlang-dark.css');
 
 export default class Editor extends Component {
@@ -27,6 +26,7 @@ export default class Editor extends Component {
           options={codeMirrorOptions}
           className="editor"
           onChange={this.props.codeChanged}
+          onFocusChange={this.props.onFocus}
         />
       </div>
     );
@@ -47,4 +47,8 @@ Editor.propTypes = {
    * editor is about to change the code. This event is fired before the code takes place inside the editor.
    */
   codeChanged: PropTypes.func,
+  /**
+   * Callback executed when the editor is focused
+   */
+  onFocus: PropTypes.func
 };
