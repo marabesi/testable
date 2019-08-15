@@ -7,7 +7,7 @@ import PlaceholderImage from '../../components/profile/PlaceholderImage';
 const userData = { name: 'fake user', email: 'fake@john.com' };
 
 describe('profile component', () => {
-  test('should place image from placeimg when user image does not exists', () => {
+  test('should place image placeholder when user image does not exists', () => {
     const wrapper = mount(<Profile user={{}} />);
 
     expect(wrapper.find(PlaceholderImage).length).toEqual(1);
@@ -43,13 +43,57 @@ describe('profile component', () => {
     const container = wrapper.find('.menu-wrapper');
 
     container.at(0).simulate('click');
-    wrapper.find('ul li').simulate('click');
+    wrapper.find('ul li').at(0).simulate('click');
 
     expect(wrapper.state().successfullLoggedOut).toBeTruthy();
     expect(wrapper.state().menu).toBeFalsy();
   });
 
-  test('should close menu on blur', () => {
+  describe('options modal behavior', () => {
+    test('modal should be closed by default', () => {
+      const wrapper = shallow(
+        <Profile
+          className="menu-wrapper"
+          user={userData}
+        />
+      );
+
+      expect(wrapper.find('Modal').length).toBe(0);
+    });
+
+    test('should not open modal clicking on the user photo (user menu)', () => {
+      const wrapper = shallow(
+        <Profile
+          className="menu-wrapper"
+          user={userData}
+        />
+      );
+
+      const container = wrapper.find('.menu-wrapper');
+
+      container.at(0).simulate('click');
+      wrapper.update();
+      expect(wrapper.find('Modal').length).toBe(0);
+    });
+
+    test('should open up modal when click on options', () => {
+      const wrapper = shallow(
+        <Profile
+          className="menu-wrapper"
+          user={userData}
+        />
+      );
+
+      const container = wrapper.find('.menu-wrapper');
+
+      container.at(0).simulate('click');
+      wrapper.find('ul li').at(1).simulate('click');
+      wrapper.update();
+      expect(wrapper.find('Modal').length).toBe(1);
+    });
+  });
+
+  test('should close user menu on blur', () => {
     const wrapper = shallow(
       <Profile
         className="menu-wrapper"
@@ -70,7 +114,7 @@ describe('profile component', () => {
     expect(wrapper.state().menu).toBeFalsy();
   });
 
-  test('should close menu invoking onBlur method', () => {
+  test('should close user menu invoking onBlur method', () => {
     const wrapper = shallow(
       <Profile
         className="menu-wrapper"

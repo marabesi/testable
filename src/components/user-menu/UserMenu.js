@@ -33,8 +33,9 @@ export default class UserMenu extends Component {
         />
         <Profile user={auth.user} />
         <Modal
+          title={'Ranking'}
           isOpen={this.state.ranking}
-          onRequestClose={this.onRanking}
+          onClose={this.onRanking}
         >
           <Ranking onClick={this.onRanking} />
         </Modal>

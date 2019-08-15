@@ -4,12 +4,6 @@ import Ranking from './Ranking';
 
 describe('Ranking component', () => {
 
-  test('build ranking component title', () => {
-    const wrapper = mount(<Ranking />);
-
-    expect(wrapper.find('h1').text()).toEqual('Ranking');
-  });
-
   test('should render ranking list', () => {
     const wrapper = mount(<Ranking />);
 

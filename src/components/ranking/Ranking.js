@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import _ from 'lodash';
-import Title from '../title/Title';
-import Close from '../icons/Close';
 import { auth } from '../../pages/login/Auth';
 
 export default class Ranking extends Component {
@@ -34,10 +32,6 @@ export default class Ranking extends Component {
 
     return (
       <React.Fragment>
-        <Title>
-          Ranking
-          <Close className="fill-current w-4 text-white cursor-pointer" { ...this.props } />
-        </Title>
         <ul className="text-white">
           { users }
         </ul>

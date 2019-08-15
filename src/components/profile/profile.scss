@@ -1,3 +1,5 @@
+$menu-height: 45px;
+
 .profile {
   display: flex;
   align-items: center;
@@ -22,7 +24,7 @@
     align-items: center;
     justify-content: flex-start;
     width: 75%;
-    height: 45px;
+    height: $menu-height;
 
     .title {
       margin-left: 10px;
@@ -32,5 +34,9 @@
       margin-left: 10px;
       font-size: 3.9em;
     }
+  }
+
+  .options {
+    margin-top: calc(#{$menu-height} + 15px);
   }
 }
