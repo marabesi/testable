@@ -11,12 +11,38 @@ require('codemirror/theme/erlang-dark.css');
 
 export default class Editor extends Component {
 
+  state = {
+    editorIsFocused: false
+  }
+
+  onFocus = (isFocused) => {
+    this.setState({
+      editorIsFocused: isFocused
+    });
+    this.props.onFocus(isFocused);
+  }
+
+  componentDidMount(){
+    document.addEventListener('keydown', this.handleOnKeyPressed, false);
+  }
+  componentWillUnmount(){
+    document.removeEventListener('keydown', this.handleOnKeyPressed, false);
+    this.setState({
+      editorIsFocused: false
+    });
+  }
+
+  handleOnKeyPressed = () => {
+    this.props.onFocus(this.state.editorIsFocused);
+  }
+
   render() {
     const { className, options } = this.props;
     const codeMirrorOptions = {
       mode: 'javascript',
       lineNumbers: true,
       theme: 'erlang-dark',
+      showCursorWhenSelecting: false,
       ...options
     };
     return (
@@ -26,7 +52,7 @@ export default class Editor extends Component {
           options={codeMirrorOptions}
           className="editor"
           onChange={this.props.codeChanged}
-          onFocusChange={this.props.onFocus}
+          onFocusChange={this.onFocus}
         />
       </div>
     );
@@ -50,5 +76,14 @@ Editor.propTypes = {
   /**
    * Callback executed when the editor is focused
    */
-  onFocus: PropTypes.func
+  onFocus: PropTypes.func,
+  /**
+   * javascript object with codemirror options
+   * @see https://codemirror.net/3/doc/manual.html
+   */
+  options: PropTypes.object
+};
+
+Editor.defaultProps = {
+  options: {}
 };
