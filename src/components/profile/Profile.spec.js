@@ -45,7 +45,7 @@ describe('profile component', () => {
     container.at(0).simulate('click');
     wrapper.find('ul li').at(0).simulate('click');
 
-    expect(wrapper.state().successfullLoggedOut).toBeTruthy();
+    expect(wrapper.state().successfulLoggedOut).toBeTruthy();
     expect(wrapper.state().menu).toBeFalsy();
   });
 

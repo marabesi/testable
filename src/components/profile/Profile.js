@@ -12,7 +12,7 @@ export default class Profile extends React.Component {
 
   state = {
     menu: false,
-    successfullLoggedOut: false,
+    successfulLoggedOut: false,
     photo: '',
     modal: false
   }
@@ -20,7 +20,7 @@ export default class Profile extends React.Component {
   onLogout = () => {
     auth.signout(() => {
       this.setState({
-        successfullLoggedOut: true,
+        successfulLoggedOut: true,
         menu: false
       });
 
@@ -79,7 +79,7 @@ export default class Profile extends React.Component {
   }
 
   render() {
-    if (this.state.successfullLoggedOut) {
+    if (this.state.successfulLoggedOut) {
       return (
         <Redirect to={{
           pathname: '/'
