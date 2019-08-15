@@ -68,12 +68,11 @@ describe('Tutorial page', () => {
     expect(wrapper.instance().state.introEnabled).toBe(true);
   });
 
-  describe('toggle attention class once guide has finished to type', () => {
-    test('should not toggle class by default', () => {
+  describe('animation behavior once guide has finished typing', () => {
+    test('editor should be read only by default', () => {
       const wrapper = shallow(<Tutorial />);
-
-      expect(wrapper.instance().state.toggleEditorClass).toBe(false);
-      expect(wrapper.find('EditorManager').prop('options')).toEqual({});
+      wrapper.update();
+      expect(wrapper.find('EditorManager').prop('options')[SOURCE_CODE].readOnly).toBe(true);
     });
 
     test('should toggle attention class to editor once guide has finished typing', done => {
@@ -86,12 +85,10 @@ describe('Tutorial page', () => {
 
       wrapper.instance().onFinishedTyping();
 
-      expect(wrapper.instance().state.toggleEditorClass).toBe(true);
-      expect(wrapper.find('EditorManager').prop('options')).toEqual({ [SOURCE_CODE]: { className: 'attention' }});
+      expect(wrapper.find('EditorManager').prop('options')[SOURCE_CODE].className).toEqual('attention');
 
       setTimeout(() => {
-        expect(wrapper.instance().state.toggleEditorClass).toBe(false);
-        expect(wrapper.find('EditorManager').prop('options')).toEqual({});
+        expect(wrapper.find('EditorManager').prop('options')[SOURCE_CODE].className).toEqual('');
         done();
       }, 3100);
     });

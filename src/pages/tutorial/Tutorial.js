@@ -23,6 +23,7 @@ const mapDispatchToProps = (dispatch) => {
   };
 };
 
+const FIRST_STEP = 0;
 const WAIT_FOR_CODE_ON_STEP = 3;
 
 export class Tutorial extends Component {
@@ -33,7 +34,12 @@ export class Tutorial extends Component {
     showNext: false,
     currentHint: 0,
     code: '// seu código javascript',
-    toggleEditorClass: false
+    editorOptions: {
+      [SOURCE_CODE]: {
+        className: '',
+        readOnly: true
+      }
+    }
   };
 
   componentDidMount() {
@@ -60,16 +66,15 @@ export class Tutorial extends Component {
   onFinishedTyping = () => {
     const total = this.state.currentHint;
     if (total === WAIT_FOR_CODE_ON_STEP) {
-      this.setState({
-        //@ts-ignore
-        ...this.state.toggleEditorClass, toggleEditorClass: true
-      });
+      const currentState = Object.assign({}, this.state);
+      currentState.editorOptions[SOURCE_CODE].className = 'attention';
+      currentState.editorOptions[SOURCE_CODE].readOnly = false;
+      this.forceUpdate();
 
       setTimeout(() => {
-        this.setState({
-          //@ts-ignore
-          ...this.state.toggleEditorClass, toggleEditorClass: false
-        });
+        const currentState = Object.assign({}, this.state);
+        currentState.editorOptions[SOURCE_CODE].className = '';
+        this.forceUpdate();
       }, 3000);
 
       return;
@@ -153,7 +158,7 @@ export class Tutorial extends Component {
   }
 
   handleProgress = () => {
-    if (this.state.currentHint === 0) {
+    if (this.state.currentHint === FIRST_STEP) {
       this.onEnableTooltip();
       return;
     }
@@ -183,7 +188,7 @@ export class Tutorial extends Component {
           onEnableTooltip={this.onEnableTooltip}
           onValidCode={{ [SOURCE_CODE]: this.onValidCode} }
           code={{ [SOURCE_CODE]: this.state.code} }
-          options={ this.state.toggleEditorClass ? {[SOURCE_CODE]: { className: 'attention' }}: {} }
+          options={ this.state.editorOptions }
         />
 
         <Guide
