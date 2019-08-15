@@ -121,8 +121,8 @@ export default class Profile extends React.Component {
               </h2>
             </div>
             <ul className={`w-full bg-testable-overlay list-reset p-1 z-40 options absolute ${this.state.menu ? 'block' : 'hidden'}`}>
-              <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onLogout}>Logout</li>
               <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onOptions}>Opções</li>
+              <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onLogout}>Logout</li>
             </ul>
           </div>
         </div>

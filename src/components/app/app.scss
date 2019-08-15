@@ -43,7 +43,23 @@ body {
 
 @keyframes sky {
   0% {
-    background-position: 100% 0;
+    background-position: 100% 100%;
+  }
+
+  20% {
+    background-position: -100% -100%;
+  }
+
+  40% {
+    background-position: 100% 100%;
+  }
+
+  60% {
+    background-position: -100% -100%;
+  }
+
+  80% {
+    background-position: 100% 100%;
   }
 
   100% {

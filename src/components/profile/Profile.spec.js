@@ -43,7 +43,7 @@ describe('profile component', () => {
     const container = wrapper.find('.menu-wrapper');
 
     container.at(0).simulate('click');
-    wrapper.find('ul li').at(0).simulate('click');
+    wrapper.find('ul li').at(1).simulate('click');
 
     expect(wrapper.state().successfulLoggedOut).toBeTruthy();
     expect(wrapper.state().menu).toBeFalsy();
@@ -87,7 +87,7 @@ describe('profile component', () => {
       const container = wrapper.find('.menu-wrapper');
 
       container.at(0).simulate('click');
-      wrapper.find('ul li').at(1).simulate('click');
+      wrapper.find('ul li').at(0).simulate('click');
       wrapper.update();
       expect(wrapper.find('Modal').length).toBe(1);
     });
