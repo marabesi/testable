@@ -1,13 +1,9 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import { Provider } from 'react-redux';
-import { mount } from 'enzyme';
+import { MemoryRouter as Router } from 'react-router-dom';
+import { mount, shallow } from 'enzyme';
 import App from './App';
-import Store from '../../store/store';
 import { auth } from '../../pages/login/Auth';
 import Emitter, { TRACKING } from '../../emitter/Emitter';
-
-const store = Store();
 
 jest.mock('../../queue/queue', () => {
   const { default: mockedQueue } = jest.requireActual('../../queue/queue');
@@ -26,45 +22,38 @@ describe('App component', () => {
     Emitter.removeAllListeners(TRACKING);
   });
 
-  test('should have sidebar component', done => {
-    const wrapper = mount(
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
+  test('should have sidebar component', () => {
+    const wrapper = shallow(
+      <Router>
+        <App />
+      </Router>
     );
-    wrapper.instance().setState({
+    const app = wrapper.find('App').dive();
+    app.instance().setState({
       isFetchingAssets: false
     });
-    setTimeout(() => {
-      wrapper.update();
-      expect(wrapper.find('Sidebar').length).toEqual(1);
-      done();
-    }, 100);
+    app.update();
+    expect(app.state.isFetchingAssets).toBeFalsy();
   });
 
   test('listen to tracking events on mount', () => {
-    mount(
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
+    const wrapper = mount(
+      <Router>
+        <App />
+      </Router>
     );
 
     Emitter.emit(TRACKING, {});
+    wrapper.unmount();
 
     expect(auth.insertUserInfo).toBeCalled();
   });
 
   test('unmounted component should not listen to events', done => {
-    const wrapper = mount(
-      <Provider store={store}>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </Provider>
+    const wrapper = shallow(
+      <Router>
+        <App />
+      </Router>
     );
 
     wrapper.unmount();
