@@ -7,6 +7,7 @@ import uiConfig from './Firebase';
 import { auth } from '../login/Auth';
 import { track } from '../../emitter/Tracking';
 import { onLoading } from '../../actions/loadingAction';
+import { setUser } from '../../actions/userAction';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
@@ -17,9 +18,10 @@ import './firebase/firebase-ui.scss';
 const mapDispatchToProps = dispatch => {
   return {
     /**
-     * @param {boolean} hovered
+     * @param {boolean} loading
      */
-    onLoading: loading => dispatch(onLoading(loading))
+    onLoading: loading => dispatch(onLoading(loading)),
+    setUser: user => dispatch(setUser(user)),
   };
 };
 
@@ -40,6 +42,7 @@ export class Login extends Component {
 
   authStatusChanged = user => {
     this.props.onLoading(false);
+    this.props.setUser(user);
 
     if (user) {
       track({
@@ -51,6 +54,7 @@ export class Login extends Component {
         user,
         showFirebaseWidget: true,
       });
+
       return;
     }
 

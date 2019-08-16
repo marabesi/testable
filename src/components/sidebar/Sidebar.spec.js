@@ -31,9 +31,9 @@ describe('sidebar component', () => {
     expect(wrapper.find('.bg-testable-overlay-sidebar').exists()).toBeTruthy();
   });
 
-  test('display header', () => {
+  test('should display header if the user is logged', () => {
     auth.isAuthenticated = true;
-    const wrapper = mount(<Sidebar />);
+    const wrapper = mount(<Sidebar user={{ uid: '123-123123-aaa'}} />);
 
     wrapper.instance().onSidebar();
 
@@ -55,7 +55,7 @@ describe('sidebar component', () => {
 
   test('should not show up logo when authenticated', () => {
     auth.isAuthenticated = true;
-    const wrapper = mount(<Sidebar />);
+    const wrapper = mount(<Sidebar user={{ uid: '123-123123-aaa'}} />);
 
     expect(wrapper.find('Logo').length).toBe(0)
   });

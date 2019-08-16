@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../header/Header';
-import { auth } from '../../pages/login/Auth';
 import Logo from '../logo/Logo';
 import Achievements from '../achievement/Achievement';
 import { track } from '../../emitter/Tracking';
@@ -15,7 +14,8 @@ import '../../scss/fade-out-left.scss';
 import './sidebar.scss';
 
 const mapStateToProps = state => ({
-  loading: state.loadingReducer.loading
+  loading: state.loadingReducer.loading,
+  user: state.userReducer.user,
 });
 
 export class Sidebar extends Component {
@@ -68,12 +68,12 @@ export class Sidebar extends Component {
         </div>
         <div className="header">
           {this.state.open && <div className="z-30 h-screen w-full absolute bg-testable-overlay-sidebar" onClick={this.onSidebar}></div>}
-          { auth.isAuthenticated && <Header onSidebar={this.onSidebar} /> }
+          { this.props.user && <Header onSidebar={this.onSidebar} /> }
         </div>
 
         {this.props.children}
 
-        { !auth.isAuthenticated && <Logo
+        { !this.props.user && <Logo
           className={`h-6 hidden md:block absolute pin-b pin-r mr-5 mb-5 ${this.state.hover ? 'pulsate-fwd': ''}` }
           onMouseEnter={this.onHover}
           onMouseLeave={this.offHover}

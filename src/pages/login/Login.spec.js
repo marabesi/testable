@@ -18,6 +18,7 @@ describe('Login page behavior', () => {
         <BrowserRouter>
           <Login
             onLoading={() => true}
+            setUser={() => {}}
           />
         </BrowserRouter>
       );

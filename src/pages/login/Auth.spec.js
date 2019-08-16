@@ -56,6 +56,8 @@ describe('Auth behavior', () => {
     auth.signout(callback);
 
     expect(callback).toBeCalled();
+    expect(auth.isAuthenticated).toBeFalsy();
+    expect(auth.user.name).toEqual('');
   });
 
   test('unsubscribe to prevent event leak', () => {
