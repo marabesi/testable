@@ -6,7 +6,6 @@ import TypedText from './TypedText';
 export default class AnimatedText extends Component {
 
   renderText() {
-
     /** @type {JSX.Element[]} */
     const text = [];
     const prop = this.props.text || [];

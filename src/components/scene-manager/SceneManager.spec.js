@@ -76,7 +76,7 @@ describe('Scene manager component', () => {
       wrapper.update();
       expect(wrapper.html()).toContain('step 2 content');
       done();
-    }, 1000);
+    }, 1500);
   });
 
   test('should not go to previous step when it is in the first step already', () => {

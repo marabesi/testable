@@ -8,6 +8,7 @@ export default class TypedText extends React.Component {
       strings: strings,
       typeSpeed: 40,
       showCursor: false,
+      startDelay: 200,
     };
 
     if (typeof this.props.onComplete === 'function') {
@@ -36,3 +37,7 @@ export default class TypedText extends React.Component {
     );
   }
 }
+
+TypedText.defaultProps = {
+  strings: []
+};

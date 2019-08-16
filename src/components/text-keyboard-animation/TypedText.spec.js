@@ -1,11 +1,30 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+import { mount } from 'enzyme';
 import TypedText from './TypedText';
 
 describe('typed text component', () => {
-  test('should prevent onComplete typeError when a function is not passed', () => {
-    // const div = document.createElement('div');
-    // ReactDOM.render(<TypedText text="eita" />, div);
-    // ReactDOM.unmountComponentAtNode(div);
+  test('create component without text to animate', () => {
+    const wrapper = mount(
+      <TypedText />
+    );
+    wrapper.unmount();
+  });
+
+  test('should type string with keyboard animation', done => {
+    const wrapper = mount(
+      <TypedText
+        strings={[
+          'my text'
+        ]}
+      />
+    );
+
+    expect(wrapper.find('span').text()).toEqual('');
+
+    setTimeout(() => {
+      expect(wrapper.find('span').text()).toEqual('my text');
+      wrapper.unmount();
+      done();
+    }, 1000);
   });
 });
