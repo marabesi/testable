@@ -18,7 +18,6 @@ export class Header extends React.Component {
 
   state = { 
     levelUp: false,
-    user: auth.user,
   };
 
   resetLevelUpAnimation() {
