@@ -69,12 +69,12 @@ export class Tutorial extends Component {
       const currentState = Object.assign({}, this.state);
       currentState.editorOptions[SOURCE_CODE].className = 'attention';
       currentState.editorOptions[SOURCE_CODE].readOnly = false;
-      this.forceUpdate();
+      this.setState(currentState);
 
       setTimeout(() => {
         const currentState = Object.assign({}, this.state);
         currentState.editorOptions[SOURCE_CODE].className = '';
-        this.forceUpdate();
+        this.setState(currentState);
       }, 3000);
 
       return;

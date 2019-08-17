@@ -29,7 +29,7 @@ describe('Rocket component', () => {
     const wrapper = shallow(<HoC />);
 
     expect(wrapper.instance().state.editorOptions[SOURCE_CODE].readOnly).toBe(true);
-    expect(wrapper.find('EditorManager').props().options).toEqual({ [SOURCE_CODE]: { readOnly: true }});
+    expect(wrapper.find('EditorManager').props().options[SOURCE_CODE].readOnly).toEqual(true);
   });
 
   test('track section when the component is loaded', () => {
@@ -223,6 +223,28 @@ describe('Rocket component', () => {
       wrapper.update();
 
       expect(wrapper.instance().state.showNext).toBe(false);
+    });
+
+    test('should toggle attention class when guide finish typing', done => {
+      const HoC = Rocket(
+        fakeComponent,
+        'my code',
+        'my test',
+        [],
+        null,
+        null,
+        0
+      );
+      const wrapper = shallow(<HoC />);
+      wrapper.instance().onGuideFinishedTyping();
+      wrapper.update();
+      expect(wrapper.find('EditorManager').props().options[TEST_CODE].className).toEqual('attention');
+
+      setTimeout(() => {
+        wrapper.update();
+        expect(wrapper.find('EditorManager').props().options[TEST_CODE].className).toEqual('');
+        done();
+      }, 3100);
     });
   });
 

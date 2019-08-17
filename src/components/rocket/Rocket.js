@@ -13,13 +13,14 @@ import {executeTestCase} from '../../engine/Tester';
 /**
  * @param {any} OriginalComponent 
  * @param {string} code 
- * @param {string} test 
- * @param {object} guideContent 
+ * @param {string} test
+ * @param {array} strategyTests
+ * @param {object} guideContent
  * @param {string} whenDoneRedirectTo 
  * @param {Number} waitCodeToBeExecutedOnStep 
  * @param {Number} enableEditorOnStep 
  * @param {string} trackSection 
- * @param {function} reasonStrategy 
+ * @param {function} reasonStrategy
  */
 const Wrapped = (
   OriginalComponent,
@@ -45,7 +46,8 @@ const Wrapped = (
       editorOptions: {
         [SOURCE_CODE]: {
           readOnly: true
-        }
+        },
+        [TEST_CODE]: {}
       },
       done: false,
       showNext: false,
@@ -98,6 +100,15 @@ const Wrapped = (
 
     onGuideFinishedTyping = () => {
       if (this.state.currentHint === waitCodeToBeExecutedOnStep) {
+        const currentState = Object.assign({}, this.state);
+        currentState.editorOptions[TEST_CODE].className = 'attention';
+        this.setState(currentState);
+
+        setTimeout(() => {
+          const currentState = Object.assign({}, this.state);
+          currentState.editorOptions[TEST_CODE].className = '';
+          this.setState(currentState);
+        }, 3000);
         return;
       }
 
