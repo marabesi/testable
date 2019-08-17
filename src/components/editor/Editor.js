@@ -85,5 +85,7 @@ Editor.propTypes = {
 };
 
 Editor.defaultProps = {
-  options: {}
+  options: {},
+  onFocus: () => {},
+  codeChanged: () => {},
 };

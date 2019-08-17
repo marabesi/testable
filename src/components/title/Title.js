@@ -1,13 +1,20 @@
 /* eslint-disable react/display-name */
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 /**
  * @param {object} props
  */
-export default props => {
+const Title = props => {
   return (
     <h1 className="uppercase flex justify-between text-blue-lightest p-5 h-16" { ...props }>
       { props.children }
     </h1>
   );
 };
+
+Title.propTypes = {
+  children: PropTypes.node,
+};
+
+export default Title;

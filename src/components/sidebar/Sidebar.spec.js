@@ -9,6 +9,11 @@ const store = rootStore();
 
 describe('sidebar component', () => {
 
+  test('should render loading spinner based on loading prop', () => {
+    const wrapper = shallow(<Sidebar loading={true} />);
+    expect(wrapper.find('Loading').length).toBe(1);
+  });
+
   test('should be hidden by default', () => {
     const wrapper = shallow(<Sidebar />);
 
