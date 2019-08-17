@@ -84,7 +84,9 @@ export class Sidebar extends Component {
 }
 
 Sidebar.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  user: PropTypes.object,
+  loading: PropTypes.bool,
 };
 
 export default connect(mapStateToProps)(Sidebar);

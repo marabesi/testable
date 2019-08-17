@@ -42,6 +42,7 @@ describe('Scene manager component', () => {
     setTimeout(() => {
       wrapper.update();
       expect(wrapper.html()).toContain('_ Hello world');
+      wrapper.unmount();
       done();
     }, 1500);
   });
@@ -59,8 +60,9 @@ describe('Scene manager component', () => {
     setTimeout(() => {
       wrapper.update();
       expect(wrapper.html()).toContain('_ Hello world');
+      wrapper.unmount();
       done();
-    }, 1000);
+    }, 1500);
   });
 
   test('should go to the next scene (scene 2)', done => {
@@ -75,6 +77,7 @@ describe('Scene manager component', () => {
     setTimeout(() => {
       wrapper.update();
       expect(wrapper.html()).toContain('step 2 content');
+      wrapper.unmount();
       done();
     }, 1500);
   });
@@ -101,6 +104,8 @@ describe('Scene manager component', () => {
     const goToLastStep = wrapper.instance().handleNextScene();
     const beyondLastStep = wrapper.instance().handleNextScene();
 
+    wrapper.unmount();
+
     expect(goToLastStep).toBeUndefined();
     expect(beyondLastStep).toBeFalsy();
   });
@@ -117,6 +122,7 @@ describe('Scene manager component', () => {
 
     wrapper.update();
     expect(wrapper.find('Scene').prop('lastScene')).toBe(true);
+    wrapper.unmount();
   });
 
   test('should pass in lastStep as true when the last step is reached', () => {
@@ -129,6 +135,7 @@ describe('Scene manager component', () => {
     wrapper.instance().handleNextScene();
     wrapper.update();
     expect(wrapper.find('Scene').prop('lastScene')).toBe(true);
+    wrapper.unmount();
   });
 
   describe('debug button', () => {

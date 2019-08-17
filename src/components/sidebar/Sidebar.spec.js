@@ -1,13 +1,13 @@
 import React from 'react';
+import {Provider} from 'react-redux';
 import { shallow, mount } from 'enzyme';
 import { Sidebar } from './Sidebar';
-import { auth } from '../../pages/login/Auth';
+import rootStore from '../../store/store';
+import { setUser } from '../../actions/userAction';
+
+const store = rootStore();
 
 describe('sidebar component', () => {
-
-  afterEach(() => {
-    auth.isAuthenticated = false;
-  });
 
   test('should be hidden by default', () => {
     const wrapper = shallow(<Sidebar />);
@@ -32,16 +32,20 @@ describe('sidebar component', () => {
   });
 
   test('should display header if the user is logged', () => {
-    auth.isAuthenticated = true;
-    const wrapper = mount(<Sidebar user={{ uid: '123-123123-aaa'}} />);
+    store.dispatch(setUser({ uid: '123-123123-aaa'}));
 
-    wrapper.instance().onSidebar();
+    const wrapper = mount(
+      <Provider store={store}>
+        <Sidebar user={{ uid: '123-123123-aaa'}} />
+      </Provider>
+    );
+
+    wrapper.find('Sidebar').instance().onSidebar();
 
     expect(wrapper.find('Header').exists()).toBeTruthy();
   });
 
   test('should toggle sidebar', () => {
-    auth.isAuthenticated = true;
     const wrapper = mount(<Sidebar />);
 
     expect(wrapper.find('.sidebar').prop('className').includes('hidden')).toBeTruthy();
@@ -54,9 +58,9 @@ describe('sidebar component', () => {
   });
 
   test('should not show up logo when authenticated', () => {
-    auth.isAuthenticated = true;
-    const wrapper = mount(<Sidebar user={{ uid: '123-123123-aaa'}} />);
-
-    expect(wrapper.find('Logo').length).toBe(0)
+    const wrapper = shallow(
+      <Sidebar user={{}} />
+    );
+    expect(wrapper.find('Logo').length).toBe(0);
   });
 });
