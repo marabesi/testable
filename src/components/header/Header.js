@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import UserMenu from '../../components/user-menu/UserMenu';
 import Level from '../../components/level/Level';
@@ -9,29 +10,29 @@ import Emitter, { LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN } from '../..
 import '../../scss/levelup-animation.scss';
 import '../../scss/logo-animation.scss';
 
-export default class Header extends React.Component {
+const mapStateToProps = state => ({
+  user: state.userReducer.user,
+});
+
+export class Header extends React.Component {
 
   state = { 
-    levelup: false,
+    levelUp: false,
     user: auth.user,
   };
 
   resetLevelUpAnimation() {
     setTimeout(() => {
       this.setState({
-        levelup: false
+        levelUp: false
       });
     }, 500);
   }
 
   componentDidMount() {
-    this.setState({
-      user: auth.user
-    });
-
     Emitter.addListener(LEVEL_UP, () => {
       this.setState({
-        levelup: true
+        levelUp: true
       });
 
       const level = 1 + auth.user.level;
@@ -45,7 +46,7 @@ export default class Header extends React.Component {
 
     Emitter.addListener(LEVEL_DOWN, () => {
       this.setState({
-        levelup: true
+        levelUp: true
       });
 
       const level = auth.user.level - 1;
@@ -61,7 +62,7 @@ export default class Header extends React.Component {
     Emitter.addListener(PROGRESS_UP, data => {
       this.setState({
         // @ts-ignore
-        ...this.state.user.progress, progress: data.amount
+        ...this.props.user.progress, progress: data.amount
       });
 
       auth.updateUserInfo({
@@ -73,7 +74,7 @@ export default class Header extends React.Component {
     Emitter.addListener(PROGRESS_DOWN, data => {
       this.setState({
         // @ts-ignore
-        ...this.state.user.progress, progress: data.amount
+        ...this.props.user.progress, progress: data.amount
       });
 
       auth.updateUserInfo({
@@ -114,8 +115,8 @@ export default class Header extends React.Component {
         <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
 
         <div className="flex justify-between pl-3 pr-3 pt-5 pb-5 ml-5 mr-5">
-          <div className={ `user-progress ${this.state.levelup ? 'wobble-ver-right' : ''}`}>
-            <Level progress={this.state.user.progress} level={this.state.user.level} />
+          <div className={ `user-progress ${this.state.levelUp ? 'wobble-ver-right' : ''}`}>
+            <Level progress={this.props.user.progress} level={this.props.user.level} />
           </div>
 
           <UserMenu user={auth.user} onNotification={this.props.onSidebar} />
@@ -126,5 +127,8 @@ export default class Header extends React.Component {
 }
 
 Header.propTypes = {
-  onSidebar: PropTypes.func
+  onSidebar: PropTypes.func,
+  user: PropTypes.object,
 };
+
+export default connect(mapStateToProps)(Header);
