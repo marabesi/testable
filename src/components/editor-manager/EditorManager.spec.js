@@ -1,8 +1,10 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
+import sinon from 'sinon';
 import EditorManager from './EditorManager';
 import {SOURCE_CODE} from '../../constants/editor';
-import {default as Rocket} from '../rocket/Rocket';
+import lemming from '../../__test__/stubs/lemming';
+
 describe('EditorManager component', () => {
   /* eslint-disable-next-line */
   global.document.body.createTextRange = function () {
@@ -23,20 +25,38 @@ describe('EditorManager component', () => {
   };
 
   /* eslint-disable-next-line */
-  global.Lemming = function(code) {
-    this.onResult = function(cb) {
-      cb(code);
-    };
-    this.onError = function(cb) {
-      cb(code);
-    };
-    this.onCompleted = function(cb) {
-      cb(code);
-    };
-    this.run = function() {
-      return;
-    };
-  };
+  global.Lemming = lemming;
+
+  test('should invoke onValidCode callback when code execution is done', () => {
+    const onValidCode = sinon.spy();
+
+    const wrapper = mount(
+      <EditorManager
+        code={{[SOURCE_CODE]: ''}}
+        onValidCode={{[SOURCE_CODE]: onValidCode}}
+      />
+    );
+    const code = 'var b = 1;';
+    wrapper.instance().codeChanged(code, 0);
+    expect(onValidCode.calledWith(code)).toEqual(true);
+  });
+
+  test('should populate error field when invalid code is written', () => {
+    const onValidCode = sinon.spy();
+
+    const wrapper = mount(
+      <EditorManager
+        editor={1}
+        code={{[SOURCE_CODE]: ''}}
+        onValidCode={{[SOURCE_CODE]: onValidCode}}
+      />
+    );
+    const code = '[;';
+    wrapper.instance().codeChanged(code, 0);
+    wrapper.update();
+
+    expect(wrapper.find('p').at(1).text()).toEqual('Line 1: Unexpected token ;');
+  });
 
   test('code output and code error should be empty by default', () => {
     const wrapper = mount(
@@ -49,7 +69,7 @@ describe('EditorManager component', () => {
     expect(wrapper.instance().state.codeError).toEqual({});
   });
 
-  test('should render editor based on the editor prop', () => {
+  test('should render two independents (editor based on the editor prop)', () => {
     const wrapper = shallow(
       <EditorManager
         editor={2}

@@ -6,6 +6,11 @@ import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 
 import './editor-manager.scss';
 
+// const mapStateToProps = state => ({
+//   loading: state.loadingReducer.loading,
+//   user: state.userReducer.user,
+// });
+//
 export default class EditorManager extends React.Component {
 
   state = {
