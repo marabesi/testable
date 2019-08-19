@@ -31,14 +31,25 @@ export default class Queue {
     return this.localStorage;
   }
 
+  clearStorage(assets) {
+    for (let asset of assets) {
+      const assetName = this.generateNameToStore(asset);
+      this.storage.removeItem(assetName);
+    }
+  }
+
+  generateNameToStore(asset) {
+    const split = asset.split('/');
+    const key = split[split.length - 1];
+    return `testable.${key}`;
+  }
+
   fetch(assets) {
     const queue = [];
 
     for (let asset of assets) {
-      const split = asset.split('/');
-      const key = split[split.length - 1];
-
-      if (!this.storage.getItem(`testable.${key}`)) {
+      const assetName = this.generateNameToStore(asset);
+      if (!this.storage.getItem(assetName)) {
         queue.push(fetch(asset));
       }
     }

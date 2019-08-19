@@ -7,6 +7,7 @@ describe('store', () => {
       'guideReducer': {},
       'userReducer': {},
       'loadingReducer': { loading: true },
+      'editorReducer': {},
     });
   });
 });

@@ -68,6 +68,17 @@ const Survey = AsyncComponent(() => {
   return import('../../pages/survey/Survey');
 });
 
+const assets = [
+  'assets/buggy.png',
+  'assets/buggy.svg',
+  'assets/buggy-bug.svg',
+  'assets/buggy-zzz.svg',
+  'assets/alien.png',
+  'assets/logo.png',
+  'assets/placeholder.svg',
+  'assets/mp3/keyboard.mp3',
+];
+
 export default class App extends React.Component {
 
   state = {
@@ -86,16 +97,9 @@ export default class App extends React.Component {
       auth.insertUserInfo(data, 'tracking');
     });
 
-    await queue.fetch([
-      'assets/buggy.png',
-      'assets/buggy.svg',
-      'assets/buggy-bug.svg',
-      'assets/buggy-zzz.svg',
-      'assets/alien.png',
-      'assets/logo.png',
-      'assets/placeholder.svg',
-      'assets/mp3/keyboard.mp3',
-    ]);
+    queue.clearStorage(assets);
+
+    await queue.fetch(assets);
 
     this.setState({
       isFetchingAssets: false

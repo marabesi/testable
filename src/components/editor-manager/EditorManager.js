@@ -6,11 +6,6 @@ import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 
 import './editor-manager.scss';
 
-// const mapStateToProps = state => ({
-//   loading: state.loadingReducer.loading,
-//   user: state.userReducer.user,
-// });
-//
 export default class EditorManager extends React.Component {
 
   state = {
@@ -37,6 +32,7 @@ export default class EditorManager extends React.Component {
 
     // @ts-ignore
     const lemming = new window.Lemming(code);
+    const errorCallback = this.props.onErrorCode[editorIndexChanged];
 
     // @ts-ignore
     lemming.onResult(result => {
@@ -45,6 +41,10 @@ export default class EditorManager extends React.Component {
       this.setState({
         ...this.state.codeOutput, codeOutput: codeOutput
       });
+
+      if (errorCallback) {
+        errorCallback(false, editorIndexChanged);
+      }
     });
 
     // @ts-ignore
@@ -55,6 +55,10 @@ export default class EditorManager extends React.Component {
       this.setState({
         ...this.state.codeError, codeError: codeError
       });
+
+      if (errorCallback) {
+        errorCallback(true, editorIndexChanged);
+      }
     });
 
     lemming.onCompleted(() => {
@@ -132,6 +136,7 @@ export default class EditorManager extends React.Component {
 
 EditorManager.propTypes = {
   onValidCode: PropTypes.object,
+  onErrorCode: PropTypes.object,
   className: PropTypes.string,
   code: PropTypes.object,
   editor: PropTypes.number,
@@ -145,5 +150,9 @@ EditorManager.defaultProps = {
   options: {
     [SOURCE_CODE]: {},
     [TEST_CODE]: {}
-  }
+  },
+  onErrorCode: {
+    [SOURCE_CODE]: null,
+    [TEST_CODE]: null
+  },
 };

@@ -1,6 +1,7 @@
 import sinon from 'sinon';
 import Queue from '../queue/queue';
 
+/* eslint-disable-next-line */
 global.fetch = function(requestInfo) {
   return Promise.resolve(new Response(new Blob([1, 2, 3])));
 };
@@ -65,6 +66,7 @@ describe('queue behavior', () => {
 
   test('should not fetch assets that exists already', async () => {
     const mockedLocalStorage = {
+      /* eslint-disable-next-line */
       getItem: itemKey => true,
       setItem: sinon.spy(),
     };

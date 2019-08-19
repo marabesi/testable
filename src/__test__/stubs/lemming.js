@@ -18,7 +18,7 @@ export default class Lemming {
     try {
       // @ts-ignore
       const ast = esprima.parseScript(this.code);
-      this.onResultCb(ast);
+      this.onResultCb(this.code);
     } catch (error) {
       this.onErrorCb(error.message);
     }

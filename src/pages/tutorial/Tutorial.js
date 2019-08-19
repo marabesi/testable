@@ -15,7 +15,7 @@ import { Sum, testCase as sumTestCase } from '../../engine/strategies/Sum';
 import { onHover } from '../../actions/guideAction';
 import { track } from '../../emitter/Tracking';
 import { executeTestCase } from '../../engine/Tester';
-import {SOURCE_CODE} from '../../constants/editor';
+import { SOURCE_CODE } from '../../constants/editor';
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -119,6 +119,13 @@ export class Tutorial extends Component {
     }
   }
 
+  onErrorCode = (error, i) => {
+    this.setState({
+      //@ts-ignore
+      ...this.state.editorError, editorError: error
+    });
+  }
+
   nextHint = () => {
     const next = this.state.currentHint + 1;
     const total = tutorialContent.length;
@@ -187,6 +194,7 @@ export class Tutorial extends Component {
           className="w-1/2 m-auto"
           onEnableTooltip={this.onEnableTooltip}
           onValidCode={{ [SOURCE_CODE]: this.onValidCode} }
+          onErrorCode={{ [SOURCE_CODE]: this.onErrorCode }}
           code={{ [SOURCE_CODE]: this.state.code} }
           options={ this.state.editorOptions }
         />
@@ -197,6 +205,7 @@ export class Tutorial extends Component {
           handleProgress={this.handleProgress}
           currentHint={this.state.currentHint}
           onFinishedTyping={this.onFinishedTyping}
+          invalidCode={this.state.editorError}
         />
       </React.Fragment>
     );

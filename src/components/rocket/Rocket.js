@@ -57,7 +57,8 @@ const Wrapped = (
       intro: introContent || {
         steps: [],
         initialStep: 0
-      }
+      },
+      editorError: false,
     };
 
     componentDidMount() {
@@ -96,6 +97,13 @@ const Wrapped = (
           ...this.state.showNext, showNext: false
         });
       }
+    }
+
+    onErrorCode = (error, i) => {
+      this.setState({
+        //@ts-ignore
+        ...this.state.editorError, editorError: error
+      });
     }
 
     onGuideFinishedTyping = () => {
@@ -201,6 +209,7 @@ const Wrapped = (
               className="m-5"
               code={this.state.code}
               onValidCode={{ [SOURCE_CODE]: this.onValidCode, [TEST_CODE]: this.onValidCode }}
+              onErrorCode={{ [SOURCE_CODE]: this.onErrorCode, [TEST_CODE]: this.onErrorCode }}
               options={ this.state.editorOptions }
             />
           </div>
@@ -211,6 +220,7 @@ const Wrapped = (
             handleProgress={this.handleProgress}
             currentHint={this.state.currentHint}
             onFinishedTyping={this.onGuideFinishedTyping}
+            invalidCode={this.state.editorError}
           />
         </div>
       );
