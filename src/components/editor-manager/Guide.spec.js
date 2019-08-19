@@ -78,4 +78,73 @@ describe('guide component', () => {
     );
     expect(wrapper.find('.next').length).toBe(0);
   });
+
+  describe('guide image behavior', () => {
+    test('should show SvgBuggy by default as guide image', () => {
+      const wrapper = mount(
+        <Guide
+          guideContent={content}
+          currentHint={0}
+          showNext={false}
+        />
+      );
+      expect(wrapper.find('SvgBuggy').length).toBe(1);
+    });
+
+    test('should show SvgBuggyBug when the code is invalid', () => {
+      const wrapper = mount(
+        <Guide
+          guideContent={content}
+          currentHint={0}
+          showNext={false}
+          invalidCode={true}
+        />
+      );
+      expect(wrapper.find('SvgBuggyBug').length).toBe(1);
+    });
+
+    test('should show SvgBuggySleepy when the is afk', done => {
+      const wrapper = mount(
+        <Guide
+          guideContent={content}
+          currentHint={0}
+          showNext={false}
+          invalidCode={false}
+          afkExpirationTime={0}
+        />
+      );
+
+      setTimeout(() => {
+        wrapper.update();
+        expect(wrapper.find('SvgBuggySleepy').length).toBe(1);
+        wrapper.unmount();
+        done();
+      }, 100);
+    });
+
+    test('set afk to false on user interaction by keyboard', done => {
+      const wrapper = mount(
+        <Guide
+          guideContent={content}
+          currentHint={0}
+          showNext={false}
+          invalidCode={false}
+          afkExpirationTime={400}
+        />
+      );
+      setTimeout(() => {
+        wrapper.update();
+        expect(wrapper.find('SvgBuggySleepy').length).toBe(1);
+
+        // @ts-ignore
+        const keypress = new KeyboardEvent('keydown', {keyCode: 37});
+        document.dispatchEvent(keypress);
+
+        wrapper.update();
+
+        expect(wrapper.find('SvgBuggySleepy').length).toBe(0);
+        done();
+      }, 500);
+    });
+  });
 });

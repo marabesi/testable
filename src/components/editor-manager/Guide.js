@@ -1,8 +1,7 @@
 import * as React from 'react';
-// @ts-ignore
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SvgBuggy from '../buggy/SvgBuggy';
+import SvgBuggy, {SvgBuggyBug, SvgBuggySleepy} from '../buggy/SvgBuggy';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import { onHover } from '../../actions/guideAction';
 import Next from '../icons/Next';
@@ -25,10 +24,42 @@ const mapDispatchToProps = dispatch => {
  * @param {object} state
  */
 const mapStateToProps = state => ({
-  hovered: state.guideReducer.hovered
+  hovered: state.guideReducer.hovered,
 });
 
 export class Guide extends React.Component {
+  state = {
+    afk: false,
+  }
+
+  track = () => {
+    this.setState({
+      afk: true
+    });
+  };
+
+  componentDidMount = () => {
+    this.trackActivity = setInterval(this.track, this.props.afkExpirationTime);
+    document.addEventListener('keydown', this.checkUserAfk, false);
+    document.addEventListener('mousemove', this.checkUserAfk, false);
+  }
+
+  componentWillUnmount = () => {
+    // @ts-ignore
+    clearInterval(this.trackActivity);
+    document.removeEventListener('keydown', this.checkUserAfk, false);
+    document.removeEventListener('mousemove', this.checkUserAfk, false);
+  }
+
+  checkUserAfk = () => {
+    this.setState({
+      afk: false
+    });
+
+    // @ts-ignore
+    clearInterval(this.trackActivity);
+    this.trackActivity = setInterval(this.track, this.props.afkExpirationTime);
+  }
 
   onHover = () => {
     this.props.onHover(true);
@@ -78,18 +109,37 @@ export class Guide extends React.Component {
   }
 
   render() {
+    const buggyStyle = {
+      width: '250px',
+      marginTop: '-165px',
+      marginLeft: '-290px'
+    };
+    const buggyClass = 'absolute pin-t';
+
+    let buggy = <SvgBuggy
+      className={buggyClass}
+      style={buggyStyle}
+    />;
+
+    if (this.props.invalidCode) {
+      buggy = <SvgBuggyBug
+        className={buggyClass}
+        style={buggyStyle}
+      />;
+    }
+
+    if (this.state.afk) {
+      buggy = <SvgBuggySleepy
+        className={buggyClass}
+        style={buggyStyle}
+      />;
+    }
+
     return (
       <div className="flex justify-center p-12 bg-testable-overlay" style={{ minHeight: '220px' }}>
         <div className="flex flex-col justify-start relative" style={{ minWidth: '45%', maxWidth: '45%' }}>
-          <SvgBuggy
-            className="absolute pin-t"
-            style={{
-              width: '250px',
-              marginTop: '-165px',
-              marginLeft: '-290px'
-            }}
-          />
-          {this.renderHint()}
+          { buggy }
+          { this.renderHint() }
         </div>
       </div>
     );
@@ -104,6 +154,12 @@ Guide.propTypes = {
   handleProgress: PropTypes.func,
   onHover: PropTypes.func,
   hovered: PropTypes.bool,
+  invalidCode: PropTypes.bool,
+  afkExpirationTime: PropTypes.number,
+};
+
+Guide.defaultProps = {
+  afkExpirationTime: 10000,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Guide);
