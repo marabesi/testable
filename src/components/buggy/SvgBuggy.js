@@ -7,9 +7,17 @@ import Base64Image from '../base64image/Base64Image';
 const SvgBuggy = props => (
   <Base64Image image="testable.buggy.svg" alt="buggy" {...props}/>
 );
-export default SvgBuggy;
 
 export const SvgBuggyLeft = props => (
   <Base64Image image="testable.buggy.png" alt="buggy" {...props}/>
 );
 
+export const SvgBuggyBug = props => (
+  <Base64Image image="testable.buggy-bug.svg" alt="buggy bug!!!" {...props}/>
+);
+
+export const SvgBuggySleepy = props => (
+  <Base64Image image="testable.buggy-zzz.svg" alt="buggy zzz" {...props}/>
+);
+
+export default SvgBuggy;
