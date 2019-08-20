@@ -6,7 +6,7 @@ import tutorialContent from './tutorial-content';
 import introContent from './intro-content';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import Intro from '../../components/intro/Intro';
-import Guide from '../../components/editor-manager/Guide';
+import Guide from '../../components/guide/Guide';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../../pages/login/Auth';
 import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';

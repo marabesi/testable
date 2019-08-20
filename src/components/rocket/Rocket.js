@@ -5,7 +5,7 @@ import { track } from '../../emitter/Tracking';
 import { auth } from '../../pages/login/Auth';
 import Reason from '../../engine/Reason';
 import EditorManager from '../../components/editor-manager/EditorManager';
-import Guide from '../../components/editor-manager/Guide';
+import Guide from '../guide/Guide';
 import Intro from '../intro/Intro';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 import {executeTestCase} from '../../engine/Tester';
