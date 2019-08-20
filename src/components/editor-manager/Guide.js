@@ -6,6 +6,7 @@ import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import { onHover } from '../../actions/guideAction';
 import Next from '../icons/Next';
 
+import './guide.scss';
 import '../../scss/attention.scss';
 
 /**
@@ -136,8 +137,8 @@ export class Guide extends React.Component {
     }
 
     return (
-      <div className="flex justify-center p-12 bg-testable-overlay" style={{ minHeight: '220px' }}>
-        <div className="flex flex-col justify-start relative" style={{ minWidth: '45%', maxWidth: '45%' }}>
+      <div className="flex justify-center p-12 bg-testable-overlay guide-container">
+        <div className="flex flex-col justify-start relative hint-container">
           { buggy }
           { this.renderHint() }
         </div>
