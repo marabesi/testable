@@ -1,26 +1,45 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-import _ from 'lodash';
-import { auth } from '../../pages/login/Auth';
+import Loading from '../loading/Loading';
+
+/* eslint-disable */
+const RANKING_API = process.env.REACT_APP_RANKING_API;
+/* eslint-enable */
 
 export default class Ranking extends Component {
 
   state = {
-    ranking: []
+    ranking: [],
+    loading: true,
+    error: ''
   };
 
   componentDidMount() {
-    const query = auth.usersRef().orderByChild('level').limitToLast(10);
-    query.once('value', snapshot => {
-      const data = _.map(snapshot.val(), (v, k) => {
-        return _.merge({}, v, { key: k });
+    // @ts-ignore
+    fetch(RANKING_API)
+      .then(response => response.json())
+      .then(ranking => {
+        this.setState({ ranking: ranking.data });
+      })
+      .catch(() => {
+        const currentState = Object.assign({}, this.state);
+        currentState.error = 'Ocorreu um erro ao carregar o ranking :(';
+        this.setState(currentState);
+      })
+      .finally(() => {
+        const currentState = Object.assign({}, this.state);
+        currentState.loading = false;
+        this.setState(currentState);
       });
-      const ranking = _.sortBy(data, ['level']).reverse();
-      this.setState({ ranking: ranking });
-    });
   }
 
   render() {
+    if (this.state.loading) {
+      return (
+        <Loading />
+      );
+    }
+
     const users = [];
 
     this.state.ranking.forEach((user, index) => {
@@ -32,6 +51,7 @@ export default class Ranking extends Component {
 
     return (
       <React.Fragment>
+        { this.state.error && <h3 className="text-white">{this.state.error}</h3>}
         <ul className="text-white">
           { users }
         </ul>
