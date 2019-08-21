@@ -36,7 +36,9 @@ export default class Ranking extends Component {
   render() {
     if (this.state.loading) {
       return (
-        <Loading />
+        <div>
+          <Loading />
+        </div>
       );
     }
 
@@ -45,14 +47,14 @@ export default class Ranking extends Component {
     this.state.ranking.forEach((user, index) => {
       users.push(
         // @ts-ignore
-        <li key={index}>{ user.name } { user.level }</li>
+        <li key={index} className={ index === 0 ? 'text-xl font-bold' : ''}>{ user.name } { user.level }</li>
       );
     });
 
     return (
       <React.Fragment>
         { this.state.error && <h3 className="text-white">{this.state.error}</h3>}
-        <ul className="text-white">
+        <ul className="list-reset text-white flex flex-col justify-center items-center">
           { users }
         </ul>
       </React.Fragment>
