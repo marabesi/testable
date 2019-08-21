@@ -10,7 +10,7 @@ before_script:
 
 script:
   - yarn build
-  - yarn test
+  - yarn test --runInBand
   - yarn coveralls
   - sh deploy.sh
   - yarn cypress:run
