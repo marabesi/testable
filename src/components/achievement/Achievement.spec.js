@@ -59,11 +59,11 @@ describe('Achievement component', () => {
         ]
       });
 
-      expect(wrapper.find('ul h3 + li').prop('className').includes('hidden')).toBeTruthy();
+      expect((wrapper.find('ul h3 + li').prop('className')|| []).includes('hidden')).toBeTruthy();
 
       wrapper.find('ul h3').simulate('click');
 
-      expect(wrapper.find('ul h3 + li').prop('className').includes('hidden')).toBeFalsy();
+      expect((wrapper.find('ul h3 + li').prop('className') || []).includes('hidden')).toBeFalsy();
       expect(wrapper.find('ul h3 + li').text()).toEqual('Vamos construir um foguete!');
     });
 
@@ -83,5 +83,22 @@ describe('Achievement component', () => {
 
       expect(wrapper.find('span').text()).toEqual('A lista de conquista está vazia');
     });
+  });
+
+  it('should render achievements via achievements prop', () => {
+    const wrapper = mount(
+      <Achievement
+        achievements={[
+          {
+            title: 'my title',
+            description: 'my desc',
+            level: 0,
+          }
+        ]}
+      />
+    );
+
+    expect(wrapper.find('ul h3').text()).toEqual('my title');
+    expect(wrapper.find('ul li span').text()).toEqual('my desc');
   });
 });

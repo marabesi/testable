@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 import achievements from './achievements-content';
 import Close from '../icons/Close';
 import Title from '../title/Title';
@@ -9,6 +10,14 @@ export default class Achievement extends React.Component {
 
   state = {
     achievements: achievements
+  }
+
+  componentDidMount() {
+    if (this.props.achievements.length > 0) {
+      this.setState({
+        achievements: this.props.achievements
+      });
+    }
   }
 
   /**
@@ -70,3 +79,18 @@ export default class Achievement extends React.Component {
     );
   }
 }
+
+Achievement.propTypes = {
+  /**
+   * Callback invoked when the close button is clicked
+   */
+  onClose: PropTypes.func,
+  /**
+   * The achievements array to display.
+   */
+  achievements: PropTypes.array,
+};
+
+Achievement.defaultProps = {
+  achievements: [],
+};

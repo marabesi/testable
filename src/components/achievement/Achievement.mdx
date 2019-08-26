@@ -22,5 +22,16 @@ Currently the achievement list is based on a json file (achievements-content.jso
 Pass in achievements list via props
 
 <Playground className="bg-black">
-  <Achievement />
+  <Achievement achievements={[
+    {
+      title: 'my achievement',
+      description: 'my desc',
+      level: 0
+    },
+    {
+      title: 'my achievement 2',
+      description: 'my desc 2',
+      level: 0
+    },
+  ]}/>
 </Playground>
