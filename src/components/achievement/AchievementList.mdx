@@ -1,28 +1,28 @@
 ---
-name: Achievement
+name: AchievementContainer
 ---
 
 import '../../css/index.css'
 import { Playground, Props } from 'docz'
-import Achievement from './Achievement'
+import AchievementContainer from './AchievementContainer'
 
-# Achievement
+# AchievementContainer
 
-The Achievement component renders a list of achievements based on the achievements state.
+The AchievementContainer component renders a list of achievements based on the achievements state.
 Currently the achievement list is based on a json file (achievements-content.json).
 
-<Props of={Achievement} />
+<Props of={AchievementContainer} />
 
 ## Basic usage
 
 <Playground className="bg-black">
-  <Achievement />
+  <AchievementContainer />
 </Playground>
 
 Pass in achievements list via props
 
 <Playground className="bg-black">
-  <Achievement achievements={[
+  <AchievementContainer achievements={[
     {
       title: 'my achievement',
       description: 'my desc',

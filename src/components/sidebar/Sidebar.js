@@ -2,8 +2,8 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import Header from '../header/Header';
+import AchievementContainer from '../achievement/AchievementContainer';
 import Logo from '../logo/Logo';
-import Achievements from '../achievement/Achievement';
 import { track } from '../../emitter/Tracking';
 import Loading from '../../components/loading/Loading';
 
@@ -13,6 +13,7 @@ import '../../scss/fade-out-left.scss';
 
 import './sidebar.scss';
 
+/** @param {object} state */
 const mapStateToProps = state => ({
   loading: state.loadingReducer.loading,
   user: state.userReducer.user,
@@ -64,7 +65,7 @@ export class Sidebar extends Component {
           className={`sidebar bg-blue-dark h-screen z-50 overflow-y-auto absolute fade-in-left ${this.state.open ? 'block' : this.state.hideSidebarClass}`}
           style={{ width: '400px'}}
         >
-          <Achievements onClose={this.onSidebar} />
+          <AchievementContainer onClose={this.onSidebar} />
         </div>
         <div className="header">
           {this.state.open && <div className="z-30 h-screen w-full absolute bg-testable-overlay-sidebar" onClick={this.onSidebar}></div>}
