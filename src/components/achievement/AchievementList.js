@@ -21,10 +21,7 @@ export default class AchievementList extends React.Component {
     }
   }
 
-  /**
-  * @param {Number} index 
-  */
-  showAchievement = (index) => {
+  showAchievement = index => {
     const current = this.props.achievements;
     const selected = current[index];
     const active = !selected.active;
@@ -47,10 +44,6 @@ export default class AchievementList extends React.Component {
   render() {
     const achievements = [];
 
-    /**
-     * @param {Number} index
-     * @param {Achievement} achievement
-     */
     for (const [index, achievement] of this.state.achievements.entries()) {
       if (auth.user.level >= achievement.level) {
         achievements.push(

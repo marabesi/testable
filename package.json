@@ -38,7 +38,7 @@
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "npm run lint && npm run tailwind:css && export NODE_ENV=production && export REACT_APP_BASE_NAME=/testable/build/ && react-scripts build && npm run docz:build",
-    "test": "react-scripts test --env=jsdom --verbose",
+    "test": "react-scripts test --env=jsdom --verbose --maxWorkers=4",
     "coverage": "react-scripts test --env=jsdom --no-cache --collectCoverage",
     "cypress": "cypress open",
     "cypress:run": "cypress run",
