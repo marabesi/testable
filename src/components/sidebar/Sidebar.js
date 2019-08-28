@@ -42,20 +42,6 @@ export class Sidebar extends Component {
     });
   }
 
-  onHover = () => {
-    this.setState({
-      //@ts-ignore
-      ...this.state.hover, hover: true
-    });
-  }
-
-  offHover = () => {
-    this.setState({
-      //@ts-ignore
-      ...this.state.hover, hover: false
-    });
-  }
-
   render() {
     return (
       <React.Fragment>
@@ -75,9 +61,7 @@ export class Sidebar extends Component {
         {this.props.children}
 
         { !this.props.user && <Logo
-          className={`h-6 hidden md:block absolute pin-b pin-r mr-5 mb-5 ${this.state.hover ? 'pulsate-fwd': ''}` }
-          onMouseEnter={this.onHover}
-          onMouseLeave={this.offHover}
+          className="h-6 hidden md:block absolute pin-b pin-r mr-5 mb-5"
         /> }
       </React.Fragment>
     );
