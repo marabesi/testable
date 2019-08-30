@@ -1,14 +1,16 @@
 import * as React from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
+import { injectIntl } from 'react-intl';
 import PlaceholderImage from './PlaceholderImage';
+import Modal from '../modal/Modal';
+import Options from '../options/Options';
 import { auth } from '../../pages/login/Auth';
 import { track } from '../../emitter/Tracking';
 
 import './profile.scss';
-import Modal from '../modal/Modal';
 
-export default class Profile extends React.Component {
+export class Profile extends React.Component {
 
   state = {
     menu: false,
@@ -99,10 +101,11 @@ export default class Profile extends React.Component {
         {
           this.state.modal &&
           <Modal
-            title="Opções"
+            title={this.props.intl.messages.global.options}
             isOpen={this.state.modal}
             onClose={this.onOptions}
           >
+            <Options />
           </Modal>
         }
         <div
@@ -135,3 +138,5 @@ Profile.propTypes = {
   user: PropTypes.object,
   className: PropTypes.string
 };
+
+export default injectIntl(Profile);
