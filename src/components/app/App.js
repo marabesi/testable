@@ -1,6 +1,9 @@
+//@ts-nocheck
 import * as React from 'react';
+import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
+import { IntlProvider } from 'react-intl';
 import AsyncComponent from './AsyncComponent';
 import { mapStyles, bounceTransition } from './transition';
 import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
@@ -11,10 +14,13 @@ import Emitter, { TRACKING } from '../../emitter/Emitter';
 import { auth } from '../../pages/login/Auth';
 
 import './app.scss';
- 
-/* eslint-disable-next-line */
+
 const isDebug = process.env.REACT_APP_DEBUG || false;
 const queue = new Queue();
+const messages = {
+  en: require('../../locale/en').default,
+  'pt-br': require('../../locale/pt-br').default,
+};
 
 const Introduction = AsyncComponent(() => {
   return import('../../pages/introduction/Introduction');
@@ -79,7 +85,14 @@ const assets = [
   'assets/mp3/keyboard.mp3',
 ];
 
-export default class App extends React.Component {
+/**
+ * @param {object} state
+ */
+const mapStateToProps = state => ({
+  locale: state.localeReducer.locale,
+});
+
+export class App extends React.Component {
 
   state = {
     isFetchingAssets: true
@@ -117,30 +130,36 @@ export default class App extends React.Component {
       );
     }
 
+    const { locale } = this.props;
+
     return (
-      <Sidebar>
-        <AnimatedSwitch
-          atEnter={bounceTransition.atEnter}
-          atLeave={bounceTransition.atLeave}
-          atActive={bounceTransition.atActive}
-          mapStyles={mapStyles}
-          className="App"
-        >
-          <Route exact path="/" component={Login} />
-          <ProtectedRoute path="/intro" component={Introduction} />
-          <ProtectedRoute path="/tutorial" component={Tutorial} />
-          <ProtectedRoute path="/tutorial-end" component={TutorialEnd} />
-          <ProtectedRoute path="/tdd-intro" component={TddIntro} />
-          <ProtectedRoute path="/tdd" component={Tdd} />
-          <ProtectedRoute path="/tdd-end" component={TddEnd} />
-          <ProtectedRoute path="/rocket-01" component={Rocket01} />
-          <ProtectedRoute path="/rocket-02" component={Rocket02} />
-          <ProtectedRoute path="/rocket-03" component={Rocket03} />
-          <ProtectedRoute path="/completed" component={Completed} />
-          <ProtectedRoute path="/survey" component={Survey} />
-          <Route path="*" component={NotFound} />
-        </AnimatedSwitch>
-      </Sidebar>
+      <IntlProvider locale={locale} messages={messages[locale]}>
+        <Sidebar>
+          <AnimatedSwitch
+            atEnter={bounceTransition.atEnter}
+            atLeave={bounceTransition.atLeave}
+            atActive={bounceTransition.atActive}
+            mapStyles={mapStyles}
+            className="App"
+          >
+            <Route exact path="/" component={Login} />
+            <ProtectedRoute path="/intro" component={Introduction} />
+            <ProtectedRoute path="/tutorial" component={Tutorial} />
+            <ProtectedRoute path="/tutorial-end" component={TutorialEnd} />
+            <ProtectedRoute path="/tdd-intro" component={TddIntro} />
+            <ProtectedRoute path="/tdd" component={Tdd} />
+            <ProtectedRoute path="/tdd-end" component={TddEnd} />
+            <ProtectedRoute path="/rocket-01" component={Rocket01} />
+            <ProtectedRoute path="/rocket-02" component={Rocket02} />
+            <ProtectedRoute path="/rocket-03" component={Rocket03} />
+            <ProtectedRoute path="/completed" component={Completed} />
+            <ProtectedRoute path="/survey" component={Survey} />
+            <Route path="*" component={NotFound} />
+          </AnimatedSwitch>
+        </Sidebar>
+      </IntlProvider>
     );
   }
 }
+
+export default connect(mapStateToProps)(App);
