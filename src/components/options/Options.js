@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { setLocale } from '../../actions/localeAction';
 
@@ -21,7 +23,7 @@ export class Options extends Component {
           <tr>
             <td></td>
             <td>
-              <select onChange={this.onChange}>
+              <select value="pt-br" onChange={this.onChange}>
                 <option value="en">Inglês</option>
                 <option value="pt-br">Português</option>
               </select>
@@ -33,4 +35,8 @@ export class Options extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Options);
+Options.propTypes = {
+  setLocale: PropTypes.func
+};
+
+export default connect(null, mapDispatchToProps)(injectIntl(Options));
