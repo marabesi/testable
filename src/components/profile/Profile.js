@@ -136,7 +136,18 @@ export class Profile extends React.Component {
 
 Profile.propTypes = {
   user: PropTypes.object,
-  className: PropTypes.string
+  className: PropTypes.string,
+  intl: PropTypes.object
+};
+
+Profile.defaultProps = {
+  intl: {
+    messages: {
+      global: {
+        options: ''
+      }
+    }
+  }
 };
 
 export default injectIntl(Profile);

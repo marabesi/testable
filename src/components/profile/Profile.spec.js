@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import Profile from './Profile';
+import {Profile} from './Profile';
 import { auth } from '../../pages/login/Auth';
 import PlaceholderImage from '../../components/profile/PlaceholderImage';
 
@@ -45,8 +45,8 @@ describe('profile component', () => {
     container.at(0).simulate('click');
     wrapper.find('ul li').at(1).simulate('click');
 
-    expect(wrapper.state().successfulLoggedOut).toBeTruthy();
-    expect(wrapper.state().menu).toBeFalsy();
+    expect(wrapper.state()['successfulLoggedOut']).toBeTruthy();
+    expect(wrapper.state()['menu']).toBeFalsy();
   });
 
   describe('options modal behavior', () => {
@@ -103,15 +103,15 @@ describe('profile component', () => {
 
     const container = wrapper.find('.menu-wrapper');
 
-    expect(wrapper.state().menu).toBeFalsy();
+    expect(wrapper.state()['menu']).toBeFalsy();
 
     container.at(0).simulate('click');
 
-    expect(wrapper.state().menu).toBeTruthy();
+    expect(wrapper.state()['menu']).toBeTruthy();
 
     container.simulate('click');
 
-    expect(wrapper.state().menu).toBeFalsy();
+    expect(wrapper.state()['menu']).toBeFalsy();
   });
 
   test('should close user menu invoking onBlur method', () => {
@@ -122,8 +122,8 @@ describe('profile component', () => {
       />
     );
 
-    wrapper.instance().onBlur();
+    wrapper.instance()['onBlur']();
 
-    expect(wrapper.state().menu).toBeFalsy();
+    expect(wrapper.state()['menu']).toBeFalsy();
   });
 });

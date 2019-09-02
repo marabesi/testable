@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount } from 'enzyme';
+import {shallow} from 'enzyme';
 import sinon from 'sinon';
 import { Header } from './Header';
 import Emitter, {LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN, LEVEL_DOWN} from '../../emitter/Emitter';
@@ -30,20 +30,20 @@ describe('header component', () => {
   });
 
   test('should not show debug button by default', () => {
-    const localWrapper = mount(<Header user={mockedUser} />);
+    const localWrapper = shallow(<Header user={mockedUser} />);
     expect(localWrapper.find('input[type="button"]').length).toEqual(0);
     localWrapper.unmount();
   });
 
   test('should render user progress', () => {
-    const localWrapper = mount(<Header user={mockedUser} />);
+    const localWrapper = shallow(<Header user={mockedUser} />);
     expect(localWrapper.find('.user-progress').length).toEqual(1);
     localWrapper.unmount();
   });
 
-  test('should render profile', () => {
-    const localWrapper = mount(<Header user={mockedUser} />);
-    expect(localWrapper.find('.profile').length).toEqual(1);
+  test('should render user menu component', () => {
+    const localWrapper = shallow(<Header user={mockedUser} />);
+    expect(localWrapper.find('UserMenu').length).toEqual(1);
     localWrapper.unmount();
   });
 
@@ -52,7 +52,7 @@ describe('header component', () => {
     const bkp = auth.updateUserInfo;
 
     auth.updateUserInfo = sinon.spy();
-    const wrapper = mount(<Header user={mockedUser} />);
+    const wrapper = shallow(<Header user={mockedUser} />);
 
     expect(wrapper.find('.wobble-ver-right').length).toEqual(0);
 
@@ -79,7 +79,7 @@ describe('header component', () => {
       const bkp = auth.updateUserInfo;
 
       auth.updateUserInfo = sinon.spy();
-      const localWrapper = mount(<Header user={mockedUser} />);
+      const localWrapper = shallow(<Header user={mockedUser} />);
       localWrapper.unmount();
 
       Emitter.emit(currentEvent);
@@ -93,7 +93,7 @@ describe('header component', () => {
     const bkp = auth.updateUserInfo;
     auth.updateUserInfo = sinon.spy();
 
-    const wrapper = mount(<Header user={mockedUser} />);
+    const wrapper = shallow(<Header user={mockedUser} />);
 
     wrapper.instance().goToIntroduction();
 
@@ -102,69 +102,69 @@ describe('header component', () => {
     wrapper.unmount();
     auth.updateUserInfo = bkp;
   });
+});
 
-  describe('listen to user events', () => {
+describe('listen to user events', () => {
 
-    test('should level up user', () => {
-      const { auth } = require('../../pages/login/Auth');
-      const wrapper = mount(<Header user={mockedUser} />);
-      expect(auth.user.level).toEqual(1);
-      Emitter.emit(LEVEL_UP);
-      expect(auth.user.level).toEqual(2);
-      wrapper.unmount();
-    });
+  test('should level up user', () => {
+    const { auth } = require('../../pages/login/Auth');
+    const wrapper = shallow(<Header user={mockedUser} />);
+    expect(auth.user.level).toEqual(1);
+    Emitter.emit(LEVEL_UP);
+    expect(auth.user.level).toEqual(2);
+    wrapper.unmount();
+  });
 
-    test('should level down user', () => {
-      const { auth } = require('../../pages/login/Auth');
-      auth.user.level = 1;
-      const wrapper = mount(<Header user={mockedUser} />);
-      expect(auth.user.level).toEqual(1);
-      Emitter.emit(LEVEL_DOWN);
-      expect(auth.user.level).toEqual(0);
-      wrapper.unmount();
-    });
+  test('should level down user', () => {
+    const { auth } = require('../../pages/login/Auth');
+    auth.user.level = 1;
+    const wrapper = shallow(<Header user={mockedUser} />);
+    expect(auth.user.level).toEqual(1);
+    Emitter.emit(LEVEL_DOWN);
+    expect(auth.user.level).toEqual(0);
+    wrapper.unmount();
+  });
 
-    test('should update user progress up', () => {
-      const { auth } = require('../../pages/login/Auth');
-      auth.user.progress = 10;
-      const wrapper = mount(<Header user={mockedUser} />);
-      expect(auth.user.progress).toEqual(10);
-      Emitter.emit(PROGRESS_UP, { amount: 20 });
-      expect(auth.user.progress).toEqual(20);
-      wrapper.unmount();
-    });
+  test('should update user progress up', () => {
+    const { auth } = require('../../pages/login/Auth');
+    auth.user.progress = 10;
+    const wrapper = shallow(<Header user={mockedUser} />);
+    expect(auth.user.progress).toEqual(10);
+    Emitter.emit(PROGRESS_UP, { amount: 20 });
+    expect(auth.user.progress).toEqual(20);
+    wrapper.unmount();
+  });
 
-    test('should update user progress down', () => {
-      const { auth } = require('../../pages/login/Auth');
-      auth.user.progress = 10;
-      const wrapper = mount(<Header user={mockedUser} />);
-      expect(auth.user.progress).toEqual(10);
-      Emitter.emit(PROGRESS_DOWN, { amount: 5 });
-      expect(auth.user.progress).toEqual(5);
-      wrapper.unmount();
-    });
+  test('should update user progress down', () => {
+    const { auth } = require('../../pages/login/Auth');
+    auth.user.progress = 10;
+    const wrapper = shallow(<Header user={mockedUser} />);
+    expect(auth.user.progress).toEqual(10);
+    Emitter.emit(PROGRESS_DOWN, { amount: 5 });
+    expect(auth.user.progress).toEqual(5);
+    wrapper.unmount();
+  });
 
-    test('should emit LEVEL_UP event', () => {
-      const spy = sinon.spy();
-      Emitter.addListener(LEVEL_UP, spy);
+  test('should emit LEVEL_UP event', () => {
+    const spy = sinon.spy();
+    Emitter.addListener(LEVEL_UP, spy);
 
-      const wrapper = mount(<Header user={mockedUser} />);
-      wrapper.instance().levelUp();
-      wrapper.unmount();
+    const wrapper = shallow(<Header user={mockedUser} />);
+    wrapper.instance().levelUp();
+    wrapper.unmount();
 
-      expect(spy.called).toBeTruthy();
-    });
+    expect(spy.called).toBeTruthy();
+  });
 
-    test('should emit LEVEL_DOWN event', () => {
-      const spy = sinon.spy();
-      Emitter.addListener(LEVEL_DOWN, spy);
+  test('should emit LEVEL_DOWN event', () => {
+    const spy = sinon.spy();
+    Emitter.addListener(LEVEL_DOWN, spy);
 
-      const wrapper = mount(<Header user={mockedUser} />);
-      wrapper.instance().levelDown();
-      wrapper.unmount();
+    const wrapper = shallow(<Header user={mockedUser} />);
+    wrapper.instance().levelDown();
+    wrapper.unmount();
 
-      expect(spy.called).toBeTruthy();
-    });
+    expect(spy.called).toBeTruthy();
   });
 });
 

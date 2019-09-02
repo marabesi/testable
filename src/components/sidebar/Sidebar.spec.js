@@ -1,11 +1,7 @@
 import React from 'react';
-import {Provider} from 'react-redux';
 import { shallow, mount } from 'enzyme';
 import { Sidebar } from './Sidebar';
-import rootStore from '../../store/store';
-import { setUser } from '../../actions/userAction';
-
-const store = rootStore();
+import {Header} from '../header/Header';
 
 describe('sidebar component', () => {
 
@@ -37,17 +33,10 @@ describe('sidebar component', () => {
   });
 
   test('should display header if the user is logged', () => {
-    store.dispatch(setUser({ uid: '123-123123-aaa'}));
-
-    const wrapper = mount(
-      <Provider store={store}>
-        <Sidebar user={{ uid: '123-123123-aaa'}} />
-      </Provider>
+    const wrapper = shallow(
+      <Sidebar loading={false} user={{ uid: '123-123123-aaa'}} />
     );
-
-    wrapper.find('Sidebar').instance().onSidebar();
-
-    expect(wrapper.find('Header').exists()).toBeTruthy();
+    expect(wrapper.find(<Header />)).toBeTruthy();
   });
 
   test('should toggle sidebar', () => {
