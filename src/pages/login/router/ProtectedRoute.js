@@ -29,7 +29,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
 export default ProtectedRoute;
 
 ProtectedRoute.propTypes = {
-  component: PropTypes.func,
+  component: PropTypes.object,
   history: PropTypes.object,
   location: PropTypes.object
 };
