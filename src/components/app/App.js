@@ -106,7 +106,7 @@ export class App extends Component {
     const { locale } = this.props;
 
     return (
-      <Suspense fallback={<Loading />}>
+      <Suspense delay={700} fallback={<Loading />}>
         <IntlProvider locale={locale} messages={messages[locale]}>
           <Sidebar>
             <AnimatedSwitch

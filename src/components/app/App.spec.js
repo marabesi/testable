@@ -33,7 +33,7 @@ describe('App component', () => {
       isFetchingAssets: false
     });
     app.update();
-    expect(app.state.isFetchingAssets).toBeFalsy();
+    expect(app.state['isFetchingAssets']).toBeFalsy();
   });
 
   test('listen to tracking events on mount', () => {
