@@ -1,6 +1,6 @@
 import React from 'react';
 import sinon from 'sinon';
-import { shallow, mount } from 'enzyme';
+import { mount } from 'enzyme';
 import Scene from './Scene';
 import { localStorageMock } from '../../__test__/stubs/localStorage';
 
@@ -10,13 +10,31 @@ describe('Scene component', () => {
     Object.defineProperty(window, 'localStorage', {
       value: localStorageMock,
     });
+  });
+
+  afterEach(() => {
     window.localStorage.clear();
   });
 
   test('by default, does not show up the next button', () => {
-    const wrapper = shallow(<Scene />);
+    const wrapper = mount(<Scene />);
 
     expect(wrapper.find('Button').length).toEqual(0);
+  });
+
+  test('by default, the next button is not disabled', done => {
+    const wrapper = mount(
+      <Scene
+        text={[ {key: 0, line: 'a'} ]}
+        button="just a label"
+      />
+    );
+
+    setTimeout(() => {
+      wrapper.update();
+      expect(wrapper.find('Button').prop('disabled')).toBeFalsy();
+      done();
+    }, 1500);
   });
 
   test('should show up next button', done => {
