@@ -16,7 +16,7 @@ describe('Scene component', () => {
   test('by default, does not show up the next button', () => {
     const wrapper = shallow(<Scene />);
 
-    expect(wrapper.find('button').length).toEqual(0);
+    expect(wrapper.find('Button').length).toEqual(0);
   });
 
   test('should show up next button', done => {
@@ -30,7 +30,7 @@ describe('Scene component', () => {
     setTimeout(() => {
       wrapper.update();
 
-      expect(wrapper.find('button').text()).toEqual('mybutton');
+      expect(wrapper.find('Button').text()).toEqual('mybutton');
       done();
     }, 1500);
   });
