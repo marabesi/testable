@@ -2,20 +2,8 @@ import React from 'react';
 import sinon from 'sinon';
 import { mount } from 'enzyme';
 import Scene from './Scene';
-import { localStorageMock } from '../../__test__/stubs/localStorage';
 
 describe('Scene component', () => {
-
-  beforeEach(() => {
-    Object.defineProperty(window, 'localStorage', {
-      value: localStorageMock,
-    });
-  });
-
-  afterEach(() => {
-    window.localStorage.clear();
-  });
-
   test('by default, does not show up the next button', () => {
     const wrapper = mount(<Scene />);
 
@@ -35,6 +23,35 @@ describe('Scene component', () => {
       expect(wrapper.find('Button').prop('disabled')).toBeFalsy();
       done();
     }, 1500);
+  });
+
+  test('by default, does not show alien component', () => {
+    const wrapper = mount(<Scene />);
+
+    expect(wrapper.find('AlienSvg').prop('className')).toContain('hidden');
+  });
+
+  test('should show alien component', () => {
+    const wrapper = mount(
+      <Scene
+        showAlien={{}}
+      />
+    );
+
+    expect(wrapper.find('AlienSvg').prop('className').includes('hidden')).toBeFalsy();
+  });
+
+  test('should show alien component with animation', () => {
+    const wrapper = mount(
+      <Scene
+        showAlien={{
+          animate: true
+        }}
+      />
+    );
+
+    expect(wrapper.find('AlienSvg').prop('className').includes('hidden')).toBeFalsy();
+    expect(wrapper.find('AlienSvg').prop('className')).toContain('slide-in-bck-top');
   });
 
   test('should show up next button', done => {
@@ -64,8 +81,7 @@ describe('Scene component', () => {
     expect(wrapper.find('div').at(0).hasClass('custom-class')).toBeTruthy();
   });
 
-  test('should show up buggy character', done => {
-    window.localStorage.setItem('testable.buggy.png', 'img buggy content');
+  test('should show up buggy component after typing', done => {
     const wrapper = mount(
       <Scene
         onCompleted={{showBug: true}}
@@ -73,10 +89,13 @@ describe('Scene component', () => {
       />
     );
 
+    expect(wrapper.find('SvgBuggyLeft').prop('className')).toContain('hidden');
+
     setTimeout(() => {
       wrapper.update();
 
-      expect(wrapper.find('img').at(0).prop('src')).toEqual('img buggy content');
+      expect(wrapper.find('SvgBuggyLeft').prop('className').includes('hidden')).toBeFalsy();
+      expect(wrapper.find('SvgBuggyLeft').prop('className')).toContain('slide-in-bck-right');
       done();
     }, 1500);
   });
