@@ -31,26 +31,28 @@ export default class Scene extends React.Component {
   * @param {Event} event
   */
   onClick = event => {
-    if (!this.state.disableNextButton) {
-      if (this.props.lastScene) {
-        this.props.handleLastScene();
-        return;
-      }
+    if (this.state.disableNextButton) {
+      return;
+    }
 
-      this.props.next(event);
+    if (this.props.lastScene) {
+      this.props.handleLastScene();
+      return;
+    }
 
+    this.props.next(event);
+
+    this.setState({
+      //@ts-ignore
+      ...this.state.disableNextButton, disableNextButton: true
+    });
+
+    setTimeout(() => {
       this.setState({
         //@ts-ignore
-        ...this.state.disableNextButton, disableNextButton: true
+        ...this.state.disableNextButton, disableNextButton: false
       });
-
-      setTimeout(() => {
-        this.setState({
-          //@ts-ignore
-          ...this.state.disableNextButton, disableNextButton: false
-        });
-      }, RELEASE_BUTTON);
-    }
+    }, RELEASE_BUTTON);
   }
 
   render() {
