@@ -10,10 +10,13 @@ import '../../scss/slide-in-bck-top.scss';
 
 import './scene.scss';
 
+const RELEASE_BUTTON = 2000;
+
 export default class Scene extends React.Component {
 
   state = {
-    showNextButton: false
+    showNextButton: false,
+    disableNextButton: false
   };
 
   onFinishedTyping() {
@@ -28,12 +31,26 @@ export default class Scene extends React.Component {
   * @param {Event} event
   */
   onClick = event => {
-    if (this.props.lastScene) {
-      this.props.handleLastScene();
-      return;
-    }
+    if (!this.state.disableNextButton) {
+      if (this.props.lastScene) {
+        this.props.handleLastScene();
+        return;
+      }
 
-    this.props.next(event);
+      this.props.next(event);
+
+      this.setState({
+        //@ts-ignore
+        ...this.state.disableNextButton, disableNextButton: true
+      });
+
+      setTimeout(() => {
+        this.setState({
+          //@ts-ignore
+          ...this.state.disableNextButton, disableNextButton: false
+        });
+      }, RELEASE_BUTTON);
+    }
   }
 
   render() {
@@ -85,6 +102,7 @@ export default class Scene extends React.Component {
             className="absolute pin-b mb-8 scale-in-center"
             description={this.props.button}
             onClick={this.onClick}
+            disabled={this.state.disableNextButton}
           />
         }
       </div>

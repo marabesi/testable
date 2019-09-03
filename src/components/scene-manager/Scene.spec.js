@@ -123,4 +123,51 @@ describe('Scene component', () => {
       done();
     }, 1500);
   });
+
+  test('should disable button once clicked to prevent firing the event twice', done => {
+    const onClick = jest.fn();
+    const wrapper = mount(
+      <Scene
+        text={[ {key: 0, line: 'my'} ]}
+        button="mybutton"
+        next={onClick}
+      />
+    );
+
+    setTimeout(() => {
+      wrapper.update();
+
+      // tries to click 10 times next button
+      for (let i = 0; i < 10; i++) {
+        wrapper.find('button').simulate('click');
+      }
+
+      expect(onClick).toBeCalledTimes(1);
+      done();
+    }, 1500);
+  });
+
+  test('should released disable from next button after two seconds', done => {
+    const onClick = jest.fn();
+    const wrapper = mount(
+      <Scene
+        text={[ {key: 0, line: 'my'} ]}
+        button="mybutton"
+        next={onClick}
+      />
+    );
+
+    setTimeout(() => {
+      wrapper.update();
+      wrapper.find('button').simulate('click');
+      expect(wrapper.find('Button').prop('disabled')).toBeTruthy();
+    }, 1500);
+
+    setTimeout(() => {
+      wrapper.update();
+
+      expect(wrapper.find('Button').prop('disabled')).toBeFalsy();
+      done();
+    }, 3600);
+  });
 });
