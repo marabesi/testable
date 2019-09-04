@@ -91,6 +91,7 @@
     "eslint-plugin-react": "^7.13.0",
     "gh-pages": "^2.0.1",
     "postcss-cli": "^6.1.2",
+    "redux-mock-store": "^1.5.3",
     "sinon": "^7.3.2",
     "source-map-explorer": "^1.8.0",
     "stryker-cli": "^1.0.0",
