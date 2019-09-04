@@ -37,9 +37,9 @@ describe('options menu component', () => {
       </IntlProvider>
     );
 
-    wrapper.find('select').simulate('change', {target: { value : 'en'}});
+    wrapper.find('select').simulate('change', {target: { value : 'pt-br'}});
     const actions = store.getActions();
 
-    expect(actions).toEqual([ { 'payload': 'en', 'type': SET_LOCALE } ]);
+    expect(actions).toEqual([ { 'payload': 'pt-br', 'type': SET_LOCALE } ]);
   });
 });
