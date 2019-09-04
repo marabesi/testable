@@ -4,7 +4,7 @@ import Profile from '../profile/Profile';
 import Modal from '../modal/Modal';
 import Cup from '../icons/Cup';
 import Ranking from '../ranking/Ranking';
-import Achievement from '../icons/Achievement';
+import AchievementIcon from '../icons/Achievement';
 import { auth } from '../../pages/login/Auth';
 
 export default class UserMenu extends Component {
@@ -27,7 +27,7 @@ export default class UserMenu extends Component {
           className="fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
           onClick={this.onRanking}
         />
-        <Achievement
+        <AchievementIcon
           className="fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
           onClick={this.props.onNotification}
         />
