@@ -4,13 +4,6 @@ import { Redirect } from 'react-router-dom';
 import content from './introduction-content.json';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
-import { onLoading } from '../../actions/loadingAction';
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLoading: loading => dispatch(onLoading(loading))
-  };
-};
 
 export class Introduction extends Component {
 
@@ -23,10 +16,7 @@ export class Introduction extends Component {
       tutorial: true,
     });
 
-    this.props.onLoading(true);
-
     setTimeout(() => {
-      this.props.onLoading(false);
       this.setState({
         redirect: true
       });
@@ -52,4 +42,4 @@ export class Introduction extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Introduction);
+export default connect()(Introduction);

@@ -35,13 +35,6 @@ export default class Scene extends React.Component {
       return;
     }
 
-    if (this.props.lastScene) {
-      this.props.handleLastScene();
-      return;
-    }
-
-    this.props.next(event);
-
     this.setState({
       //@ts-ignore
       ...this.state.disableNextButton, disableNextButton: true
@@ -53,6 +46,13 @@ export default class Scene extends React.Component {
         ...this.state.disableNextButton, disableNextButton: false
       });
     }, RELEASE_BUTTON);
+
+    if (this.props.lastScene) {
+      this.props.handleLastScene();
+      return;
+    }
+
+    this.props.next(event);
   }
 
   render() {
