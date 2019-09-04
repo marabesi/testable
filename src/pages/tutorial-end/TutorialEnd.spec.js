@@ -1,6 +1,6 @@
 import React from 'react';
-import {BrowserRouter} from 'react-router-dom';
 import { mount } from 'enzyme';
+import {BrowserRouter} from 'react-router-dom';
 import { TutorialEnd } from './TutorialEnd';
 
 describe('TutorialEnd page', () => {
@@ -16,32 +16,18 @@ describe('TutorialEnd page', () => {
     expect(wrapper.find('DebugButton').length).toBe(0);
   });
 
-  test('should enable loading', () => {
-    const onLoading = jest.fn();
-
-    const wrapper = mount(
-      <BrowserRouter>
-        <TutorialEnd onLoading={onLoading} />
-      </BrowserRouter>
-    );
-    wrapper.find('TutorialEnd').instance().handleLastScene();
-
-    expect(onLoading).toBeCalledWith(true);
-  });
-
-  test('should disable loading', done => {
-    const onLoading = jest.fn();
-
+  test('should redirect to tdd page when done', done => {
     const wrappedWithRouter = mount(
       <BrowserRouter>
-        <TutorialEnd onLoading={onLoading} />
+        <TutorialEnd />
       </BrowserRouter>
     );
 
     wrappedWithRouter.find('TutorialEnd').instance().handleLastScene();
 
     setTimeout(() => {
-      expect(onLoading).toBeCalledWith(false);
+      wrappedWithRouter.update();
+      expect(wrappedWithRouter.find('Redirect').length).toBe(1);
       done();
     }, 1400);
   });

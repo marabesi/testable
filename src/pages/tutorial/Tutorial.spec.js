@@ -3,11 +3,13 @@ import { shallow } from 'enzyme';
 import { Tutorial } from './Tutorial';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 import {SOURCE_CODE} from '../../constants/editor';
+import { auth } from '../login/Auth';
 
 const ENABLE_EDITOR_ON_HINT = 3;
 
 describe('Tutorial page', () => {
   beforeEach(() => {
+    auth.updateUserInfo = jest.fn();
     Emitter.removeAllListeners(LEVEL_UP);
   });
 
@@ -48,7 +50,7 @@ describe('Tutorial page', () => {
     expect(callback).toBeCalled();
   });
 
-  test('should not level up on invalid code provided', () => {
+  test('should not level up on invalid code', () => {
     const callback = jest.fn();
     Emitter.addListener(LEVEL_UP, callback);
 
@@ -61,11 +63,27 @@ describe('Tutorial page', () => {
     expect(callback).toBeCalledTimes(0);
   });
 
-  test('Enable tooltip', () => {
+  test('should enable tooltip', () => {
     const wrapper = shallow(<Tutorial onHover={() => {}} />);
     wrapper.instance().onEnableTooltip();
 
     expect(wrapper.instance().state.introEnabled).toBe(true);
+  });
+
+  test('tutorial done flag should be false by default', () => {
+    const wrapper = shallow(<Tutorial />);
+    expect(wrapper.instance().state.tutorialDone).toBeFalsy();
+  });
+
+  test('should redirect once tutorial content is finished', () => {
+    const wrapper = shallow(<Tutorial />);
+    wrapper.instance().nextHint();
+    wrapper.instance().nextHint();
+    wrapper.instance().nextHint();
+    wrapper.instance().nextHint();
+    wrapper.instance().nextHint();
+    wrapper.instance().nextHint();
+    expect(wrapper.instance().state.tutorialDone).toBeTruthy();
   });
 
   describe('animation behavior once guide has finished typing', () => {

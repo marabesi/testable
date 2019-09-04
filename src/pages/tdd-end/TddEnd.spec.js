@@ -47,32 +47,18 @@ describe('tdd end page', () => {
       expect(redirect.prop('to').pathname).toEqual('/rocket-01');
     });
 
-    test('should enable loading', () => {
-      const onLoading = jest.fn();
-
-      const wrapper = mount(
-        <BrowserRouter>
-          <TddEnd onLoading={onLoading} />
-        </BrowserRouter>
-      );
-      wrapper.find('TddEnd').instance().handleLastScene();
-
-      expect(onLoading).toBeCalledWith(true);
-    });
-
-    test('should disable loading', done => {
-      const onLoading = jest.fn();
-
+    test('should redirect when done', done => {
       const wrappedWithRouter = mount(
         <BrowserRouter>
-          <TddEnd onLoading={onLoading} />
+          <TddEnd />
         </BrowserRouter>
       );
 
       wrappedWithRouter.find('TddEnd').instance().handleLastScene();
 
       setTimeout(() => {
-        expect(onLoading).toBeCalledWith(false);
+        wrappedWithRouter.update();
+        expect(wrappedWithRouter.find('Redirect').length).toBe(1);
         done();
       }, 1400);
     });

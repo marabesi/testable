@@ -29,6 +29,7 @@ const WAIT_FOR_CODE_ON_STEP = 3;
 export class Tutorial extends Component {
 
   state = {
+    tutorialDone: false,
     introEnabled: false,
     intro: introContent,
     showNext: false,
@@ -157,11 +158,9 @@ export class Tutorial extends Component {
       action: 'tutorial_end'
     });
 
-    setTimeout(() => {
-      this.setState({
-        tutorialDone: true
-      });
-    }, 1000);
+    this.setState({
+      tutorialDone: true
+    });
   }
 
   handleProgress = () => {

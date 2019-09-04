@@ -4,19 +4,6 @@ import { Redirect } from 'react-router-dom';
 import content from './tdd-end-content.json';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
-import { onLoading } from '../../actions/loadingAction';
-
-/**
- * @param {function} dispatch
- */
-const mapDispatchToProps = dispatch => {
-  return {
-    /**
-     * @param {boolean} hovered
-     */
-    onLoading: loading => dispatch(onLoading(loading))
-  };
-};
 
 export class TddEnd extends Component {
 
@@ -27,13 +14,10 @@ export class TddEnd extends Component {
   handleLastScene = () => {
     Emitter.emit(LEVEL_UP);
 
-    this.props.onLoading(true);
-
     setTimeout(() => {
       this.setState({
         redirect: true
       });
-      this.props.onLoading(false);
     }, 1000);
   }
 
@@ -55,4 +39,4 @@ export class TddEnd extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(TddEnd);
+export default connect()(TddEnd);

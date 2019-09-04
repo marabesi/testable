@@ -6,19 +6,6 @@ import SceneManager from '../../components/scene-manager/SceneManager';
 import DebugButton from '../../components/debug/Button';
 import { auth } from '../login/Auth';
 import Emitter, {LEVEL_UP} from '../../emitter/Emitter';
-import { onLoading } from '../../actions/loadingAction';
-
-/**
- * @param {function} dispatch
- */
-const mapDispatchToProps = dispatch => {
-  return {
-    /**
-     * @param {boolean} hovered
-     */
-    onLoading: loading => dispatch(onLoading(loading))
-  };
-};
 
 export class TutorialEnd extends React.Component {
 
@@ -29,10 +16,7 @@ export class TutorialEnd extends React.Component {
   handleLastScene = () => {
     Emitter.emit(LEVEL_UP);
 
-    this.props.onLoading(true);
-
     setTimeout(() => {
-      this.props.onLoading(false);
       this.setState({
         redirect: true
       });
@@ -68,4 +52,4 @@ export class TutorialEnd extends React.Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(TutorialEnd);
+export default connect()(TutorialEnd);
