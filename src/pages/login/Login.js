@@ -6,7 +6,6 @@ import firebase from 'firebase/app';
 import uiConfig from './Firebase';
 import { auth } from '../login/Auth';
 import { track } from '../../emitter/Tracking';
-import { onLoading } from '../../actions/loadingAction';
 import { setUser } from '../../actions/userAction';
 
 import './firebase/mdl.scss';
@@ -17,10 +16,6 @@ import './firebase/firebase-ui.scss';
  */
 const mapDispatchToProps = dispatch => {
   return {
-    /**
-     * @param {boolean} loading
-     */
-    onLoading: loading => dispatch(onLoading(loading)),
     setUser: user => dispatch(setUser(user)),
   };
 };
@@ -41,7 +36,6 @@ export class Login extends Component {
   }
 
   authStatusChanged = user => {
-    this.props.onLoading(false);
     this.props.setUser(user);
 
     if (user) {
@@ -87,16 +81,14 @@ export class Login extends Component {
     }
 
     return (
-      <React.Fragment>
-        <div
-          className={
-            !this.state.showFirebaseWidget
-              ? 'hidden'
-              : 'flex flex-col justify-center items-center h-screen'
-          }
-          id='firebaseui-auth-container'
-        />
-      </React.Fragment>
+      <div
+        className={
+          !this.state.showFirebaseWidget
+            ? 'hidden'
+            : 'flex flex-col justify-center items-center h-screen'
+        }
+        id='firebaseui-auth-container'
+      />
     );
   }
 }

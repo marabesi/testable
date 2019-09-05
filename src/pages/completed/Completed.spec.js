@@ -45,35 +45,5 @@ describe('completed page',  () => {
 
       expect(wrappedPage.find('Redirect').length).toBe(1);
     });
-
-    test('should enable loading', () => {
-      const onLoading = jest.fn();
-
-      const wrapper = mount(
-        <BrowserRouter>
-          <Completed onLoading={onLoading} />
-        </BrowserRouter>
-      );
-      wrapper.find('Completed').instance().handleLastScene();
-
-      expect(onLoading).toBeCalledWith(true);
-    });
-
-    test('should disable loading', done => {
-      const onLoading = jest.fn();
-
-      const wrappedWithRouter = mount(
-        <BrowserRouter>
-          <Completed onLoading={onLoading} />
-        </BrowserRouter>
-      );
-
-      wrappedWithRouter.find('Completed').instance().handleLastScene();
-
-      setTimeout(() => {
-        expect(onLoading).toBeCalledWith(false);
-        done();
-      }, 1400);
-    });
   });
 });

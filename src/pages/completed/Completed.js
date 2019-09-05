@@ -4,13 +4,6 @@ import { Redirect } from 'react-router-dom';
 import content from './completed-content.json';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
-import {onLoading} from '../../actions/loadingAction';
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onLoading: loading => dispatch(onLoading(loading))
-  };
-};
 
 export class Completed extends Component {
 
@@ -21,13 +14,10 @@ export class Completed extends Component {
   handleLastScene = () => {
     Emitter.emit(LEVEL_UP);
 
-    this.props.onLoading(true);
-
     setTimeout(() => {
       this.setState({
         redirect: true
       });
-      this.props.onLoading(false);
     }, 1000);
   }
 
@@ -50,4 +40,4 @@ export class Completed extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Completed);
+export default connect()(Completed);

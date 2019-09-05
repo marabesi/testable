@@ -36,7 +36,7 @@ export class Profile extends React.Component {
   showMenu = () => {
     track({
       section: 'profile',
-      action: 'show_menu|button_click'
+      action: 'toggle_menu|button_click'
     });
 
     this.setState({

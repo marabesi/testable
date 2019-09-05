@@ -178,7 +178,7 @@ export class Tutorial extends Component {
     }
 
     return (
-      <React.Fragment>
+      <>
         <DebugButton onClick={this.onEnableTooltip} value="enable introjs" />
         <DebugButton onClick={this.nextHint} value="Forward" />
 
@@ -206,7 +206,7 @@ export class Tutorial extends Component {
           onFinishedTyping={this.onFinishedTyping}
           invalidCode={this.state.editorError}
         />
-      </React.Fragment>
+      </>
     );
   }
 }
