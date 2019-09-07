@@ -60,7 +60,10 @@ let colors = {
 
   'testable-overlay': 'rgba(0, 0, 0, 0.3)',
   'testable-overlay-sidebar': 'rgba(0, 0, 0, 0.7)',
-  'testable-blue-overlay': '#00ffdf52'
+  'testable-blue-overlay': '#00ffdf52',
+
+  'testable-pink': '#f11571',
+  'testable-pink-dark': '#af1246'
 };
 
 /* eslint-disable-next-line */
