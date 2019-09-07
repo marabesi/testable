@@ -31,6 +31,12 @@ describe('Scene component', () => {
     expect(wrapper.find('AlienSvg').prop('className')).toContain('hidden');
   });
 
+  test('by default, does not show buggy bug component', () => {
+    const wrapper = mount(<Scene />);
+
+    expect(wrapper.find('SvgBuggyBug').length).toBe(0);
+  });
+
   test('should show alien component', () => {
     const wrapper = mount(
       <Scene
@@ -206,5 +212,19 @@ describe('Scene component', () => {
       expect(wrapper.find('Button').prop('disabled')).toBeFalsy();
       done();
     }, 3600);
+  });
+
+  test('should render buggy bug version', () => {
+    const wrapper = mount(
+      <Scene
+        showBuggy={{
+          'type': 'bug',
+          'animate': false
+        }}
+        text={[ {key: 0, line: 'my'} ]}
+      />
+    );
+
+    expect(wrapper.find('SvgBuggyBug').length).toBe(1);
   });
 });

@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
-import { SvgBuggyLeft } from '../buggy/SvgBuggy';
+import { SvgBuggyLeft, SvgBuggyBug } from '../buggy/SvgBuggy';
 import AlienSvg from '../alien/AlienSvg';
 
 import '../../scss/slide-in-bck-right.scss';
@@ -12,7 +12,7 @@ import './scene.scss';
 
 const RELEASE_BUTTON = 2000;
 
-export default class Scene extends React.Component {
+export default class Scene extends Component {
 
   state = {
     showNextButton: false,
@@ -96,6 +96,14 @@ export default class Scene extends React.Component {
           <AlienSvg className={
             `w-3/3 absolute w-1/3 pin-r pin-t -mt-6 ${alienClass}`
           }/>
+
+          {
+            this.props.showBuggy.type === 'bug' &&
+            <SvgBuggyBug
+              style={{transform: 'scaleX(-1)'}}
+              className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6'}
+            />
+          }
         </div>
 
         {
@@ -115,6 +123,7 @@ export default class Scene extends React.Component {
 Scene.propTypes = {
   onCompleted: PropTypes.object,
   showAlien: PropTypes.object,
+  showBuggy: PropTypes.object,
   text: PropTypes.array,
   className: PropTypes.string,
   next: PropTypes.func,
@@ -124,5 +133,6 @@ Scene.propTypes = {
 };
 
 Scene.defaultProps = {
-  onCompleted: {}
+  onCompleted: {},
+  showBuggy: {}
 };
