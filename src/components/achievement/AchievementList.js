@@ -1,11 +1,11 @@
 // @ts-nocheck
-import * as React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import AchievementItem from './AchievementItem';
 import { track } from '../../emitter/Tracking';
 import { auth } from '../../pages/login/Auth';
 
-export default class AchievementList extends React.Component {
+export default class AchievementList extends Component {
 
   state = {
     achievements: []
@@ -56,6 +56,12 @@ export default class AchievementList extends React.Component {
           />
         );
       }
+    }
+
+    if (achievements.length === 0) {
+      return (
+        <span className="p-5 text-white">Você não possui nenhuma conquista até o momento</span>
+      );
     }
 
     return (

@@ -65,4 +65,10 @@ describe('default AchievementList behavior', () => {
     expect((wrapper.find('ul h3 + li').prop('className') || []).includes('hidden')).toBeFalsy();
     expect(wrapper.find('ul h3 + li').text()).toEqual('Vamos construir um foguete!');
   });
+
+  it('should render friendly when the list is empty', () => {
+    const wrapper = mount(<AchievementList />);
+    expect(wrapper.find('span').text()).toEqual('Você não possui nenhuma conquista até o momento');
+    expect(wrapper.find('ul').length).toBe(0);
+  });
 });

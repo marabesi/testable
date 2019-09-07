@@ -1,11 +1,11 @@
-import * as React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import AchievementList from './AchievementList';
 import achievements from './achievements-content';
 import Close from '../icons/Close';
 import Title from '../title/Title';
 
-export default class AchievementContainer extends React.Component {
+export default class AchievementContainer extends Component {
 
   state ={
     achievements: []
