@@ -58,10 +58,12 @@ describe('default AchievementList behavior', () => {
       />
     );
 
+    // @ts-ignore
     expect((wrapper.find('ul h3 + li').prop('className') || []).includes('hidden')).toBeTruthy();
 
     wrapper.find('ul h3').simulate('click');
 
+    // @ts-ignore
     expect((wrapper.find('ul h3 + li').prop('className') || []).includes('hidden')).toBeFalsy();
     expect(wrapper.find('ul h3 + li').text()).toEqual('Vamos construir um foguete!');
   });

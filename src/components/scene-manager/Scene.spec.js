@@ -100,6 +100,7 @@ describe('Scene component', () => {
     setTimeout(() => {
       wrapper.update();
 
+      // @ts-ignore
       expect(wrapper.find('SvgBuggyLeft').prop('className').includes('hidden')).toBeFalsy();
       expect(wrapper.find('SvgBuggyLeft').prop('className')).toContain('slide-in-bck-right');
       done();
