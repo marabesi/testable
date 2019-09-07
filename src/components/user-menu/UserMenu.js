@@ -6,6 +6,7 @@ import Cup from '../icons/Cup';
 import Ranking from '../ranking/Ranking';
 import AchievementIcon from '../icons/Achievement';
 import { auth } from '../../pages/login/Auth';
+import {track} from '../../emitter/Tracking';
 
 export default class UserMenu extends Component {
 
@@ -17,6 +18,10 @@ export default class UserMenu extends Component {
     this.setState({
       // @ts-ignore
       ...this.state.ranking, ranking: !this.state.ranking
+    });
+    track({
+      section: 'user_menu',
+      action: 'toggle_ranking|button_click'
     });
   }
 
