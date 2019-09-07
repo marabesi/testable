@@ -34,6 +34,12 @@ export default class Ranking extends Component {
   }
 
   render() {
+    if (this.state.error) {
+      return (
+        <h3 className="text-white flex justify-center mt-5">{this.state.error}</h3>
+      );
+    }
+
     if (this.state.loading) {
       return (
         <div>
@@ -52,12 +58,9 @@ export default class Ranking extends Component {
     });
 
     return (
-      <React.Fragment>
-        { this.state.error && <h3 className="text-white">{this.state.error}</h3>}
-        <ul className="list-reset text-white flex flex-col justify-center items-center">
-          { users }
-        </ul>
-      </React.Fragment>
+      <ul className="list-reset text-white flex flex-col justify-center items-center">
+        { users }
+      </ul>
     );
   }
 }
