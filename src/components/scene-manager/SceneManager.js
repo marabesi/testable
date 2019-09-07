@@ -78,7 +78,7 @@ export default class SceneManager extends Component {
         <DebugButton onClick={this.handleNextScene} value="next" />
         <DebugButton onClick={this.props.handleLastScene} value="trigger last scene" />
 
-        <div className="w-full">
+        <div className="w-full -mt-20">
           { scenes }
         </div>
       </React.Fragment>
