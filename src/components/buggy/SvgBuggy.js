@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Base64Image from '../base64image/Base64Image';
 
 /**
@@ -18,6 +18,10 @@ export const SvgBuggyBug = props => (
 
 export const SvgBuggySleepy = props => (
   <Base64Image image="testable.buggy-zzz.png" alt="buggy zzz" {...props}/>
+);
+
+export const SvgBuggyHappy = props => (
+  <Base64Image image="testable.buggy-happy.png" alt="buggy happy" {...props}/>
 );
 
 export default SvgBuggy;

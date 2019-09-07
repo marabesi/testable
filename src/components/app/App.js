@@ -37,6 +37,7 @@ const messages = {
 
 const assets = [
   'assets/buggy-right.png',
+  'assets/buggy-happy.png',
   'assets/buggy-left.png',
   'assets/buggy-bug.png',
   'assets/buggy-zzz.png',
@@ -73,9 +74,11 @@ export class App extends Component {
 
     await queue.fetch(assets);
 
-    this.setState({
-      isFetchingAssets: false
-    });
+    setTimeout(() => {
+      this.setState({
+        isFetchingAssets: false
+      });
+    }, 500);
   }
 
   componentWillUnmount() {

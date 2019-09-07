@@ -218,13 +218,25 @@ describe('Scene component', () => {
     const wrapper = mount(
       <Scene
         showBuggy={{
-          'type': 'bug',
-          'animate': false
+          type: 'bug',
         }}
         text={[ {key: 0, line: 'my'} ]}
       />
     );
 
     expect(wrapper.find('SvgBuggyBug').length).toBe(1);
+  });
+
+  test('should render buggy happy version', () => {
+    const wrapper = mount(
+      <Scene
+        showBuggy={{
+          type: 'happy',
+        }}
+        text={[ {key: 0, line: 'my'} ]}
+      />
+    );
+
+    expect(wrapper.find('SvgBuggyHappy').length).toBe(1);
   });
 });
