@@ -7,7 +7,7 @@ export default class Background extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <Helmet>
           <style>
             {`
@@ -22,7 +22,7 @@ export default class Background extends Component {
         </Helmet>
         <div className="stars"></div>
         {this.props.children}
-      </React.Fragment>
+      </>
     );
   }
 }

@@ -19,7 +19,7 @@ export default class AchievementContainer extends Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <Title>
           Conquistas
           <Close className="fill-current w-4 h-4 text-white cursor-pointer" onClick={this.props.onClose} />
@@ -28,7 +28,7 @@ export default class AchievementContainer extends Component {
         {this.state.achievements.length === 0 && <span className="p-5 text-white">A lista de conquista está vazia</span>}
 
         {this.state.achievements.length > 0 && <AchievementList achievements={this.state.achievements} />}
-      </React.Fragment>
+      </>
     );
   }
 }

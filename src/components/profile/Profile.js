@@ -97,7 +97,7 @@ export class Profile extends React.Component {
     }`;
 
     return (
-      <React.Fragment>
+      <>
         {
           this.state.modal &&
           <Modal
@@ -129,7 +129,7 @@ export class Profile extends React.Component {
             </ul>
           </div>
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }

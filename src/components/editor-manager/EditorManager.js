@@ -126,11 +126,7 @@ export default class EditorManager extends React.Component {
       );
     }
   
-    return (
-      <React.Fragment>
-        {editors}
-      </React.Fragment>
-    );
+    return editors;
   }
 }
 

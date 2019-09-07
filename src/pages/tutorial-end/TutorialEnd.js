@@ -40,14 +40,14 @@ export class TutorialEnd extends React.Component {
       );
     }
     return (
-      <React.Fragment>
+      <>
         <DebugButton onClick={this.goToTutorial} value="tutorial" />
         <SceneManager
           identifier="post_tutorial"
           content={content}
           handleLastScene={this.handleLastScene}
         />
-      </React.Fragment>
+      </>
     );
   }
 }

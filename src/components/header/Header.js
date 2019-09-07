@@ -107,7 +107,7 @@ export class Header extends React.Component {
 
   render() {
     return (
-      <React.Fragment>
+      <>
         <DebugButton onClick={this.levelUp} value="level up" />
         <DebugButton onClick={this.levelDown} value="level down"/>
         <DebugButton onClick={this.goToIntroduction} value="go back to introduction"/>
@@ -120,7 +120,7 @@ export class Header extends React.Component {
 
           <UserMenu user={auth.user} onNotification={this.props.onSidebar} />
         </div>
-      </React.Fragment>
+      </>
     );
   }
 }
