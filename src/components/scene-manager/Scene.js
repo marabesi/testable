@@ -28,8 +28,8 @@ export default class Scene extends Component {
   }
 
   /**
-  * @param {Event} event
-  */
+   * @param {Event} event
+   */
   onClick = event => {
     if (this.state.disableNextButton) {
       return;
@@ -73,7 +73,7 @@ export default class Scene extends Component {
     if (this.props.showAlien) {
       alienClass = 'block';
     }
-    
+
     if (this.props.showAlien && this.props.showAlien.animate) {
       alienClass = 'slide-in-bck-top';
     }
@@ -87,10 +87,11 @@ export default class Scene extends Component {
             onFinishedTyping={ () => this.onFinishedTyping() }
           />
 
-          <SvgBuggyLeft className={
-            `absolute pin-r w-1/3 mt-10 ${
-              this.props.onCompleted.showBug && this.state.showNextButton ? 'slide-in-bck-right' : 'hidden'
-            }
+          <SvgBuggyLeft
+            className={
+              `absolute pin-r w-1/3 mt-10 ${
+                this.props.onCompleted.showBug && this.state.showNextButton ? 'slide-in-bck-right' : 'hidden'
+              }
           `} />
 
           <AlienSvg className={

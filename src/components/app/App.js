@@ -36,10 +36,10 @@ const messages = {
 };
 
 const assets = [
-  'assets/buggy.png',
-  'assets/buggy.svg',
-  'assets/buggy-bug.svg',
-  'assets/buggy-zzz.svg',
+  'assets/buggy-right.png',
+  'assets/buggy-left.png',
+  'assets/buggy-bug.png',
+  'assets/buggy-zzz.png',
   'assets/alien.png',
   'assets/logo.png',
   'assets/placeholder.svg',
