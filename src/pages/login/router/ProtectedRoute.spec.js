@@ -13,7 +13,7 @@ describe('protected route component', () => {
       };
     };
 
-    const MyComponent = (props) => {
+    const MyComponent = props => {
       return (
         <h1>my component</h1>
       );
