@@ -103,7 +103,7 @@ describe('guide component', () => {
       expect(wrapper.find('SvgBuggyBug').length).toBe(1);
     });
 
-    test('should show SvgBuggySleepy when the is afk', done => {
+    test('should show SvgBuggySleepy when the user is afk', done => {
       const wrapper = mount(
         <Guide
           guideContent={content}
@@ -122,7 +122,7 @@ describe('guide component', () => {
       }, 100);
     });
 
-    test('set afk to false on user interaction by keyboard', done => {
+    test('should show SvgBuggy on user interaction by keyboard', done => {
       const wrapper = mount(
         <Guide
           guideContent={content}
@@ -145,6 +145,10 @@ describe('guide component', () => {
         expect(wrapper.find('SvgBuggySleepy').length).toBe(0);
         done();
       }, 500);
+    });
+
+    test('should show SvgBuggyHappy', () => {
+
     });
   });
 });

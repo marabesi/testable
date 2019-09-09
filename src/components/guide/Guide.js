@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SvgBuggy, {SvgBuggyBug, SvgBuggySleepy} from '../buggy/SvgBuggy';
+import SvgBuggy, {SvgBuggyBug, SvgBuggySleepy, SvgBuggyHappy} from '../buggy/SvgBuggy';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import { onHover } from '../../actions/guideAction';
 import Next from '../icons/Next';
@@ -28,7 +28,7 @@ const mapStateToProps = state => ({
   hovered: state.guideReducer.hovered,
 });
 
-export class Guide extends React.Component {
+export class Guide extends Component {
   state = {
     afk: false,
   }
@@ -115,7 +115,9 @@ export class Guide extends React.Component {
       marginTop: '-165px',
       marginLeft: '-290px'
     };
+
     const buggyClass = 'absolute pin-t';
+    const { guideContent, currentHint } = this.props;
 
     let buggy = <SvgBuggy
       className={buggyClass}
@@ -131,6 +133,13 @@ export class Guide extends React.Component {
 
     if (this.state.afk) {
       buggy = <SvgBuggySleepy
+        className={buggyClass}
+        style={buggyStyle}
+      />;
+    }
+
+    if (guideContent[currentHint] && guideContent[currentHint].showBuggy && guideContent[currentHint].showBuggy.type === 'happy') {
+      buggy = <SvgBuggyHappy
         className={buggyClass}
         style={buggyStyle}
       />;
