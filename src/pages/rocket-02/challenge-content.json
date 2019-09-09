@@ -1,0 +1,18 @@
+{
+  "version": 1,
+  "steps": [
+    {
+      "step": 1,
+      "showBuggy": {
+        "type": "bug"
+      },
+      "button": "Onde?",
+      "content": [
+        {
+          "line": "Ó não um bug foi detectado!!!!",
+          "style": "p-2 text-blue-light"
+        }
+      ]
+    }
+  ]
+}

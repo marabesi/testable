@@ -21,6 +21,7 @@ import Tdd from '../../pages/tdd/Tdd';
 import TddEnd from '../../pages/tdd-end/TddEnd';
 import Rocket01 from '../../pages/rocket-01/Rocket01';
 import Rocket02 from '../../pages/rocket-02/Rocket02';
+import Challenge02_01 from '../../pages/rocket-02/Challenge02_01';
 import Rocket03 from '../../pages/rocket-03/Rocket03';
 import Completed from '../../pages/completed/Completed';
 import Survey from '../../pages/survey/Survey';
@@ -113,6 +114,7 @@ export class App extends Component {
             <ProtectedRoute path="/tdd-end" component={TddEnd} />
             <ProtectedRoute path="/rocket-01" component={Rocket01} />
             <ProtectedRoute path="/rocket-02" component={Rocket02} />
+            <ProtectedRoute path="/rocket-02-01" component={Challenge02_01} />
             <ProtectedRoute path="/rocket-03" component={Rocket03} />
             <ProtectedRoute path="/completed" component={Completed} />
             <ProtectedRoute path="/survey" component={Survey} />
