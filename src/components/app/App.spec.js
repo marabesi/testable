@@ -44,9 +44,9 @@ describe('App component', () => {
     );
 
     Emitter.emit(TRACKING, {});
-    wrapper.unmount();
-
     expect(auth.insertUserInfo).toBeCalled();
+
+    wrapper.unmount();
   });
 
   test('unmounted component should not listen to events', done => {
