@@ -1,10 +1,10 @@
 export default [
   {
-    line: 'O sistema de GPS aceita como segundo parâmetro o valor zero ...',
+    line: 'O sistema de GPS não possui uma trava para divisões com zero ...',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'O que não pode acontecer ...',
+    line: 'O que pode fazer nosso foguete se perder no espaço ...',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {

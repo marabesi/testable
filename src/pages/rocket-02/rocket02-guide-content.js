@@ -1,10 +1,10 @@
 export default [
   {
-    line: 'A última peça que falta para nosso foguete é o sistema de aterrissagem',
+    line: 'Nosso foguete precisa de um sistema de aterrissagem',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'Para aterrizar o foguete precisa remover a trava que abre o trem de pouso',
+    line: 'Para aterrizar, o foguete precisa remover a trava que abre o trem de pouso',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
@@ -16,7 +16,7 @@ export default [
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'Hooooorrraaay! Todos os sistemas estão preparadados!',
+    line: 'Hooooorrraaay, Sistema de aterrisagem pronto e testado!',
     style: 'text-white font-semibold text-xl text-blue-light'
   }
 ];

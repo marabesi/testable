@@ -30,8 +30,6 @@ export class Header extends React.Component {
   }
 
   componentDidMount() {
-    const { history } = this.props;
-
     Emitter.addListener(LEVEL_UP, () => {
       this.setState({
         levelUp: true
@@ -44,7 +42,6 @@ export class Header extends React.Component {
       });
 
       this.resetLevelUpAnimation();
-      history.push('/');
     });
 
     Emitter.addListener(LEVEL_DOWN, () => {
@@ -59,7 +56,6 @@ export class Header extends React.Component {
       });
 
       this.resetLevelUpAnimation();
-      history.push('/');
     });
 
     // @ts-ignore
@@ -110,10 +106,15 @@ export class Header extends React.Component {
     Emitter.emit(LEVEL_UP);
   }
 
+  navigate = () => {
+    this.props.history.push('/');
+  }
+
   render() {
     return (
       <>
         <DebugButton onClick={this.levelUp} value="level up" />
+        <DebugButton onClick={this.navigate} value="navigate" />
         <DebugButton onClick={this.levelDown} value="level down"/>
         <DebugButton onClick={this.goToIntroduction} value="go back to introduction"/>
         <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
