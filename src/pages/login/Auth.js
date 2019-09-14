@@ -136,24 +136,24 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/rocket-02-01' && this.user.level === 9) {
-      return {
-        flag: false,
-        to: '/rocket-02-01'
-      };
-    }
-
-    if (to.pathname !== '/rocket-02-02' && this.user.level === 10) {
-      return {
-        flag: false,
-        to: '/rocket-02-02'
-      };
-    }
-
-    if (to.pathname !== '/rocket-03' && this.user.level === 11) {
+    if (to.pathname !== '/rocket-03' && this.user.level === 9) {
       return {
         flag: false,
         to: '/rocket-03'
+      };
+    }
+
+    if (to.pathname !== '/rocket-03-01' && this.user.level === 10) {
+      return {
+        flag: false,
+        to: '/rocket-03-01'
+      };
+    }
+
+    if (to.pathname !== '/rocket-03-02' && this.user.level === 11) {
+      return {
+        flag: false,
+        to: '/rocket-03-02'
       };
     }
 

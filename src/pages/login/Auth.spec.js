@@ -24,9 +24,9 @@ const availableRoutes = [
   '/tdd-end',
   '/rocket-01',
   '/rocket-02',
-  '/rocket-02-01',
-  '/rocket-02-02',
   '/rocket-03',
+  '/rocket-03-01',
+  '/rocket-03-02',
   '/completed',
   '/survey'
 ];
@@ -222,39 +222,39 @@ describe('route access and redirection', () => {
     },
   );
 
-  test.each(availableRoutes.filter(route => route !== '/rocket-02-01'))(
-    'should keep the user level 9 in the challenge 02 sub challenge 01, trying to access: %s',
+  test.each(availableRoutes.filter(route => route !== '/rocket-03'))(
+    'should keep the user level 09 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
       auth.isAuthenticated = true;
       auth.user.level = 9;
       const can = auth.canEnter({}, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
-      expect(can.to).toEqual('/rocket-02-01');
+      expect(can.to).toEqual('/rocket-03');
     },
   );
 
-  test.each(availableRoutes.filter(route => route !== '/rocket-02-02'))(
-    'should keep the user level 10 in the challenge 02 sub challenge 02, trying to access: %s',
+  test.each(availableRoutes.filter(route => route !== '/rocket-03-01'))(
+    'should keep the user level 10 in the challenge 03 sub challenge 01, trying to access: %s',
     (currentRoute) => {
       auth.isAuthenticated = true;
       auth.user.level = 10;
       const can = auth.canEnter({}, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
-      expect(can.to).toEqual('/rocket-02-02');
+      expect(can.to).toEqual('/rocket-03-01');
     },
   );
 
-  test.each(availableRoutes.filter(route => route !== '/rocket-03'))(
-    'should keep the user level 11 in the tdd introduction section, trying to access: %s',
+  test.each(availableRoutes.filter(route => route !== '/rocket-03-02'))(
+    'should keep the user level 11 in the challenge 03 sub challenge 02, trying to access: %s',
     (currentRoute) => {
       auth.isAuthenticated = true;
       auth.user.level = 11;
       const can = auth.canEnter({}, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
-      expect(can.to).toEqual('/rocket-03');
+      expect(can.to).toEqual('/rocket-03-02');
     },
   );
 
@@ -290,9 +290,9 @@ describe('route access and redirection', () => {
     ['/tdd-end', 6],
     ['/rocket-01', 7],
     ['/rocket-02', 8],
-    ['/rocket-02-01', 9],
-    ['/rocket-02-02', 10],
-    ['/rocket-03', 11],
+    ['/rocket-03', 9],
+    ['/rocket-03-01', 10],
+    ['/rocket-03-02', 11],
     ['/completed', 12],
     ['/survey', 13],
   ])(

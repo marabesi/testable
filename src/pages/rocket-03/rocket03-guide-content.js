@@ -1,22 +1,22 @@
 export default [
   {
-    line: 'A última peça que falta para nosso foguete é o sistema de aterrissagem',
+    line: 'Com energia suficiente em nosso foguete podemos seguir com a parte de localização.',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'Para aterrizar o foguete precisa remover a trava que abre o trem de pouso',
+    line: 'Para que o foguete se localize no espaço precisamos de dois sensores de GPS',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'Para isso vamos escrever uma função de teste que remove essa trava',
+    line: 'Já temos um sistema central de GPS que podemos utilizar para fazer o segundo',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'Escreva uma função de teste que subtraia a trava do trem de pouso do foguete',
+    line: 'Escreva a função de teste que divide o GPS em duas partes distintas',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'Hooooorrraaay! Todos os sistemas estão preparadados!',
+    line: 'Temos o sistema de localização pronto!',
     style: 'text-white font-semibold text-xl text-blue-light'
   }
 ];

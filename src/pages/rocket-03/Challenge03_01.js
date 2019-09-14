@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import content from './challenge02_01-content.json';
+import content from './challenge03_01-content.json';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 
-export class Challenge02_01 extends Component {
+export class Challenge03_01 extends Component {
 
   state = {
     redirect: false,
@@ -42,4 +42,4 @@ export class Challenge02_01 extends Component {
   }
 }
 
-export default connect()(Challenge02_01);
+export default connect()(Challenge03_01);

@@ -1,13 +1,13 @@
-import tddContent from './rocket02-guide-content';
+import guideContent from './rocket02-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 
-const code = `function dividirGps(a, b) {
-  return a / b
+const code = `function subtrairTravaDoTremDePouso(a, b) {
+  return a - b
 }`;
 
-const test = `function testeDividirGpsEmDuasPartes() {
+const test = `function testeDeveRemoverAtravaDoTremDePouso() {
 }`;
 
 export default Rocket(
@@ -15,7 +15,7 @@ export default Rocket(
   code,
   test,
   testCase,
-  tddContent,
+  guideContent,
   '/rocket-03',
   3,
   3,
