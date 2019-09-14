@@ -1,6 +1,6 @@
 import tddContent from './rocket01-guide-content';
 import Rocket from '../../components/rocket/Rocket';
-import { SOURCE_CODE } from '../../constants/editor';
+import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 
 const code = `function multiplicarMotor(a, b) {
@@ -23,5 +23,7 @@ export default Rocket(
   testCaseBehavior,
   SOURCE_CODE,
   null,
-  null
+  null,
+  null,
+  [ TEST_CODE ]
 );

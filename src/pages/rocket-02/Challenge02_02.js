@@ -1,13 +1,13 @@
-import tddContent from './rocket02-guide-content';
+import content from './challenge02-02-guide-content';
 import Rocket from '../../components/rocket/Rocket';
-import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
+import {DEFAULT_EDITORS_OPTION, SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 
 const code = `function dividirGps(a, b) {
   return a / b
 }`;
 
-const test = `function testeDividirGpsEmDuasPartes() {
+const test = `function testeNaoAceitarDivisaoPorZero() {
 }`;
 
 export default Rocket(
@@ -15,15 +15,18 @@ export default Rocket(
   code,
   test,
   testCase,
-  tddContent,
+  content,
   '/rocket-03',
   3,
-  3,
-  'rocket-02',
+  2,
+  'rocket-02-02',
   testCaseBehavior,
   SOURCE_CODE,
   null,
   null,
-  null,
-  [ TEST_CODE ]
+  DEFAULT_EDITORS_OPTION,
+  [
+    SOURCE_CODE,
+    TEST_CODE
+  ],
 );

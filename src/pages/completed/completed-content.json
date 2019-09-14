@@ -6,17 +6,17 @@
       "button": "Conseguimos !!!!",
       "content": [
         {
-          "line": "Conseguimos !!!!!",
+          "line": "Estamos prontos para lançar nosso foguete!",
           "style": "p-2 text-blue-light"
         }
       ]
     },
     {
       "step": 2,
-      "button": "Próximo",
+      "button": "Lançar!",
       "content": [
         {
-          "line": "aaaaaa",
+          "line": "Vamos por a prova se nossos testes nos ajudaram",
           "style": "p-2 text-blue-light"
         }
       ]

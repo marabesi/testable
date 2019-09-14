@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../emitter/Emitter';
 import { track } from '../../emitter/Tracking';
@@ -10,18 +11,6 @@ import Intro from '../intro/Intro';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 import {executeTestCase} from '../../engine/Tester';
 
-/**
- * @param {any} OriginalComponent 
- * @param {string} code 
- * @param {string} test
- * @param {array} strategyTests
- * @param {object} guideContent
- * @param {string} whenDoneRedirectTo 
- * @param {Number} waitCodeToBeExecutedOnStep 
- * @param {Number} enableEditorOnStep 
- * @param {string} trackSection 
- * @param {function} reasonStrategy
- */
 const Wrapped = (
   OriginalComponent,
   code,
@@ -35,7 +24,10 @@ const Wrapped = (
   reasonStrategy,
   disableEditor,
   introContent,
-  enableIntroOnStep) => {
+  enableIntroOnStep,
+  editorOptions,
+  attentionAnimationTo = []
+) => {
   class Rocket extends Component {
 
     state = {
@@ -43,7 +35,7 @@ const Wrapped = (
         [SOURCE_CODE]: code,
         [TEST_CODE]: test
       },
-      editorOptions: {
+      editorOptions: editorOptions || {
         [SOURCE_CODE]: {
           readOnly: true
         },
@@ -72,6 +64,7 @@ const Wrapped = (
       if (this.state.currentHint !== enableEditorOnStep || i === disableEditor) {
         return;
       }
+
       let current = Object.assign({}, this.state.code);
 
       current[i] = code;
@@ -109,12 +102,16 @@ const Wrapped = (
     onGuideFinishedTyping = () => {
       if (this.state.currentHint === waitCodeToBeExecutedOnStep) {
         const currentState = Object.assign({}, this.state);
-        currentState.editorOptions[TEST_CODE].className = 'attention';
+        attentionAnimationTo.forEach(editor => {
+          currentState.editorOptions[editor].className = 'attention';
+        });
         this.setState(currentState);
 
         setTimeout(() => {
           const currentState = Object.assign({}, this.state);
-          currentState.editorOptions[TEST_CODE].className = '';
+          attentionAnimationTo.forEach(editor => {
+            currentState.editorOptions[editor].className = '';
+          });
           this.setState(currentState);
         }, 3000);
         return;
@@ -124,7 +121,7 @@ const Wrapped = (
         //@ts-ignore
         ...this.state.showNext, showNext: true
       });
-    }
+    };
 
     handleProgress = () => {
       if (this.state.currentHint === enableIntroOnStep) {
@@ -227,6 +224,10 @@ const Wrapped = (
     }
   }
   return Rocket;
+};
+
+Wrapped.propTypes = {
+  whenDoneRedirectTo: PropTypes.string,
 };
 
 export default Wrapped;

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
-import content from './challenge-content.json';
+import content from './challenge02_01-content.json';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 
@@ -27,14 +27,14 @@ export class Challenge02_01 extends Component {
     if (this.state.redirect) {
       return (
         <Redirect to={{
-          pathname: '/rocket-03',
+          pathname: '/rocket-02-02',
         }} />
       );
     }
 
     return (
       <SceneManager
-        identifier="introduction"
+        identifier="Challenge02_01"
         content={content}
         handleLastScene={this.handleLastScene}
       />

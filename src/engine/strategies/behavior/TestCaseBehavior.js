@@ -46,8 +46,6 @@ export const testCaseBehavior = function (ast) {
 
     return { name, funcUnderTestName, funcUnderTestParams };
   }
-
-  return;
 };
 
 export const testCase = [

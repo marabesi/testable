@@ -169,7 +169,7 @@ Guide.propTypes = {
 };
 
 Guide.defaultProps = {
-  afkExpirationTime: 10000,
+  afkExpirationTime: 30000,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Guide);

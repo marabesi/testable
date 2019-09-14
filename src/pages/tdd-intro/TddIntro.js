@@ -2,6 +2,7 @@ import tddContent from './guide-content';
 import introContent from './tdd-intro-content';
 import Rocket from '../../components/rocket/Rocket';
 import {testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
+import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 
 const code = `function subtrair(a, b) {
   return a - b
@@ -26,7 +27,12 @@ export default Rocket(
   testCaseBehavior,
   null,
   introContent,
-  1
+  1,
+  {
+    [SOURCE_CODE]: {
+      readOnly: true
+    },
+    [TEST_CODE]: {}
+  }
 );
-
 

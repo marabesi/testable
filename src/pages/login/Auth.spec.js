@@ -25,6 +25,7 @@ const availableRoutes = [
   '/rocket-01',
   '/rocket-02',
   '/rocket-02-01',
+  '/rocket-02-02',
   '/rocket-03',
   '/completed',
   '/survey'
@@ -233,11 +234,23 @@ describe('route access and redirection', () => {
     },
   );
 
-  test.each(availableRoutes.filter(route => route !== '/rocket-03'))(
-    'should keep the user level 10 in the tdd introduction section, trying to access: %s',
+  test.each(availableRoutes.filter(route => route !== '/rocket-02-02'))(
+    'should keep the user level 10 in the challenge 02 sub challenge 02, trying to access: %s',
     (currentRoute) => {
       auth.isAuthenticated = true;
       auth.user.level = 10;
+      const can = auth.canEnter({}, { pathname: currentRoute });
+
+      expect(can.flag).toBeFalsy();
+      expect(can.to).toEqual('/rocket-02-02');
+    },
+  );
+
+  test.each(availableRoutes.filter(route => route !== '/rocket-03'))(
+    'should keep the user level 11 in the tdd introduction section, trying to access: %s',
+    (currentRoute) => {
+      auth.isAuthenticated = true;
+      auth.user.level = 11;
       const can = auth.canEnter({}, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
@@ -246,10 +259,10 @@ describe('route access and redirection', () => {
   );
 
   test.each(availableRoutes.filter(route => route !== '/completed'))(
-    'should keep the user level 11 in the tdd introduction section, trying to access: %s',
+    'should keep the user level 12 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
       auth.isAuthenticated = true;
-      auth.user.level = 11;
+      auth.user.level = 12;
       const can = auth.canEnter({}, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
@@ -257,10 +270,10 @@ describe('route access and redirection', () => {
     },
   );
   test.each(availableRoutes.filter(route => route !== '/survey'))(
-    'should keep the user level 12 in the tdd introduction section, trying to access: %s',
+    'should keep the user level 13 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
       auth.isAuthenticated = true;
-      auth.user.level = 12;
+      auth.user.level = 13;
       const can = auth.canEnter({}, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
@@ -278,9 +291,10 @@ describe('route access and redirection', () => {
     ['/rocket-01', 7],
     ['/rocket-02', 8],
     ['/rocket-02-01', 9],
-    ['/rocket-03', 10],
-    ['/completed', 11],
-    ['/survey', 12],
+    ['/rocket-02-02', 10],
+    ['/rocket-03', 11],
+    ['/completed', 12],
+    ['/survey', 13],
   ])(
     'should render the related component  based on the level, trying to access route %s, level %s',
     (currentRoute, level) => {

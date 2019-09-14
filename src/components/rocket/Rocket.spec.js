@@ -1,3 +1,4 @@
+// @ts-nocheck
 jest.mock('../../engine/Reason', () => () => true)
 
 import React from 'react';
@@ -15,7 +16,7 @@ describe('Rocket component', () => {
     Emitter.removeAllListeners(LEVEL_UP);
   });
 
-  test('should disable source code editor by default', () => {
+  test('should accept editor options by parameter', () => {
     const HoC = Rocket(
       fakeComponent,
       null,
@@ -24,12 +25,32 @@ describe('Rocket component', () => {
       null,
       null,
       null,
-      'my-section'
+      null,
+      'my-section',
+      null,
+      null,
+      null,
+      null,
+      {
+        [SOURCE_CODE]: {
+          readOnly: true
+        },
+        [TEST_CODE]: {}
+      }
     );
+
     const wrapper = shallow(<HoC />);
 
     expect(wrapper.instance().state.editorOptions[SOURCE_CODE].readOnly).toBe(true);
     expect(wrapper.find('EditorManager').props().options[SOURCE_CODE].readOnly).toEqual(true);
+  });
+
+  test('test source code editor should be read only by default', () => {
+    const HoC = Rocket(
+      fakeComponent
+    );
+    const wrapper = shallow(<HoC />);
+    expect(wrapper.find('EditorManager').props().options[SOURCE_CODE].readOnly).toBe(true);
   });
 
   test('track section when the component is loaded', () => {
@@ -68,7 +89,7 @@ describe('Rocket component', () => {
       null,
       null,
       '/completed',
-      3,
+      '',
       null,
       'my-section'
     );
@@ -93,7 +114,7 @@ describe('Rocket component', () => {
       null,
       null,
       null,
-      3,
+      '',
       null,
       'my-section'
     );
@@ -212,7 +233,19 @@ describe('Rocket component', () => {
         [],
         null,
         null,
-        0
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        {
+          [SOURCE_CODE]: {
+            readOnly: true
+          },
+          [TEST_CODE]: {}
+        }
       );
       const wrapper = shallow(<HoC />);
 
@@ -225,7 +258,10 @@ describe('Rocket component', () => {
       expect(wrapper.instance().state.showNext).toBe(false);
     });
 
-    test('should toggle attention class when guide finish typing', done => {
+    test.each([
+      SOURCE_CODE,
+      TEST_CODE,
+    ])('should toggle attention class to editor once the guide has finished typing', (editor, done) => {
       const HoC = Rocket(
         fakeComponent,
         'my code',
@@ -233,16 +269,26 @@ describe('Rocket component', () => {
         [],
         null,
         null,
-        0
+        0,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        null,
+        [
+          editor
+        ]
       );
       const wrapper = shallow(<HoC />);
       wrapper.instance().onGuideFinishedTyping();
       wrapper.update();
-      expect(wrapper.find('EditorManager').props().options[TEST_CODE].className).toEqual('attention');
+      expect(wrapper.find('EditorManager').props().options[editor].className).toEqual('attention');
 
       setTimeout(() => {
         wrapper.update();
-        expect(wrapper.find('EditorManager').props().options[TEST_CODE].className).toEqual('');
+        expect(wrapper.find('EditorManager').props().options[editor].className).toEqual('');
         done();
       }, 3100);
     });
