@@ -15,6 +15,10 @@ const mockedUser =  {
   progress: 10,
 };
 
+const mockedHistory = {
+  push: jest.fn()
+};
+
 describe('header component', () => {
   const { reload } = window.location;
 
@@ -52,7 +56,7 @@ describe('header component', () => {
     const bkp = auth.updateUserInfo;
 
     auth.updateUserInfo = sinon.spy();
-    const wrapper = shallow(<Header user={mockedUser} />);
+    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
 
     expect(wrapper.find('.wobble-ver-right').length).toEqual(0);
 
@@ -108,7 +112,7 @@ describe('listen to user events', () => {
 
   test('should level up user', () => {
     const { auth } = require('../../pages/login/Auth');
-    const wrapper = shallow(<Header user={mockedUser} />);
+    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
     expect(auth.user.level).toEqual(1);
     Emitter.emit(LEVEL_UP);
     expect(auth.user.level).toEqual(2);
@@ -118,7 +122,7 @@ describe('listen to user events', () => {
   test('should level down user', () => {
     const { auth } = require('../../pages/login/Auth');
     auth.user.level = 1;
-    const wrapper = shallow(<Header user={mockedUser} />);
+    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
     expect(auth.user.level).toEqual(1);
     Emitter.emit(LEVEL_DOWN);
     expect(auth.user.level).toEqual(0);
@@ -128,7 +132,7 @@ describe('listen to user events', () => {
   test('should update user progress up', () => {
     const { auth } = require('../../pages/login/Auth');
     auth.user.progress = 10;
-    const wrapper = shallow(<Header user={mockedUser} />);
+    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
     expect(auth.user.progress).toEqual(10);
     Emitter.emit(PROGRESS_UP, { amount: 20 });
     expect(auth.user.progress).toEqual(20);
@@ -149,7 +153,7 @@ describe('listen to user events', () => {
     const spy = sinon.spy();
     Emitter.addListener(LEVEL_UP, spy);
 
-    const wrapper = shallow(<Header user={mockedUser} />);
+    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
     wrapper.instance().levelUp();
     wrapper.unmount();
 
@@ -160,7 +164,7 @@ describe('listen to user events', () => {
     const spy = sinon.spy();
     Emitter.addListener(LEVEL_DOWN, spy);
 
-    const wrapper = shallow(<Header user={mockedUser} />);
+    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
     wrapper.instance().levelDown();
     wrapper.unmount();
 

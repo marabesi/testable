@@ -1,6 +1,7 @@
-import * as React from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { withRouter } from 'react-router-dom';
 import UserMenu from '../../components/user-menu/UserMenu';
 import Level from '../../components/level/Level';
 import DebugButton from '../../components/debug/Button';
@@ -29,6 +30,8 @@ export class Header extends React.Component {
   }
 
   componentDidMount() {
+    const { history } = this.props;
+
     Emitter.addListener(LEVEL_UP, () => {
       this.setState({
         levelUp: true
@@ -41,6 +44,7 @@ export class Header extends React.Component {
       });
 
       this.resetLevelUpAnimation();
+      history.push('/');
     });
 
     Emitter.addListener(LEVEL_DOWN, () => {
@@ -55,6 +59,7 @@ export class Header extends React.Component {
       });
 
       this.resetLevelUpAnimation();
+      history.push('/');
     });
 
     // @ts-ignore
@@ -129,5 +134,5 @@ Header.propTypes = {
   onSidebar: PropTypes.func,
   user: PropTypes.object,
 };
-
-export default connect(mapStateToProps)(Header);
+//@ts-ignore
+export default withRouter(connect(mapStateToProps)(Header));
