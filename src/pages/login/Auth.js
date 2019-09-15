@@ -1,7 +1,7 @@
 import firebase from 'firebase/app';
 
 /* eslint-disable-next-line */
-const env = process.env.REACT_APP_FIREBASE_JSON || {};
+const env = JSON.parse(process.env.REACT_APP_FIREBASE_JSON ||  '');
 
 require('firebase/database');
 
