@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Loading from '../loading/Loading';
@@ -52,15 +53,25 @@ export default class Ranking extends Component {
 
     this.state.ranking.forEach((user, index) => {
       users.push(
-        // @ts-ignore
-        <li key={index} className={ index === 0 ? 'text-xl font-bold' : ''}>{ user.name } { user.level }</li>
+        <tr key={index} className={index === 0 ? 'text-xl font-bold bg-testable-pink' : ''}>
+          <td className="p-2">{ index + 1 }</td>
+          <td className="p-2">{ user.name }</td>
+          <td className="p-2">{ user.level }</td>
+        </tr>
       );
     });
 
     return (
-      <ul className="list-reset text-white flex flex-col justify-center items-center">
-        { users }
-      </ul>
+      <table className="text-white m-auto w-3/5">
+        <thead>
+          <th className="text-left p-2">Posição</th>
+          <th className="text-left p-2">Nome</th>
+          <th className="text-left p-2">Level</th>
+        </thead>
+        <tbody>
+          { users }
+        </tbody>
+      </table>
     );
   }
 }

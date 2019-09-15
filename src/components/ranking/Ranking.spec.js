@@ -42,7 +42,7 @@ describe('Ranking component', () => {
     expect(wrapper.find('Loading').length).toBe(1);
   });
 
-  test('should render ranking list with one user', () => {
+  test('should render ranking table with one user', () => {
     const wrapper = mount(<Ranking />);
 
     wrapper.instance().setState({
@@ -53,7 +53,8 @@ describe('Ranking component', () => {
     });
     wrapper.update();
 
-    expect(wrapper.find('ul li').length).toEqual(1);
-    expect(wrapper.find('ul li').text()).toEqual('Maria 1');
+    expect(wrapper.find('table tbody tr').length).toEqual(1);
+    expect(wrapper.find('table tbody tr td').at(0).text()).toEqual('1');
+    expect(wrapper.find('table tbody tr td').at(1).text()).toEqual('Maria');
   });
 });
