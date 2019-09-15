@@ -8,6 +8,10 @@ describe('AchievementList component: behavior based on the user level', () => {
     auth.user.level = 1;
   });
 
+  afterEach(() => {
+    auth.user.level = 1;
+  });
+
   it('should not show achievement with higher level than the user', () => {
     const wrapper = mount(
       <AchievementList

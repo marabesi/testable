@@ -1,6 +1,6 @@
 export default [
   {
-    line: 'Mas para ganharmos do Alien só escrever funções não adianta...',
+    line: 'Mas para construir um foguete melhor que do Alien só escrever funções não adianta...',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {

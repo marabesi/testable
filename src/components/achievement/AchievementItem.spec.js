@@ -45,4 +45,19 @@ describe('Achievement item behavior', () => {
     );
     expect(wrapper.find('h3 + li').prop('className')).toContain('hidden');
   });
+
+  it('should render items array, achievement item list', () => {
+    const wrapper = mount(
+      <AchievementItem
+        title="list items"
+        description="my description"
+        items={[
+          'a',
+          'b'
+        ]}
+      />
+    );
+    expect(wrapper.find('ul ul li').at(0).text()).toEqual('a');
+    expect(wrapper.find('ul ul li').at(1).text()).toEqual('b');
+  });
 });

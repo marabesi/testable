@@ -51,6 +51,7 @@ export default class AchievementList extends Component {
             key={index}
             title={achievement.title}
             description={achievement.description}
+            items={achievement.items || []}
             active={achievement.active}
             onClick={() => this.showAchievement(index)}
           />

@@ -21,6 +21,11 @@ export default [
     title: 'Teste unitário',
     level: 5,
     description: 'Previne possíveis mudanças indesejadas e testa pequenas unidades de código como as funções',
+    items: [
+      'Amazenar resultado do código em execucação',
+      'Amazenar resultado experado em uma variável',
+      'Comparar os dois resultados'
+    ],
     active: false
   },
   {
