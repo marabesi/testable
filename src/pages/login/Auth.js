@@ -1,13 +1,7 @@
 import firebase from 'firebase/app';
 
-let env = {};
-
 /* eslint-disable-next-line */
-if (process.env.NODE_ENV === 'production') {
-  env = require('../../env.prod.json');
-} else {
-  env = require('../../env.json');
-}
+const env = process.env.REACT_APP_FIREBASE_JSON || {};
 
 require('firebase/database');
 
