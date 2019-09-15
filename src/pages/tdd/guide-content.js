@@ -8,6 +8,9 @@ export default [
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
+    showBuggy: {
+      type: 'happy'
+    },
     line: 'Perfeito! É assim que testamos uma função de somar!',
     style: 'text-white font-semibold text-xl text-blue-light'
   },

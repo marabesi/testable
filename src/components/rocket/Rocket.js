@@ -8,6 +8,7 @@ import Reason from '../../engine/Reason';
 import EditorManager from '../../components/editor-manager/EditorManager';
 import Guide from '../guide/Guide';
 import Intro from '../intro/Intro';
+import DebugButton from '../debug/Button';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 import {executeTestCase} from '../../engine/Tester';
 
@@ -209,6 +210,7 @@ const Wrapped = (
               onErrorCode={{ [SOURCE_CODE]: this.onErrorCode, [TEST_CODE]: this.onErrorCode }}
               options={ this.state.editorOptions }
             />
+            <DebugButton onClick={this.handleProgress} value="next" />
           </div>
 
           <Guide
