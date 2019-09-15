@@ -1,7 +1,6 @@
 {
   "name": "testable",
   "version": "0.1.0",
-  "homepage": "https://marabesi.github.io/testable/build",
   "private": true,
   "dependencies": {
     "esprima": "^4.0.1",
@@ -38,7 +37,7 @@
     "start": "npm run tailwind:css && react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "npm run lint && npm run tailwind:css && export NODE_ENV=production && export REACT_APP_BASE_NAME=/testable/build/ && react-scripts build && npm run docz:build",
+    "build": "npm run lint && npm run tailwind:css && export NODE_ENV=production && react-scripts build && npm run docz:build",
     "test": "react-scripts test --env=jsdom --verbose --maxWorkers=4",
     "coverage": "react-scripts test --env=jsdom --no-cache --collectCoverage",
     "cypress": "cypress open",
@@ -90,6 +89,7 @@
     "eslint-plugin-import": "^2.18.0",
     "eslint-plugin-react": "^7.13.0",
     "gh-pages": "^2.0.1",
+    "postcss": "^7.0.18",
     "postcss-cli": "^6.1.2",
     "redux-mock-store": "^1.5.3",
     "sinon": "^7.3.2",
