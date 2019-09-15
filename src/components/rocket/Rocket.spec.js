@@ -1,5 +1,5 @@
 // @ts-nocheck
-jest.mock('../../engine/Reason', () => () => true)
+jest.mock('../../engine/Reason', () => () => true);
 
 import React from 'react';
 import { shallow } from 'enzyme';
@@ -10,6 +10,11 @@ import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 const fakeComponent = () => <h1>fake component</h1>;
 
 describe('Rocket component', () => {
+
+  beforeEach(() => {
+    Emitter.removeAllListeners(TRACKING);
+    Emitter.removeAllListeners(LEVEL_UP);
+  });
 
   afterEach(() => {
     Emitter.removeAllListeners(TRACKING);

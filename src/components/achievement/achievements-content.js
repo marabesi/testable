@@ -22,5 +22,29 @@ export default [
     level: 5,
     description: 'Previne possíveis mudanças indesejadas e testa pequenas unidades de código como as funções',
     active: false
-  }
+  },
+  {
+    title: 'Teste unitário - Tudo preparado para construir o foguete!',
+    level: 6,
+    description: 'Função de soma testada com sucesso!',
+    active: false
+  },
+  {
+    title: 'Teste unitário - Dois motores funcionando',
+    level: 8,
+    description: 'Multiplicação de motores efetuada com sucesso, dois ao invés de um.',
+    active: false
+  },
+  {
+    title: 'Teste unitário - Trava de pouso',
+    level: 9,
+    description: 'Sistema de aterrisagem construído, trava removida!',
+    active: false
+  },
+  {
+    title: 'Teste unitário - Sistema de localização pronto e testado',
+    level: 12,
+    description: 'Dois sitemas de GPS funcionando e testados.',
+    active: false
+  },
 ];
