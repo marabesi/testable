@@ -1,7 +1,17 @@
 import firebase from 'firebase/app';
 
+const defaultFirebaseConfig = `{
+  "apiKey":"999",
+  "authDomain":"https://default.firebaseio.com",
+  "databaseURL":"https://default.firebaseio.com",
+  "projectId":"default",
+  "storageBucket":"",
+  "messagingSenderId":"",
+  "appId":"999999"
+}`;
+
 /* eslint-disable-next-line */
-const env = JSON.parse(process.env.REACT_APP_FIREBASE_JSON ||  '');
+const env = JSON.parse(process.env.REACT_APP_FIREBASE_JSON ||  defaultFirebaseConfig);
 
 require('firebase/database');
 
