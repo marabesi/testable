@@ -4,6 +4,8 @@ import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import { setLocale } from '../../actions/localeAction';
 
+import '@formatjs/intl-relativetimeformat/polyfill-locales';
+
 const mapDispatchToProps = dispatch => {
   return {
     setLocale: locale => dispatch(setLocale(locale))

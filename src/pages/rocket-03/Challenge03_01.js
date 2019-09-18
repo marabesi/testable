@@ -34,7 +34,7 @@ export class Challenge03_01 extends Component {
 
     return (
       <SceneManager
-        identifier="Challenge02_01"
+        identifier="Challenge03_01"
         content={content}
         handleLastScene={this.handleLastScene}
       />

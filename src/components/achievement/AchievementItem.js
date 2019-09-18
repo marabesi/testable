@@ -1,6 +1,9 @@
 //@ts-nocheck
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, } from 'react-share';
+
+const HOST = process.env.REACT_APP_HOST || window.location.origin
 
 export default class AchievementItem extends Component {
 
@@ -18,6 +21,26 @@ export default class AchievementItem extends Component {
             <ul className="mt-2">
               { list }
             </ul>
+            <div className="flex">
+              <FacebookShareButton
+                url={HOST}
+                quote={`Conquista desbloqueada! ${title} - ${description}`}
+                className="m-1 ml-0"
+              >
+                <FacebookIcon
+                  size={32}
+                  round />
+              </FacebookShareButton>
+              <TwitterShareButton
+                url={HOST}
+                title={`Conquista desbloqueada! ${title} - ${description}`}
+                className="m-1"
+              >
+                <TwitterIcon
+                  size={32}
+                  round />
+              </TwitterShareButton>
+            </div>
           </li>
         </ul>
       </li>

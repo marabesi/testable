@@ -43,7 +43,7 @@ export class TutorialEnd extends React.Component {
       <>
         <DebugButton onClick={this.goToTutorial} value="tutorial" />
         <SceneManager
-          identifier="post_tutorial"
+          identifier="tutorial_end"
           content={content}
           handleLastScene={this.handleLastScene}
         />
