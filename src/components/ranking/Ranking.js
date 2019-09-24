@@ -64,9 +64,11 @@ export default class Ranking extends Component {
     return (
       <table className="text-white m-auto w-3/5">
         <thead>
-          <th className="text-left p-2">Posição</th>
-          <th className="text-left p-2">Nome</th>
-          <th className="text-left p-2">Level</th>
+          <tr>
+            <th className="text-left p-2">Posição</th>
+            <th className="text-left p-2">Nome</th>
+            <th className="text-left p-2">Level</th>
+          </tr>
         </thead>
         <tbody>
           { users }
