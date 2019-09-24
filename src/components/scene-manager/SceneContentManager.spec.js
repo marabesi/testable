@@ -1,15 +1,20 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
-import Introduction from './Introduction';
+import SceneContentManager from './SceneContentManager';
 
-describe('Introduction page', () => {
+describe('SceneContentManager page', () => {
   let wrapper;
 
   beforeEach(() => {
-    wrapper = mount(
+    const HoC = SceneContentManager(
+      'hoc_component',
+      {},
+      'my-route'
+    );
+    wrapper  = mount(
       <BrowserRouter>
-        <Introduction />
+        <HoC />
       </BrowserRouter>
     );
   });
@@ -18,7 +23,7 @@ describe('Introduction page', () => {
     wrapper = null;
   });
 
-  test('should define route to redirect to when done', done => {
+  test('should redirect to tutorial page', done => {
     wrapper.find('SceneContentManager').instance().handleLastScene();
 
     wrapper.update();
