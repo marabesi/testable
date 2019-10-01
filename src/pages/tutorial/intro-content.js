@@ -23,6 +23,20 @@ export default {
       highlightClass: 'myHighlightClass',
     },
     {
+      element: '.achievements',
+      intro: 'Suas conquistas podem ser acessadas aqui, a qualquer momento',
+      position: 'right',
+      tooltipClass: 'myTooltipClass',
+      highlightClass: 'myHighlightClass',
+    },
+    {
+      element: '.ranking',
+      intro: 'Acompanhe o ranking e veja quem está na frente',
+      position: 'right',
+      tooltipClass: 'myTooltipClass',
+      highlightClass: 'myHighlightClass',
+    },
+    {
       element: '.user-progress',
       intro: 'Acompanhe seu progresso nessa barra',
       tooltipClass: 'myTooltipClass',
