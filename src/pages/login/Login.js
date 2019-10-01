@@ -49,8 +49,16 @@ export class Login extends Component {
         action: 'auth_changed'
       });
 
+      this.setState({
+        showFirebaseWidget: false,
+      });
+
       return;
     }
+
+    this.setState({
+      showFirebaseWidget: true,
+    });
   }
 
   componentDidMount() {
@@ -78,7 +86,7 @@ export class Login extends Component {
     return (
       <div
         className={
-          this.props.user.uid
+          !this.state.showFirebaseWidget
             ? 'hidden'
             : 'flex flex-col justify-center items-center h-screen'
         }
