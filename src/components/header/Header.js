@@ -5,7 +5,7 @@ import { withRouter } from 'react-router-dom';
 import UserMenu from '../../components/user-menu/UserMenu';
 import Level from '../../components/level/Level';
 import DebugButton from '../../components/debug/Button';
-import { auth } from '../../pages/login/Auth';
+import { updateUser } from '../../actions/userAction';
 import Emitter, { LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 
 import '../../scss/levelup-animation.scss';
@@ -15,9 +15,15 @@ const mapStateToProps = state => ({
   user: state.userReducer.user,
 });
 
+const mapDispatchToProps = dispatch => {
+  return {
+    updateUser: data => dispatch(updateUser(data))
+  };
+};
+
 export class Header extends React.Component {
 
-  state = { 
+  state = {
     levelUp: false,
   };
 
@@ -35,9 +41,9 @@ export class Header extends React.Component {
         levelUp: true
       });
 
-      const level = 1 + auth.user.level;
-      auth.updateUserInfo({
-        level: level,
+      const level = 1 + this.props.user.level;
+      this.props.updateUser({
+        level,
         progress: 10
       });
 
@@ -49,9 +55,9 @@ export class Header extends React.Component {
         levelUp: true
       });
 
-      const level = auth.user.level - 1;
-      auth.updateUserInfo({
-        level: level,
+      const level = this.props.user.level - 1;
+      this.props.updateUser({
+        level,
         progress: 10
       });
 
@@ -65,9 +71,9 @@ export class Header extends React.Component {
         ...this.props.user.progress, progress: data.amount
       });
 
-      auth.updateUserInfo({
+      this.props.updateUser({
         progress: data.amount
-      }); 
+      });
     });
 
     // @ts-ignore
@@ -77,9 +83,9 @@ export class Header extends React.Component {
         ...this.props.user.progress, progress: data.amount
       });
 
-      auth.updateUserInfo({
+      this.props.updateUser({
         progress: data.amount
-      }); 
+      });
     });
   }
 
@@ -91,7 +97,7 @@ export class Header extends React.Component {
   }
 
   goToIntroduction = () => {
-    auth.updateUserInfo({
+    this.props.updateUser({
       tutorial: false,
       level: 1
     });
@@ -106,15 +112,10 @@ export class Header extends React.Component {
     Emitter.emit(LEVEL_UP);
   }
 
-  navigate = () => {
-    this.props.history.push('/');
-  }
-
   render() {
     return (
       <>
         <DebugButton onClick={this.levelUp} value="level up" />
-        <DebugButton onClick={this.navigate} value="navigate" />
         <DebugButton onClick={this.levelDown} value="level down"/>
         <DebugButton onClick={this.goToIntroduction} value="go back to introduction"/>
         <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
@@ -124,7 +125,7 @@ export class Header extends React.Component {
             <Level progress={this.props.user.progress} level={this.props.user.level} />
           </div>
 
-          <UserMenu user={auth.user} onNotification={this.props.onSidebar} />
+          <UserMenu user={this.props.user} onNotification={this.props.onSidebar} />
         </div>
       </>
     );
@@ -134,6 +135,12 @@ export class Header extends React.Component {
 Header.propTypes = {
   onSidebar: PropTypes.func,
   user: PropTypes.object,
+  updateUser: PropTypes.func
 };
+
+Header.defaultProps = {
+  updateUser: () => {}
+};
+
 //@ts-ignore
-export default withRouter(connect(mapStateToProps)(Header));
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

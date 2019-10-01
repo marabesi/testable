@@ -1,20 +1,13 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import AchievementList from './AchievementList';
+import { AchievementList } from './AchievementList';
 import { auth } from '../../pages/login/Auth';
 
 describe('AchievementList component: behavior based on the user level', () => {
-  beforeEach(() => {
-    auth.user.level = 1;
-  });
-
-  afterEach(() => {
-    auth.user.level = 1;
-  });
-
   it('should not show achievement with higher level than the user', () => {
     const wrapper = mount(
       <AchievementList
+        user={{ level: 1 }}
         achievements={[
           {
             title: 'Desafio aceito',
@@ -35,6 +28,7 @@ describe('default AchievementList behavior', () => {
   it('should render achievements via achievements prop', () => {
     const wrapper = mount(
       <AchievementList
+        user={{ level: 1 }}
         achievements={[
           {
             title: 'my title',
@@ -52,6 +46,7 @@ describe('default AchievementList behavior', () => {
   it('should render achievement description once clicked', () => {
     const wrapper = mount(
       <AchievementList
+        user={{ level: 1 }}
         achievements={[
           {
             title: 'my title',
@@ -73,7 +68,10 @@ describe('default AchievementList behavior', () => {
   });
 
   it('should render friendly when the list is empty', () => {
-    const wrapper = mount(<AchievementList />);
+    const wrapper = mount(
+      <AchievementList
+        user={{ level: 1 }}
+      />);
     expect(wrapper.find('span').text()).toEqual('Você não possui nenhuma conquista até o momento');
     expect(wrapper.find('ul').length).toBe(0);
   });

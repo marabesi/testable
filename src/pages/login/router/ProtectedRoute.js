@@ -1,14 +1,20 @@
+//@ts-nocheck
 import React from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { auth } from '../Auth';
 
-const ProtectedRoute = ({ component: Component, ...rest }) => {
+const mapStateToProps = state => ({
+  user: state.userReducer.user,
+});
+
+export const ProtectedRoute = ({ component: Component, ...rest }) => {
   return (
     <Route
       {...rest}
       render={(props) => {
-        const can = auth.canEnter(props.history, props.location);
+        const can = auth.canEnter(rest.user, props.location);
         return  can.flag ? (
           <Component {...props} />
         ) : (
@@ -26,10 +32,11 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
   );
 };
 
-export default ProtectedRoute;
+export default connect(mapStateToProps)(ProtectedRoute);
 
 ProtectedRoute.propTypes = {
   component: PropTypes.oneOfType([ PropTypes.object, PropTypes.func ]),
   history: PropTypes.object,
-  location: PropTypes.object
+  location: PropTypes.object,
+  user: PropTypes.object
 };

@@ -18,7 +18,6 @@ require('firebase/database');
 firebase.initializeApp(env);
 
 const auth = {
-  isAuthenticated: false,
   user: {
     uid: '',
     name: '',
@@ -59,8 +58,6 @@ const auth = {
             if (userObject && userObject.progress) {
               vm.user.progress = userObject.progress;
             }
-
-            vm.isAuthenticated = true;
             resolve(vm.user);
           });
         }
@@ -76,99 +73,99 @@ const auth = {
       this.firebaseRef.off();
     }
   },
-  canEnter(from, to) {
-    if (!this.isAuthenticated) {
+  canEnter(user, to) {
+    if (!user || !user.uid) {
       return {
         flag: false,
         to: '/'
       };
     }
 
-    if (to.pathname !== '/intro' && this.user.level === 1) {
+    if (to.pathname !== '/intro' && user.level === 1) {
       return {
         flag: false,
         to: '/intro'
       };
     }
 
-    if (to.pathname !== '/tutorial' && this.user.level === 2) {
+    if (to.pathname !== '/tutorial' && user.level === 2) {
       return {
         flag: false,
         to: '/tutorial'
       };
     }
 
-    if (to.pathname !== '/tutorial-end' && this.user.level === 3) {
+    if (to.pathname !== '/tutorial-end' && user.level === 3) {
       return {
         flag: false,
         to: '/tutorial-end'
       };
     }
 
-    if (to.pathname !== '/tdd-intro' && this.user.level === 4) {
+    if (to.pathname !== '/tdd-intro' && user.level === 4) {
       return {
         flag: false,
         to: '/tdd-intro'
       };
     }
 
-    if (to.pathname !== '/tdd' && this.user.level === 5) {
+    if (to.pathname !== '/tdd' && user.level === 5) {
       return {
         flag: false,
         to: '/tdd'
       };
     }
 
-    if (to.pathname !== '/tdd-end' && this.user.level === 6) {
+    if (to.pathname !== '/tdd-end' && user.level === 6) {
       return {
         flag: false,
         to: '/tdd-end'
       };
     }
 
-    if (to.pathname !== '/rocket-01' && this.user.level === 7) {
+    if (to.pathname !== '/rocket-01' && user.level === 7) {
       return {
         flag: false,
         to: '/rocket-01'
       };
     }
 
-    if (to.pathname !== '/rocket-02' && this.user.level === 8) {
+    if (to.pathname !== '/rocket-02' && user.level === 8) {
       return {
         flag: false,
         to: '/rocket-02'
       };
     }
 
-    if (to.pathname !== '/rocket-03' && this.user.level === 9) {
+    if (to.pathname !== '/rocket-03' && user.level === 9) {
       return {
         flag: false,
         to: '/rocket-03'
       };
     }
 
-    if (to.pathname !== '/rocket-03-01' && this.user.level === 10) {
+    if (to.pathname !== '/rocket-03-01' && user.level === 10) {
       return {
         flag: false,
         to: '/rocket-03-01'
       };
     }
 
-    if (to.pathname !== '/rocket-03-02' && this.user.level === 11) {
+    if (to.pathname !== '/rocket-03-02' && user.level === 11) {
       return {
         flag: false,
         to: '/rocket-03-02'
       };
     }
 
-    if (to.pathname !== '/completed' && this.user.level === 12) {
+    if (to.pathname !== '/completed' && user.level === 12) {
       return {
         flag: false,
         to: '/completed'
       };
     }
 
-    if (to.pathname !== '/survey' && this.user.level > 12) {
+    if (to.pathname !== '/survey' && user.level > 12) {
       return {
         flag: false,
         to: '/survey'
@@ -179,20 +176,8 @@ const auth = {
       flag: true
     };
   },
-  signout(cb) {
+  signout() {
     firebase.auth().signOut();
-    this.isAuthenticated = false;
-    this.user = {
-      uid: '',
-      name: '',
-      email: '',
-      photo: '',
-      level: 1,
-      tutorial: false,
-      introduction: true,
-      progress: 10,
-    };
-    cb();
   },
   /**
    * updates the user info based on the javascript object passed in the data

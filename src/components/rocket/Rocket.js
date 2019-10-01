@@ -74,8 +74,8 @@ const Wrapped = (
         ...this.state.code, code: current
       });
 
-      const strategyResult = Reason(code, reasonStrategy);
       const codeAndTestCase = `${this.state.code[SOURCE_CODE]} ${this.state.code[TEST_CODE]}`;
+      const strategyResult = Reason(codeAndTestCase, reasonStrategy);
 
       if (strategyResult && executeTestCase(codeAndTestCase, strategyResult, strategyTests)) {
         Emitter.emit(LEVEL_UP);
@@ -163,6 +163,13 @@ const Wrapped = (
       });
     }
 
+    previousStep = () => {
+      this.setState({
+        //@ts-ignore
+        ...this.state.currentHint, currentHint: this.state.currentHint - 1
+      });
+    }
+
     toogleToolTip = () => {
       this.setState({
         //@ts-ignore
@@ -201,6 +208,7 @@ const Wrapped = (
           />
 
           <div className="flex justify-center editor-container">
+            <DebugButton onClick={this.handleProgress} value="previous" />
             <EditorManager
               editor={2}
               style={{ width: '46%'}}

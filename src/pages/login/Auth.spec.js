@@ -34,32 +34,29 @@ const availableRoutes = [
 describe('Auth behavior', () => {
 
   beforeEach(() => {
-    auth.isAuthenticated = false;
     auth.firebaseRef = {
       off: null
     };
   });
 
   afterEach(() => {
-    auth.isAuthenticated = false;
     auth.firebaseRef = {
       off: null
     };
   });
 
   test('should logout', () => {
+    const callback = jest.fn();
+
     firebase.auth = () => {
       return {
-        signOut: jest.fn()
+        signOut: callback
       };
     };
 
-    const callback = jest.fn();
-    auth.signout(callback);
+    auth.signout();
 
     expect(callback).toBeCalled();
-    expect(auth.isAuthenticated).toBeFalsy();
-    expect(auth.user.name).toEqual('');
   });
 
   test('unsubscribe to prevent event leak', () => {
@@ -129,9 +126,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/intro'))(
     'should keep the user level 1 in the introduction section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 1;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 1 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/intro');
@@ -141,9 +136,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/tutorial'))(
     'should keep the user level 2 in the tutorial section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 2;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 2 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/tutorial');
@@ -153,9 +146,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/tutorial-end'))(
     'should keep the user level 3 in the tutorial end section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 3;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 3 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/tutorial-end');
@@ -165,9 +156,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/tdd-intro'))(
     'should keep the user level 4 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 4;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 4 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/tdd-intro');
@@ -177,9 +166,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/tdd'))(
     'should keep the user level 5 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 5;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 5 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/tdd');
@@ -189,9 +176,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/tdd-end'))(
     'should keep the user level 6 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 6;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 6 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/tdd-end');
@@ -201,9 +186,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/rocket-01'))(
     'should keep the user level 7 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 7;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 7 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/rocket-01');
@@ -213,9 +196,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/rocket-02'))(
     'should keep the user level 8 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 8;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 8 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/rocket-02');
@@ -225,9 +206,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/rocket-03'))(
     'should keep the user level 09 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 9;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 9 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/rocket-03');
@@ -237,9 +216,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/rocket-03-01'))(
     'should keep the user level 10 in the challenge 03 sub challenge 01, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 10;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 10 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/rocket-03-01');
@@ -249,9 +226,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/rocket-03-02'))(
     'should keep the user level 11 in the challenge 03 sub challenge 02, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 11;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 11 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/rocket-03-02');
@@ -261,9 +236,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/completed'))(
     'should keep the user level 12 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 12;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 12 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/completed');
@@ -272,9 +245,7 @@ describe('route access and redirection', () => {
   test.each(availableRoutes.filter(route => route !== '/survey'))(
     'should keep the user level 13 in the tdd introduction section, trying to access: %s',
     (currentRoute) => {
-      auth.isAuthenticated = true;
-      auth.user.level = 13;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level: 13 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
       expect(can.to).toEqual('/survey');
@@ -298,10 +269,7 @@ describe('route access and redirection', () => {
   ])(
     'should render the related component  based on the level, trying to access route %s, level %s',
     (currentRoute, level) => {
-      auth.isAuthenticated = true;
-      // @ts-ignore
-      auth.user.level = level;
-      const can = auth.canEnter({}, { pathname: currentRoute });
+      const can = auth.canEnter({ uid: 999, level }, { pathname: currentRoute });
 
       expect(can.flag).toBeTruthy();
     },

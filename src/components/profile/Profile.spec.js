@@ -32,11 +32,14 @@ describe('profile component', () => {
   });
 
   test('should logout', () => {
-    auth.signout = (cb) => { cb(); };
+    auth.signout = jest.fn();
+    const setUser = jest.fn();
+
     const wrapper = shallow(
       <Profile
         className="menu-wrapper"
         user={userData}
+        setUser={setUser}
       />
     );
 

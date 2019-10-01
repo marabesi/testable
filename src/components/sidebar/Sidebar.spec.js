@@ -1,7 +1,12 @@
 import React from 'react';
-import { shallow, mount } from 'enzyme';
+import { Provider } from 'react-redux';
+import { shallow } from 'enzyme';
 import { Sidebar } from './Sidebar';
 import {Header} from '../header/Header';
+import Logo from '../logo/Logo';
+import Store from '../../store/store';
+
+const store = Store();
 
 describe('sidebar component', () => {
 
@@ -35,21 +40,27 @@ describe('sidebar component', () => {
   });
 
   test('should toggle sidebar', () => {
-    const wrapper = mount(<Sidebar />);
+    const wrapper = shallow(
+      <Provider store={store}>
+        <Sidebar />
+      </Provider>
+    );
 
-    expect(wrapper.find('.sidebar').prop('className').includes('hidden')).toBeTruthy();
+    const sidebar = wrapper.find(Sidebar).dive();
 
-    wrapper.setState({
+    expect(sidebar.find('.sidebar').prop('className').includes('hidden')).toBeTruthy();
+
+    sidebar.setState({
       open: true
     });
 
-    expect(wrapper.find('.sidebar').prop('className').includes('block')).toBeTruthy();
+    expect(sidebar.find('.sidebar').prop('className').includes('block')).toBeTruthy();
   });
 
   test('should not show up logo when authenticated', () => {
     const wrapper = shallow(
-      <Sidebar user={{}} />
+      <Sidebar user={{ uid: 999 }} />
     );
-    expect(wrapper.find('Logo').length).toBe(0);
+    expect(wrapper.find(Logo).length).toBe(0);
   });
 });

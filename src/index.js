@@ -41,4 +41,9 @@ ReactDOM.render(
   </Provider>,
   document.getElementById('root')
 );
+
 registerServiceWorker();
+
+if (window.Cypress || debug) {
+  window.store = store;
+}

@@ -51,12 +51,12 @@ export class Sidebar extends Component {
         </div>
         <div className="header">
           {this.state.open && <div className="z-30 h-screen w-full absolute bg-testable-overlay-sidebar" onClick={this.onSidebar}></div>}
-          { this.props.user && <Header onSidebar={this.onSidebar} /> }
+          { this.props.user.uid && <Header onSidebar={this.onSidebar} /> }
         </div>
 
         {this.props.children}
 
-        { !this.props.user && <Logo
+        { !this.props.user.uid && <Logo
           className="h-6 hidden md:block absolute pin-b pin-r mr-5 mb-5"
         /> }
       </>
@@ -67,6 +67,10 @@ export class Sidebar extends Component {
 Sidebar.propTypes = {
   children: PropTypes.node,
   user: PropTypes.object,
+};
+
+Sidebar.defaultProps = {
+  user: {}
 };
 
 export default connect(mapStateToProps)(Sidebar);

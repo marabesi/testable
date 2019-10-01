@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
 import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
 import uiConfig from './Firebase';
@@ -10,6 +11,11 @@ import { setUser } from '../../actions/userAction';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
+
+/** @param {object} state */
+const mapStateToProps = state => ({
+  user: state.userReducer.user,
+});
 
 /**
  * @param {function} dispatch
@@ -22,8 +28,7 @@ const mapDispatchToProps = dispatch => {
 
 export class Login extends Component {
   state = {
-    showFirebaseWidget: false,
-    user: null,
+    showFirebaseWidget: false
   }
 
   constructor(props) {
@@ -44,18 +49,8 @@ export class Login extends Component {
         action: 'auth_changed'
       });
 
-      this.setState({
-        user,
-        showFirebaseWidget: true,
-      });
-
       return;
     }
-
-    this.setState({
-      user: null,
-      showFirebaseWidget: true,
-    });
   }
 
   componentDidMount() {
@@ -74,7 +69,7 @@ export class Login extends Component {
   }
 
   render() {
-    if (this.state.user) {
+    if (this.props.user.uid) {
       return (
         <Redirect to={{ pathname: '/intro' }} />
       );
@@ -83,7 +78,7 @@ export class Login extends Component {
     return (
       <div
         className={
-          !this.state.showFirebaseWidget
+          this.props.user.uid
             ? 'hidden'
             : 'flex flex-col justify-center items-center h-screen'
         }
@@ -93,4 +88,12 @@ export class Login extends Component {
   }
 }
 
-export default connect(null, mapDispatchToProps)(Login);
+Login.propTypes = {
+  user: PropTypes.object,
+};
+
+Login.defaultProps = {
+  user: {}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

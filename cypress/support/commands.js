@@ -23,3 +23,14 @@
 //
 // -- This is will overwrite an existing command --
 // Cypress.Commands.overwrite("visit", (originalFn, url, options) => { ... })
+
+/**
+ * Goes to a route using react router and **without** reloading the page!
+ * @memberOf Cypress.Chainable#
+ * @name upload_file
+ * @function
+ * @param {String} selector - element to target
+ */
+Cypress.Commands.add("goToRoute", (route = "") => {
+  return cy.window().its('tgHistory').invoke('push', route)
+});

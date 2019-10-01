@@ -3,27 +3,29 @@ const password = Cypress.env('password');
 
 context('login', () => {
   beforeEach(() => {
-    cy.clearLocalStorage();
-    cy.clearCookies();
-
-    indexedDB.deleteDatabase('firebaseLocalStorageDb');
-
     cy.visit(URL);
+    cy.wait(2000);
 
-    const email = `eita-${Math.random()}@test.com`;
-    cy.contains('Sign in with email').click();
-    cy.get('input[type="email"').type(email);
-    cy.contains('Next').click();
-    cy.get('input[name="name"]').type(email);
-    cy.get('input[name="newPassword"]').type(password);
-    cy.contains('Save').click();
+    cy.window().its('store').invoke('dispatch', {
+      type: 'SET_USER',
+      payload: {
+        uid: '4444',
+        name: 'aaa aaa ',
+        email: 'aa@aa.com',
+        photo: '',
+        level: 1,
+        tutorial: false,
+        introduction: true,
+        progress: 10,
+      }
+    });
   });
 
   afterEach(() => {
-    cy.clearLocalStorage();
-    cy.clearCookies();
-
-    indexedDB.deleteDatabase('firebaseLocalStorageDb');
+    cy.window().its('store').invoke('dispatch', {
+      type: 'SET_USER',
+      payload: {}
+    });
   });
 
   it('should start with level 1', () => {

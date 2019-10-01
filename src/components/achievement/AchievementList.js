@@ -1,11 +1,15 @@
 // @ts-nocheck
 import React, {Component} from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AchievementItem from './AchievementItem';
 import { track } from '../../emitter/Tracking';
-import { auth } from '../../pages/login/Auth';
 
-export default class AchievementList extends Component {
+const mapStateToProps = state => ({
+  user: state.userReducer.user,
+});
+
+export class AchievementList extends Component {
 
   state = {
     achievements: []
@@ -45,7 +49,7 @@ export default class AchievementList extends Component {
     const achievements = [];
 
     for (const [index, achievement] of this.state.achievements.entries()) {
-      if (auth.user.level >= achievement.level) {
+      if (this.props.user.level >= achievement.level) {
         achievements.push(
           <AchievementItem
             key={index}
@@ -74,9 +78,13 @@ export default class AchievementList extends Component {
 }
 
 AchievementList.propTypes = {
+  user: PropTypes.object,
   achievements: PropTypes.array
 };
 
 AchievementList.defaultProps = {
+  user: {},
   achievements: []
 };
+
+export default connect(mapStateToProps)(AchievementList);

@@ -1,5 +1,6 @@
-import * as React from 'react';
-import { auth } from '../login/Auth';
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 
 import '../../scss/shake-horizontal.scss';
 import './survey.scss';
@@ -7,7 +8,11 @@ import './survey.scss';
 /* eslint-disable-next-line */
 const survey = process.env.REACT_APP_SURVEY_URL || '';
 
-export default class Survey extends React.Component {
+const mapStateToProps = state => ({
+  user: state.userReducer.user,
+});
+
+export class Survey extends Component {
 
   state = {
     surveyUrl: '',
@@ -16,7 +21,7 @@ export default class Survey extends React.Component {
 
   componentDidMount() {
     if (survey) {
-      const surveyUrl = survey.replace('{id}', auth.user.uid);
+      const surveyUrl = survey.replace('{id}', this.props.user.uid);
       this.setState({
         surveyUrl: surveyUrl
       });
@@ -31,7 +36,7 @@ export default class Survey extends React.Component {
   }
 
   render() {
-    if (auth.user.uid && survey) {
+    if (this.props.user.uid && survey) {
       return (
         <div className="w-full">
           {
@@ -58,3 +63,13 @@ export default class Survey extends React.Component {
     );
   }
 }
+
+Survey.propTypes = {
+  user: PropTypes.object,
+};
+
+Survey.defaultProps = {
+  user: {}
+};
+
+export default connect(mapStateToProps)(Survey);

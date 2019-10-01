@@ -1,4 +1,5 @@
-import * as React from 'react';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
@@ -7,10 +8,17 @@ import Modal from '../modal/Modal';
 import Options from '../options/Options';
 import { auth } from '../../pages/login/Auth';
 import { track } from '../../emitter/Tracking';
+import { setUser } from '../../actions/userAction';
 
 import './profile.scss';
 
-export class Profile extends React.Component {
+const mapDispatchToProps = dispatch => {
+  return {
+    setUser: user => dispatch(setUser(user))
+  };
+};
+
+export class Profile extends Component {
 
   state = {
     menu: false,
@@ -20,16 +28,17 @@ export class Profile extends React.Component {
   }
 
   onLogout = () => {
-    auth.signout(() => {
-      this.setState({
-        successfulLoggedOut: true,
-        menu: false
-      });
+    auth.signout();
+    this.props.setUser({});
 
-      track({
-        section: 'profile',
-        action: 'logout'
-      });
+    this.setState({
+      successfulLoggedOut: true,
+      menu: false
+    });
+
+    track({
+      section: 'profile',
+      action: 'logout'
     });
   }
 
@@ -150,4 +159,4 @@ Profile.defaultProps = {
   }
 };
 
-export default injectIntl(Profile);
+export default injectIntl(connect(null, mapDispatchToProps)(Profile));

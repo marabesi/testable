@@ -25,9 +25,5 @@ export const executeTestCase = function (code, strategyResult, testCases) {
     }
   }
 
-  if (result.length === testCases.length) {
-    return true;
-  }
-
-  return false;
+  return result.length === testCases.length;
 };

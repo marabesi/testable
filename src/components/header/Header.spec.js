@@ -53,11 +53,8 @@ describe('header component', () => {
   });
 
   test('should add level up animation and remove after 600 ms', done => {
-    const { auth } = require('../../pages/login/Auth');
-    const bkp = auth.updateUserInfo;
-
-    auth.updateUserInfo = sinon.spy();
-    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
+    const updateUserInfo = sinon.spy();
+    const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} history={mockedHistory} />);
 
     expect(wrapper.find('.wobble-ver-right').length).toEqual(0);
 
@@ -66,13 +63,12 @@ describe('header component', () => {
     wrapper.update();
 
     expect(wrapper.find('.wobble-ver-right').length).toEqual(1);
-    expect(auth.updateUserInfo.called).toBeTruthy();
+    expect(updateUserInfo.called).toBeTruthy();
 
     setTimeout(() => {
       wrapper.update();
       expect(wrapper.find('.wobble-ver-right').length).toEqual(0);
       wrapper.unmount();
-      auth.updateUserInfo = bkp;
       done();
     }, 600);
   });
@@ -80,73 +76,67 @@ describe('header component', () => {
   test.each([LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN])(
     'unbind events on unmount - event: %s',
     (currentEvent) => {
-      const { auth } = require('../../pages/login/Auth');
-      const bkp = auth.updateUserInfo;
-
-      auth.updateUserInfo = sinon.spy();
-      const localWrapper = shallow(<Header user={mockedUser} />);
+      const updateUserInfo = sinon.spy();
+      const localWrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} />);
       localWrapper.unmount();
 
       Emitter.emit(currentEvent);
-      expect(auth.updateUserInfo.called).toBeFalsy();
-      auth.updateUserInfo = bkp;
+      expect(updateUserInfo.called).toBeFalsy();
     },
   );
 
   test('should go to the introduction', () => {
-    const { auth } = require('../../pages/login/Auth');
-    const bkp = auth.updateUserInfo;
-    auth.updateUserInfo = sinon.spy();
+    const updateUserInfo = sinon.spy();
 
-    const wrapper = shallow(<Header user={mockedUser} />);
+    const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} />);
 
     wrapper.instance().goToIntroduction();
 
-    expect(auth.updateUserInfo.called).toBeTruthy();
+    expect(updateUserInfo.called).toBeTruthy();
 
     wrapper.unmount();
-    auth.updateUserInfo = bkp;
   });
 });
 
 describe('listen to user events', () => {
 
   test('should level up user', () => {
-    const { auth } = require('../../pages/login/Auth');
-    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
-    expect(auth.user.level).toEqual(1);
+    const updateUserInfo = jest.fn();
+    const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} history={mockedHistory} />);
+
     Emitter.emit(LEVEL_UP);
-    expect(auth.user.level).toEqual(2);
+
+    expect(updateUserInfo).toBeCalledWith({ level: 2, progress: 10 });
     wrapper.unmount();
   });
 
   test('should level down user', () => {
-    const { auth } = require('../../pages/login/Auth');
-    auth.user.level = 1;
-    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
-    expect(auth.user.level).toEqual(1);
+    const updateUserInfo = jest.fn();
+    const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} history={mockedHistory} />);
+
     Emitter.emit(LEVEL_DOWN);
-    expect(auth.user.level).toEqual(0);
+
+    expect(updateUserInfo).toBeCalledWith({ level: 0, progress: 10 });
     wrapper.unmount();
   });
 
   test('should update user progress up', () => {
-    const { auth } = require('../../pages/login/Auth');
-    auth.user.progress = 10;
-    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
-    expect(auth.user.progress).toEqual(10);
+    const updateUserInfo = jest.fn();
+    const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} history={mockedHistory} />);
+
     Emitter.emit(PROGRESS_UP, { amount: 20 });
-    expect(auth.user.progress).toEqual(20);
+
+    expect(updateUserInfo).toBeCalledWith({ progress: 20 });
     wrapper.unmount();
   });
 
   test('should update user progress down', () => {
-    const { auth } = require('../../pages/login/Auth');
-    auth.user.progress = 10;
-    const wrapper = shallow(<Header user={mockedUser} />);
-    expect(auth.user.progress).toEqual(10);
+    const updateUserInfo = jest.fn();
+
+    const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} />);
     Emitter.emit(PROGRESS_DOWN, { amount: 5 });
-    expect(auth.user.progress).toEqual(5);
+
+    expect(updateUserInfo).toBeCalledWith({ progress: 5 });
     wrapper.unmount();
   });
 
@@ -162,10 +152,11 @@ describe('listen to user events', () => {
   });
 
   test('should emit LEVEL_DOWN event', () => {
+    const user = Object.assign({}, mockedUser);
     const spy = sinon.spy();
     Emitter.addListener(LEVEL_DOWN, spy);
 
-    const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
+    const wrapper = shallow(<Header user={user} history={mockedHistory} />);
     wrapper.instance().levelDown();
     wrapper.unmount();
 
