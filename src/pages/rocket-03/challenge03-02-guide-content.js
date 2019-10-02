@@ -14,5 +14,12 @@ export default [
   {
     line: 'Altere o código fonte para não aceitar o valor zero e uma função de teste que retorne falso caso zero seja passado como parâmetro. Lembre-se nenhum dos parâmetros deve aceitar o valor zero.',
     style: 'text-white font-semibold text-xl text-blue-light'
+  },
+  {
+    showBuggy: {
+      type: 'happy'
+    },
+    line: 'Perfeito!',
+    style: 'text-white font-semibold text-xl text-blue-light'
   }
 ];

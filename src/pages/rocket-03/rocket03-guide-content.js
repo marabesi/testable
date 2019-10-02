@@ -16,6 +16,9 @@ export default [
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
+    showBuggy: {
+      type: 'happy'
+    },
     line: 'Temos o sistema de localização pronto!',
     style: 'text-white font-semibold text-xl text-blue-light'
   }

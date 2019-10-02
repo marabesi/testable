@@ -16,6 +16,9 @@ export default [
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
+    showBuggy: {
+      type: 'happy'
+    },
     line: 'Hooooorrraaay, Sistema de aterrisagem pronto e testado!',
     style: 'text-white font-semibold text-xl text-blue-light'
   }
