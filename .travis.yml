@@ -6,19 +6,12 @@ before_script:
 - chmod +x ./deploy.sh
 - ./prebuild.sh
 - yarn install
-- ./node_modules/.bin/cypress install
 
 script:
   - yarn build
   - yarn test
   - yarn coveralls
   - sh deploy.sh
-  - yarn cypress:run
-
-addons:
-  apt:
-    packages:
-      - libgconf-2-4
 
 env:
   global:
