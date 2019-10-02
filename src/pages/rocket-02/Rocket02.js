@@ -1,7 +1,8 @@
 import guideContent from './rocket02-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
-import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
+import { testCaseBehavior } from '../../engine/strategies/behavior/TestCaseBehavior';
+import { testCase } from '../../engine/strategies/tester/SubtractionTester';
 
 const code = `function subtrairTravaDoTremDePouso(a, b) {
   return a - b
