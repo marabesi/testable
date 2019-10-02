@@ -120,7 +120,7 @@ export class Tutorial extends Component {
     }
   }
 
-  onErrorCode = (error, i) => {
+  onErrorCode = (error) => {
     this.setState({
       //@ts-ignore
       ...this.state.editorError, editorError: error
@@ -214,7 +214,8 @@ export class Tutorial extends Component {
 }
 
 Tutorial.propTypes = {
-  onHover: PropTypes.func
+  onHover: PropTypes.func,
+  tutorialContent: PropTypes.array
 };
 
 export default connect(null, mapDispatchToProps)(Tutorial);

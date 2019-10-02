@@ -1,13 +1,20 @@
+//@ts-nocheck
 export const testCaseBehavior = function (ast) {
   let name = '';
   let funcUnderTestName = '';
   let funcUnderTestParams = {};
 
-  for (let node in ast.body) {
+  const nodes = ast.body;
+
+  for (let node = 0; node < nodes.length; node++) {
+    if (node !== 1) {
+      continue;
+    }
+
     if (ast.body[node].type !== 'FunctionDeclaration') {
       return;
     }
-
+    
     const body = ast.body[node].body.body;
 
     name = ast.body[node].id.name;
