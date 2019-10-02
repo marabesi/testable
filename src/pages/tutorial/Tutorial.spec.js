@@ -37,15 +37,18 @@ describe('Tutorial page', () => {
     expect(wrapper.instance().onValidCode('')).toBe(undefined);
   });
 
-  test('level up on valid code', () => {
+  test('level up when last tutorial content step is reached', () => {
     const callback = jest.fn();
     Emitter.addListener(LEVEL_UP, callback);
 
     const wrapper = shallow(<Tutorial />);
     wrapper.instance().setState({
-      currentHint: ENABLE_EDITOR_ON_HINT
+      tutorialContent: [
+        { line: 'content first step', style: '' }, { line: 'content last step', style: '' }
+      ]
     });
-    wrapper.instance().onValidCode('function somar(a,b) {return a + b}');
+    wrapper.instance().nextHint();
+    wrapper.instance().nextHint();
 
     expect(callback).toBeCalled();
   });

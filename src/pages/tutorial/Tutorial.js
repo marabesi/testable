@@ -40,7 +40,8 @@ export class Tutorial extends Component {
         className: '',
         readOnly: true
       }
-    }
+    },
+    tutorialContent: this.props.tutorialContent || tutorialContent
   };
 
   componentDidMount() {
@@ -115,7 +116,6 @@ export class Tutorial extends Component {
         action: 'sum:valid_code',
         value: code
       });
-      Emitter.emit(LEVEL_UP);
       this.nextHint();
     }
   }
@@ -129,7 +129,7 @@ export class Tutorial extends Component {
 
   nextHint = () => {
     const next = this.state.currentHint + 1;
-    const total = tutorialContent.length;
+    const total = this.state.tutorialContent.length;
 
     if (next < total) {
       Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10 });
@@ -148,6 +148,8 @@ export class Tutorial extends Component {
 
       return;
     }
+
+    Emitter.emit(LEVEL_UP);
 
     auth.updateUserInfo({
       tutorial: false
@@ -199,7 +201,7 @@ export class Tutorial extends Component {
         />
 
         <Guide
-          guideContent={tutorialContent}
+          guideContent={this.state.tutorialContent}
           showNext={this.state.showNext}
           handleProgress={this.handleProgress}
           currentHint={this.state.currentHint}

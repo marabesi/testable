@@ -78,7 +78,6 @@ const Wrapped = (
       const strategyResult = Reason(codeAndTestCase, reasonStrategy);
 
       if (strategyResult && executeTestCase(codeAndTestCase, strategyResult, strategyTests)) {
-        Emitter.emit(LEVEL_UP);
 
         track({
           section: trackSection,
@@ -156,6 +155,8 @@ const Wrapped = (
 
         return;
       }
+
+      Emitter.emit(LEVEL_UP);
 
       this.setState({
         //@ts-ignore

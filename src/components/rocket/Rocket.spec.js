@@ -155,7 +155,7 @@ describe('Rocket component', () => {
       expect(wrapper.instance().onValidCode('code', sourceCodeEditor)).toBe(undefined);
     });
 
-    test('should level up on valid code', () => {
+    test('should level up on content last step', () => {
       const callback = jest.fn();
       Emitter.addListener(LEVEL_UP, callback);
 
@@ -164,7 +164,7 @@ describe('Rocket component', () => {
         null,
         null,
         [],
-        null,
+        [ { line: 'content first step', style: '' }, { line: 'content last step', style: '' } ],
         null,
         null,
         1,
@@ -173,13 +173,10 @@ describe('Rocket component', () => {
 
       const wrapper = shallow(<HoC />);
 
-      wrapper.setState({
-        currentHint: 1
-      });
+      wrapper.instance().handleProgress();
+      wrapper.instance().handleProgress();
 
-      wrapper.instance().onValidCode('my code', TEST_CODE);
-
-      expect(callback).toBeCalled();
+      expect(callback).toBeCalledTimes(1);
     });
   });
 
