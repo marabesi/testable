@@ -114,4 +114,38 @@ describe('Tutorial page', () => {
       }, 3100);
     });
   });
+
+  test.each([
+    'function somar(a,b) { return a+b }',
+  ])('valid code behavior %s', (code) => {
+    const wrapper = shallow(<Tutorial />);
+    wrapper.instance().setState({
+      currentHint: ENABLE_EDITOR_ON_HINT
+    });
+
+    wrapper.instance().onValidCode(code);
+
+    expect(wrapper.instance().state.currentHint).toBe(ENABLE_EDITOR_ON_HINT + 1);
+  });
+
+  test.each([
+    '(a,b) => { return a+b }',
+    'function() => { return }',
+    'function(a, a) => { return a + a }',
+  ])('invalid code behavior %s', (code) => {
+    const wrapper = shallow(<Tutorial />);
+    wrapper.instance().setState({
+      currentHint: ENABLE_EDITOR_ON_HINT
+    });
+
+    wrapper.instance().onValidCode(code);
+
+    expect(wrapper.instance().state.currentHint).toBe(ENABLE_EDITOR_ON_HINT);
+  });
+
+  test('should update state with error message', () => {
+    const wrapper = shallow(<Tutorial />);
+    wrapper.instance().onErrorCode('something went wrong');
+    expect(wrapper.instance().state.editorError).toEqual('something went wrong');
+  });
 });

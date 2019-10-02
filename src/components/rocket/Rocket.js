@@ -78,7 +78,6 @@ const Wrapped = (
       const strategyResult = Reason(codeAndTestCase, reasonStrategy);
 
       if (strategyResult && executeTestCase(codeAndTestCase, strategyResult, strategyTests)) {
-
         track({
           section: trackSection,
           action: `${trackSection}:valid_code`
@@ -92,7 +91,7 @@ const Wrapped = (
       }
     }
 
-    onErrorCode = (error, i) => {
+    onErrorCode = (error) => {
       this.setState({
         //@ts-ignore
         ...this.state.editorError, editorError: error
