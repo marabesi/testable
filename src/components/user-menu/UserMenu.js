@@ -29,11 +29,11 @@ export default class UserMenu extends Component {
     return (
       <div className="flex justify-end items-center">
         <Cup
-          className="fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
+          className="ranking fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
           onClick={this.onRanking}
         />
         <AchievementIcon
-          className="fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
+          className="achievements fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
           onClick={this.props.onNotification}
         />
         <Profile user={auth.user} />
