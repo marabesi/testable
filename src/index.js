@@ -44,6 +44,6 @@ ReactDOM.render(
 
 registerServiceWorker();
 
-if (window.Cypress || debug) {
+if (debug || env === 'staging') {
   window.store = store;
 }
