@@ -4,6 +4,7 @@ import userReducer from './userReducer';
 import loadingReducer from './loadingReducer';
 import editorReducer from './editorReducer';
 import localeReducer from './localeReducer';
+import optionsReducer from './optionsReducer';
 
 export default combineReducers({
   guideReducer,
@@ -11,4 +12,5 @@ export default combineReducers({
   loadingReducer,
   editorReducer,
   localeReducer,
+  optionsReducer,
 });

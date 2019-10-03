@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import { colors } from '../../tailwind';
 
-export default class Background extends Component {
+const mapStateToProps = state => ({
+  options: state.optionsReducer.options
+});
+
+export class Background extends Component {
 
   render() {
     return (
@@ -20,7 +25,7 @@ export default class Background extends Component {
             `}
           </style>
         </Helmet>
-        <div className="stars"></div>
+        <div className={ this.props.options.animation ? 'stars' : '' }></div>
         {this.props.children}
       </>
     );
@@ -28,5 +33,12 @@ export default class Background extends Component {
 }
 
 Background.propTypes = {
-  children: PropTypes.node
+  children: PropTypes.node,
+  options: PropTypes.object,
 };
+
+Background.defaultProps = {
+  options: {}
+};
+
+export default connect(mapStateToProps)(Background);
