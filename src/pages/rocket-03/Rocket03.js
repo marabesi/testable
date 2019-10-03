@@ -2,7 +2,7 @@ import guideContent from './rocket03-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 import { testCaseBehavior } from '../../engine/strategies/behavior/TestCaseBehavior';
-import { testCase } from '../../engine/strategies/behavior/TestDivisionBehavior';
+import { testCase } from '../../engine/strategies/tester/TestDivisionTester';
 
 const code = `function dividirGps(a, b) {
   return a / b
