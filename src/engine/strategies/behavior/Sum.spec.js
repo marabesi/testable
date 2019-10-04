@@ -1,4 +1,5 @@
-import { Sum, testCase } from './Sum';
+import { Sum } from './Sum';
+import  { testCase } from '../tester/Sum';
 import Reason from '../../Reason';
 
 const invalidSumExamples = [

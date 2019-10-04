@@ -16,13 +16,17 @@ const Wrapped = (
   OriginalComponent,
   code,
   test,
-  strategyTests,
+  testCaseTests,
+  sourceCodeTests,
   guideContent,
   whenDoneRedirectTo,
   waitCodeToBeExecutedOnStep,
   enableEditorOnStep,
   trackSection,
-  reasonStrategy,
+
+  testCaseStrategy,
+  sourceCodeStrategy,
+
   disableEditor,
   introContent,
   enableIntroOnStep,
@@ -75,9 +79,14 @@ const Wrapped = (
       });
 
       const codeAndTestCase = `${this.state.code[SOURCE_CODE]} ${this.state.code[TEST_CODE]}`;
-      const strategyResult = Reason(codeAndTestCase, reasonStrategy);
 
-      if (strategyResult && executeTestCase(codeAndTestCase, strategyResult, strategyTests)) {
+      const sourceCodeStrategyResult = Reason(this.state.code[SOURCE_CODE], sourceCodeStrategy);
+      const sourceCodeExecution = sourceCodeStrategyResult && executeTestCase(this.state.code[SOURCE_CODE], sourceCodeStrategyResult, sourceCodeTests);
+
+      const testCaseStrategyResult = Reason(this.state.code[TEST_CODE], testCaseStrategy);
+      const testCaseExecutionResult = testCaseStrategyResult && executeTestCase(codeAndTestCase, testCaseStrategyResult, testCaseTests);
+
+      if (testCaseExecutionResult && sourceCodeExecution) {
         track({
           section: trackSection,
           action: `${trackSection}:valid_code`

@@ -25,6 +25,7 @@ export default Rocket(
   999,
   'tdd-intro',
   testCaseBehavior,
+  {},
   null,
   introContent,
   1,

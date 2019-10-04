@@ -1,6 +1,7 @@
 import { executeTestCase } from './Tester';
 import Reason from './Reason';
-import { Sum, testCase } from './strategies/behavior/Sum';
+import { Sum } from './strategies/behavior/Sum';
+import { testCase } from './strategies/tester/Sum';
 
 describe('integration with test cases', () => {
   test('should execute and pass a correct test approach with sum code', () => {

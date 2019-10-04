@@ -1,10 +1,10 @@
 import { SourceCodeBehavior } from './SourceCodeBehavior';
 
-export const Sum = function (ast) {
+export const MultiplicationBehavior = function (ast) {
 
   const baseBehavior = SourceCodeBehavior(ast);
 
-  if (baseBehavior && baseBehavior.operator !== '+') {
+  if (baseBehavior && baseBehavior.operator !== '*') {
     return;
   }
 

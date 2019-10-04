@@ -1,5 +1,4 @@
 export const testCase = [
-  { params: '1,1', expected: true },
-  { params: '999,999', expected: true },
-  { params: '-20,20', expected: true }
+  { params: '1,1', expected: 0 },
+  { params: '999,999', expected: 0 }
 ];
