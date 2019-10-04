@@ -7,10 +7,6 @@ export const testCaseBehavior = function (ast) {
   const nodes = ast.body;
 
   for (let node = 0; node < nodes.length; node++) {
-    if (node !== 1) {
-      continue;
-    }
-
     if (ast.body[node].type !== 'FunctionDeclaration') {
       return;
     }

@@ -1,6 +1,6 @@
 import { executeTestCase } from './Tester';
 import Reason from './Reason';
-import { Sum, testCase } from './strategies/Sum';
+import { Sum, testCase } from './strategies/behavior/Sum';
 
 describe('integration with test cases', () => {
   test('should execute and pass a correct test approach with sum code', () => {
@@ -31,5 +31,18 @@ describe('integration with test cases', () => {
     const result = executeTestCase(code, strategy, testCase);
 
     expect(result).toBeFalsy();
+  });
+
+  test('should execute test case to every function in the source code given', () => {
+    const code = `
+    function sum(a, b) {
+        return a + b
+    }
+    `;
+
+    const strategy = Reason(code, Sum);
+    const result = executeTestCase(code, strategy, testCase);
+
+    expect(result).toBeTruthy();
   });
 });

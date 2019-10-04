@@ -1,12 +1,8 @@
 import { Sum, testCase } from './Sum';
-import Reason from '../Reason';
+import Reason from '../../Reason';
 
 const invalidSumExamples = [
-  'var a = 1;',
-  'var b = 1;',
-  '',
-  'auhsuashuasas',
-  'function a() {}',
+  'function minus(a, b) { return a * b;}',
   'function minus(a, b) { return a - b;}',
 ];
 

@@ -4,7 +4,6 @@ import Reason from '../../Reason';
 describe('testCaseBehavior', () => {
 
   const code = `
-  function somar() {}
   function testeSomarNumerosPositivos() {
     var total = somar(1,2)
     var esperado = 3;
