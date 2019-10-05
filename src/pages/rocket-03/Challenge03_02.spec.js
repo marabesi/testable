@@ -44,6 +44,28 @@ describe('Rocket 03 challenge 02 page', () => {
     `function division(a, b) {
       return a /b;
     }`,
+    //handles only first parameter with zero
+    `function division(a, b) {
+      if (a === 0) {
+        return false;
+      }
+      return a / b;
+    }`,
+    //handles only second parameter with zero
+    `function division(a, b) {
+      if (b === 0) {
+        return false;
+      }
+      return a /b;
+    }`,
+    // check zero against wrong variables
+    `function division(a, b) {
+      let c, d;
+      if (c === 0 || d === 0) {
+        return false;
+      }
+      return a / b;
+    }`,
   ])('invalid source code behavior (division by zero)', (sourceCode) => {
     const wrapper = shallow(<Challenge03_02 />);
     wrapper.instance().setState({
@@ -59,7 +81,10 @@ describe('Rocket 03 challenge 02 page', () => {
     // handles division by zero
     [
       `function division(a, b) {
-        if (a === 0 || b === 0) {
+        if (a === 0) {
+          return false;
+        }
+        if (b === 0) {
           return false;
         }
         return a /b;
@@ -67,8 +92,21 @@ describe('Rocket 03 challenge 02 page', () => {
       `function testeDividirGpsEmDuasPartes() {
         var total = division(2, 1)
         var esperado = 2;
-        return total === esperado; 
-      }`
+        return total === esperado;
+      }`,
+    ],
+    [
+      `function division(a, b) {
+        if (a === 0 || b === 0) {
+          return false;
+        }
+        return a / b;
+      }`,
+      `function testeDividirGpsEmDuasPartes() {
+        var total = division(2, 1)
+        var esperado = 2;
+        return total === esperado;
+      }`,
     ],
   ])('valid source code behavior and valid test code behavior (division by zero)', (sourceCode, testCode) => {
     const wrapper = shallow(<Challenge03_02 />);

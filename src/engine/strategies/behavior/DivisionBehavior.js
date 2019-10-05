@@ -20,40 +20,90 @@ export const DivisionByZeroBehavior = function (ast) {
   let name, params, operator;
 
   for (let node in ast.body) {
+    name = ast.body[node].id.name;
+    params = ast.body[node].params;
+    operator = '/';
+
     const block = ast.body[node].body.body;
 
     if (!block) {
       return;
     }
 
-    for (let leaf = 0; leaf < block.length; leaf++) {
-      if (block[leaf].type !== 'IfStatement') {
-        continue;
-      }
+    const ifs = block.filter(item => item.type === 'IfStatement');
 
-      const currentNode = block[leaf].test;
-
-      if (!currentNode) {
-        return;
-      }
-
-      if (!(currentNode.left.operator === '==' || currentNode.left.operator === '===')) {
-        return;
-      }
-
-      if (currentNode.left.right.value !== 0) {
-        return;
-      }
-
-      if (currentNode.right.right.value !== 0) {
-        return;
-      }
+    if (ifs.length < 2 && !checkInlineIf(ifs, params)) {
+      return;
     }
 
-    name = ast.body[node].id.name;
-    params = ast.body[node].params;
-    operator = '/';
+    if (ifs.length >= 2 && !checkBlockIf(ifs, params)) {
+      return;
+    }
   }
 
   return { name, params, operator };
 };
+
+function checkInlineIf(block, params) {
+  const paramsName = params.map(item => item.name);
+
+  for (let leaf = 0; leaf < block.length; leaf++) {
+    if (block[leaf].type !== 'IfStatement') {
+      continue;
+    }
+
+    const currentNode = block[leaf].test;
+
+    if (!currentNode) {
+      return false;
+    }
+
+    if (!(currentNode.left.operator === '==' || currentNode.right.operator === '===')) {
+      return false;
+    }
+
+    if (currentNode.left.right.value !== 0) {
+      return false;
+    }
+
+    if (currentNode.right.right.value !== 0) {
+      return false;
+    }
+
+    if (!(paramsName.includes(currentNode.left.left.name) || paramsName.includes(currentNode.right.left.name))) {
+      return false;
+    }
+  }
+
+  return true;
+}
+
+function checkBlockIf(block, params) {
+  const paramsName = params.map(item => item.name);
+
+  for (let leaf = 0; leaf < block.length; leaf++) {
+    if (block[leaf].type !== 'IfStatement') {
+      continue;
+    }
+
+    const currentNode = block[leaf].test;
+
+    if (!currentNode) {
+      return false;
+    }
+
+    if (!(currentNode.operator === '==' || currentNode.operator === '===')) {
+      return false;
+    }
+
+    if (currentNode.right.value !== 0) {
+      return false;
+    }
+
+    if (!(paramsName.includes(currentNode.left.name))) {
+      return false;
+    }
+  }
+
+  return true;
+}
