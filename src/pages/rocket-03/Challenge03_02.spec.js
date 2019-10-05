@@ -66,6 +66,13 @@ describe('Rocket 03 challenge 02 page', () => {
       }
       return a / b;
     }`,
+    // not division function after if
+    `function division(a, b) {
+      if (a === 0 || b === 0) {
+        return false;
+      }
+      return '';
+    }`,
   ])('invalid source code behavior (division by zero)', (sourceCode) => {
     const wrapper = shallow(<Challenge03_02 />);
     wrapper.instance().setState({
