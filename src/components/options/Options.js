@@ -15,21 +15,21 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export class Options extends Component {
+const mapStateToProps = state => ({
+  options: state.optionsReducer.options,
+});
 
-  state = {
-    animation: true
-  }
+export class Options extends Component {
 
   onChange = event => {
     this.props.setLocale(event.target.value);
   }
 
-  onUpdateOptions = (event) => {
-    const animation = !this.state.animation;
-    this.setState({
+  onUpdateOptions = () => {
+    const animation = !this.props.options.animation;
+    this.props.setUpdateOptions({
       animation
-    }, () => this.props.setUpdateOptions(this.state));
+    });
   }
 
   render() {
@@ -54,7 +54,7 @@ export class Options extends Component {
           <tr className="hover:bg-testable-pink">
             <td className="p-3">Animação de fundo</td>
             <td className="p-3" align="center">
-              <input type="checkbox" onClick={this.onUpdateOptions} readOnly={true} value="1" checked={`${this.state.animation ? 'checked' : ''}`}/>
+              <input type="checkbox" onClick={this.onUpdateOptions} readOnly={true} value="1" checked={`${this.props.options.animation ? 'checked' : ''}`}/>
             </td>
           </tr>
         </tbody>
@@ -65,7 +65,12 @@ export class Options extends Component {
 
 Options.propTypes = {
   setLocale: PropTypes.func,
-  setUpdateOptions: PropTypes.func
+  setUpdateOptions: PropTypes.func,
+  options: PropTypes.object,
 };
 
-export default connect(null, mapDispatchToProps)(injectIntl(Options));
+Options.defaultProps = {
+  options: {}
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Options));

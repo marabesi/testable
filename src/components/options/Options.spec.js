@@ -30,7 +30,11 @@ describe('options menu component', () => {
   });
 
   test('dispatch action on change selected language', () => {
-    const store = mockStore({});
+    const store = mockStore({
+      optionsReducer: {
+        options: {}
+      }
+    });
     const wrapper = mount(
       <IntlProvider locale={'en'}>
         <Options store={store} />
