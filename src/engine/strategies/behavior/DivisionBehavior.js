@@ -38,31 +38,27 @@ export const DivisionByZeroBehavior = function (ast) {
       return;
     }
 
-    for (const ifNode in block) {
-      for (let leaf = 0; leaf < block.length; leaf++) {
-        if (block[leaf].type !== 'IfStatement') {
-          continue;
-        }
+    for (let leaf = 0; leaf < block.length; leaf++) {
+      if (block[leaf].type !== 'IfStatement') {
+        continue;
+      }
 
-        const currentNode = block[leaf].test;
+      const currentNode = block[leaf].test;
 
-        if (!currentNode) {
-          return;
-        }
+      if (!currentNode) {
+        return;
+      }
 
-        // if (currentNode.type === 'LogicalExpression' && currentNode.operator === '||') {
-        if (!(currentNode.left.operator === '==' || currentNode.left.operator === '===')) {
-          return;
-        }
+      if (!(currentNode.left.operator === '==' || currentNode.left.operator === '===')) {
+        return;
+      }
 
-        if (currentNode.left.right.value !== 0) {
-          return;
-        }
+      if (currentNode.left.right.value !== 0) {
+        return;
+      }
 
-        if (currentNode.right.right.value !== 0) {
-          return;
-        }
-        // }
+      if (currentNode.right.right.value !== 0) {
+        return;
       }
     }
 
