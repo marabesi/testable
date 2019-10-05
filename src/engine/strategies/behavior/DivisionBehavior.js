@@ -20,18 +20,6 @@ export const DivisionByZeroBehavior = function (ast) {
   let name, params, operator;
 
   for (let node in ast.body) {
-    if (ast.body[node].type !== 'FunctionDeclaration') {
-      return;
-    }
-
-    if (!ast.body[node].params) {
-      return;
-    }
-
-    if (ast.body[node].params.length !== 2) {
-      return;
-    }
-
     const block = ast.body[node].body.body;
 
     if (!block) {
