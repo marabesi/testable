@@ -191,7 +191,6 @@ const Wrapped = (
         return;
       }
 
-      Emitter.emit(LEVEL_UP);
       this.setState({
         //@ts-ignore
         ...this.state.introEnabled, introEnabled: false,

@@ -340,14 +340,14 @@ describe('Rocket component', () => {
       expect(wrapper.find('Intro').prop('enabled')).toBeTruthy();
     });
 
-    test('should level up when tooltip tour has completed', () => {
+    test('should not level up when tooltip tour has completed', () => {
       const callback = jest.fn();
       Emitter.addListener(LEVEL_UP, callback);
 
       const wrapper = shallow(<IntroWrapper />);
       wrapper.instance().handleProgress();
       wrapper.instance().onFinishTooltip();
-      expect(callback).toBeCalled();
+      expect(callback).toBeCalledTimes(0);
     });
 
     test('should not level up if the current hint is different from the tooltip', () => {
