@@ -3,6 +3,7 @@ import Rocket from '../../components/rocket/Rocket';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 import { Sum } from '../../engine/strategies/behavior/Sum';
 import { testCase as sumTestCase } from '../../engine/strategies/tester/Sum';
+import {TEST_CODE} from '../../constants/editor';
 
 const code = `function somar(a, b) {
   return a + b
@@ -26,6 +27,8 @@ export default Rocket(
   Sum,
   0,
   null,
-  null
+  null,
+  null,
+  [TEST_CODE]
 );
 
