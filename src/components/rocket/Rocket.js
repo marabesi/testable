@@ -216,7 +216,7 @@ const Wrapped = (
           />
 
           <div className="flex justify-center editor-container">
-            <DebugButton onClick={this.handleProgress} value="previous" />
+            <DebugButton onClick={this.previousStep} value="previous" />
             <EditorManager
               editor={2}
               style={{ width: '46%'}}
