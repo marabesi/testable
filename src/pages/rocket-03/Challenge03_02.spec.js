@@ -1,40 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import Challenge03_02 from './Challenge03_02';
-import { TEST_CODE } from '../../constants/editor';
+import { TEST_CODE, SOURCE_CODE } from '../../constants/editor';
 
 const ENABLE_EDITOR_ON_HINT = 3;
 
 describe('Rocket 03 challenge 02 page', () => {
-  test.each([
-    `function testeNaoAceitarDivisaoPorZero() {
-      var total = dividirGps(2, 1)
-      var esperado = 2;
-      return total === esperado;
-    }`,
-    // `function testMyFuncDiv() {
-    //   var total = dividirGps(-2, -1)
-    //   var esperado = 2;
-    //   return total === esperado;
-    // }`,
-
-    // division by zero
-    // `function testeNaoAceitarDivisaoPorZero() {
-    //   var total = dividirGps(0, 1)
-    //   var esperado = false;
-    //   return total === esperado;
-    // }`,
-  ])('valid code behavior %s', (code) => {
-    const wrapper = shallow(<Challenge03_02 />);
-    wrapper.instance().setState({
-      currentHint: ENABLE_EDITOR_ON_HINT
-    });
-
-    wrapper.instance().onValidCode(code, TEST_CODE);
-
-    expect(wrapper.instance().state.currentHint).toBe(ENABLE_EDITOR_ON_HINT + 1);
-  });
-
   test.each([
     // empty function
     'function testeDividirGpsEmDuasPartes() {}',
@@ -57,14 +28,58 @@ describe('Rocket 03 challenge 02 page', () => {
     `function testeDividirGpsEmDuasPartes() {
       return true
     }`,
-  ])('invalid code behavior %s', (code) => {
+  ])('invalid test code behavior %s (division by zero test case)', (testCode) => {
     const wrapper = shallow(<Challenge03_02 />);
     wrapper.instance().setState({
       currentHint: ENABLE_EDITOR_ON_HINT
     });
 
-    wrapper.instance().onValidCode(code, TEST_CODE);
+    wrapper.instance().onValidCode(testCode, TEST_CODE);
 
     expect(wrapper.instance().state.currentHint).toBe(ENABLE_EDITOR_ON_HINT);
+  });
+
+  test.each([
+    // simple division function
+    `function division(a, b) {
+      return a /b;
+    }`,
+  ])('invalid source code behavior (division by zero)', (sourceCode) => {
+    const wrapper = shallow(<Challenge03_02 />);
+    wrapper.instance().setState({
+      currentHint: ENABLE_EDITOR_ON_HINT
+    });
+
+    wrapper.instance().onValidCode(sourceCode, SOURCE_CODE);
+
+    expect(wrapper.instance().state.currentHint).toBe(ENABLE_EDITOR_ON_HINT);
+  });
+
+  test.each([
+    // handles division by zero
+    [
+      `function division(a, b) {
+        if (a === 0 || b === 0) {
+          return false;
+        }
+        return a /b;
+      }`,
+      `function testeDividirGpsEmDuasPartes() {
+        var total = division(2, 1)
+        var esperado = 2;
+        return total === esperado; 
+      }`
+    ],
+  ])('valid source code behavior and valid test code behavior (division by zero)', (sourceCode, testCode) => {
+    const wrapper = shallow(<Challenge03_02 />);
+    wrapper.instance().setState({
+      currentHint: ENABLE_EDITOR_ON_HINT
+    });
+
+    wrapper.instance().onValidCode(sourceCode, SOURCE_CODE);
+    wrapper.instance().onValidCode(testCode, TEST_CODE);
+    wrapper.update();
+
+    expect(wrapper.instance().state.currentHint).toBe(ENABLE_EDITOR_ON_HINT + 1);
   });
 });

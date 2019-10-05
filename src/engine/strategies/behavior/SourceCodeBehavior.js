@@ -24,6 +24,10 @@ export const SourceCodeBehavior = function (ast) {
       return;
     }
 
+    if (!ast.body[node].body.body[0].argument) {
+      return;
+    }
+
     if (!ast.body[node].body.body[0].argument.operator) {
       return;
     }
