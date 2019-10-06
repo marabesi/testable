@@ -7,7 +7,7 @@ import PropTypes from 'prop-types';
  */
 const Title = props => {
   return (
-    <h1 className="uppercase flex justify-between text-blue-lightest p-5 h-16" { ...props }>
+    <h1 className="uppercase flex justify-between items-center text-blue-lightest p-5 h-16" { ...props }>
       { props.children }
     </h1>
   );

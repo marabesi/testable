@@ -2,8 +2,10 @@ import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import AchievementList from './AchievementList';
 import achievements from './achievements-content';
+import Achievement from '../icons/Achievement';
 import Close from '../icons/Close';
 import Title from '../title/Title';
+import { colors } from '../../tailwind';
 
 export default class AchievementContainer extends Component {
 
@@ -21,7 +23,13 @@ export default class AchievementContainer extends Component {
     return (
       <>
         <Title>
-          Conquistas
+          <div>
+            <Achievement
+              className="fill-current w-6 h-6 text-blue mr-3"
+              style={{ fill: 'none', stroke: colors['blue-lightest'], strokeWidth: '20px'}}
+            />
+            Conquistas
+          </div>
           <Close className="fill-current w-4 h-4 text-white cursor-pointer" onClick={this.props.onClose} />
         </Title>
 
