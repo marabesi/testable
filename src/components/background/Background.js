@@ -4,8 +4,11 @@ import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
 import { colors } from '../../tailwind';
 
+import './background.scss';
+
 const mapStateToProps = state => ({
-  options: state.optionsReducer.options
+  options: state.optionsReducer.options,
+  user: state.userReducer.user,
 });
 
 export class Background extends Component {
@@ -25,6 +28,12 @@ export class Background extends Component {
             `}
           </style>
         </Helmet>
+        {
+          !this.props.user.uid &&
+          <div className="path">
+            <div className="comet"></div>
+          </div>
+        }
         <div className={ this.props.options.animation ? 'stars' : 'stars-only' }></div>
         {this.props.children}
       </>
@@ -35,10 +44,12 @@ export class Background extends Component {
 Background.propTypes = {
   children: PropTypes.node,
   options: PropTypes.object,
+  user: PropTypes.object,
 };
 
 Background.defaultProps = {
-  options: {}
+  options: {},
+  user: {},
 };
 
 export default connect(mapStateToProps)(Background);

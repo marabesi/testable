@@ -1,0 +1,32 @@
+$size: 5px;
+
+.path {
+  opacity: 0.5;
+  width: $size * 10;
+  height: $size;
+  background: linear-gradient(to right, white, transparent);
+  border-radius: $size;
+  animation: 10s comet linear infinite;
+}
+
+.comet {
+  width: $size;
+  height: $size;
+  background: #fff;
+  border-radius: $size;
+}
+
+@keyframes comet {
+  0% {
+    transform: rotate(30deg) translate(calc(100vw * 3), 0px);
+  }
+  50% {
+    opacity: 1;
+  }
+  60% {
+    opacity: 0.5;
+  }
+  100% {
+    transform: rotate(30deg) translate(0px, 0px)
+  }
+}
