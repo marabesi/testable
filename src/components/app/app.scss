@@ -28,7 +28,7 @@ body {
   overflow: hidden;
 }
 
-.stars:before {
+%stars-background {
   content: "";
   background: url('~/assets/stars.png');
   position: absolute;
@@ -38,6 +38,14 @@ body {
   bottom: -50%;
   pointer-events: none;
   opacity: 0.4;
+}
+
+.stars-only:before {
+  @extend %stars-background
+}
+
+.stars:before {
+  @extend %stars-background;
   animation: sky 8000s linear infinite;
 }
 

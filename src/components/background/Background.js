@@ -25,7 +25,7 @@ export class Background extends Component {
             `}
           </style>
         </Helmet>
-        <div className={ this.props.options.animation ? 'stars' : '' }></div>
+        <div className={ this.props.options.animation ? 'stars' : 'stars-only' }></div>
         {this.props.children}
       </>
     );
