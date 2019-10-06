@@ -6,6 +6,7 @@ import Cup from '../icons/Cup';
 import Ranking from '../ranking/Ranking';
 import { auth } from '../../pages/login/Auth';
 import {track} from '../../emitter/Tracking';
+import { colors } from '../../tailwind';
 
 export default class UserMenu extends Component {
 
@@ -33,7 +34,15 @@ export default class UserMenu extends Component {
         />
         <Profile user={auth.user} />
         <Modal
-          title={'Ranking'}
+          title={
+            <div>
+              <Cup
+                style={{ fill: 'none', stroke: colors['blue-lightest'], strokeWidth: '1px'}}
+                className="fill-current w-5 h-5 mr-3"
+              />
+              Ranking
+            </div>
+          }
           isOpen={this.state.ranking}
           onClose={this.onRanking}
         >
