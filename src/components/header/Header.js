@@ -6,6 +6,7 @@ import UserMenu from '../../components/user-menu/UserMenu';
 import Level from '../../components/level/Level';
 import DebugButton from '../../components/debug/Button';
 import { updateUser } from '../../actions/userAction';
+import AchievementIcon from '../icons/Achievement';
 import Emitter, { LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 
 import '../../scss/levelup-animation.scss';
@@ -121,11 +122,15 @@ export class Header extends React.Component {
         <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
 
         <div className="flex justify-between pl-3 pr-3 pt-5 pb-5 ml-5 mr-5">
-          <div className={ `user-progress ${this.state.levelUp ? 'wobble-ver-right' : ''}`}>
+          <div className={ `user-progress flex items-center ${this.state.levelUp ? 'wobble-ver-right' : ''}`}>
             <Level progress={this.props.user.progress} level={this.props.user.level} />
+            <AchievementIcon
+              className="achievements fill-current w-8 h-8 text-white ml-5 mr-5 hover:text-blue-lightest cursor-pointer"
+              onClick={this.props.onSidebar}
+            />
           </div>
 
-          <UserMenu user={this.props.user} onNotification={this.props.onSidebar} />
+          <UserMenu user={this.props.user} />
         </div>
       </>
     );

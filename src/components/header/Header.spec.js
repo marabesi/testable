@@ -3,6 +3,7 @@ import React from 'react';
 import {shallow} from 'enzyme';
 import sinon from 'sinon';
 import { Header } from './Header';
+import Achievement from '../icons/Achievement';
 import Emitter, {LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN, LEVEL_DOWN} from '../../emitter/Emitter';
 
 const mockedUser =  {
@@ -162,5 +163,9 @@ describe('listen to user events', () => {
 
     expect(spy.called).toBeTruthy();
   });
-});
 
+  test('should render achievement icon', () => {
+    const wrapper = shallow(<Header user={mockedUser} />);
+    expect(wrapper.find(Achievement).length).toBe(1);
+  });
+});
