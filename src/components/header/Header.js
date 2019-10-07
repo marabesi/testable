@@ -102,7 +102,6 @@ export class Header extends React.Component {
       tutorial: false,
       level: 1
     });
-    window.location.reload();
   }
 
   levelDown = () => {
