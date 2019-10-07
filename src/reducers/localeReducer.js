@@ -3,7 +3,7 @@ import { SET_LOCALE } from '../actions/localeAction';
 /**
  * @param action {object}
  */
-export default (state = { locale: 'en' }, action) => {
+export default (state = { locale: 'pt-br' }, action) => {
   switch (action.type) {
   case SET_LOCALE:
     return Object.assign({}, state, {

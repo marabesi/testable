@@ -8,7 +8,7 @@ describe('store', () => {
       'userReducer': { user: {} },
       'loadingReducer': { loading: true },
       'editorReducer': {},
-      'localeReducer': { locale: 'en' },
+      'localeReducer': { locale: 'pt-br' },
       'optionsReducer': { options: { animation: true }}
     });
   });

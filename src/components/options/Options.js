@@ -17,6 +17,7 @@ const mapDispatchToProps = dispatch => {
 
 const mapStateToProps = state => ({
   options: state.optionsReducer.options,
+  locale: state.localeReducer.locale,
 });
 
 export class Options extends Component {
@@ -45,7 +46,7 @@ export class Options extends Component {
           <tr className="hover:bg-testable-pink">
             <td className="p-3">Idioma</td>
             <td className="p-3" align="center">
-              <select value="pt-br" onChange={this.onChange}>
+              <select onChange={this.onChange} value={this.props.locale}>
                 <option value="en">Inglês</option>
                 <option value="pt-br">Português</option>
               </select>
@@ -67,10 +68,12 @@ Options.propTypes = {
   setLocale: PropTypes.func,
   setUpdateOptions: PropTypes.func,
   options: PropTypes.object,
+  locale: PropTypes.string,
 };
 
 Options.defaultProps = {
-  options: {}
+  options: {},
+  locale: 'pt-br'
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Options));

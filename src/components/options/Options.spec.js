@@ -33,6 +33,9 @@ describe('options menu component', () => {
     const store = mockStore({
       optionsReducer: {
         options: {}
+      },
+      localeReducer: {
+        locale: 'en'
       }
     });
     const wrapper = mount(
