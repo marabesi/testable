@@ -132,7 +132,7 @@ export class Profile extends Component {
                 {name}
               </h2>
             </div>
-            <ul className={`w-full bg-testable-overlay list-reset p-1 z-40 options absolute ${this.state.menu ? 'block' : 'hidden'}`}>
+            <ul className={`w-full bg-testable-overlay list-reset p-1 z-40 options absolute pin-t ${this.state.menu ? 'block' : 'hidden'}`}>
               <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onOptions}>Opções</li>
               <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onLogout}>Logout</li>
             </ul>
