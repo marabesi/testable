@@ -1,14 +1,15 @@
 //@ts-nocheck
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, } from 'react-share';
 
 const HOST = process.env.REACT_APP_HOST || window.location.origin
 
-export default class AchievementItem extends Component {
+export class AchievementItem extends Component {
 
   render() {
-    const { title, active, description, items, onClick } = this.props;
+    const { title, active, description, items, onClick, intl } = this.props;
     const list = items.map((item, index) => <li key={index}>{ item }</li>);
     return (
       <li className="p-2">
@@ -24,7 +25,7 @@ export default class AchievementItem extends Component {
             <div className="flex">
               <FacebookShareButton
                 url={HOST}
-                quote={`Conquista desbloqueada! ${title} - ${description}`}
+                quote={`${intl.messages.achievements.social_sharing} ${title} - ${description}`}
                 className="m-1 ml-0"
               >
                 <FacebookIcon
@@ -33,7 +34,7 @@ export default class AchievementItem extends Component {
               </FacebookShareButton>
               <TwitterShareButton
                 url={HOST}
-                title={`Conquista desbloqueada! ${title} - ${description}`}
+                title={`${intl.messages.achievements.social_sharing} ${title} - ${description}`}
                 className="m-1"
               >
                 <TwitterIcon
@@ -54,8 +55,16 @@ AchievementItem.propTypes = {
   items: PropTypes.array,
   active: PropTypes.bool,
   onClick: PropTypes.func,
+  intl: PropTypes.object,
 };
 
 AchievementItem.defaultProps = {
-  items: []
+  items: [],
+  intl: {
+    messages: {
+      achievements: {}
+    }
+  }
 };
+
+export default injectIntl(AchievementItem);

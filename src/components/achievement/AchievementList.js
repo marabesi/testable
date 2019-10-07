@@ -1,5 +1,6 @@
 // @ts-nocheck
 import React, {Component} from 'react';
+import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AchievementItem from './AchievementItem';
@@ -65,7 +66,9 @@ export class AchievementList extends Component {
 
     if (achievements.length === 0) {
       return (
-        <span className="p-5 text-white">Você não possui nenhuma conquista até o momento</span>
+        <span className="p-5 text-white">
+          {this.props.intl.messages.achievements.empty_list}
+        </span>
       );
     }
 
@@ -79,12 +82,18 @@ export class AchievementList extends Component {
 
 AchievementList.propTypes = {
   user: PropTypes.object,
-  achievements: PropTypes.array
+  intl: PropTypes.object,
+  achievements: PropTypes.array,
 };
 
 AchievementList.defaultProps = {
   user: {},
-  achievements: []
+  achievements: [],
+  intl: {
+    messages: {
+      achievements: {}
+    }
+  }
 };
 
-export default connect(mapStateToProps)(AchievementList);
+export default injectIntl(connect(mapStateToProps)(AchievementList));

@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import AchievementItem from './AchievementItem';
+import { AchievementItem } from './AchievementItem';
 
 describe('Achievement item behavior', () => {
 
@@ -59,5 +59,24 @@ describe('Achievement item behavior', () => {
     );
     expect(wrapper.find('ul ul li').at(0).text()).toEqual('a');
     expect(wrapper.find('ul ul li').at(1).text()).toEqual('b');
+  });
+
+  it('emit on click event', () => {
+    const callback = jest.fn();
+    const wrapper = mount(
+      <AchievementItem
+        title="list items"
+        description="my description"
+        onClick={callback}
+        items={[
+          'a',
+          'b'
+        ]}
+      />
+    );
+
+    wrapper.find('h3').simulate('click');
+
+    expect(callback).toBeCalled();
   });
 });

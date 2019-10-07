@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import AchievementContainer from './AchievementContainer';
+import { AchievementContainer } from './AchievementContainer';
 import Title from '../title/Title';
 
 describe('AchievementContainer component: render behavior', () => {
@@ -12,8 +12,18 @@ describe('AchievementContainer component: render behavior', () => {
     expect(wrapper.find(Title).length).toEqual(1);
   });
 
-  it('should show up empty message when there is no achievements', () => {
-    const wrapper = shallow(<AchievementContainer />);
+  it('should show up empty message via props when there is no achievements', () => {
+    const wrapper = shallow(
+      <AchievementContainer
+        intl={{
+          messages: {
+            achievements: {
+              empty_list: 'A lista de conquista está vazia'
+            }
+          }
+        }}
+      />
+    );
     wrapper.setState({
       achievements: []
     });

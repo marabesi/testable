@@ -1,11 +1,12 @@
+//@ts-nocheck
 import React from 'react';
-import { mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { AchievementList } from './AchievementList';
-import { auth } from '../../pages/login/Auth';
+import { AchievementItem } from './AchievementItem';
 
 describe('AchievementList component: behavior based on the user level', () => {
   it('should not show achievement with higher level than the user', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <AchievementList
         user={{ level: 1 }}
         achievements={[
@@ -20,13 +21,13 @@ describe('AchievementList component: behavior based on the user level', () => {
       />
     );
 
-    expect(wrapper.find('AchievementItem').length).toEqual(0);
+    expect(wrapper.find(AchievementItem).length).toEqual(0);
   });
 });
 
 describe('default AchievementList behavior', () => {
   it('should render achievements via achievements prop', () => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <AchievementList
         user={{ level: 1 }}
         achievements={[
@@ -34,45 +35,47 @@ describe('default AchievementList behavior', () => {
             title: 'my title',
             description: 'my desc',
             level: 0,
-          }
+          },
         ]}
       />
     );
   
-    expect(wrapper.find('ul h3').text()).toEqual('my title');
-    expect(wrapper.find('ul li span').text()).toEqual('my desc');
+    expect(wrapper.children().length).toEqual(1);
   });
 
-  it('should render achievement description once clicked', () => {
-    const wrapper = mount(
+  it('should render friendly when the list is empty', () => {
+    const msg = 'Você não possui nenhuma conquista até o momento';
+    const wrapper = shallow(
+      <AchievementList
+        intl={{
+          messages: {
+            achievements: {
+              empty_list: 'Você não possui nenhuma conquista até o momento'
+            }
+          }
+        }}
+        user={{ level: 1 }}
+      />);
+    expect(wrapper.find('span').text()).toEqual(msg);
+    expect(wrapper.find('ul').length).toBe(0);
+  });
+
+  it('should set item to active to true (show up the item description)', () => {
+    const wrapper = shallow(
       <AchievementList
         user={{ level: 1 }}
         achievements={[
           {
             title: 'my title',
-            description: 'Vamos construir um foguete!',
+            description: 'my desc',
             level: 0,
-          }
+          },
         ]}
       />
     );
 
-    // @ts-ignore
-    expect((wrapper.find('ul h3 + li').prop('className') || []).includes('hidden')).toBeTruthy();
+    wrapper.instance().showAchievement(0);
 
-    wrapper.find('ul h3').simulate('click');
-
-    // @ts-ignore
-    expect((wrapper.find('ul h3 + li').prop('className') || []).includes('hidden')).toBeFalsy();
-    expect(wrapper.find('ul h3 + li').text()).toEqual('Vamos construir um foguete!');
-  });
-
-  it('should render friendly when the list is empty', () => {
-    const wrapper = mount(
-      <AchievementList
-        user={{ level: 1 }}
-      />);
-    expect(wrapper.find('span').text()).toEqual('Você não possui nenhuma conquista até o momento');
-    expect(wrapper.find('ul').length).toBe(0);
+    expect(wrapper.instance().state.achievements[0].active).toBeTruthy();
   });
 });
