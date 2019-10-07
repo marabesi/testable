@@ -6,5 +6,8 @@ export default {
     title: 'Achievements',
     empty_list: 'There is no achievement to show up',
     social_sharing: 'Achievement unlocked!'
+  },
+  level : {
+    label: 'level'
   }
 };

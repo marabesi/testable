@@ -1,6 +1,6 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Level from './Level';
+import { Level } from './Level';
 import Emitter, { TRACKING } from '../../emitter/Emitter';
 
 describe('Level component', () => {
@@ -13,7 +13,14 @@ describe('Level component', () => {
     const wrapper = shallow(<Level level={2} />);
     const level = wrapper.find('h1').text();
 
-    expect(level).toBe('level 2');
+    expect(level.trim()).toBe('2');
+  });
+
+  test('should add label alongside user level', () => {
+    const wrapper = shallow(<Level level={2} intl={{messages: { level: {label: 'my label'}}}} />);
+    const level = wrapper.find('h1').text();
+
+    expect(level).toBe('my label 2');
   });
 
   test('should track on click', () => {
