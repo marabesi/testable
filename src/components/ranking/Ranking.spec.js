@@ -1,6 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import Ranking from './Ranking';
+import { Ranking } from './Ranking';
 
 const mockedResponse = {
   data: [
@@ -23,11 +23,15 @@ describe('Ranking component', () => {
     }, 500);
   });
 
-  test('should show a friendly message if the data fetching fails', done => {
+  test('should show a friendly intl message if the data fetching fails', done => {
     global.fetch = url => {
       return Promise.reject('Something went wrong');
     };
-    const wrapper = mount(<Ranking />);
+    const wrapper = mount(
+      <Ranking
+        intl={{ messages: { ranking: { error: 'Ocorreu um erro ao carregar o ranking :('} } }}
+      />
+    );
 
     setTimeout(() => {
       wrapper.update();
@@ -40,6 +44,21 @@ describe('Ranking component', () => {
   test('should render loading component by default', () => {
     const wrapper = mount(<Ranking />);
     expect(wrapper.find('Loading').length).toBe(1);
+  });
+
+  test('should render table header based on intl', () => {
+    const wrapper = mount(
+      <Ranking
+        intl={{ messages: {ranking: { position: 'position', name: 'name', level: 'level' }} }}
+      />
+    );
+
+    wrapper.instance().setState({ loading: false });
+    wrapper.update();
+
+    expect(wrapper.find('table thead tr th').at(0).text()).toEqual('position');
+    expect(wrapper.find('table thead tr th').at(1).text()).toEqual('name');
+    expect(wrapper.find('table thead tr th').at(2).text()).toEqual('level');
   });
 
   test('should render ranking table with one user', () => {

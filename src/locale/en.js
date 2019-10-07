@@ -9,5 +9,14 @@ export default {
   },
   level : {
     label: 'level'
+  },
+  ranking: {
+    title: 'ranking',
+    error: 'Something went wrong loading the ranking :(',
+    table: {
+      position: 'position',
+      name: 'name',
+      level: 'level',
+    }
   }
 };

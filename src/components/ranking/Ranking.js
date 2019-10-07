@@ -1,5 +1,6 @@
 //@ts-nocheck
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import Loading from '../loading/Loading';
 
@@ -7,7 +8,7 @@ import Loading from '../loading/Loading';
 const RANKING_API = process.env.REACT_APP_RANKING_API;
 /* eslint-enable */
 
-export default class Ranking extends Component {
+export class Ranking extends Component {
 
   state = {
     ranking: [],
@@ -24,7 +25,7 @@ export default class Ranking extends Component {
       })
       .catch(() => {
         const currentState = Object.assign({}, this.state);
-        currentState.error = 'Ocorreu um erro ao carregar o ranking :(';
+        currentState.error = this.props.intl.messages.ranking.error;
         this.setState(currentState);
       })
       .finally(() => {
@@ -65,9 +66,9 @@ export default class Ranking extends Component {
       <table className="text-white m-auto w-3/5">
         <thead>
           <tr>
-            <th className="text-left p-2">Posição</th>
-            <th className="text-left p-2">Nome</th>
-            <th className="text-left p-2">Level</th>
+            <th className="text-left p-2">{this.props.intl.messages.ranking.position}</th>
+            <th className="text-left p-2">{this.props.intl.messages.ranking.name}</th>
+            <th className="text-left p-2">{this.props.intl.messages.ranking.level}</th>
           </tr>
         </thead>
         <tbody>
@@ -79,5 +80,16 @@ export default class Ranking extends Component {
 }
 
 Ranking.propTypes = {
-  onRanking: PropTypes.func
+  onRanking: PropTypes.func,
+  intl: PropTypes.object,
 };
+
+Ranking.defaultProps = {
+  intl: {
+    messages: {
+      ranking: {}
+    }
+  }
+};
+
+export default injectIntl(Ranking);
