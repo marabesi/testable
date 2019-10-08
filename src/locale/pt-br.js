@@ -18,5 +18,13 @@ export default {
       name: 'nome',
       level: 'nível',
     }
-  }
+  },
+  options: {
+    language: 'Idioma',
+    background_animation: 'Animação de fundo',
+    languages : {
+      en: 'Inglês',
+      'pt-br': 'Português (Brasil)'
+    },
+  },
 };

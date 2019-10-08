@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React from 'react';
 import {shallow, mount} from 'enzyme';
 import { IntlProvider } from 'react-intl';
@@ -39,7 +40,12 @@ describe('options menu component', () => {
       }
     });
     const wrapper = mount(
-      <IntlProvider locale={'en'}>
+      <IntlProvider locale={'en'} messages={{
+        options: {
+          languages: {}
+        },
+        global: {},
+      }}>
         <Options store={store} />
       </IntlProvider>
     );

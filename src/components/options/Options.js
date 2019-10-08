@@ -34,26 +34,27 @@ export class Options extends Component {
   }
 
   render() {
+    const { intl } = this.props;
     return (
       <table className="text-white m-auto w-3/5">
         <thead>
           <tr>
-            <th className="text-left p-2">Opções</th>
+            <th className="text-left p-2">{ intl.messages.global.options }</th>
             <th className="text-left p-2"></th>
           </tr>
         </thead>
         <tbody>
           <tr className="hover:bg-testable-pink">
-            <td className="p-3">Idioma</td>
+            <td className="p-3">{ intl.messages.options.language }</td>
             <td className="p-3" align="center">
               <select onChange={this.onChange} value={this.props.locale}>
-                <option value="en">Inglês</option>
-                <option value="pt-br">Português</option>
+                <option value="en">{ intl.messages.options.languages.en }</option>
+                <option value="pt-br">{ intl.messages.options.languages['pt-br'] }</option>
               </select>
             </td>
           </tr>
           <tr className="hover:bg-testable-pink">
-            <td className="p-3">Animação de fundo</td>
+            <td className="p-3">{ intl.messages.options.background_animation }</td>
             <td className="p-3" align="center">
               <input type="checkbox" onClick={this.onUpdateOptions} readOnly={true} value="1" checked={`${this.props.options.animation ? 'checked' : ''}`}/>
             </td>
@@ -69,11 +70,20 @@ Options.propTypes = {
   setUpdateOptions: PropTypes.func,
   options: PropTypes.object,
   locale: PropTypes.string,
+  intl: PropTypes.object,
 };
 
 Options.defaultProps = {
   options: {},
-  locale: 'pt-br'
+  locale: 'pt-br',
+  intl: {
+    messages: {
+      options: {
+        languages: {}
+      },
+      global: {},
+    }
+  }
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(injectIntl(Options));
