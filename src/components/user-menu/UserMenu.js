@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import Profile from '../profile/Profile';
 import Modal from '../modal/Modal';
@@ -8,7 +9,7 @@ import { auth } from '../../pages/login/Auth';
 import {track} from '../../emitter/Tracking';
 import { colors } from '../../tailwind';
 
-export default class UserMenu extends Component {
+export class UserMenu extends Component {
 
   state = {
     ranking: false
@@ -40,7 +41,7 @@ export default class UserMenu extends Component {
                 style={{ fill: 'none', stroke: colors['blue-lightest'], strokeWidth: '1px'}}
                 className="fill-current w-5 h-5 mr-3"
               />
-              Ranking
+              { this.props.intl.messages.ranking.title }
             </div>
           }
           isOpen={this.state.ranking}
@@ -55,5 +56,16 @@ export default class UserMenu extends Component {
 
 UserMenu.propTypes = {
   user: PropTypes.object,
+  intl: PropTypes.object,
   onNotification: PropTypes.func
 };
+
+UserMenu.defaultProps = {
+  intl: {
+    messages: {
+      ranking: {}
+    }
+  }
+};
+
+export default injectIntl(UserMenu);

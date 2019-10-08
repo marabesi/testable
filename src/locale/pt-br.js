@@ -2,6 +2,9 @@ export default {
   global: {
     options: 'Opções'
   },
+  menu: {
+    logout: 'sair'
+  },
   achievements: {
     title: 'Conquistas',
     empty_list: 'Você não possui nenhuma conquista até o momento',

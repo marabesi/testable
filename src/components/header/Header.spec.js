@@ -4,6 +4,7 @@ import {shallow} from 'enzyme';
 import sinon from 'sinon';
 import { Header } from './Header';
 import Achievement from '../icons/Achievement';
+import UserMenu from '../user-menu/UserMenu';
 import Emitter, {LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN, LEVEL_DOWN} from '../../emitter/Emitter';
 
 const mockedUser =  {
@@ -49,7 +50,7 @@ describe('header component', () => {
 
   test('should render user menu component', () => {
     const localWrapper = shallow(<Header user={mockedUser} />);
-    expect(localWrapper.find('UserMenu').length).toEqual(1);
+    expect(localWrapper.find(UserMenu).length).toEqual(1);
     localWrapper.unmount();
   });
 

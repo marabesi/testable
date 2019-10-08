@@ -1,6 +1,9 @@
 export default {
   global: {
-    options: 'Options'
+    options: 'Options',
+  },
+  menu: {
+    logout: 'logout'
   },
   achievements: {
     title: 'Achievements',

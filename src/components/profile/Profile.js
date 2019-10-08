@@ -133,8 +133,12 @@ export class Profile extends Component {
               </h2>
             </div>
             <ul className={`w-full bg-testable-overlay list-reset p-1 z-40 options absolute pin-t ${this.state.menu ? 'block' : 'hidden'}`}>
-              <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onOptions}>Opções</li>
-              <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onLogout}>Logout</li>
+              <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onOptions}>
+                { this.props.intl.messages.global.options }
+              </li>
+              <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onLogout}>
+                { this.props.intl.messages.menu.logout }
+              </li>
             </ul>
           </div>
         </div>
@@ -146,15 +150,15 @@ export class Profile extends Component {
 Profile.propTypes = {
   user: PropTypes.object,
   className: PropTypes.string,
-  intl: PropTypes.object
+  intl: PropTypes.object,
+  setUser: PropTypes.func
 };
 
 Profile.defaultProps = {
   intl: {
     messages: {
-      global: {
-        options: ''
-      }
+      global: {},
+      menu: {}
     }
   }
 };
