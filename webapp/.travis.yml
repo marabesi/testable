@@ -1,0 +1,19 @@
+language: node_js
+node_js:
+  - "11"
+before_script:
+- cd webapp && chmod +x ./prebuild.sh
+- cd webapp && chmod +x ./deploy.sh
+- cd webapp && ./prebuild.sh
+- cd webapp && yarn install
+
+script:
+  - cd webapp && yarn build
+  - cd webapp && yarn test
+  - cd webapp && yarn coveralls
+  - cd webapp && sh deploy.sh
+
+env:
+  global:
+  - GH_REPO="marabesi/testable"
+  - REACT_APP_BASE_NAME="/testable"
