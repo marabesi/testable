@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactGA from 'react-ga';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { HashRouter } from 'react-router-dom';
 import { Offline, Online } from 'react-detect-offline';
 import App from './components/app/App';
 import registerServiceWorker from './registerServiceWorker';
@@ -28,9 +28,9 @@ ReactDOM.render(
   <Provider store={store}>
     <Background>
       <Online>
-        <BrowserRouter basename={basename}>
+        <HashRouter basename={basename}>
           <App />
-        </BrowserRouter>
+        </HashRouter>
       </Online>
       <Offline>
         <div className="flex justify-center items-center">
