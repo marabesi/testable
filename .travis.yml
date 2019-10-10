@@ -2,16 +2,17 @@ language: node_js
 node_js:
   - "11"
 before_script:
-- cd webapp && chmod +x ./prebuild.sh
-- cd webapp && chmod +x ./deploy.sh
-- cd webapp && ./prebuild.sh
-- cd webapp && yarn install
+- cd webapp/
+- chmod +x ./prebuild.sh
+- chmod +x ./deploy.sh
+- ./prebuild.sh
+- yarn install
 
 script:
-  - cd webapp && yarn build
-  - cd webapp && yarn test
-  - cd webapp && yarn coveralls
-  - cd webapp && sh deploy.sh
+  - yarn build
+  - yarn test
+  - yarn coveralls
+  - sh deploy.sh
 
 env:
   global:
