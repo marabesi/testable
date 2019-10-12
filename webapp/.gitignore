@@ -27,10 +27,6 @@ env.prod.json
 src/css/tailwind.css
 src/css/index.css
 
-.vscode
-
-.idea
-
 .netlify
 
 cypress.env.json
