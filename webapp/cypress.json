@@ -2,6 +2,6 @@
   "testFiles": "**/*.*",
   "defaultCommandTimeout": 20000,
   "chromeWebSecurity": false,
-  "viewportWidth": 1024,
+  "viewportWidth": 1366,
   "viewportHeight": 768
 }

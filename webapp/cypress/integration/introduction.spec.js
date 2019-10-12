@@ -1,7 +1,7 @@
 const URL = Cypress.env('host');
 const password = Cypress.env('password');
 
-context('login', () => {
+context('introduction page', () => {
   beforeEach(() => {
     cy.visit(URL);
     cy.wait(2000);
@@ -29,14 +29,13 @@ context('login', () => {
   });
 
   it('should start with level 1', () => {
-    cy.get('.title:first').should('have.text', 'level 1');
+    cy.get('.title:first').should('have.text', 'nível 1');
     cy.get('.progress-holder').should('have.attr', 'title', '10 %');
   });
 
   it('should follow the introduction flow', () => {
     for (let i = 0; i < 7; i ++) {
-      cy.wait(5000);
-      cy.get('.button').should('be.visible');
+      cy.get('.button').should('be.visible', { timeout: 5000 });
       cy.get('.button').click();
     }
   });
