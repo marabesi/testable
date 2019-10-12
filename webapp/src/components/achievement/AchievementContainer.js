@@ -2,23 +2,12 @@ import React, {Component} from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import AchievementList from './AchievementList';
-import achievements from './achievements-content';
 import Achievement from '../icons/Achievement';
 import Close from '../icons/Close';
 import Title from '../title/Title';
 import { colors } from '../../tailwind';
 
 export class AchievementContainer extends Component {
-
-  state = {
-    achievements: []
-  }
-
-  componentDidMount() {
-    this.setState({
-      achievements: achievements
-    });
-  }
 
   render() {
     return (
@@ -35,13 +24,13 @@ export class AchievementContainer extends Component {
         </Title>
 
         {
-          this.state.achievements.length === 0 &&
+          this.props.intl.messages.achievements.list.length === 0 &&
           <span className="p-5 text-white">
             {this.props.intl.messages.achievements.empty_list}
           </span>
         }
 
-        {this.state.achievements.length > 0 && <AchievementList achievements={this.state.achievements} />}
+        {this.props.intl.messages.achievements.list.length > 0 && <AchievementList achievements={this.props.intl.messages.achievements.list} />}
       </>
     );
   }
@@ -58,7 +47,9 @@ AchievementContainer.propTypes = {
 AchievementContainer.defaultProps = {
   intl: {
     messages: {
-      achievements: {}
+      achievements: {
+        list: []
+      }
     }
   }
 };

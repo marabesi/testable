@@ -5,10 +5,9 @@ import Title from '../title/Title';
 
 describe('AchievementContainer component: render behavior', () => {
   it('should render container title', () => {
-    const wrapper = shallow(<AchievementContainer />);
-    wrapper.setState({
-      achievements: []
-    });
+    const wrapper = shallow(
+      <AchievementContainer />
+    );
     expect(wrapper.find(Title).length).toEqual(1);
   });
 
@@ -18,15 +17,13 @@ describe('AchievementContainer component: render behavior', () => {
         intl={{
           messages: {
             achievements: {
+              list: [],
               empty_list: 'A lista de conquista está vazia'
             }
           }
         }}
       />
     );
-    wrapper.setState({
-      achievements: []
-    });
 
     expect(wrapper.find('span').text()).toEqual('A lista de conquista está vazia');
   });
