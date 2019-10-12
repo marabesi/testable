@@ -37,6 +37,7 @@ context('introduction page', () => {
     for (let i = 0; i < 7; i ++) {
       cy.get('.button').should('be.visible', { timeout: 5000 });
       cy.get('.button').click();
+      cy.get('.header').scrollIntoView();
     }
   });
 });
