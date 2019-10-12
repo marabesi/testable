@@ -44,6 +44,6 @@ ReactDOM.render(
 
 registerServiceWorker();
 
-if (debug || env === 'staging') {
+if (debug || env === 'development') {
   window.store = store;
 }
