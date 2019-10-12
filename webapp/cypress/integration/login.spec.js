@@ -47,7 +47,7 @@ context('login', () => {
     cy.contains('Sign In').click();
     cy.wait(10000);
     cy.get('.picture-holder img').click();
-    cy.contains('Logout').click();
+    cy.contains('Sair').click();
     cy.wait(5000);
     cy.get('.firebaseui-container').should('be.visible');
   });

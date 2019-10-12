@@ -133,10 +133,10 @@ export class Profile extends Component {
               </h2>
             </div>
             <ul className={`w-full bg-testable-overlay list-reset p-1 z-40 options absolute pin-t ${this.state.menu ? 'block' : 'hidden'}`}>
-              <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onOptions}>
+              <li className="capitalize cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onOptions}>
                 { this.props.intl.messages.global.options }
               </li>
-              <li className="cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onLogout}>
+              <li className="capitalize cursor-pointer text-white text-center p-2 hover:text-blue-lightest" onClick={this.onLogout}>
                 { this.props.intl.messages.menu.logout }
               </li>
             </ul>
