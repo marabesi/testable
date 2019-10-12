@@ -1,19 +1,19 @@
 const URL = Cypress.env('host');
 
 const urls = [
-  '/intro',
-  '/tutorial',
-  '/tutorial-end',
-  '/tdd-intro',
-  '/tdd',
-  '/tdd-end',
-  '/rocket-01',
-  '/rocket-02',
-  '/rocket-03',
-  '/rocket-03-01',
-  '/rocket-03-02',
-  '/completed',
-  '/survey',
+  '/#/intro',
+  '/#/tutorial',
+  '/#/tutorial-end',
+  '/#/tdd-intro',
+  '/#/tdd',
+  '/#/tdd-end',
+  '/#/rocket-01',
+  '/#/rocket-02',
+  '/#/rocket-03',
+  '/#/rocket-03-01',
+  '/#/rocket-03-02',
+  '/#/completed',
+  '/#/survey',
 ];
 
 context('routes', () => {
