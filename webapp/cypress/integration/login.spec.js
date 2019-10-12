@@ -34,8 +34,7 @@ context('login', () => {
     cy.get('input[type="email"').type(email);
     cy.contains('Next').click();
     cy.get('input[type="password"]').type(password);
-    cy.contains('Sign In').click();
-    cy.wait(10000);
+    cy.contains('Sign In').click({ timeout: 10000 });
     cy.get('.profile').should('be.visible');
   });
 
@@ -44,11 +43,8 @@ context('login', () => {
     cy.get('input[type="email"').type(email);
     cy.contains('Next').click();
     cy.get('input[type="password"]').type(password);
-    cy.contains('Sign In').click();
-    cy.wait(10000);
+    cy.contains('Sign In').click({ timeout: 10000 });
     cy.get('.picture-holder img').click();
-    cy.contains('Sair').click();
-    cy.wait(5000);
-    cy.get('.firebaseui-container').should('be.visible');
+    cy.contains('sair').click();
   });
 });
