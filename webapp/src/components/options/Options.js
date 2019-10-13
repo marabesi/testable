@@ -39,7 +39,7 @@ export class Options extends Component {
       <table className="text-white m-auto w-3/5">
         <thead>
           <tr>
-            <th className="text-left p-2">{ intl.messages.global.options }</th>
+            <th className="captilize text-left p-2">{ intl.messages.global.options }</th>
             <th className="text-left p-2"></th>
           </tr>
         </thead>
