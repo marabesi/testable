@@ -16,8 +16,12 @@ export class AchievementList extends Component {
     achievements: []
   };
 
-  componentDidMount() {
-    const { achievements } = this.props;
+  componentDidMount = () => this.handleAchievements(this.props)
+
+  UNSAFE_componentWillReceiveProps = props => this.handleAchievements(props)
+
+  handleAchievements = (props) => {
+    const { achievements } = props;
 
     if (achievements.length) {
       this.setState({

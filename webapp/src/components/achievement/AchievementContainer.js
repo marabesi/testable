@@ -10,6 +10,7 @@ import { colors } from '../../tailwind';
 export class AchievementContainer extends Component {
 
   render() {
+    const { intl, onClose } = this.props;
     return (
       <>
         <Title>
@@ -18,19 +19,22 @@ export class AchievementContainer extends Component {
               className="fill-current w-6 h-6 text-blue mr-3"
               style={{ fill: 'none', stroke: colors['blue-lightest'], strokeWidth: '20px'}}
             />
-            {this.props.intl.messages.achievements.title}
+            {intl.messages.achievements.title}
           </div>
-          <Close className="fill-current w-4 h-4 text-white cursor-pointer" onClick={this.props.onClose} />
+          <Close className="fill-current w-4 h-4 text-white cursor-pointer" onClick={onClose} />
         </Title>
 
         {
-          this.props.intl.messages.achievements.list.length === 0 &&
+          intl.messages.achievements.list.length === 0 &&
           <span className="p-5 text-white">
-            {this.props.intl.messages.achievements.empty_list}
+            {intl.messages.achievements.empty_list}
           </span>
         }
 
-        {this.props.intl.messages.achievements.list.length > 0 && <AchievementList achievements={this.props.intl.messages.achievements.list} />}
+        {
+          intl.messages.achievements.list.length > 0 &&
+          <AchievementList achievements={intl.messages.achievements.list} />
+        }
       </>
     );
   }
