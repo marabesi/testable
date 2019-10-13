@@ -13,7 +13,6 @@ const test = `function testeNaoAceitarDivisaoPorZero() {
 }`;
 
 export default Rocket(
-  null,
   code,
   test,
   testCase,

@@ -13,7 +13,6 @@ const test = `function testeSomarNumerosPositivos() {
 }`;
 
 export default Rocket(
-  null,
   code,
   test,
   testCase,

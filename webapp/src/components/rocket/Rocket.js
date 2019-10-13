@@ -13,7 +13,6 @@ import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 import {executeTestCase} from '../../engine/Tester';
 
 const Wrapped = (
-  OriginalComponent,
   code,
   test,
   testCaseTests,
@@ -206,8 +205,6 @@ const Wrapped = (
 
       return (
         <div className="flex flex-col">
-          { OriginalComponent && <OriginalComponent state={this.state} /> }
-
           <Intro
             enabled={this.state.introEnabled}
             steps={this.state.intro.steps}

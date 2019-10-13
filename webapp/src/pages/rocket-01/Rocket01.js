@@ -13,7 +13,6 @@ const test = `function testDeveMultiplicarMotor() {
 }`;
 
 export default Rocket(
-  null,
   code,
   test,
   testCase,

@@ -7,9 +7,7 @@ import { default as Rocket} from './Rocket';
 import Emitter, { TRACKING, LEVEL_UP } from '../../emitter/Emitter';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 
-const fakeComponent = () => <h1>fake component</h1>;
-
-describe('Rocket component', () => {
+describe('Rocket HoC component', () => {
 
   beforeEach(() => {
     Emitter.removeAllListeners(TRACKING);
@@ -23,7 +21,6 @@ describe('Rocket component', () => {
 
   test('should accept editor options by parameter', () => {
     const HoC = Rocket(
-      fakeComponent,
       null,
       null,
       null,
@@ -51,9 +48,7 @@ describe('Rocket component', () => {
   });
 
   test('test source code editor should be read only by default', () => {
-    const HoC = Rocket(
-      fakeComponent
-    );
+    const HoC = Rocket();
     const wrapper = shallow(<HoC />);
     expect(wrapper.find('EditorManager').props().options[SOURCE_CODE].readOnly).toBe(true);
   });
@@ -63,7 +58,6 @@ describe('Rocket component', () => {
     Emitter.addListener(TRACKING, callback);
 
     const HoC = Rocket(
-      fakeComponent,
       null,
       null,
       null,
@@ -78,7 +72,7 @@ describe('Rocket component', () => {
   });
 
   test('use the given source code and test code by default', () => {
-    const HoC = Rocket(fakeComponent, 'my code', 'my test');
+    const HoC = Rocket('my code', 'my test');
     const wrapper = shallow(<HoC />);
 
     const currentState = wrapper.instance().state;
@@ -89,7 +83,6 @@ describe('Rocket component', () => {
 
   test('should redirect to next page when done', () => {
     const HoC = Rocket(
-      fakeComponent,
       null,
       null,
       null,
@@ -114,7 +107,6 @@ describe('Rocket component', () => {
     [1, undefined]
   ])('execute onValidCode function on the provided step only', (currentStep, expected) => {
     const HoC = Rocket(
-      fakeComponent,
       null,
       null,
       null,
@@ -139,7 +131,6 @@ describe('Rocket component', () => {
     test('should disable source code editor (index 0 (zero))', () => {
       const sourceCodeEditor = 0;
       const HoC = Rocket(
-        fakeComponent,
         null,
         null,
         null,
@@ -161,7 +152,6 @@ describe('Rocket component', () => {
       Emitter.addListener(LEVEL_UP, callback);
 
       const HoC = Rocket(
-        fakeComponent,
         null,
         null,
         [],
@@ -184,7 +174,6 @@ describe('Rocket component', () => {
 
   test('should execute onValidCode function when test code is changed', () => {
     const HoC = Rocket(
-      fakeComponent,
       null,
       null,
       [],
@@ -211,7 +200,6 @@ describe('Rocket component', () => {
   describe('guide helper', () => {
     test('should show up next button on finished typing', () => {
       const HoC = Rocket(
-        fakeComponent,
         'my code',
         'my test',
         [],
@@ -233,7 +221,6 @@ describe('Rocket component', () => {
 
     test('should not show up on specified step', () => {
       const HoC = Rocket(
-        fakeComponent,
         'my code',
         'my test',
         [],
@@ -270,7 +257,6 @@ describe('Rocket component', () => {
       TEST_CODE,
     ])('should toggle attention class to editor once the guide has finished typing', (editor, done) => {
       const HoC = Rocket(
-        fakeComponent,
         'my code',
         'my test',
         [],
@@ -308,7 +294,6 @@ describe('Rocket component', () => {
 
     beforeEach(() => {
       IntroWrapper = Rocket(
-        fakeComponent,
         'my code',
         'my test',
         [],

@@ -17,7 +17,6 @@ const test = `function testeSubtrairNumerosPositivos() {
 }`;
 
 export default Rocket(
-  null,
   code,
   test,
   testCase,

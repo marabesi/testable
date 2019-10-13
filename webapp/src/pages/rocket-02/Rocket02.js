@@ -13,7 +13,6 @@ const test = `function testeDeveRemoverAtravaDoTremDePouso() {
 }`;
 
 export default Rocket(
-  null,
   code,
   test,
   testCase,

@@ -13,7 +13,6 @@ const test = `function testeDividirGpsEmDuasPartes() {
 }`;
 
 export default Rocket(
-  null,
   code,
   test,
   testCase,
