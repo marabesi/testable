@@ -87,7 +87,9 @@ Ranking.propTypes = {
 Ranking.defaultProps = {
   intl: {
     messages: {
-      ranking: {}
+      ranking: {
+        table: {}
+      }
     }
   }
 };
