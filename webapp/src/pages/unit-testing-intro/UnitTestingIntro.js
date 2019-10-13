@@ -1,5 +1,5 @@
-import tddContent from './guide-content';
-import introContent from './tdd-intro-content';
+import guideContent from './unit-testing-intro-guide-content';
+import introContent from './unit-testing-intro-content';
 import Rocket from '../../components/rocket/Rocket';
 import {testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 import { SubtractionBehavior } from '../../engine/strategies/behavior/SubtractionBehavior';
@@ -22,11 +22,11 @@ export default Rocket(
   test,
   testCase,
   subtractionTestCase,
-  tddContent,
-  '/tdd',
+  guideContent,
+  '/unit-testing',
   999,
   999,
-  'tdd-intro',
+  'unit-testing-intro',
   testCaseBehavior,
   SubtractionBehavior,
   null,

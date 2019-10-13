@@ -1,4 +1,4 @@
-import tddContent from './rocket01-guide-content';
+import guideContent from './rocket01-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
@@ -18,7 +18,7 @@ export default Rocket(
   test,
   testCase,
   sourceTestCase,
-  tddContent,
+  guideContent,
   '/rocket-02',
   3,
   3,

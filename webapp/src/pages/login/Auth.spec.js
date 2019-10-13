@@ -19,9 +19,9 @@ const availableRoutes = [
   '/',
   '/intro',
   '/tutorial',
-  '/intro-tdd',
-  '/tdd',
-  '/tdd-end',
+  '/unit-testing-intro',
+  '/unit-testing',
+  '/unit-testing-end',
   '/rocket-01',
   '/rocket-02',
   '/rocket-03',
@@ -153,38 +153,38 @@ describe('route access and redirection', () => {
     },
   );
 
-  test.each(availableRoutes.filter(route => route !== '/tdd-intro'))(
-    'should keep the user level 4 in the tdd introduction section, trying to access: %s',
+  test.each(availableRoutes.filter(route => route !== '/unit-testing-intro'))(
+    'should keep the user level 4 in the unit testing introduction section, trying to access: %s',
     (currentRoute) => {
       const can = auth.canEnter({ uid: 999, level: 4 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
-      expect(can.to).toEqual('/tdd-intro');
+      expect(can.to).toEqual('/unit-testing-intro');
     },
   );
 
-  test.each(availableRoutes.filter(route => route !== '/tdd'))(
-    'should keep the user level 5 in the tdd introduction section, trying to access: %s',
+  test.each(availableRoutes.filter(route => route !== '/unit-testing'))(
+    'should keep the user level 5 in the unit testing introduction section, trying to access: %s',
     (currentRoute) => {
       const can = auth.canEnter({ uid: 999, level: 5 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
-      expect(can.to).toEqual('/tdd');
+      expect(can.to).toEqual('/unit-testing');
     },
   );
 
-  test.each(availableRoutes.filter(route => route !== '/tdd-end'))(
-    'should keep the user level 6 in the tdd introduction section, trying to access: %s',
+  test.each(availableRoutes.filter(route => route !== '/unit-testing-end'))(
+    'should keep the user level 6 in the unit testing introduction section, trying to access: %s',
     (currentRoute) => {
       const can = auth.canEnter({ uid: 999, level: 6 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
-      expect(can.to).toEqual('/tdd-end');
+      expect(can.to).toEqual('/unit-testing-end');
     },
   );
 
   test.each(availableRoutes.filter(route => route !== '/rocket-01'))(
-    'should keep the user level 7 in the tdd introduction section, trying to access: %s',
+    'should keep the user level 7 in the unit testing introduction section, trying to access: %s',
     (currentRoute) => {
       const can = auth.canEnter({ uid: 999, level: 7 }, { pathname: currentRoute });
 
@@ -194,7 +194,7 @@ describe('route access and redirection', () => {
   );
 
   test.each(availableRoutes.filter(route => route !== '/rocket-02'))(
-    'should keep the user level 8 in the tdd introduction section, trying to access: %s',
+    'should keep the user level 8 in the unit testing introduction section, trying to access: %s',
     (currentRoute) => {
       const can = auth.canEnter({ uid: 999, level: 8 }, { pathname: currentRoute });
 
@@ -204,7 +204,7 @@ describe('route access and redirection', () => {
   );
 
   test.each(availableRoutes.filter(route => route !== '/rocket-03'))(
-    'should keep the user level 09 in the tdd introduction section, trying to access: %s',
+    'should keep the user level 09 in the unit testing introduction section, trying to access: %s',
     (currentRoute) => {
       const can = auth.canEnter({ uid: 999, level: 9 }, { pathname: currentRoute });
 
@@ -234,7 +234,7 @@ describe('route access and redirection', () => {
   );
 
   test.each(availableRoutes.filter(route => route !== '/completed'))(
-    'should keep the user level 12 in the tdd introduction section, trying to access: %s',
+    'should keep the user level 12 in the unit testing introduction section, trying to access: %s',
     (currentRoute) => {
       const can = auth.canEnter({ uid: 999, level: 12 }, { pathname: currentRoute });
 
@@ -243,7 +243,7 @@ describe('route access and redirection', () => {
     },
   );
   test.each(availableRoutes.filter(route => route !== '/survey'))(
-    'should keep the user level 13 in the tdd introduction section, trying to access: %s',
+    'should keep the user level 13 in the unit testing introduction section, trying to access: %s',
     (currentRoute) => {
       const can = auth.canEnter({ uid: 999, level: 13 }, { pathname: currentRoute });
 
@@ -256,9 +256,9 @@ describe('route access and redirection', () => {
     ['/intro', 1],
     ['/tutorial', 2],
     ['/tutorial-end', 3],
-    ['/tdd-intro', 4],
-    ['/tdd', 5],
-    ['/tdd-end', 6],
+    ['/unit-testing-intro', 4],
+    ['/unit-testing', 5],
+    ['/unit-testing-end', 6],
     ['/rocket-01', 7],
     ['/rocket-02', 8],
     ['/rocket-03', 9],

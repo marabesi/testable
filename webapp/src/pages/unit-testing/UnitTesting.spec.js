@@ -1,13 +1,13 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import Tdd from './Tdd';
+import UnitTesting from './UnitTesting';
 import { TEST_CODE } from '../../constants/editor';
 
 const ENABLE_EDITOR_ON_HINT = 1;
 
-describe('Tdd page', () => {
+describe('UnitTesting page', () => {
   test('renders without crashing', () => {
-    const wrapper = shallow(<Tdd />);
+    const wrapper = shallow(<UnitTesting />);
 
     expect(wrapper.find('EditorManager').length).toBe(1);
   });
@@ -24,7 +24,7 @@ describe('Tdd page', () => {
       return total === esperado;
     }`,
   ])('valid code behavior %s', (code) => {
-    const wrapper = shallow(<Tdd />);
+    const wrapper = shallow(<UnitTesting />);
     wrapper.instance().setState({
       currentHint: ENABLE_EDITOR_ON_HINT
     });
@@ -73,7 +73,7 @@ describe('Tdd page', () => {
       return total === esperado;
     }`,
   ])('invalid code behavior %s', (code) => {
-    const wrapper = shallow(<Tdd />);
+    const wrapper = shallow(<UnitTesting />);
     wrapper.instance().setState({
       currentHint: ENABLE_EDITOR_ON_HINT
     });

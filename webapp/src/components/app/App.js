@@ -16,9 +16,9 @@ import Emitter, { TRACKING } from '../../emitter/Emitter';
 import Tutorial from '../../pages/tutorial/Tutorial';
 import NotFound from '../../pages/notfound/NotFound';
 import TutorialEnd from '../../pages/tutorial-end/TutorialEnd';
-import TddIntro from '../../pages/tdd-intro/TddIntro';
-import Tdd from '../../pages/tdd/Tdd';
-import TddEnd from '../../pages/tdd-end/TddEnd';
+import UnitTestingIntro from '../../pages/unit-testing-intro/UnitTestingIntro';
+import UnitTesting from '../../pages/unit-testing/UnitTesting';
+import UnitTestingEnd from '../../pages/unit-testing-end/UnitTestingEnd';
 import Rocket01 from '../../pages/rocket-01/Rocket01';
 import Rocket02 from '../../pages/rocket-02/Rocket02';
 import Rocket03 from '../../pages/rocket-03/Rocket03';
@@ -110,9 +110,9 @@ export class App extends Component {
             <ProtectedRoute path="/intro" component={Introduction} />
             <ProtectedRoute path="/tutorial" component={Tutorial} />
             <ProtectedRoute path="/tutorial-end" component={TutorialEnd} />
-            <ProtectedRoute path="/tdd-intro" component={TddIntro} />
-            <ProtectedRoute path="/tdd" component={Tdd} />
-            <ProtectedRoute path="/tdd-end" component={TddEnd} />
+            <ProtectedRoute path="/unit-testing-intro" component={UnitTestingIntro} />
+            <ProtectedRoute path="/unit-testing" component={UnitTesting} />
+            <ProtectedRoute path="/unit-testing-end" component={UnitTestingEnd} />
             <ProtectedRoute path="/rocket-01" component={Rocket01} />
             <ProtectedRoute path="/rocket-02" component={Rocket02} />
             <ProtectedRoute path="/rocket-03" component={Rocket03} />

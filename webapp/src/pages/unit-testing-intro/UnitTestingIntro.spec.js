@@ -1,11 +1,11 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import TddIntro from './TddIntro';
+import UnitTestingIntro from './UnitTestingIntro';
 import { TEST_CODE } from '../../constants/editor';
 
 const ENABLE_EDITOR_ON_HINT = 999;
 
-describe('TDD intro page', () => {
+describe('Unit testing intro page', () => {
   test.each([
     `function testeDeveRemoverAtravaDoTremDePouso() {
       var total = subtrair(2, 1)
@@ -18,7 +18,7 @@ describe('TDD intro page', () => {
       return total === esperado;
     }`,
   ])('valid code behavior %s', code => {
-    const wrapper = shallow(<TddIntro />);
+    const wrapper = shallow(<UnitTestingIntro />);
     wrapper.instance().setState({
       currentHint: ENABLE_EDITOR_ON_HINT
     });
@@ -46,7 +46,7 @@ describe('TDD intro page', () => {
       return total === esperado;
     }`,
   ])('invalid code behavior %s', (code) => {
-    const wrapper = shallow(<TddIntro />);
+    const wrapper = shallow(<UnitTestingIntro />);
     wrapper.instance().setState({
       currentHint: ENABLE_EDITOR_ON_HINT
     });

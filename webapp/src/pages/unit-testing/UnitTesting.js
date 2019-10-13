@@ -1,4 +1,4 @@
-import tddContent from './guide-content';
+import guideContent from './guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 import { Sum } from '../../engine/strategies/behavior/Sum';
@@ -18,11 +18,11 @@ export default Rocket(
   test,
   testCase,
   sumTestCase,
-  tddContent,
-  '/tdd-end',
+  guideContent,
+  '/unit-testing-end',
   1,
   1,
-  'tdd',
+  'unit-testing',
   testCaseBehavior,
   Sum,
   0,

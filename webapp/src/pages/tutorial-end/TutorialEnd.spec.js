@@ -16,7 +16,7 @@ describe('TutorialEnd page', () => {
     expect(wrapper.find('DebugButton').length).toBe(0);
   });
 
-  test('should redirect to tdd intro page when done', done => {
+  test('should redirect to unit testing intro page when done', done => {
     const wrappedWithRouter = mount(
       <BrowserRouter>
         <TutorialEnd />

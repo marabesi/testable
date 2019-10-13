@@ -4,5 +4,5 @@ import WrappedSceneContentManager from '../../components/scene-manager/SceneCont
 export default WrappedSceneContentManager(
   'tutorial_end',
   content,
-  'tdd-intro'
+  'unit-testing-intro'
 );

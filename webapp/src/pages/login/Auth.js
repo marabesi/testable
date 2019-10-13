@@ -102,24 +102,24 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/tdd-intro' && user.level === 4) {
+    if (to.pathname !== '/unit-testing-intro' && user.level === 4) {
       return {
         flag: false,
-        to: '/tdd-intro'
+        to: '/unit-testing-intro'
       };
     }
 
-    if (to.pathname !== '/tdd' && user.level === 5) {
+    if (to.pathname !== '/unit-testing' && user.level === 5) {
       return {
         flag: false,
-        to: '/tdd'
+        to: '/unit-testing'
       };
     }
 
-    if (to.pathname !== '/tdd-end' && user.level === 6) {
+    if (to.pathname !== '/unit-testing-end' && user.level === 6) {
       return {
         flag: false,
-        to: '/tdd-end'
+        to: '/unit-testing-end'
       };
     }
 
