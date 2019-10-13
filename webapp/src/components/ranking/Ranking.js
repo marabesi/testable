@@ -66,9 +66,9 @@ export class Ranking extends Component {
       <table className="text-white m-auto w-3/5">
         <thead>
           <tr>
-            <th className="text-left p-2">{this.props.intl.messages.ranking.position}</th>
-            <th className="text-left p-2">{this.props.intl.messages.ranking.name}</th>
-            <th className="text-left p-2">{this.props.intl.messages.ranking.level}</th>
+            <th className="text-left p-2">{this.props.intl.messages.ranking.table.position}</th>
+            <th className="text-left p-2">{this.props.intl.messages.ranking.table.name}</th>
+            <th className="text-left p-2">{this.props.intl.messages.ranking.table.level}</th>
           </tr>
         </thead>
         <tbody>

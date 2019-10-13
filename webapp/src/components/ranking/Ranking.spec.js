@@ -49,7 +49,17 @@ describe('Ranking component', () => {
   test('should render table header based on intl', () => {
     const wrapper = mount(
       <Ranking
-        intl={{ messages: {ranking: { position: 'position', name: 'name', level: 'level' }} }}
+        intl={{
+          messages: {
+            ranking: {
+              table:{
+                position: 'position',
+                name: 'name',
+                level: 'level'
+              }
+            }
+          }
+        }}
       />
     );
 
