@@ -4,6 +4,9 @@
     {
       "step": 1,
       "button": "Conseguimos !!!!",
+      "showBuggy": {
+        "type": "happy"
+      },
       "content": [
         {
           "line": "Estamos prontos para lançar nosso foguete!",

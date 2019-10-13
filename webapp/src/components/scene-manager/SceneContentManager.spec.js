@@ -4,26 +4,29 @@ import { BrowserRouter } from 'react-router-dom';
 import SceneContentManager from './SceneContentManager';
 
 describe('SceneContentManager page', () => {
-  let wrapper;
+  let HoC;
 
   beforeEach(() => {
-    const HoC = SceneContentManager(
+    HoC = SceneContentManager(
       'hoc_component',
       {},
       'my-route'
     );
-    wrapper  = mount(
-      <BrowserRouter>
-        <HoC />
-      </BrowserRouter>
-    );
   });
 
   afterEach(() => {
-    wrapper = null;
+    HoC = null;
   });
 
   test('should redirect to tutorial page', done => {
+    const history = {
+      push: jest.fn()
+    };
+    const wrapper = mount(
+      <BrowserRouter>
+        <HoC history={history} />
+      </BrowserRouter>
+    );
     wrapper.find('SceneContentManager').instance().handleLastScene();
 
     wrapper.update();
@@ -31,7 +34,7 @@ describe('SceneContentManager page', () => {
     setTimeout(() => {
       done();
       wrapper.update();
-      expect(wrapper.find('Redirect').length).toEqual(1);
+      expect(history.push).toBeCalledWith('my-route');
     }, 1100);
   });
 });

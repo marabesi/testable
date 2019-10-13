@@ -17,9 +17,12 @@ describe('TutorialEnd page', () => {
   });
 
   test('should redirect to unit testing intro page when done', done => {
+    const history = {
+      push: jest.fn()
+    };
     const wrappedWithRouter = mount(
       <BrowserRouter>
-        <TutorialEnd />
+        <TutorialEnd history={history}/>
       </BrowserRouter>
     );
 
@@ -27,7 +30,7 @@ describe('TutorialEnd page', () => {
 
     setTimeout(() => {
       wrappedWithRouter.update();
-      expect(wrappedWithRouter.find('Redirect').length).toBe(1);
+      expect(history.push).toBeCalledWith('unit-testing-intro');
       done();
     }, 1400);
   });

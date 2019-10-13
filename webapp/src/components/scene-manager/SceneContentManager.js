@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 
@@ -7,9 +7,9 @@ const WrappedSceneContentManager = (identifier, content, redirectTo) => {
 
   class SceneContentManager extends Component {
 
-    state = {
-      redirect: false,
-    };
+    propTypes = {
+      history: PropTypes.object
+    }
 
     handleLastScene = () => {
       Emitter.emit(LEVEL_UP, {
@@ -17,21 +17,11 @@ const WrappedSceneContentManager = (identifier, content, redirectTo) => {
       });
 
       setTimeout(() => {
-        this.setState({
-          redirect: true
-        });
+        this.props.history.push(redirectTo);
       }, 1000);
     }
 
     render() {
-      if (this.state.redirect) {
-        return (
-          <Redirect to={{
-            pathname: redirectTo,
-          }} />
-        );
-      }
-
       return (
         <SceneManager
           identifier={identifier}

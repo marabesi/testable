@@ -4,21 +4,18 @@ import { BrowserRouter } from 'react-router-dom';
 import Introduction from './Introduction';
 
 describe('Introduction page', () => {
-  let wrapper;
+  test('should define route to redirect to when done', done => {
+    const history = {
+      push: jest.fn()
+    };
 
-  beforeEach(() => {
-    wrapper = mount(
+    const wrapper = mount(
       <BrowserRouter>
-        <Introduction />
+        <Introduction
+          history={history}
+        />
       </BrowserRouter>
     );
-  });
-
-  afterEach(() => {
-    wrapper = null;
-  });
-
-  test('should define route to redirect to when done', done => {
     wrapper.find('SceneContentManager').instance().handleLastScene();
 
     wrapper.update();
@@ -26,7 +23,7 @@ describe('Introduction page', () => {
     setTimeout(() => {
       done();
       wrapper.update();
-      expect(wrapper.find('Redirect').length).toEqual(1);
+      expect(history.push).toBeCalledWith('tutorial');
     }, 1100);
   });
 });
