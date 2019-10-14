@@ -24,7 +24,7 @@ import Rocket02 from '../../pages/rocket-02/Rocket02';
 import Rocket03 from '../../pages/rocket-03/Rocket03';
 import Challenge03_01 from '../../pages/rocket-03/Challenge03_01';
 import Challenge03_02 from '../../pages/rocket-03/Challenge03_02';
-import Completed from '../../pages/completed/Completed';
+import CompletedIntro from '../../pages/completed-intro/CompletedIntro';
 import Survey from '../../pages/survey/Survey';
 import { auth } from '../../pages/login/Auth';
 
@@ -118,7 +118,7 @@ export class App extends Component {
             <ProtectedRoute path="/rocket-03" component={Rocket03} />
             <ProtectedRoute path="/rocket-03-01" component={Challenge03_01} />
             <ProtectedRoute path="/rocket-03-02" component={Challenge03_02} />
-            <ProtectedRoute path="/completed" component={Completed} />
+            <ProtectedRoute path="/completed-intro" component={CompletedIntro} />
             <ProtectedRoute path="/survey" component={Survey} />
             <Route path="*" component={NotFound} />
           </AnimatedSwitch>

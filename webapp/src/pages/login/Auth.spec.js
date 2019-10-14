@@ -27,7 +27,7 @@ const availableRoutes = [
   '/rocket-03',
   '/rocket-03-01',
   '/rocket-03-02',
-  '/completed',
+  '/completed-intro',
   '/survey'
 ];
 
@@ -233,17 +233,17 @@ describe('route access and redirection', () => {
     },
   );
 
-  test.each(availableRoutes.filter(route => route !== '/completed'))(
-    'should keep the user level 12 in the unit testing introduction section, trying to access: %s',
+  test.each(availableRoutes.filter(route => route !== '/completed-intro'))(
+    'should keep the user level 12 in the completed introduction section, trying to access: %s',
     (currentRoute) => {
       const can = auth.canEnter({ uid: 999, level: 12 }, { pathname: currentRoute });
 
       expect(can.flag).toBeFalsy();
-      expect(can.to).toEqual('/completed');
+      expect(can.to).toEqual('/completed-intro');
     },
   );
   test.each(availableRoutes.filter(route => route !== '/survey'))(
-    'should keep the user level 13 in the unit testing introduction section, trying to access: %s',
+    'should keep the user level 13 in the survey section, trying to access: %s',
     (currentRoute) => {
       const can = auth.canEnter({ uid: 999, level: 13 }, { pathname: currentRoute });
 
@@ -264,7 +264,7 @@ describe('route access and redirection', () => {
     ['/rocket-03', 9],
     ['/rocket-03-01', 10],
     ['/rocket-03-02', 11],
-    ['/completed', 12],
+    ['/completed-intro', 12],
     ['/survey', 13],
   ])(
     'should render the related component  based on the level, trying to access route %s, level %s',

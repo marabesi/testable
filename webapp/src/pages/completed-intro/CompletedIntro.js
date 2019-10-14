@@ -1,9 +1,9 @@
-import content from './completed-content.json';
+import content from './completed-intro-content.json';
 
 import WrappedSceneContentManager from '../../components/scene-manager/SceneContentManager';
 
 export default WrappedSceneContentManager(
-  'completed',
+  'completed-intro',
   content,
   'survey'
 );

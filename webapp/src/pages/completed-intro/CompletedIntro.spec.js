@@ -1,7 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
-import Completed from './Completed';
+import CompletedIntro from './CompletedIntro';
 import Emmiter, { LEVEL_UP } from '../../emitter/Emitter';
 
 describe('completed page',  () => {
@@ -12,7 +12,7 @@ describe('completed page',  () => {
     Emmiter.removeAllListeners(LEVEL_UP);
     wrappedComponent = shallow(
       <BrowserRouter>
-        <Completed />
+        <CompletedIntro />
       </BrowserRouter>
     );
   });

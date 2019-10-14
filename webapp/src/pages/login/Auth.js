@@ -158,10 +158,10 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/completed' && user.level === 12) {
+    if (to.pathname !== '/completed-intro' && user.level === 12) {
       return {
         flag: false,
-        to: '/completed'
+        to: '/completed-intro'
       };
     }
 
