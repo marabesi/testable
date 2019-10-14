@@ -17,9 +17,12 @@
     {
       "step": 2,
       "button": "Lançar!",
+      "showBuggy": {
+        "type": "happy"
+      },
       "content": [
         {
-          "line": "Vamos por a prova se nossos testes nos ajudaram",
+          "line": "Vamos por a prova se nossos testes!",
           "style": "p-2 text-blue-light"
         }
       ]
