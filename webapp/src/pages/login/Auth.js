@@ -55,9 +55,11 @@ const auth = {
             if (userObject && userObject.level) {
               vm.user.level = userObject.level;
             }
+
             if (userObject && userObject.progress) {
               vm.user.progress = userObject.progress;
             }
+
             resolve(vm.user);
           });
         }

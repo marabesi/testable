@@ -30,4 +30,3 @@ export default Rocket(
   null,
   [TEST_CODE]
 );
-
