@@ -80,7 +80,7 @@ describe('guide component', () => {
   });
 
   describe('guide image behavior', () => {
-    test('should show SvgBuggy by default as guide image', () => {
+    test('should show Buggy by default as guide image', () => {
       const wrapper = mount(
         <Guide
           guideContent={content}
@@ -88,10 +88,10 @@ describe('guide component', () => {
           showNext={false}
         />
       );
-      expect(wrapper.find('SvgBuggy').length).toBe(1);
+      expect(wrapper.find('Buggy').length).toBe(1);
     });
 
-    test('should show SvgBuggyBug when the code is invalid', () => {
+    test('should show BuggyBug when the code is invalid', () => {
       const wrapper = mount(
         <Guide
           guideContent={content}
@@ -100,10 +100,10 @@ describe('guide component', () => {
           invalidCode={true}
         />
       );
-      expect(wrapper.find('SvgBuggyBug').length).toBe(1);
+      expect(wrapper.find('BuggyBug').length).toBe(1);
     });
 
-    test('should show SvgBuggySleepy when the user is afk', done => {
+    test('should show BuggySleepy when the user is afk', done => {
       const wrapper = mount(
         <Guide
           guideContent={content}
@@ -116,13 +116,13 @@ describe('guide component', () => {
 
       setTimeout(() => {
         wrapper.update();
-        expect(wrapper.find('SvgBuggySleepy').length).toBe(1);
+        expect(wrapper.find('BuggySleepy').length).toBe(1);
         wrapper.unmount();
         done();
       }, 100);
     });
 
-    test('should show SvgBuggy on user interaction by keyboard', done => {
+    test('should show Buggy on user interaction by keyboard', done => {
       const wrapper = mount(
         <Guide
           guideContent={content}
@@ -134,7 +134,7 @@ describe('guide component', () => {
       );
       setTimeout(() => {
         wrapper.update();
-        expect(wrapper.find('SvgBuggySleepy').length).toBe(1);
+        expect(wrapper.find('BuggySleepy').length).toBe(1);
 
         // @ts-ignore
         const keypress = new KeyboardEvent('keydown', {keyCode: 37});
@@ -142,12 +142,12 @@ describe('guide component', () => {
 
         wrapper.update();
 
-        expect(wrapper.find('SvgBuggySleepy').length).toBe(0);
+        expect(wrapper.find('BuggySleepy').length).toBe(0);
         done();
       }, 500);
     });
 
-    test('should show SvgBuggyHappy', () => {
+    test('should show BuggyHappy', () => {
 
     });
   });

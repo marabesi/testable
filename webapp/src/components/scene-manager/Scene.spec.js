@@ -43,7 +43,7 @@ describe('Scene component', () => {
   test('by default, does not show buggy bug component', () => {
     const wrapper = mount(<Scene />);
 
-    expect(wrapper.find('SvgBuggyBug').length).toBe(0);
+    expect(wrapper.find('BuggyBug').length).toBe(0);
   });
 
   test('should show alien component', () => {
@@ -234,7 +234,7 @@ describe('Scene component', () => {
       />
     );
 
-    expect(wrapper.find('SvgBuggyBug').length).toBe(1);
+    expect(wrapper.find('BuggyBug').length).toBe(1);
   });
 
   test('should render buggy happy version', () => {
@@ -247,6 +247,6 @@ describe('Scene component', () => {
       />
     );
 
-    expect(wrapper.find('SvgBuggyHappy').length).toBe(1);
+    expect(wrapper.find('BuggyHappy').length).toBe(1);
   });
 });

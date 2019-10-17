@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SvgBuggy, {SvgBuggyBug, SvgBuggySleepy, SvgBuggyHappy} from '../buggy/Buggy';
+import Buggy, {BuggyBug, BuggySleepy, BuggyHappy} from '../buggy/Buggy';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import { onHover } from '../../actions/guideAction';
 import Next from '../icons/Next';
@@ -119,27 +119,27 @@ export class Guide extends Component {
     const buggyClass = 'absolute pin-t';
     const { guideContent, currentHint } = this.props;
 
-    let buggy = <SvgBuggy
+    let buggy = <Buggy
       className={buggyClass}
       style={buggyStyle}
     />;
 
     if (this.props.invalidCode) {
-      buggy = <SvgBuggyBug
+      buggy = <BuggyBug
         className={buggyClass}
         style={buggyStyle}
       />;
     }
 
     if (this.state.afk) {
-      buggy = <SvgBuggySleepy
+      buggy = <BuggySleepy
         className={buggyClass}
         style={buggyStyle}
       />;
     }
 
     if (guideContent[currentHint] && guideContent[currentHint].showBuggy && guideContent[currentHint].showBuggy.type === 'happy') {
-      buggy = <SvgBuggyHappy
+      buggy = <BuggyHappy
         className={buggyClass}
         style={buggyStyle}
       />;

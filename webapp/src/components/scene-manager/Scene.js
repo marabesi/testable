@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Button from './Button';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
-import { BuggyLeft, SvgBuggyBug, SvgBuggyHappy,  SvgBuggyHappyLeft } from '../buggy/Buggy';
+import { BuggyLeft, BuggyBug, BuggyHappy,  BuggyHappyLeft } from '../buggy/Buggy';
 import AlienSvg from '../alien/AlienSvg';
 
 import '../../scss/slide-in-bck-right.scss';
@@ -94,7 +94,7 @@ export default class Scene extends Component {
               }
           `} />
 
-          <SvgBuggyHappyLeft
+          <BuggyHappyLeft
             className={
               `w-3/3 absolute w-1/3 pin-r pin-t -mt-6 ${
                 this.props.onCompleted.type === 'happy' && this.state.showNextButton ? 'slide-in-bck-right' : 'hidden'
@@ -108,7 +108,7 @@ export default class Scene extends Component {
 
           {
             this.props.showBuggy.type === 'bug' &&
-            <SvgBuggyBug
+            <BuggyBug
               style={{transform: 'scaleX(-1)'}}
               className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6'}
             />
@@ -116,7 +116,7 @@ export default class Scene extends Component {
 
           {
             this.props.showBuggy.type === 'happy' &&
-            <SvgBuggyHappy
+            <BuggyHappy
               style={{transform: 'scaleX(-1)'}}
               className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6'}
             />
