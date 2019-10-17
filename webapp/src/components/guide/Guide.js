@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import SvgBuggy, {SvgBuggyBug, SvgBuggySleepy, SvgBuggyHappy} from '../buggy/SvgBuggy';
+import SvgBuggy, {SvgBuggyBug, SvgBuggySleepy, SvgBuggyHappy} from '../buggy/Buggy';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import { onHover } from '../../actions/guideAction';
 import Next from '../icons/Next';

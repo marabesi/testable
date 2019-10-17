@@ -104,14 +104,14 @@ describe('Scene component', () => {
       />
     );
 
-    expect(wrapper.find('SvgBuggyLeft').prop('className')).toContain('hidden');
+    expect(wrapper.find('BuggyLeft').prop('className')).toContain('hidden');
 
     setTimeout(() => {
       wrapper.update();
 
       // @ts-ignore
-      expect(wrapper.find('SvgBuggyLeft').prop('className').includes('hidden')).toBeFalsy();
-      expect(wrapper.find('SvgBuggyLeft').prop('className')).toContain('slide-in-bck-right');
+      expect(wrapper.find('BuggyLeft').prop('className').includes('hidden')).toBeFalsy();
+      expect(wrapper.find('BuggyLeft').prop('className')).toContain('slide-in-bck-right');
       done();
     }, 1500);
   });
