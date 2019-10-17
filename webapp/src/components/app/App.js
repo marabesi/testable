@@ -38,6 +38,7 @@ const messages = {
 };
 
 const assets = [
+  '/assets/buggy-rocket.png',
   '/assets/buggy-right.png',
   '/assets/buggy-happy.png',
   '/assets/buggy-happy-left.png',

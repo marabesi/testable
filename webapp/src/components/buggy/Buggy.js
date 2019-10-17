@@ -28,4 +28,8 @@ export const BuggyHappyLeft = props => (
   <Base64Image image="testable.buggy-happy-left.png" alt="buggy happy" {...props}/>
 );
 
+export const BuggyRocket = props => (
+  <Base64Image image="testable.buggy-rocket.png" alt="buggy rocket" {...props}/>
+);
+
 export default Buggy;
