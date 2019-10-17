@@ -31,8 +31,11 @@ const WrappedSceneContentManager = (
     }
 
     render() {
+      const { className } = this.props;
+
       return (
         <SceneManager
+          className={className}
           identifier={identifier}
           content={content}
           handleLastScene={this.handleLastScene}
