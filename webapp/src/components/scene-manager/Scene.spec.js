@@ -4,6 +4,15 @@ import { mount } from 'enzyme';
 import Scene from './Scene';
 
 describe('Scene component', () => {
+
+  beforeEach(() => {
+    window.localStorage.removeItem('testable.alien.png');
+  });
+
+  afterEach(() => {
+    window.localStorage.removeItem('testable.alien.png');
+  });
+
   test('by default, does not show up the next button', () => {
     const wrapper = mount(<Scene />);
 
@@ -76,7 +85,7 @@ describe('Scene component', () => {
     }, 1500);
   });
 
-  test('pass in a custom class', () => {
+  test('pass in a custom class to the scene container', () => {
     const wrapper = mount(
       <Scene
         className="custom-class"
@@ -119,7 +128,7 @@ describe('Scene component', () => {
       />
     );
 
-    expect(wrapper.find('img').at(1).prop('src')).toEqual('img content');
+    expect(wrapper.find('img').at(2).prop('src')).toEqual('img content');
   });
 
   test('should handle last scene', done => {

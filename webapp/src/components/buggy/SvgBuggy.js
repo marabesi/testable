@@ -24,4 +24,8 @@ export const SvgBuggyHappy = props => (
   <Base64Image image="testable.buggy-happy.png" alt="buggy happy" {...props}/>
 );
 
+export const SvgBuggyHappyLeft = props => (
+  <Base64Image image="testable.buggy-happy-left.png" alt="buggy happy" {...props}/>
+);
+
 export default SvgBuggy;

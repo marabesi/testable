@@ -38,15 +38,16 @@ const messages = {
 };
 
 const assets = [
-  'assets/buggy-right.png',
-  'assets/buggy-happy.png',
-  'assets/buggy-left.png',
-  'assets/buggy-bug.png',
-  'assets/buggy-zzz.png',
-  'assets/alien.png',
-  'assets/logo.png',
-  'assets/placeholder.svg',
-  'assets/mp3/keyboard.mp3',
+  '/assets/buggy-right.png',
+  '/assets/buggy-happy.png',
+  '/assets/buggy-happy-left.png',
+  '/assets/buggy-left.png',
+  '/assets/buggy-bug.png',
+  '/assets/buggy-zzz.png',
+  '/assets/alien.png',
+  '/assets/logo.png',
+  '/assets/placeholder.svg',
+  '/assets/mp3/keyboard.mp3',
 ];
 
 /**

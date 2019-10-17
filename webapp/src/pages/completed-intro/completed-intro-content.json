@@ -4,7 +4,7 @@
     {
       "step": 1,
       "button": "Conseguimos !!!!",
-      "showBuggy": {
+      "onCompleted": {
         "type": "happy"
       },
       "content": [
