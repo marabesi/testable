@@ -16,10 +16,7 @@ export default [
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    showBuggy: {
-      type: 'happy'
-    },
-    line: 'Perfeito!',
+    line: 'Estamos prontos para lançar nosso foguete!',
     style: 'text-white font-semibold text-xl text-blue-light'
   }
 ];

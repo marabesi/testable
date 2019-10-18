@@ -1,11 +1,13 @@
+//@ts-nocheck
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import content from './completed-intro-content.json';
+import { BuggyRocket } from '../../components/buggy/Buggy';
 import WrappedSceneContentManager from '../../components/scene-manager/SceneContentManager';
 import CheckIcon from '../../components/icons/Check';
+import Emitter, { LEVEL_UP } from '../../emitter/Emitter.js';
 
 import './completed-intro.scss';
-import Emitter, { LEVEL_UP } from '../../emitter/Emitter.js';
 
 export const RegularFlow = WrappedSceneContentManager(
   'completed-intro',
@@ -24,16 +26,29 @@ export default class CompletedIntro extends Component {
 
   state = {
     tests: [],
-    showTests: false
+    showTests: false,
+    releaseRocket: false,
+    releaseTests: false,
+    completed: false,
+    rocketDefaultClass: ''
   };
 
-  handleLastScene = () => {
+  componentDidMount = () => {
+    this.startFlow();
+  }
+
+  startFlow = () => {
+    const { testsToExecute, animationDelay } = this.props;
+
+    setTimeout(() => {
+      this.setState({
+        ...this.state.rocketDefaultClass, rocketDefaultClass: 'wobble-hor-bottom'
+      });
+    }, animationDelay / 2);
+
     this.setState({
-      //@ts-ignore
       ...this.state.showTests, showTests: true
     });
-
-    const { testsToExecute } = this.props;
 
     let pointer = 0;
     const buildTests = setInterval(() => {
@@ -41,58 +56,86 @@ export default class CompletedIntro extends Component {
       current.push(testsToExecute[pointer]);
 
       this.setState({
-        tests: current
+        ...this.state.tests, tests: current
       });
 
       pointer++;
 
       if (current.length === testsToExecute.length) {
         clearInterval(buildTests);
-        this.redirect();
+        this.startAnimation();
       }
-    }, DEFAULT_DELAY);
+    }, animationDelay);
   }
 
+  startAnimation = () => {
+    const { animationDelay } = this.props;
+
+    setTimeout(() => {
+      this.setState({
+        ...this.state.releaseRocket, releaseRocket: true
+      });
+    }, animationDelay);
+
+    setTimeout(() => {
+      this.setState({
+        ...this.state.releaseTests, releaseTests: true
+      });
+    }, animationDelay * 2);
+
+    setTimeout(() => {
+      this.setState({
+        ...this.state.completed, completed: true
+      });
+    }, animationDelay * 3);
+  }
+  
   redirect = () => {
-    setTimeout(() => Emitter.emit(LEVEL_UP), DEFAULT_DELAY);
+    Emitter.emit(LEVEL_UP);
   }
 
   render() {
-    if (this.state.showTests === false) {
-      return (
-        <RegularFlow handleLastScene={this.handleLastScene} />
-      );
-    }
-
     return (
-      <div className="completed-intro">
-        <div className="w-4/5 m-auto">
-          {
-            this.state.tests.map((item, key) => {
+      <>
+        <RegularFlow
+          className={this.state.completed ? 'puff-in-center': 'hidden'}
+          handleLastScene={this.redirect}
+        />
+
+        <div className={this.state.completed ? 'hidden': 'w-5/6 m-auto flex items-center justify-center'}>
+          <div className={`
+            completed-intro
+            ${this.state.showTests ? 'block' : 'hidden'}
+            ${this.state.releaseTests ? 'slide-out-elliptic-top-fwd': ''}
+          `}>
+            { this.state.tests.map((item, key) => {
               return (
                 <div
                   key={key}
-                  className="test-container-check flex slide-in-elliptic-left-fwd"
+                  className="flex items-center justify-between slide-in-elliptic-left-fwd mb-10 mr-16"
                 >
-                  <h1 className="text-white">
+                  <h1 className="text-white text-3xl">
                     { item }
                   </h1>
                   <CheckIcon />
                 </div>
               );
-            })
-          }
+            }) }
+          </div>
+          <BuggyRocket className={`${this.state.releaseRocket ? 'bounce-out-top' : this.state.rocketDefaultClass}`}/>
         </div>
-      </div>
+      </>
     );
   }
 }
 
 CompletedIntro.propTypes = {
   testsToExecute: PropTypes.array,
-  history: PropTypes.object
+  history: PropTypes.object,
+  animationDelay: PropTypes.number
 };
 
 CompletedIntro.defaultProps = {
-  testsToExecute: fixedTests
+  testsToExecute: fixedTests,
+  animationDelay: DEFAULT_DELAY
 };

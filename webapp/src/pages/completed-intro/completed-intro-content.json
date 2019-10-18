@@ -9,20 +9,7 @@
       },
       "content": [
         {
-          "line": "Estamos prontos para lançar nosso foguete!",
-          "style": "p-2 text-blue-light"
-        }
-      ]
-    },
-    {
-      "step": 2,
-      "button": "Lançar!",
-      "showBuggy": {
-        "type": "happy"
-      },
-      "content": [
-        {
-          "line": "Vamos por a prova nossos testes!",
+          "line": "yeaaaaaaaaah!",
           "style": "p-2 text-blue-light"
         }
       ]
