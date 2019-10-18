@@ -81,13 +81,13 @@ export default class CompletedIntro extends Component {
       this.setState({
         ...this.state.releaseTests, releaseTests: true
       });
-    }, animationDelay * 2);
+    }, animationDelay * 4);
 
     setTimeout(() => {
       this.setState({
         ...this.state.completed, completed: true
       });
-    }, animationDelay * 3);
+    }, animationDelay * 5);
   }
   
   redirect = () => {

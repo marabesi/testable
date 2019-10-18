@@ -106,7 +106,7 @@ describe('completed page',  () => {
 
       expect(classes.includes('puff-in-center')).toBeTruthy();
       done();
-    }, 500);
+    }, 900);
   });
 
   it('level up', () => {
