@@ -1,27 +1,38 @@
 .completed-intro {
     width: 700px;
 
-    svg {
-      width: 30px;
-      height: 30px;
-      display: block;
-      margin-left: 40px;
-    }
-
     .path {
       stroke-dasharray: 1000;
       stroke-dashoffset: 0;
+      opacity: 1;
 
       &.circle {
-          animation: dash .9s ease-in-out;
-      }
-      &.line {
-          stroke-dashoffset: 1000;
-          animation: dash .9s 1.35s ease-in-out forwards;
+        animation: dash 2s ease-in-out;
       }
       &.check {
-          stroke-dashoffset: -100;
-          animation: dash-check .9s 1.35s ease-in-out forwards;
+        stroke: #73AF55;
+        stroke-dashoffset: -100;
+        animation: dash-check 2s 1.35s ease-in-out forwards;
+      }
+    }
+
+    @keyframes dash {
+      0% {
+        stroke: red;
+        stroke-dashoffset: 900;
+      }
+      100% {
+        stroke: #73AF55;
+        stroke-dashoffset: 0;
+      }
+    }
+
+    @keyframes dash-check {
+      0% {
+        stroke-dashoffset: -100;
+      }
+      100% {
+        stroke-dashoffset: 900;
       }
     }
 
@@ -31,32 +42,14 @@
 
     @keyframes slide-in-elliptic-left-fwd {
       0% {
-          transform: translateX(-800px) rotateY(30deg) scale(0);
-          transform-origin: -100% 50%;
-          opacity: 0;
+        transform: translateX(-800px) rotateY(30deg) scale(0);
+        transform-origin: -100% 50%;
+        opacity: 0;
       }
       100% {
-          transform: translateX(0) rotateY(0) scale(1);
-          transform-origin: 1800px 50%;
-          opacity: 1;
-      }
-    }
-
-    @keyframes dash {
-      0% {
-          stroke-dashoffset: 1000;
-      }
-      100% {
-          stroke-dashoffset: 0;
-      }
-    }
-
-    @keyframes dash-check {
-      0% {
-          stroke-dashoffset: -100;
-      }
-      100% {
-          stroke-dashoffset: 900;
+        transform: translateX(0) rotateY(0) scale(1);
+        transform-origin: 1800px 50%;
+        opacity: 1;
       }
     }
 }
@@ -125,12 +118,10 @@
 @keyframes puff-in-center {
   0% {
     transform: scale(2);
-    filter: blur(2px);
     opacity: 0;
   }
   100% {
     transform: scale(1);
-    filter: blur(0px);
     opacity: 1;
   }
 }

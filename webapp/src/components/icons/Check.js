@@ -8,8 +8,8 @@ export default props => {
       viewBox="0 0 130.2 130.2"
       { ...props }
     >
-      <circle className="path circle" fill="none" stroke="#73AF55" strokeWidth="6" cx="65.1" cy="65.1" r="62.1" />
-      <polyline className="path check" fill="none" stroke="#73AF55" strokeWidth="6" points="100.2,40.2 51.5,88.8 29.8,67.5 " />
+      <circle className="path circle" fill="none" strokeWidth="6" cx="65.1" cy="65.1" r="62.1" />
+      <polyline className="path check" fill="none" strokeWidth="6" points="100.2,40.2 51.5,88.8 29.8,67.5 " />
     </svg>
   );
 };
