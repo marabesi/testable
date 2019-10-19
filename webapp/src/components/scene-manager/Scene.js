@@ -108,7 +108,7 @@ export default class Scene extends Component {
             this.props.showBuggy.type === 'bug' &&
             <BuggyBug
               style={{transform: 'scaleX(-1)'}}
-              className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6'}
+              className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6 hidden md:block'}
             />
           }
 
@@ -116,7 +116,7 @@ export default class Scene extends Component {
             this.props.showBuggy.type === 'happy' &&
             <BuggyHappy
               style={{transform: 'scaleX(-1)'}}
-              className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6'}
+              className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6 hidden md:block'}
             />
           }
         </div>
