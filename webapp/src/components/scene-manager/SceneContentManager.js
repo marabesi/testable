@@ -12,7 +12,8 @@ const WrappedSceneContentManager = (
 
     static propTypes = {
       history: PropTypes.object,
-      handleLastScene: PropTypes.func
+      handleLastScene: PropTypes.func,
+      className: PropTypes.string,
     }
 
     handleLastScene = () => {

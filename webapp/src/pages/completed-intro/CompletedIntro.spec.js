@@ -104,7 +104,7 @@ describe('completed page',  () => {
       wrapper.update();
       const classes = wrapper.find(RegularFlow).prop('className');
 
-      expect(classes.includes('puff-in-center')).toBeTruthy();
+      expect(classes.includes('scale-in-center')).toBeTruthy();
       done();
     }, 900);
   });

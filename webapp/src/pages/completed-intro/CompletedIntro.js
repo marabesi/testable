@@ -98,7 +98,7 @@ export default class CompletedIntro extends Component {
     return (
       <>
         <RegularFlow
-          className={this.state.completed ? 'puff-in-center': 'hidden'}
+          className={this.state.completed ? 'scale-in-center': 'hidden'}
           handleLastScene={this.redirect}
         />
 
@@ -114,7 +114,7 @@ export default class CompletedIntro extends Component {
                   key={key}
                   className="flex items-center justify-between slide-in-elliptic-left-fwd mb-10 mr-16"
                 >
-                  <h1 className="text-white text-3xl font-medium">
+                  <h1 className="text-white text-2xl font-medium">
                     { item }
                   </h1>
                   <CheckIcon width="50px" height="50px" />

@@ -111,21 +111,6 @@
   }
 }
 
-.puff-in-center {
-  animation: puff-in-center 0.7s cubic-bezier(0.470, 0.000, 0.745, 0.715) both;
-}
-
-@keyframes puff-in-center {
-  0% {
-    transform: scale(2);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
 .wobble-hor-bottom {
   animation: wobble-hor-bottom 0.8s both;
 }
