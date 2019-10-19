@@ -470,7 +470,9 @@ module.exports = {
   minWidth: {
     '0': '0',
     'full': '100%',
-    'testable-guide': '45%'
+
+    'testable-guide': '45%',
+    'testable-editor': '45%'
   },
 
 
@@ -493,6 +495,8 @@ module.exports = {
     '0': '0',
     'full': '100%',
     'screen': '100vh',
+
+    'testable-editor': '45%'
   },
 
 
