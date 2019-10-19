@@ -114,7 +114,7 @@ export default class EditorManager extends React.Component {
             onFocus={isFocused => this.onEditorFocus(isFocused, i)}
             className={ `source-code border-2 border-testable-blue-overlay editor-${i} ${editorOptions ? editorOptions.className : ''}` }
           />
-          <div className="m-auto mb-5 bg-blue-dark break-words">
+          <div className="m-auto md:mb-5 bg-blue-dark break-words">
             <p className="text-white h-6">{
             // @ts-ignore
               this.state.codeOutput[i]}</p>

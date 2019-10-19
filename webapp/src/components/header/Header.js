@@ -120,10 +120,10 @@ export class Header extends React.Component {
         <DebugButton onClick={this.goToIntroduction} value="go back to introduction"/>
         <DebugButton onClick={this.props.onSidebar} value="sidebar"/>
 
-        <div className="flex justify-between pl-3 pr-3 pt-5 pb-5 ml-5 mr-5">
+        <div className="flex flex-col items-start pl-3 pt-1 pr-3 pb-5 ml-5 mr-5 sm:flex-row sm:justify-between md:pt-5">
           <div className={ `user-progress flex items-center ${this.state.levelUp ? 'wobble-ver-right' : ''}`}>
             <AchievementIcon
-              className="achievements fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
+              className="achievements fill-current w-8 h-8 text-white mr-5 cursor-pointer hover:text-blue-lightest"
               onClick={this.props.onSidebar}
             />
             <Level progress={this.props.user.progress} level={this.props.user.level} />

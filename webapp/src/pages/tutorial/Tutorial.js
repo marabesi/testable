@@ -193,7 +193,7 @@ export class Tutorial extends Component {
         />
 
         <EditorManager
-          className="w-1/2 m-auto"
+          className="w-full p-2 md:w-1/2 md:p-0 m-auto"
           onEnableTooltip={this.onEnableTooltip}
           onValidCode={{ [SOURCE_CODE]: this.onValidCode} }
           onErrorCode={{ [SOURCE_CODE]: this.onErrorCode }}

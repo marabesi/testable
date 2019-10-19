@@ -5,9 +5,6 @@ import AnimatedText from '../text-keyboard-animation/AnimatedText';
 import { BuggyLeft, BuggyBug, BuggyHappy,  BuggyHappyLeft } from '../buggy/Buggy';
 import AlienSvg from '../alien/AlienSvg';
 
-import '../../scss/slide-in-bck-right.scss';
-import '../../scss/slide-in-bck-top.scss';
-
 import './scene.scss';
 
 const RELEASE_BUTTON = 2000;
@@ -62,7 +59,8 @@ export default class Scene extends Component {
       flex
       flex-col
       py-10 px-10
-      text-2xl
+      text-lg
+      md:text-2xl
       text-white
       relative
       ${className}
@@ -75,7 +73,7 @@ export default class Scene extends Component {
     }
 
     if (this.props.showAlien && this.props.showAlien.animate) {
-      alienClass = 'slide-in-bck-top';
+      alienClass = 'md:block md:slide-in-bck-top';
     }
 
     return (
@@ -89,21 +87,21 @@ export default class Scene extends Component {
 
           <BuggyLeft
             className={
-              `absolute pin-r w-1/3 mt-10 ${
-                this.props.onCompleted.showBug && this.state.showNextButton ? 'slide-in-bck-right' : 'hidden'
+              `absolute pin-r w-1/3 mt-10 hidden ${
+                this.props.onCompleted.showBug && this.state.showNextButton ? 'md:block md:slide-in-bck-right' : 'hidden'
               }
           `} />
 
           <BuggyHappyLeft
             className={
-              `w-3/3 absolute w-1/3 pin-r pin-t -mt-6 ${
-                this.props.onCompleted.type === 'happy' && this.state.showNextButton ? 'slide-in-bck-right' : 'hidden'
+              `w-3/3 absolute w-1/3 pin-r pin-t -mt-6 hidden ${
+                this.props.onCompleted.type === 'happy' && this.state.showNextButton ? 'md:block md:slide-in-bck-right' : 'hidden'
               }`
             }
           />
 
           <AlienSvg className={
-            `w-3/3 absolute w-1/3 pin-r pin-t -mt-6 ${alienClass}`
+            `w-3/3 absolute w-1/3 pin-r pin-t -mt-6 hidden ${alienClass}`
           }/>
 
           {

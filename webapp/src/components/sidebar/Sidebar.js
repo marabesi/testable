@@ -7,7 +7,6 @@ import AchievementContainer from '../achievement/AchievementContainer';
 import Logo from '../logo/Logo';
 import { track } from '../../emitter/Tracking';
 
-import '../../scss/slide-in-bck-top.scss';
 import '../../scss/fade-in-left.scss';
 import '../../scss/fade-out-left.scss';
 
@@ -46,7 +45,7 @@ export class Sidebar extends Component {
       <>
         <div
           className={`sidebar bg-blue-dark h-screen z-50 overflow-y-auto absolute fade-in-left ${this.state.open ? 'block' : this.state.hideSidebarClass}`}
-          style={{ width: '400px'}}
+          style={{ width: '300px'}}
         >
           <AchievementContainer onClose={this.onSidebar} />
         </div>

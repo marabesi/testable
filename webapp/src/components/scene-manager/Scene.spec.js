@@ -49,11 +49,11 @@ describe('Scene component', () => {
   test('should show alien component', () => {
     const wrapper = mount(
       <Scene
-        showAlien={{}}
+        showAlien={true}
       />
     );
 
-    expect(wrapper.find('AlienSvg').prop('className').includes('hidden')).toBeFalsy();
+    expect(wrapper.find('AlienSvg').prop('className').includes('block')).toBeTruthy();
   });
 
   test('should show alien component with animation', () => {
@@ -65,7 +65,6 @@ describe('Scene component', () => {
       />
     );
 
-    expect(wrapper.find('AlienSvg').prop('className').includes('hidden')).toBeFalsy();
     expect(wrapper.find('AlienSvg').prop('className')).toContain('slide-in-bck-top');
   });
 
@@ -110,7 +109,6 @@ describe('Scene component', () => {
       wrapper.update();
 
       // @ts-ignore
-      expect(wrapper.find('BuggyLeft').prop('className').includes('hidden')).toBeFalsy();
       expect(wrapper.find('BuggyLeft').prop('className')).toContain('slide-in-bck-right');
       done();
     }, 1500);

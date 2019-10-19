@@ -216,8 +216,7 @@ const Wrapped = (
             <DebugButton onClick={this.previousStep} value="previous" />
             <EditorManager
               editor={2}
-              style={{ width: '46%'}}
-              className="m-5"
+              className="w-testable-editor m-1 md:m-5"
               code={this.state.code}
               onValidCode={{ [SOURCE_CODE]: this.onValidCode, [TEST_CODE]: this.onValidCode }}
               onErrorCode={{ [SOURCE_CODE]: this.onErrorCode, [TEST_CODE]: this.onErrorCode }}

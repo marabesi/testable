@@ -74,13 +74,12 @@ export default class SceneManager extends Component {
 
     return (
       <>
-        <DebugButton onClick={this.handlePreviousScene} value="previous" />
-        <DebugButton onClick={this.handleNextScene} value="next" />
-        <DebugButton onClick={this.props.handleLastScene} value="trigger last scene" />
-
         <div className={`w-full -mt-20 ${this.props.className}`}>
           { scenes }
         </div>
+        <DebugButton onClick={this.handlePreviousScene} value="previous" />
+        <DebugButton onClick={this.handleNextScene} value="next" />
+        <DebugButton onClick={this.props.handleLastScene} value="trigger last scene" />
       </>
     );
   }
