@@ -131,42 +131,7 @@ module.exports = {
   |
   */
 
-  fonts: {
-    'sans': [
-      'system-ui',
-      'BlinkMacSystemFont',
-      '-apple-system',
-      'Segoe UI',
-      'Roboto',
-      'Oxygen',
-      'Ubuntu',
-      'Cantarell',
-      'Fira Sans',
-      'Droid Sans',
-      'Helvetica Neue',
-      'sans-serif',
-    ],
-    'serif': [
-      'Constantia',
-      'Lucida Bright',
-      'Lucidabright',
-      'Lucida Serif',
-      'Lucida',
-      'DejaVu Serif',
-      'Bitstream Vera Serif',
-      'Liberation Serif',
-      'Georgia',
-      'serif',
-    ],
-    'mono': [
-      'Menlo',
-      'Monaco',
-      'Consolas',
-      'Liberation Mono',
-      'Courier New',
-      'monospace',
-    ],
-  },
+  fonts: {},
 
 
   /*
@@ -443,6 +408,9 @@ module.exports = {
     '5/6': '83.33333%',
     'full': '100%',
     'screen': '100vw',
+
+    'testable-guide': '45%',
+    'testable-editor': '45%'
   },
 
 
@@ -480,7 +448,7 @@ module.exports = {
     '48': '12rem',
     '64': '16rem',
     'full': '100%',
-    'screen': '100vh',
+    'screen': '100vh'
   },
 
 
@@ -502,6 +470,7 @@ module.exports = {
   minWidth: {
     '0': '0',
     'full': '100%',
+    'testable-guide': '45%'
   },
 
 
@@ -554,6 +523,8 @@ module.exports = {
     '4xl': '90rem',
     '5xl': '100rem',
     'full': '100%',
+
+    'testable-guide': '45%'
   },
 
 
