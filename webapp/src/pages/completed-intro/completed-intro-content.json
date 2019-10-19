@@ -1,5 +1,4 @@
 {
-  "version": 1,
   "steps": [
     {
       "step": 1,
@@ -9,8 +8,34 @@
       },
       "content": [
         {
-          "line": "yeaaaaaaaaah!",
-          "style": "p-2 text-blue-light"
+          "line": "yeaaaah!",
+          "style": "p-2 text-blue-light text-4xl mt-32"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "button": "Cade o seu foguete Alien?",
+      "showAlien": {
+        "show": true,
+        "animate": true
+      },
+      "content": [
+        {
+          "line": ". . .",
+          "style": "p-2 text-yellow"
+        },
+        {
+          "line": "Finalmente você conseguiur construir o foguete",
+          "style": "p-2 text-yellow"
+        },
+        {
+          "line": "Eu já estava até cansado de esperar",
+          "style": "p-2 text-yellow"
+        },
+        {
+          "line": ". . .",
+          "style": "p-2 text-yellow"
         }
       ]
     }
