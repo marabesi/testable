@@ -5,5 +5,5 @@ import WrappedSceneContentManager from '../../components/scene-manager/SceneCont
 export default WrappedSceneContentManager(
   'challenge03_01',
   content,
-  'rocket-02-02'
+  'rocket-03-02'
 );
