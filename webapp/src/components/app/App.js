@@ -46,6 +46,7 @@ const assets = [
   '/assets/buggy-bug.png',
   '/assets/buggy-zzz.png',
   '/assets/alien.png',
+  '/assets/alien-rocket.png',
   '/assets/logo.png',
   '/assets/placeholder.svg',
   '/assets/mp3/keyboard.mp3',
