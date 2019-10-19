@@ -167,7 +167,14 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/survey' && user.level > 12) {
+    if (to.pathname !== '/completed-end' && user.level === 13) {
+      return {
+        flag: false,
+        to: '/completed-end'
+      };
+    }
+
+    if (to.pathname !== '/survey' && user.level > 13) {
       return {
         flag: false,
         to: '/survey'
