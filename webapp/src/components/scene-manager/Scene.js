@@ -69,7 +69,7 @@ export default class Scene extends Component {
     let alienClass = 'hidden';
 
     if (this.props.showAlien) {
-      alienClass = 'block';
+      alienClass = 'md:block';
     }
 
     if (this.props.showAlien && this.props.showAlien.animate) {
