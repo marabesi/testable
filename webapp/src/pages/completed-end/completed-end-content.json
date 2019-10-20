@@ -1,0 +1,14 @@
+{
+  "steps": [
+    {
+      "step": 1,
+      "button": "Conseguimos !!!!",
+      "content": [
+        {
+          "line": "!",
+          "style": "p-2 text-blue-light text-4xl mt-32"
+        }
+      ]
+    }
+  ]
+}

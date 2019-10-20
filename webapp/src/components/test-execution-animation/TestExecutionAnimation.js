@@ -3,7 +3,17 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import CheckIcon from '../../components/icons/Check';
 
-export const DEFAULT_DELAY = 2000;
+import './test-execution-animation.scss';
+
+const Error = props => {
+  return (
+    <svg viewBox="0 0 130.2 130.2" { ...props }>
+      <circle className="path circle" fill="none" stroke="red" strokeWidth="6" strokeMiterlimit="10" cx="65.1" cy="65.1" r="62.1" />
+      <line className="path line" fill="none" stroke="red" strokeWidth="6" strokeLinecap="round" strokeMiterlimit="10" x1="34.4" y1="37.9" x2="95.8" y2="92.3" />
+      <line className="path line" fill="none" stroke="red" strokeWidth="6" strokeLinecap="round" strokeMiterlimit="10" x1="95.8" y1="38" x2="34.4" y2="92.2" />
+    </svg>
+  );
+};
 
 const WrapperAnimation = (RocketComponent, testsToExecute) => {
   class TestExecutionAnimation extends Component {
@@ -11,10 +21,6 @@ const WrapperAnimation = (RocketComponent, testsToExecute) => {
       history: PropTypes.object,
       animationDelay: PropTypes.number,
       onFinished: PropTypes.func
-    };
-
-    static defaultProps = {
-      animationDelay: DEFAULT_DELAY
     };
 
     state = {
@@ -92,7 +98,7 @@ const WrapperAnimation = (RocketComponent, testsToExecute) => {
       return (
         <div className={this.state.completed ? 'hidden' : 'w-5/6 m-auto flex items-center justify-center'}>
           <div className={`
-            completed-intro
+            animation-container 
             ${this.state.showTests ? 'block' : 'hidden'}
             ${this.state.releaseTests ? 'slide-out-elliptic-top-fwd' : ''}
           `}>
@@ -105,7 +111,8 @@ const WrapperAnimation = (RocketComponent, testsToExecute) => {
                   <h1 className="text-white text-2xl font-medium">
                     {item.test}
                   </h1>
-                  <CheckIcon width="50px" height="50px" />
+                  {item.pass && <CheckIcon width="50px" height="50px" />}
+                  {!item.pass && <Error width="50px" height="50px" />}
                 </div>
               );
             })}

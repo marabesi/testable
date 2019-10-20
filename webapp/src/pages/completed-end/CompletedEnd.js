@@ -1,13 +1,13 @@
 //@ts-nocheck
 import React, { Component } from 'react';
-import content from './completed-intro-content.json';
-import { BuggyRocket } from '../../components/buggy/Buggy';
+import content from './completed-end-content.json';
+import { AlienRocket } from '../../components/alien/AlienSvg';
 import TestExecutionAnimation from '../../components/test-execution-animation/TestExecutionAnimation';
 import WrappedSceneContentManager from '../../components/scene-manager/SceneContentManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter.js';
 
 export const RegularFlow = WrappedSceneContentManager(
-  'completed-intro',
+  'completed-end',
   content
 );
 
@@ -16,12 +16,12 @@ const DEFAULT_DELAY = 2000;
 const fixedTests = [
   { test: 'executando teste para multiplicar motores', pass: true },
   { test: 'executando teste que remove o trem de pouso', pass: true },
-  { test: 'executando teste para dividir o GPS', pass: true }
+  { test: 'executando teste para dividir o GPS', pass: false }
 ];
 
-const TestExecution = TestExecutionAnimation(BuggyRocket, fixedTests);
+const TestExecution = TestExecutionAnimation(AlienRocket, fixedTests);
 
-export default class CompletedIntro extends Component {
+export default class CompletedEnd extends Component {
 
   state = {
     completed: false
@@ -39,7 +39,7 @@ export default class CompletedIntro extends Component {
           animationDelay={DEFAULT_DELAY}
         />
         <RegularFlow
-          className={this.state.completed ? 'scale-in-center': 'hidden'}
+          className={this.state.completed ? 'scale-in-center' : 'hidden'}
           handleLastScene={this.redirect}
         />
       </>
