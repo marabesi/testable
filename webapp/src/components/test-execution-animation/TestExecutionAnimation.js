@@ -16,6 +16,8 @@ const Error = props => {
 };
 
 const WrapperAnimation = (RocketComponent, testsToExecute) => {
+  const shouldNotFly = testsToExecute.filter(item => item.pass === false);
+
   class TestExecutionAnimation extends Component {
     static propTypes = {
       history: PropTypes.object,
@@ -117,7 +119,7 @@ const WrapperAnimation = (RocketComponent, testsToExecute) => {
               );
             })}
           </div>
-          <RocketComponent className={`${this.state.releaseRocket ? 'bounce-out-top' : this.state.rocketDefaultClass}`} />
+          <RocketComponent className={`${this.state.releaseRocket && shouldNotFly.length === 0 ? 'bounce-out-top' : this.state.rocketDefaultClass}`} />
         </div>
       );
     }

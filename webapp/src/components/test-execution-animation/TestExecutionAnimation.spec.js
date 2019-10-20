@@ -79,4 +79,22 @@ describe('Test execution animation component', () => {
       done();
     }, 900);
   });
+
+  it('should not toggle bouce out top animation if there is failing test', done => {
+    const HoC = TestExecutionAnimationHoC(
+      RocketComponent,
+      [{ test: 'my test', pass: true }, { test: 'my test', pass: false }]
+    );
+
+    const wrapper = shallow(
+      <HoC
+        animationDelay={100}
+      />
+    );
+
+    setTimeout(() => {
+      expect(wrapper.find(RocketComponent).prop('className').includes('bounce-out-top')).toBeFalsy();
+      done();
+    }, 900);
+  });
 });
