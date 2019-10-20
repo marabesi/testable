@@ -5,6 +5,8 @@ import CheckIcon from '../../components/icons/Check';
 
 import './test-execution-animation.scss';
 
+export const DEFAULT_DELAY = 2000;
+
 const Error = props => {
   return (
     <svg viewBox="0 0 130.2 130.2" { ...props }>
@@ -97,6 +99,12 @@ const WrapperAnimation = (RocketComponent, testsToExecute) => {
     }
 
     render() {
+      let rocketClass = 'up-down';
+
+      if (shouldNotFly.length === 0) {
+        rocketClass = 'bounce-out-top';
+      }
+
       return (
         <div className={this.state.completed ? 'hidden' : 'w-5/6 m-auto flex items-center justify-center'}>
           <div className={`
@@ -119,7 +127,7 @@ const WrapperAnimation = (RocketComponent, testsToExecute) => {
               );
             })}
           </div>
-          <RocketComponent className={`${this.state.releaseRocket && shouldNotFly.length === 0 ? 'bounce-out-top' : this.state.rocketDefaultClass}`} />
+          <RocketComponent className={`${this.state.releaseRocket ? rocketClass : this.state.rocketDefaultClass}`} />
         </div>
       );
     }

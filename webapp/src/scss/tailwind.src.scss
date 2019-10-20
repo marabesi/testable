@@ -167,3 +167,21 @@
     opacity  : 0;
   }
 }
+
+.up-down {
+  animation       : up-down 2s linear 1s both;
+}
+
+@keyframes up-down {
+  0% {
+    transform: translateY(0);
+  }
+
+  55% {
+    transform: translateY(-900px);
+  }
+
+  100% {
+    transform: rotate(10deg) translateY(900px);
+  }
+}

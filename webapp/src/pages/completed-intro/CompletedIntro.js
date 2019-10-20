@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import content from './completed-intro-content.json';
 import { BuggyRocket } from '../../components/buggy/Buggy';
-import TestExecutionAnimation from '../../components/test-execution-animation/TestExecutionAnimation';
+import TestExecutionAnimation, { DEFAULT_DELAY } from '../../components/test-execution-animation/TestExecutionAnimation';
 import WrappedSceneContentManager from '../../components/scene-manager/SceneContentManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter.js';
 
@@ -10,8 +10,6 @@ export const RegularFlow = WrappedSceneContentManager(
   'completed-intro',
   content
 );
-
-const DEFAULT_DELAY = 2000;
 
 const fixedTests = [
   { test: 'executando teste para multiplicar motores', pass: true },
