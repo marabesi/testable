@@ -4,14 +4,16 @@ import TestExecutionAnimationHoC from './TestExecutionAnimation';
 
 const RocketComponent = () => <div></div>;
 
-const TestExecution = TestExecutionAnimationHoC(RocketComponent, ['my test']);
+const TestExecution = TestExecutionAnimationHoC(
+  RocketComponent,
+  [ { test: 'my test', pass: true } ]
+);
 
 describe('Test execution animation component', () => {
 
   it('should render test queue after animation delay', done => {
     const wrapper = shallow(
       <TestExecution
-        testsToExecute={['my test']}
         animationDelay={200}
       />
     );
@@ -25,7 +27,7 @@ describe('Test execution animation component', () => {
 
   it('should display rocket by default', () => {
     const wrapper = shallow(
-      <TestExecution testsToExecute={['my test']} />
+      <TestExecution />
     );
 
     expect(wrapper.find(RocketComponent).length).toBe(1);
@@ -34,7 +36,6 @@ describe('Test execution animation component', () => {
   it('should add rocket wobble class animation by half time of animation delay', done => {
     const wrapper = shallow(
       <TestExecution
-        testsToExecute={['my test']}
         animationDelay={700}
       />
     );
@@ -51,7 +52,6 @@ describe('Test execution animation component', () => {
   it('should toggle rocket bouce out top animation class', done => {
     const wrapper = shallow(
       <TestExecution
-        testsToExecute={['my test']}
         animationDelay={150}
       />
     );
@@ -69,7 +69,6 @@ describe('Test execution animation component', () => {
     const callback = jest.fn();
     shallow(
       <TestExecution
-        testsToExecute={['my test']}
         animationDelay={100}
         onFinished={callback}
       />

@@ -17,9 +17,9 @@ export const RegularFlow = WrappedSceneContentManager(
 export const DEFAULT_DELAY = 2000;
 
 const fixedTests = [
-  'executando teste para multiplicar motores',
-  'executando teste que remove o trem de pouso',
-  'executando teste para dividir o GPS'
+  { test: 'executando teste para multiplicar motores', pass: true },
+  { test: 'executando teste que remove o trem de pouso', pass: true },
+  { test: 'executando teste para dividir o GPS', pass: true }
 ];
 
 const TestExecution = TestExecutionAnimation(BuggyRocket, fixedTests);

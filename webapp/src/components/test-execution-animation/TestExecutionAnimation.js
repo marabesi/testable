@@ -103,7 +103,7 @@ const WrapperAnimation = (RocketComponent, testsToExecute) => {
                   className="flex items-center justify-between slide-in-elliptic-left-fwd mb-10 mr-16"
                 >
                   <h1 className="text-white text-2xl font-medium">
-                    {item}
+                    {item.test}
                   </h1>
                   <CheckIcon width="50px" height="50px" />
                 </div>

@@ -25,9 +25,7 @@ describe('completed intro page',  () => {
 
   it('should be hidden by default (regular component)', () => {
     const wrapper = shallow(
-      <CompletedIntro
-        testsToExecute={['my test']}
-      />
+      <CompletedIntro />
     );
 
     const regularFlowClasses = wrapper.find(RegularFlow).prop('className');
@@ -38,7 +36,6 @@ describe('completed intro page',  () => {
   it('should add regular flow animation once queu test animation is completed', done => {
     const wrapper = shallow(
       <CompletedIntro
-        testsToExecute={['my test']}
         animationDelay={100}
       />
     );
