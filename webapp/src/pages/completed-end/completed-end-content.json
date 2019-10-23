@@ -2,11 +2,50 @@
   "steps": [
     {
       "step": 1,
-      "button": "Conseguimos !!!!",
+      "button": "Mas o que aconteceu?",
+      "showAlien": {
+        "show": true
+      },
       "content": [
         {
-          "line": "!",
-          "style": "p-2 text-blue-light text-4xl mt-32"
+          "line": "Não acredito o meu foguete não funciona!",
+          "style": "p-2 text-yellow text-4xl mt-32"
+        }
+      ]
+    },
+    {
+      "step": 2,
+      "button": "E agora?",
+      "showBuggy": {
+        "animate": true
+      },
+      "content": [
+        {
+          "line": "O Alien não se preocupou em fazer testes ...",
+          "style": "p-2 text-blue-light"
+        },
+        {
+          "line": "Ele pode até ter feito mais rápido ...",
+          "style": "p-2 text-blue-light"
+        },
+        {
+          "line": "mas dessa vez não se deu bem.",
+          "style": "p-2 text-blue-light"
+        }
+      ]
+    },
+    {
+      "step": 3,
+      "button": "Ir ao questionário",
+      "showBuggy": true,
+      "content": [
+        {
+          "line": "Agora temos um questionário ...",
+          "style": "p-2 text-blue-light"
+        },
+        {
+          "line": "Nele você poderá dar sua opinião e avaliar a ferramenta!",
+          "style": "p-2 text-blue-light"
         }
       ]
     }
