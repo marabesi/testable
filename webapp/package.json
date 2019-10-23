@@ -105,5 +105,8 @@
       "!src/registerServiceWorker.js",
       "!src/__test__/**/*.js"
     ]
+  },
+  "engines": {
+    "node": "10.x"
   }
 }
