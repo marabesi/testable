@@ -96,6 +96,7 @@ describe('Scene component', () => {
   });
 
   test('should show up buggy component after typing', done => {
+    const NODE_INDEX = 1;
     const wrapper = mount(
       <Scene
         onCompleted={{showBug: true}}
@@ -103,13 +104,13 @@ describe('Scene component', () => {
       />
     );
 
-    expect(wrapper.find('BuggyLeft').prop('className')).toContain('hidden');
+    expect(wrapper.find('BuggyLeft').at(NODE_INDEX).prop('className')).toContain('hidden');
 
     setTimeout(() => {
       wrapper.update();
 
       // @ts-ignore
-      expect(wrapper.find('BuggyLeft').prop('className')).toContain('slide-in-bck-right');
+      expect(wrapper.find('BuggyLeft').at(NODE_INDEX).prop('className')).toContain('slide-in-bck-right');
       done();
     }, 1500);
   });
@@ -126,7 +127,7 @@ describe('Scene component', () => {
       />
     );
 
-    expect(wrapper.find('img').at(2).prop('src')).toEqual('img content');
+    expect(wrapper.find('img').at(3).prop('src')).toEqual('img content');
   });
 
   test('should handle last scene', done => {

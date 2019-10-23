@@ -65,7 +65,7 @@ export default class SceneManager extends Component {
             lastScene={step.lastScene || (last === index)}
             handleLastScene={this.props.handleLastScene}
             showAlien={step.showAlien}
-            showBuggy={step.showBuggy}
+            showBuggy={step.showBuggy || false}
             onCompleted={step.onCompleted || {}}
           />
         );

@@ -4,7 +4,8 @@
       "step": 1,
       "button": "Mas o que aconteceu?",
       "showAlien": {
-        "show": true
+        "show": true,
+        "animate": true
       },
       "content": [
         {

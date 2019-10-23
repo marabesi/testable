@@ -76,6 +76,16 @@ export default class Scene extends Component {
       alienClass = 'md:block md:slide-in-bck-top';
     }
 
+    let buggyClass = '';
+
+    if (this.props.showBuggy && !this.props.showBuggy.type) {
+      buggyClass = 'md:block';
+    }
+
+    if (this.props.showBuggy && this.props.showBuggy.animate) {
+      buggyClass = 'md:block md:slide-in-bck-right';
+    }
+
     return (
       <div className={classes}>
         <div className="flex">
@@ -84,6 +94,8 @@ export default class Scene extends Component {
             text={this.props.text}
             onFinishedTyping={ () => this.onFinishedTyping() }
           />
+
+          <BuggyLeft className={`absolute pin-r w-1/3 mt-10 hidden ${buggyClass}`} />
 
           <BuggyLeft
             className={
@@ -138,7 +150,7 @@ export default class Scene extends Component {
 Scene.propTypes = {
   onCompleted: PropTypes.object,
   showAlien: PropTypes.object,
-  showBuggy: PropTypes.object,
+  showBuggy: PropTypes.bool,
   text: PropTypes.array,
   className: PropTypes.string,
   next: PropTypes.func,
@@ -149,5 +161,5 @@ Scene.propTypes = {
 
 Scene.defaultProps = {
   onCompleted: {},
-  showBuggy: {}
+  showBuggy: false
 };
