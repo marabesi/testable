@@ -80,11 +80,9 @@ export class App extends Component {
 
     await queue.fetch(assets);
 
-    setTimeout(() => {
-      this.setState({
-        isFetchingAssets: false
-      });
-    }, 500);
+    this.setState({
+      isFetchingAssets: false
+    });
   }
 
   componentWillUnmount() {
