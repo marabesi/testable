@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Helmet } from 'react-helmet';
 import PropTypes from 'prop-types';
-import { colors } from '../../tailwind';
 
 import './background.scss';
 
@@ -16,18 +14,6 @@ export class Background extends Component {
   render() {
     return (
       <>
-        <Helmet>
-          <style>
-            {`
-              body {
-                background: url("assets/bg-loading.png"), ${colors['blue-dark']};
-                background-position: center 100%;
-                height: 100vh;
-                overflow: hidden;
-              }
-            `}
-          </style>
-        </Helmet>
         {
           !this.props.user.uid &&
           <div className="path">

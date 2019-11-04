@@ -25,6 +25,9 @@ html, body, #root {
 
 body {
   font-family: "Rajdhani", sans-serif;
+  background: url("~/assets/bg-loading.png"), #012345;
+  background-position: center 100%;
+  height: 100vh;
   overflow: hidden;
 }
 
