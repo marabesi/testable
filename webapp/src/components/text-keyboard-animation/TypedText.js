@@ -6,7 +6,7 @@ export default class TypedText extends React.Component {
     const { strings } = this.props;
     const options = {
       strings: strings,
-      typeSpeed: 40,
+      typeSpeed: 15,
       showCursor: false,
       startDelay: 200,
     };
