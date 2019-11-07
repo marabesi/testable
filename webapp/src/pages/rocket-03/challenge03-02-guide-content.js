@@ -12,7 +12,7 @@ export default [
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
-    line: 'Altere o código fonte para não aceitar o valor zero e uma função de teste que retorne falso caso zero seja passado como parâmetro. Lembre-se nenhum dos parâmetros deve aceitar o valor zero.',
+    line: 'Altere o código fonte para não aceitar o valor zero e uma função de teste que retorne falso caso zero seja passado como parâmetro. Lembre-se nenhum dos parâmetros deve aceitar o valor zero, utilize o operador OR (||).',
     style: 'text-white font-semibold text-xl text-blue-light'
   },
   {
