@@ -37,10 +37,12 @@ app.get('/', (req, res) => {
     
       for (let data in userData) {
         const user = await admin.auth().getUser(data);
-        filtered.push({
-          level: userData[data].level,
-          name: user.displayName,
-        });
+        if (userData[data].level) {
+          filtered.push({
+            level: userData[data].level,
+            name: user.displayName,
+          });
+        }
       }
 
         res.header('Access-Control-Allow-Origin', '*');
