@@ -63,12 +63,20 @@ describe('Ranking component', () => {
       />
     );
 
-    wrapper.instance().setState({ loading: false });
+    wrapper.instance().setState({
+      loading: false,
+      ranking: [
+        { level: 1, name: 'Maria' },
+      ]
+    });
+
     wrapper.update();
 
     expect(wrapper.find('table thead tr th').at(0).text()).toEqual('position');
     expect(wrapper.find('table thead tr th').at(1).text()).toEqual('name');
     expect(wrapper.find('table thead tr th').at(2).text()).toEqual('level');
+
+    wrapper.unmount();
   });
 
   test('should render ranking table with one user', () => {
@@ -80,10 +88,34 @@ describe('Ranking component', () => {
         { level: 1, name: 'Maria' },
       ]
     });
+
     wrapper.update();
 
     expect(wrapper.find('table tbody tr').length).toEqual(1);
     expect(wrapper.find('table tbody tr td').at(0).text()).toEqual('1');
     expect(wrapper.find('table tbody tr td').at(1).text()).toEqual('Maria');
+  });
+
+  test('should show message when data is empty', done => {
+    global.fetch = () => {
+      return Promise.resolve(new Response(''));
+    };
+
+    const wrapper = mount(<Ranking
+      intl={{
+        messages: {
+          ranking: {
+            no_data: 'no data'
+          }
+        }
+      }}
+    />);
+
+    setTimeout(() => {
+      wrapper.update();
+      expect(wrapper.find('h3').text()).toEqual('no data');
+      wrapper.unmount();
+      done();
+    }, 1);
   });
 });

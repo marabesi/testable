@@ -21,7 +21,7 @@ export class Ranking extends Component {
     fetch(RANKING_API)
       .then(response => response.json())
       .then(ranking => {
-        this.setState({ ranking: ranking.data });
+        this.setState({ ranking: ranking.data || [] });
       })
       .catch(() => {
         const currentState = Object.assign({}, this.state);
@@ -47,6 +47,12 @@ export class Ranking extends Component {
         <div>
           <Loading />
         </div>
+      );
+    }
+
+    if (this.state.ranking.length === 0) {
+      return (
+        <h3 className="text-white flex justify-center mt-5">{this.props.intl.messages.ranking.no_data}</h3>
       );
     }
 
