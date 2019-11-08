@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Button from '../../components/scene-manager/Button';
+import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 
 import '../../scss/shake-horizontal.scss';
 import './survey.scss';
@@ -16,7 +18,8 @@ export class Survey extends Component {
 
   state = {
     surveyUrl: '',
-    loading: true
+    loading: true,
+    buttonDescription: 'Responder o questionário depois, quero descobrir o que é TDD!'
   }
 
   componentDidMount() {
@@ -33,6 +36,10 @@ export class Survey extends Component {
       // @ts-ignore
       ...this.state.loading, loading: false
     });
+  }
+
+  skipSurvey = () => {
+    Emitter.emit(LEVEL_UP);
   }
 
   render() {
@@ -52,6 +59,15 @@ export class Survey extends Component {
             title="survey form"
             onLoad={this.onSurveyLoaded}
           />
+
+          {
+            !this.state.loading && 
+            <Button
+              className="block mt-5 m-auto"
+              description={this.state.buttonDescription}
+              onClick={this.skipSurvey}
+            />
+          }
         </div>
       );
     }
