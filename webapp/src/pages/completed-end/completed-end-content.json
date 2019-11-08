@@ -30,22 +30,30 @@
           "style": "p-2 text-blue-light"
         },
         {
-          "line": "mas dessa vez não se deu bem.",
+          "line": "mas dessa vez não se deu bem ...",
           "style": "p-2 text-blue-light"
         }
       ]
     },
     {
       "step": 3,
-      "button": "Ir ao questionário",
+      "button": "TDD ?",
       "showBuggy": true,
       "content": [
         {
-          "line": "Agora temos um questionário ...",
+          "line": "Wow! Os testes nos ajudaram mas...",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": "Nele você poderá dar sua opinião e avaliar a ferramenta!",
+          "line": "Escrevemos o teste depois do código...",
+          "style": "p-2 text-blue-light"
+        },
+        {
+          "line": "O que não é problemas mas...",
+          "style": "p-2 text-blue-light"
+        },
+        {
+          "line": "será que existe alguma forma melhor?",
           "style": "p-2 text-blue-light"
         }
       ]
