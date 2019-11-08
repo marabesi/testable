@@ -27,6 +27,7 @@ import Challenge03_02 from '../../pages/rocket-03/Challenge03_02';
 import CompletedIntro from '../../pages/completed-intro/CompletedIntro';
 import CompletedEnd from '../../pages/completed-end/CompletedEnd';
 import Survey from '../../pages/survey/Survey';
+import TddIntro from '../../pages/tdd-intro/TddIntro';
 import { auth } from '../../pages/login/Auth';
 
 import './app.scss';
@@ -123,6 +124,7 @@ export class App extends Component {
             <ProtectedRoute path="/completed-intro" component={CompletedIntro} />
             <ProtectedRoute path="/completed-end" component={CompletedEnd} />
             <ProtectedRoute path="/survey" component={Survey} />
+            <ProtectedRoute path="/tdd-intro" component={TddIntro} />
             <Route path="*" component={NotFound} />
           </AnimatedSwitch>
         </Sidebar>
