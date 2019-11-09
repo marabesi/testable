@@ -59,7 +59,7 @@
     "@formatjs/intl-relativetimeformat": "^4.0.1",
     "@fullhuman/postcss-purgecss": "^1.2.0",
     "@stryker-mutator/core": "^2.0.2",
-    "@stryker-mutator/html-reporter": "^2.0.2",
+    "@stryker-mutator/html-reporter": "^2.2.1",
     "@stryker-mutator/javascript-mutator": "^2.0.2",
     "@stryker-mutator/jest-runner": "^2.0.2",
     "@types/codemirror": "^0.0.76",
