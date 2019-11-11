@@ -29,8 +29,9 @@ const availableRoutes = [
   '/rocket-03-02',
   '/completed-intro',
   '/completed-end',
+  '/survey',
   '/tdd-intro',
-  '/survey'
+  '/tdd'
 ];
 
 describe('Auth behavior', () => {
@@ -275,6 +276,16 @@ describe('route access and redirection', () => {
     },
   );
 
+  test.each(availableRoutes.filter(route => route !== '/tdd'))(
+    'should keep the user level 16 in the tdd section, trying to access: %s',
+    (currentRoute) => {
+      const can = auth.canEnter({ uid: 999, level: 16 }, { pathname: currentRoute });
+
+      expect(can.flag).toBeFalsy();
+      expect(can.to).toEqual('/tdd');
+    },
+  );
+
   test.each([
     ['/intro', 1],
     ['/tutorial', 2],
@@ -291,6 +302,7 @@ describe('route access and redirection', () => {
     ['/completed-end', 13],
     ['/survey', 14],
     ['/tdd-intro', 15],
+    ['/tdd', 16],
   ])(
     'should render the related component  based on the level, trying to access route %s, level %s',
     (currentRoute, level) => {

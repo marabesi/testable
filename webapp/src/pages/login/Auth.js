@@ -181,10 +181,17 @@ const auth = {
       };
     }
 
-    if (to.pathname !== '/tdd-intro' && user.level > 14) {
+    if (to.pathname !== '/tdd-intro' && user.level === 15) {
       return {
         flag: false,
         to: '/tdd-intro'
+      };
+    }
+
+    if (to.pathname !== '/tdd' && user.level > 15) {
+      return {
+        flag: false,
+        to: '/tdd'
       };
     }
 
