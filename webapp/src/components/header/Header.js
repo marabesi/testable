@@ -67,10 +67,7 @@ export class Header extends React.Component {
 
     // @ts-ignore
     Emitter.addListener(PROGRESS_UP, data => {
-      this.setState({
-        // @ts-ignore
-        ...this.props.user.progress, progress: data.amount
-      });
+      this.setState({ progress: data.amount });
 
       this.props.updateUser({
         progress: data.amount
@@ -79,10 +76,7 @@ export class Header extends React.Component {
 
     // @ts-ignore
     Emitter.addListener(PROGRESS_DOWN, data => {
-      this.setState({
-        // @ts-ignore
-        ...this.props.user.progress, progress: data.amount
-      });
+      this.setState({ progress: data.amount });
 
       this.props.updateUser({
         progress: data.amount
