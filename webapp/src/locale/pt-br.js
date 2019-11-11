@@ -85,4 +85,7 @@ export default {
       'pt-br': 'Português (Brasil)'
     },
   },
+  survey: {
+    title: 'Questionário'
+  }
 };
