@@ -5,14 +5,21 @@ import Profile from '../profile/Profile';
 import Modal from '../modal/Modal';
 import Cup from '../icons/Cup';
 import Ranking from '../ranking/Ranking';
+import Button from '../../components/scene-manager/Button';
+import Survey from '../../components/survey/Survey';
 import { auth } from '../../pages/login/Auth';
 import {track} from '../../emitter/Tracking';
 import { colors } from '../../tailwind';
 
+/* eslint-disable-next-line */
+const shoulShowSurvey = process.env.REACT_APP_SHOW_SURVEY || false;
+const hideButtonOnLevel = 14;
+
 export class UserMenu extends Component {
 
   state = {
-    ranking: false
+    ranking: false,
+    survey: false
   };
 
   onRanking = () => {
@@ -26,9 +33,28 @@ export class UserMenu extends Component {
     });
   }
 
+  onSurvey = () => {
+    this.setState({
+      survey: !this.state.survey
+    });
+    track({
+      section: 'user_menu',
+      action: 'toggle_survey|button_click'
+    });
+  }
+
   render() {
     return (
       <div className="flex justify-end items-center">
+        {
+          shoulShowSurvey && this.props.user.level !== hideButtonOnLevel &&
+          <Button
+            className="mr-5 m-auto"
+            description="Responder o questionário"
+            onClick={this.onSurvey}
+          />
+        }
+
         <Cup
           className="ranking fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
           onClick={this.onRanking}
@@ -49,6 +75,17 @@ export class UserMenu extends Component {
         >
           <Ranking onClick={this.onRanking} />
         </Modal>
+        <Modal
+          title={
+            <div>
+              { this.props.intl.messages.survey.title }
+            </div>
+          }
+          isOpen={this.state.survey}
+          onClose={this.onSurvey}
+        >
+          <Survey onClick={this.onSurvey} className="mt-8" />
+        </Modal>
       </div>
     );
   }
@@ -63,7 +100,8 @@ UserMenu.propTypes = {
 UserMenu.defaultProps = {
   intl: {
     messages: {
-      ranking: {}
+      ranking: {},
+      survey: {}
     }
   }
 };
