@@ -1555,29 +1555,30 @@
   resolved "https://registry.yarnpkg.com/@sinonjs/text-encoding/-/text-encoding-0.7.1.tgz#8da5c6530915653f3a1f38fd5f101d8c3f8079c5"
   integrity sha512-+iTbntw2IZPb/anVDbypzfQa+ay64MW0Zo8aJ8gZPWMMK6/OubMVb6lUPMagqjOPnmtauXnFCACVl3O7ogjeqQ==
 
-"@stryker-mutator/api@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@stryker-mutator/api/-/api-2.1.0.tgz#488ac3bc22cbf08af73fa1a2fdac3bf53a806912"
-  integrity sha512-zas7PNOEFnepjT/OfTte2Tu6vQ5Q30ZGGRigBqY75fe7PJZXon/1cGyB+SS6nN29tlY29t5Err5zOFX/qtxf8g==
+"@stryker-mutator/api@^2.1.0", "@stryker-mutator/api@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@stryker-mutator/api/-/api-2.2.1.tgz#36f343f8c2c02a7465cf1feb3a3ae2af91f98ca3"
+  integrity sha512-XJc/2HOW+XGUO+zrKmUY2B5jsct+e8wz3234rAHm6qz3/njxLvzoWhNKFp/3Glagg26+TFTVsRoWuR/aNIS4UA==
   dependencies:
     mutation-testing-report-schema "^1.0.0"
     tslib "~1.10.0"
 
-"@stryker-mutator/core@^2.0.2":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@stryker-mutator/core/-/core-2.1.0.tgz#38b4a1fc4319d2d6f9e955688415d6c7a3c8da98"
-  integrity sha512-CucANfEfYKuc3gDPJlrMw0UElr8YD3LrrC/dGN9/GyGgPFdgb4zX9XHw0Q/deGQTk51h9BieuSMLqleVxP5UqQ==
+"@stryker-mutator/core@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@stryker-mutator/core/-/core-2.2.1.tgz#57098841aee46883637d94cac7c4c4a847a11876"
+  integrity sha512-br9nx5+r07gE5E3BPvjEyu+5gaW2fKauE0nv3dpJXaZwlTQ6HRDOLMWFFvNFlVRTaKmFw3N1OPinv/1RwrXk4w==
   dependencies:
-    "@stryker-mutator/api" "^2.1.0"
-    "@stryker-mutator/util" "^2.1.0"
+    "@stryker-mutator/api" "^2.2.1"
+    "@stryker-mutator/util" "^2.2.1"
     chalk "~2.4.1"
     commander "~3.0.1"
     get-port "~5.0.0"
     glob "~7.1.2"
     inquirer "~7.0.0"
     istanbul-lib-instrument "~3.3.0"
-    lodash "~4.17.4"
-    log4js "~5.1.0"
+    lodash.flatmap "^4.5.0"
+    lodash.groupby "^4.6.0"
+    log4js "~5.2.2"
     mkdirp "~0.5.1"
     mutation-testing-metrics "^1.1.1"
     progress "~2.0.0"
@@ -1587,7 +1588,7 @@
     surrial "~1.0.0"
     tree-kill "~1.2.0"
     tslib "~1.10.0"
-    typed-inject "~2.0.0"
+    typed-inject "~2.1.1"
     typed-rest-client "~1.5.0"
 
 "@stryker-mutator/html-reporter@^2.0.2":
@@ -1622,10 +1623,10 @@
     "@stryker-mutator/api" "^2.1.0"
     semver "~6.3.0"
 
-"@stryker-mutator/util@^2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@stryker-mutator/util/-/util-2.1.0.tgz#2f4cc2d14f8a4df221deb09fb3e2758f8ad200fd"
-  integrity sha512-J0DzkKEQU39dzfc4tO9crgW3tPOW0nuKIkEDtrDK2P8qQBRMZyP7Gla10LDQSqSYIBSAVzLKZgrin64s5g6KXA==
+"@stryker-mutator/util@^2.1.0", "@stryker-mutator/util@^2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@stryker-mutator/util/-/util-2.2.1.tgz#73d3de612342eb9788114bc8806c2015b0a0a592"
+  integrity sha512-wxb+pQPuwzUBRsfNYdIpve8cSWXMthP9oVTp5D9734blZ1ujWwgAbGfstPsFQZkC65qWbCYF51Eqfag3AmITeQ==
 
 "@svgr/babel-plugin-add-jsx-attribute@^4.2.0":
   version "4.2.0"
@@ -9306,6 +9307,11 @@ lodash.escape@^4.0.1:
   resolved "https://registry.yarnpkg.com/lodash.escape/-/lodash.escape-4.0.1.tgz#c9044690c21e04294beaa517712fded1fa88de98"
   integrity sha1-yQRGkMIeBClL6qUXcS/e0fqI3pg=
 
+lodash.flatmap@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/lodash.flatmap/-/lodash.flatmap-4.5.0.tgz#ef8cbf408f6e48268663345305c6acc0b778702e"
+  integrity sha1-74y/QI9uSCaGYzRTBcaswLd4cC4=
+
 lodash.flattendeep@^4.4.0:
   version "4.4.0"
   resolved "https://registry.yarnpkg.com/lodash.flattendeep/-/lodash.flattendeep-4.4.0.tgz#fb030917f86a3134e5bc9bec0d69e0013ddfedb2"
@@ -9408,16 +9414,16 @@ log-update@^1.0.2:
     ansi-escapes "^1.0.0"
     cli-cursor "^1.0.2"
 
-log4js@~5.1.0:
-  version "5.1.0"
-  resolved "https://registry.yarnpkg.com/log4js/-/log4js-5.1.0.tgz#3fa5372055a4c2611ab92d80496bffc100841508"
-  integrity sha512-QtXrBGZiIwfwBrH9zF2uQarvBuJ5+Icqx9fW+nQL4pnmPITJw8n6kh3bck5IkcTDBQatDeKqUMXXX41fp0TIqw==
+log4js@~5.2.2:
+  version "5.2.2"
+  resolved "https://registry.yarnpkg.com/log4js/-/log4js-5.2.2.tgz#35b750416f22913dd6905d49335752d9b240f47c"
+  integrity sha512-Iw4ZjbYTMxSTh1jnXM2brpRIr+psM8/nkUiOHu2gFfd0saoX2NdRB69buMWJJuoIJfU/eTzqKy9rVBr0zQwSGQ==
   dependencies:
     date-format "^2.1.0"
     debug "^4.1.1"
     flatted "^2.0.1"
     rfdc "^1.1.4"
-    streamroller "^2.1.0"
+    streamroller "^2.2.2"
 
 loglevel@^1.4.1, loglevel@^1.6.4:
   version "1.6.4"
@@ -14064,7 +14070,7 @@ stream-to-observable@^0.1.0:
   resolved "https://registry.yarnpkg.com/stream-to-observable/-/stream-to-observable-0.1.0.tgz#45bf1d9f2d7dc09bed81f1c307c430e68b84cffe"
   integrity sha1-Rb8dny19wJvtgfHDB8Qw5ouEz/4=
 
-streamroller@^2.1.0:
+streamroller@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/streamroller/-/streamroller-2.2.2.tgz#26bea90567f80d8438d251e5603643fe617b7090"
   integrity sha512-wizmZ8NNiqeNIYHv8MqBBbSIeNNcsXyoKxbGYBpiFHCjTGlNHqGNGElwrSM3Awg+0j6U96/eFrSnjW+h3aRo0Q==
@@ -14883,10 +14889,12 @@ type@^2.0.0:
   resolved "https://registry.yarnpkg.com/type/-/type-2.0.0.tgz#5f16ff6ef2eb44f260494dae271033b29c09a9c3"
   integrity sha512-KBt58xCHry4Cejnc2ISQAF7QY+ORngsWfxezO68+12hKV6lQY8P/psIkcbjeHWn7MqcgciWJyCCevFMJdIXpow==
 
-typed-inject@~2.0.0:
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/typed-inject/-/typed-inject-2.0.0.tgz#78fc8b3e27104fb2945c3242d7eff9bc1e5e6320"
-  integrity sha512-x4gVaWZzGBZMR15rTMWdijKlMg/rBc7YkjTx9koW7Lp+9UYr+GQZLRMtpQm7MJv4J6r1AVhclwouZ0z+G6tYAw==
+typed-inject@~2.1.1:
+  version "2.1.1"
+  resolved "https://registry.yarnpkg.com/typed-inject/-/typed-inject-2.1.1.tgz#5e16c5d46961fd77f475295f0170627ac81ffd19"
+  integrity sha512-TaQrNsYjGTMmgfEwKtjP9+qyZu//H1RJ0RYNvvQ/rcAnpQGZLxHajb+O6TnyFZGfLaK/9319VYaG4PFXGjImug==
+  dependencies:
+    typescript "^3.6.3"
 
 typed-rest-client@~1.5.0:
   version "1.5.0"
@@ -14915,6 +14923,11 @@ typescript@^3.5.3:
   version "3.6.4"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.6.4.tgz#b18752bb3792bc1a0281335f7f6ebf1bbfc5b91d"
   integrity sha512-unoCll1+l+YK4i4F8f22TaNVPRHcD9PA3yCuZ8g5e0qGqlVlJ/8FSateOLLSagn+Yg5+ZwuPkL8LFUc0Jcvksg==
+
+typescript@^3.6.3:
+  version "3.7.2"
+  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.7.2.tgz#27e489b95fa5909445e9fef5ee48d81697ad18fb"
+  integrity sha512-ml7V7JfiN2Xwvcer+XAf2csGO1bPBdRbFCkYBczNZggrBZ9c7G3riSUeJmqEU5uOtXNPMhE3n+R4FA/3YOAWOQ==
 
 ua-parser-js@^0.7.18:
   version "0.7.20"
