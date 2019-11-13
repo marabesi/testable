@@ -22,7 +22,7 @@ export default Rocket(
   SubTester,
   guideContent,
   '/tdd',
-  999,
+  2,
   999,
   'tdd-intro',
   SubtractionBehavior,
