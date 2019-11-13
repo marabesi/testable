@@ -67,10 +67,7 @@ export class Profile extends Component {
         .then(response => response.blob())
         .then(image => {
           const photo = URL.createObjectURL(image);
-          this.setState({
-            //@ts-ignore
-            ...this.state.photo, photo
-          });
+          this.setState({ photo });
         });
     }
   }
