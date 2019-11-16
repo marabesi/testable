@@ -137,7 +137,8 @@ Header.propTypes = {
 };
 
 Header.defaultProps = {
-  updateUser: () => {}
+  updateUser: () => {},
+  user: {}
 };
 
 //@ts-ignore

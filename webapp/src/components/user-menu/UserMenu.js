@@ -7,12 +7,9 @@ import Cup from '../icons/Cup';
 import Ranking from '../ranking/Ranking';
 import Button from '../../components/scene-manager/Button';
 import Survey from '../../components/survey/Survey';
-import { auth } from '../../pages/login/Auth';
 import {track} from '../../emitter/Tracking';
 import { colors } from '../../tailwind';
 
-/* eslint-disable-next-line */
-const shoulShowSurvey = process.env.REACT_APP_SHOW_SURVEY || false;
 const hideButtonOnLevel = 14;
 
 export class UserMenu extends Component {
@@ -24,8 +21,7 @@ export class UserMenu extends Component {
 
   onRanking = () => {
     this.setState({
-      // @ts-ignore
-      ...this.state.ranking, ranking: !this.state.ranking
+      ranking: !this.state.ranking
     });
     track({
       section: 'user_menu',
@@ -47,7 +43,7 @@ export class UserMenu extends Component {
     return (
       <div className="flex justify-end items-center">
         {
-          shoulShowSurvey && this.props.user.level !== hideButtonOnLevel &&
+          this.props.showUpSurvey && this.props.user.level !== hideButtonOnLevel &&
           <Button
             className="mr-5 m-auto"
             description="Responder o questionário"
@@ -59,7 +55,7 @@ export class UserMenu extends Component {
           className="ranking fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
           onClick={this.onRanking}
         />
-        <Profile user={auth.user} />
+        <Profile user={this.props.user} />
         <Modal
           title={
             <div>
@@ -94,7 +90,8 @@ export class UserMenu extends Component {
 UserMenu.propTypes = {
   user: PropTypes.object,
   intl: PropTypes.object,
-  onNotification: PropTypes.func
+  onNotification: PropTypes.func,
+  showUpSurvey: PropTypes.bool
 };
 
 UserMenu.defaultProps = {
@@ -103,7 +100,8 @@ UserMenu.defaultProps = {
       ranking: {},
       survey: {}
     }
-  }
+  },
+  showUpSurvey: (process.env.REACT_APP_SHOW_SURVEY === 'true') || false
 };
 
 export default injectIntl(UserMenu);
