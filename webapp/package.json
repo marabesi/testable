@@ -68,7 +68,7 @@
     "@types/esprima": "^4.0.2",
     "@types/fbemitter": "^2.0.32",
     "@types/jest": "^24.0.15",
-    "@types/node": "^12.6.2",
+    "@types/node": "^12.12.8",
     "@types/react": "^16.9.0",
     "@types/react-codemirror": "^1.0.2",
     "@types/react-dom": "^16.8.4",
@@ -93,7 +93,7 @@
     "postcss-cli": "^6.1.2",
     "redux-mock-store": "^1.5.3",
     "sinon": "^7.3.2",
-    "source-map-explorer": "^1.8.0",
+    "source-map-explorer": "^2.1.1",
     "stryker-cli": "^1.0.0",
     "style-loader": "^1.0.0",
     "typescript": "^3.5.3"
