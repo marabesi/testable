@@ -43,7 +43,7 @@ export class UserMenu extends Component {
     return (
       <div className="flex justify-end items-center">
         {
-          this.props.showUpSurvey && this.props.user.level !== hideButtonOnLevel &&
+          (this.props.showUpSurvey && this.props.user.level !== hideButtonOnLevel) || (this.props.user.level > hideButtonOnLevel) &&
           <Button
             className="mr-5 m-auto"
             description="Responder o questionário"
