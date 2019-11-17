@@ -14,14 +14,14 @@ const buildComponent = (props) => {
 };
 
 describe('Login page behavior', () => {
-  it('should load firebase container', () => {
+  test('should load firebase container', () => {
     const wrapper = mount(<Login />);
 
     expect(wrapper.find('#firebaseui-auth-container').length).toBe(1);
   });
 
   describe('user logged in already', () => {
-    it('should redirect if already logged in', () => {
+    test('should redirect if already logged in', () => {
       const login = buildComponent({
         onLoading: () => {},
         setUser: () => {},
@@ -31,7 +31,7 @@ describe('Login page behavior', () => {
       expect(login.find('Redirect').length).toBe(1);
     });
   
-    it('should fill in logged user data', () => {
+    test('should fill in logged user data', () => {
       const setUser = jest.fn();
       const login = buildComponent({ setUser}).find('Login').dive();
       login.instance().authStatusChanged({ email: 'test@test.com' });

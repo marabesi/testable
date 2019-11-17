@@ -19,11 +19,11 @@ describe('completed intro page',  () => {
     Emitter.removeAllListeners(LEVEL_UP);
   });
 
-  it('render  regular component (HoC)', () => {
+  test('render  regular component (HoC)', () => {
     expect(wrappedComponent.find(RegularFlow).length).toBe(1);
   });
 
-  it('should be hidden by default (regular component)', () => {
+  test('should be hidden by default (regular component)', () => {
     const wrapper = shallow(
       <CompletedIntro />
     );
@@ -33,7 +33,7 @@ describe('completed intro page',  () => {
     expect(regularFlowClasses.includes('hidden')).toBeTruthy();
   });
 
-  it('should add regular flow animation once queu test animation is completed', done => {
+  test('should add regular flow animation once queu test animation is completed', done => {
     const wrapper = shallow(
       <CompletedIntro
         animationDelay={100}
@@ -51,7 +51,7 @@ describe('completed intro page',  () => {
     }, 900);
   });
 
-  it('should level up', () => {
+  test('should level up', () => {
     const callback = jest.fn();
     Emitter.addListener(LEVEL_UP, callback);
 

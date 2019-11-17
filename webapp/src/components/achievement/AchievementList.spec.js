@@ -5,7 +5,7 @@ import { AchievementList } from './AchievementList';
 import { AchievementItem } from './AchievementItem';
 
 describe('AchievementList component: behavior based on the user level', () => {
-  it('should not show achievement with higher level than the user', () => {
+  test('should not show achievement with higher level than the user', () => {
     const wrapper = shallow(
       <AchievementList
         user={{ level: 1 }}
@@ -26,7 +26,7 @@ describe('AchievementList component: behavior based on the user level', () => {
 });
 
 describe('default AchievementList behavior', () => {
-  it('should render achievements via achievements prop', () => {
+  test('should render achievements via achievements prop', () => {
     const wrapper = shallow(
       <AchievementList
         user={{ level: 1 }}
@@ -43,7 +43,7 @@ describe('default AchievementList behavior', () => {
     expect(wrapper.children().length).toEqual(1);
   });
 
-  it('should render friendly when the list is empty', () => {
+  test('should render friendly when the list is empty', () => {
     const msg = 'Você não possui nenhuma conquista até o momento';
     const wrapper = shallow(
       <AchievementList
@@ -60,7 +60,7 @@ describe('default AchievementList behavior', () => {
     expect(wrapper.find('ul').length).toBe(0);
   });
 
-  it('should set item to active to true (show up the item description)', () => {
+  test('should set item to active to true (show up the item description)', () => {
     const wrapper = shallow(
       <AchievementList
         user={{ level: 1 }}

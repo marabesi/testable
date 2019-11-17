@@ -4,7 +4,7 @@ import { AchievementItem } from './AchievementItem';
 
 describe('Achievement item behavior', () => {
 
-  it('should render achievement title', () => {
+  test('should render achievement title', () => {
     const wrapper = mount(
       <AchievementItem
         title="Desafio aceito"
@@ -14,7 +14,7 @@ describe('Achievement item behavior', () => {
     expect(wrapper.find('ul h3').text()).toEqual('Desafio aceito');
   });
 
-  it('should render achievement description', () => {
+  test('should render achievement description', () => {
     const wrapper = mount(
       <AchievementItem
         description="desc"
@@ -24,7 +24,7 @@ describe('Achievement item behavior', () => {
     expect(wrapper.find('li span').text()).toEqual('desc');
   });
 
-  it('propagate on click event to be handled', () => {
+  test('propagate on click event to be handled', () => {
     const callback = jest.fn();
     const wrapper = mount(
       <AchievementItem
@@ -36,7 +36,7 @@ describe('Achievement item behavior', () => {
     expect(callback).toBeCalled();
   });
 
-  it('description should not show up by default', () => {
+  test('description should not show up by default', () => {
     const wrapper = mount(
       <AchievementItem
         title="achiv title"
@@ -46,7 +46,7 @@ describe('Achievement item behavior', () => {
     expect(wrapper.find('h3 + li').prop('className')).toContain('hidden');
   });
 
-  it('should render items array, achievement item list', () => {
+  test('should render items array, achievement item list', () => {
     const wrapper = mount(
       <AchievementItem
         title="list items"
@@ -61,7 +61,7 @@ describe('Achievement item behavior', () => {
     expect(wrapper.find('ul ul li').at(1).text()).toEqual('b');
   });
 
-  it('emit on click event', () => {
+  test('emit on click event', () => {
     const callback = jest.fn();
     const wrapper = mount(
       <AchievementItem

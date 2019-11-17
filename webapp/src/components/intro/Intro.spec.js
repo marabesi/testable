@@ -5,7 +5,7 @@ import Intro from './Intro';
 describe('Intro component', () => {
 
   describe('default options', () => {
-    it('should not exit on esc', () => {
+    test('should not exit on esc', () => {
       const wrapper = mount(
         <Intro
           initialStep={0}
@@ -19,7 +19,7 @@ describe('Intro component', () => {
       expect(options.exitOnEsc).toBeFalsy();
     });
 
-    it('should not exit on overlay click', () => {
+    test('should not exit on overlay click', () => {
       const wrapper = mount(
         <Intro
           initialStep={0}

@@ -4,14 +4,14 @@ import { AchievementContainer } from './AchievementContainer';
 import Title from '../title/Title';
 
 describe('AchievementContainer component: render behavior', () => {
-  it('should render container title', () => {
+  test('should render container title', () => {
     const wrapper = shallow(
       <AchievementContainer />
     );
     expect(wrapper.find(Title).length).toEqual(1);
   });
 
-  it('should show up empty message via props when there is no achievements', () => {
+  test('should show up empty message via props when there is no achievements', () => {
     const wrapper = shallow(
       <AchievementContainer
         intl={{

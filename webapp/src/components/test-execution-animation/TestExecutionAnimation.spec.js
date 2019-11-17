@@ -11,7 +11,7 @@ const TestExecution = TestExecutionAnimationHoC(
 
 describe('Test execution animation component', () => {
 
-  it('should render test queue after animation delay', done => {
+  test('should render test queue after animation delay', done => {
     const wrapper = shallow(
       <TestExecution
         animationDelay={200}
@@ -25,7 +25,7 @@ describe('Test execution animation component', () => {
     }, 300);
   });
 
-  it('should display rocket by default', () => {
+  test('should display rocket by default', () => {
     const wrapper = shallow(
       <TestExecution />
     );
@@ -33,7 +33,7 @@ describe('Test execution animation component', () => {
     expect(wrapper.find(RocketComponent).length).toBe(1);
   });
 
-  it('should add rocket wobble class animation by half time of animation delay', done => {
+  test('should add rocket wobble class animation by half time of animation delay', done => {
     const wrapper = shallow(
       <TestExecution
         animationDelay={700}
@@ -49,7 +49,7 @@ describe('Test execution animation component', () => {
     }, 400);
   });
 
-  it('should toggle rocket bouce out top animation class', done => {
+  test('should toggle rocket bouce out top animation class', done => {
     const wrapper = shallow(
       <TestExecution
         animationDelay={150}
@@ -65,7 +65,7 @@ describe('Test execution animation component', () => {
     }, 700);
   });
 
-  it('should fire onFinished event once animations has finished', done => {
+  test('should fire onFinished event once animations has finished', done => {
     const callback = jest.fn();
     shallow(
       <TestExecution
@@ -80,7 +80,7 @@ describe('Test execution animation component', () => {
     }, 900);
   });
 
-  it('should not toggle bouce out top animation if there is failing test', done => {
+  test('should not toggle bouce out top animation if there is failing test', done => {
     const HoC = TestExecutionAnimationHoC(
       RocketComponent,
       [{ test: 'my test', pass: true }, { test: 'my test', pass: false }]
