@@ -1,7 +1,8 @@
 import React from 'react';
 import sinon from 'sinon';
-import { mount } from 'enzyme';
+import { mount, shallow } from 'enzyme';
 import Scene from './Scene';
+import Button from './Button';
 
 describe('Scene component', () => {
 
@@ -13,25 +14,37 @@ describe('Scene component', () => {
     window.localStorage.removeItem('testable.alien.png');
   });
 
+  test('default props value', () => {
+    const wrapper = mount(<Scene />);
+
+    expect(wrapper.props().onCompleted).toEqual({});
+    expect(wrapper.props().releaseButton).toEqual(2000);
+    expect(wrapper.props().showBuggy).toEqual(false);
+    expect(wrapper.props().showNextButton).toEqual(900);
+  });
+
   test('by default, does not show up the next button', () => {
     const wrapper = mount(<Scene />);
 
-    expect(wrapper.find('Button').length).toEqual(0);
+    expect(wrapper.find(Button).length).toEqual(0);
   });
 
   test('by default, the next button is not disabled', done => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <Scene
         text={[ {key: 0, line: 'a'} ]}
         button="just a label"
+        showNextButton={1}
       />
     );
 
+    wrapper.instance().onFinishedTyping();
+
     setTimeout(() => {
       wrapper.update();
-      expect(wrapper.find('Button').prop('disabled')).toBeFalsy();
+      expect(wrapper.find(Button).prop('disabled')).toBeFalsy();
       done();
-    }, 1500);
+    }, 10);
   });
 
   test('by default, does not show alien component', () => {
@@ -49,7 +62,7 @@ describe('Scene component', () => {
   test('should show alien component', () => {
     const wrapper = mount(
       <Scene
-        showAlien={true}
+        showAlien={{}}
       />
     );
 
@@ -69,19 +82,23 @@ describe('Scene component', () => {
   });
 
   test('should show up next button', done => {
-    const wrapper = mount(
+    const wrapper = shallow(
       <Scene
         text={[ {key: 0, line: 'my'} ]}
         button="mybutton"
+        showNextButton={1}
+        releaseButton={1}
       />
     );
+
+    wrapper.instance().onFinishedTyping();
 
     setTimeout(() => {
       wrapper.update();
 
-      expect(wrapper.find('Button').text()).toEqual('mybutton');
+      expect(wrapper.find(Button).prop('description')).toEqual('mybutton');
       done();
-    }, 1500);
+    }, 5);
   });
 
   test('pass in a custom class to the scene container', () => {
@@ -97,14 +114,17 @@ describe('Scene component', () => {
 
   test('should show up buggy component after typing', done => {
     const NODE_INDEX = 1;
-    const wrapper = mount(
+    const wrapper = shallow(
       <Scene
         onCompleted={{showBug: true}}
         text={[ {key: 0, line: 'my'} ]}
+        showNextButton={1}
       />
     );
 
     expect(wrapper.find('BuggyLeft').at(NODE_INDEX).prop('className')).toContain('hidden');
+
+    wrapper.instance().onFinishedTyping();
 
     setTimeout(() => {
       wrapper.update();
@@ -112,7 +132,7 @@ describe('Scene component', () => {
       // @ts-ignore
       expect(wrapper.find('BuggyLeft').at(NODE_INDEX).prop('className')).toContain('slide-in-bck-right');
       done();
-    }, 1500);
+    }, 10);
   });
 
   test('should show up alien character', () => {
@@ -134,93 +154,109 @@ describe('Scene component', () => {
     const handleLastScene = sinon.spy();
     const handleNextScene = sinon.spy();
 
-    const wrapper = mount(
+    const wrapper = shallow(
       <Scene
         lastScene={true}
         handleLastScene={handleLastScene}
         next={handleNextScene}
         text={[{ key: 0, line: 'my' }]}
+        showNextButton={1}
+        releaseButton={1}
       />
     );
 
+    wrapper.instance().onFinishedTyping();
+
     setTimeout(() => {
       wrapper.update();
-      wrapper.find('button').simulate('click');
+      wrapper.find(Button).simulate('click');
 
       expect(handleLastScene.called).toBeTruthy();
       expect(handleNextScene.called).toBeFalsy();
       done();
-    }, 1500);
+    }, 10);
   });
 
   test('should handle next scene', done => {
     const handleLastScene = sinon.spy();
     const handleNextScene = sinon.spy();
 
-    const wrapper = mount(
+    const wrapper = shallow(
       <Scene
         lastScene={false}
         handleLastScene={handleLastScene}
         next={handleNextScene}
         text={[{ key: 0, line: 'my' }]}
+        showNextButton={1}
+        releaseButton={1}
       />
     );
 
+    wrapper.instance().onFinishedTyping();
+
     setTimeout(() => {
       wrapper.update();
-      wrapper.find('button').simulate('click');
+      wrapper.find(Button).simulate('click');
 
       expect(handleLastScene.called).toBeFalsy();
       expect(handleNextScene.called).toBeTruthy();
       done();
-    }, 1500);
+    }, 10);
   });
 
   test('should disable button once clicked to prevent firing the event twice', done => {
     const onClick = jest.fn();
-    const wrapper = mount(
+    const wrapper = shallow(
       <Scene
         text={[ {key: 0, line: 'my'} ]}
         button="mybutton"
         next={onClick}
+        showNextButton={1}
+        releaseButton={1}
       />
     );
+
+    wrapper.instance().onFinishedTyping();
 
     setTimeout(() => {
       wrapper.update();
 
       // tries to click 10 times next button
       for (let i = 0; i < 10; i++) {
-        wrapper.find('button').simulate('click');
+        wrapper.find(Button).simulate('click');
       }
 
       expect(onClick).toBeCalledTimes(1);
       done();
-    }, 1500);
+    }, 50);
   });
 
-  test('should released disable from next button after two seconds', done => {
+  test('should release disable from next button based on releaseButton prop', done => {
     const onClick = jest.fn();
-    const wrapper = mount(
+    const wrapper = shallow(
       <Scene
         text={[ {key: 0, line: 'my'} ]}
         button="mybutton"
         next={onClick}
+        showNextButton={1}
+        releaseButton={5}
       />
     );
 
+    wrapper.instance().onFinishedTyping();
+
     setTimeout(() => {
       wrapper.update();
-      wrapper.find('button').simulate('click');
-      expect(wrapper.find('Button').prop('disabled')).toBeTruthy();
-    }, 1500);
+      wrapper.find(Button).simulate('click');
+      expect(wrapper.find(Button).prop('disabled')).toBeTruthy();
+    }, 10);
 
     setTimeout(() => {
       wrapper.update();
 
-      expect(wrapper.find('Button').prop('disabled')).toBeFalsy();
+      expect(wrapper.find(Button).prop('disabled')).toBeFalsy();
       done();
-    }, 3600);
+    }, 50);
   });
 
   test('should render buggy bug version', () => {

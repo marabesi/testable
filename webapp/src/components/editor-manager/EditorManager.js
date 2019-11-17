@@ -22,9 +22,7 @@ export default class EditorManager extends React.Component {
     // @ts-ignore
     codeError[editorIndexChanged] = '';
 
-    this.setState({
-      ...this.state.codeError, codeError: codeError
-    });
+    this.setState({ codeError: codeError });
 
     let codeOutput = Object.assign({}, this.state.codeOutput);
     // @ts-ignore
@@ -38,9 +36,7 @@ export default class EditorManager extends React.Component {
     lemming.onResult(result => {
       // @ts-ignore
       codeOutput[editorIndexChanged] = result;
-      this.setState({
-        ...this.state.codeOutput, codeOutput: codeOutput
-      });
+      this.setState({ codeOutput: codeOutput });
 
       if (errorCallback) {
         errorCallback(false, editorIndexChanged);
@@ -52,9 +48,7 @@ export default class EditorManager extends React.Component {
       // @ts-ignore
       codeError[editorIndexChanged] = error;
 
-      this.setState({
-        ...this.state.codeError, codeError: codeError
-      });
+      this.setState({ codeError: codeError });
 
       if (errorCallback) {
         errorCallback(true, editorIndexChanged);

@@ -44,23 +44,17 @@ const WrapperAnimation = (RocketComponent, testsToExecute) => {
       const { animationDelay } = this.props;
 
       setTimeout(() => {
-        this.setState({
-          ...this.state.rocketDefaultClass, rocketDefaultClass: 'wobble-hor-bottom'
-        });
+        this.setState({ rocketDefaultClass: 'wobble-hor-bottom' });
       }, animationDelay / 2);
 
-      this.setState({
-        ...this.state.showTests, showTests: true
-      });
+      this.setState({ showTests: true });
 
       let pointer = 0;
       const buildTests = setInterval(() => {
         const current = this.state.tests;
         current.push(testsToExecute[pointer]);
 
-        this.setState({
-          ...this.state.tests, tests: current
-        });
+        this.setState({ tests: current });
 
         pointer++;
 
@@ -75,21 +69,15 @@ const WrapperAnimation = (RocketComponent, testsToExecute) => {
       const { animationDelay, onFinished } = this.props;
 
       setTimeout(() => {
-        this.setState({
-          ...this.state.releaseRocket, releaseRocket: true
-        });
+        this.setState({ releaseRocket: true });
       }, animationDelay);
 
       setTimeout(() => {
-        this.setState({
-          ...this.state.releaseTests, releaseTests: true
-        });
+        this.setState({ releaseTests: true });
       }, animationDelay * 4);
 
       setTimeout(() => {
-        this.setState({
-          ...this.state.completed, completed: true
-        });
+        this.setState({ completed: true });
 
         if (onFinished) {
           onFinished();

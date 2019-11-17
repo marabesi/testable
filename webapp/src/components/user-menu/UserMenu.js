@@ -39,20 +39,16 @@ export class UserMenu extends Component {
     });
   }
 
+  showSurveyButton = () => (this.props.showUpSurvey && this.props.user.level !== hideButtonOnLevel) || (this.props.user.level > hideButtonOnLevel)
+
   render() {
-    let button;
-
-    if ((this.props.showUpSurvey && this.props.user.level !== hideButtonOnLevel) || (this.props.user.level > hideButtonOnLevel)) {
-      button = <Button
-        className="mr-5 m-auto"
-        description="Responder o questionário"
-        onClick={this.onSurvey}
-      />
-    }
-
     return (
       <div className="flex justify-end items-center">
-        { button }
+        { this.showSurveyButton() && <Button
+          className="mr-5 m-auto"
+          description="Responder o questionário"
+          onClick={this.onSurvey}
+        /> }
         <Cup
           className="ranking fill-current w-8 h-8 text-white mr-5 hover:text-blue-lightest cursor-pointer"
           onClick={this.onRanking}

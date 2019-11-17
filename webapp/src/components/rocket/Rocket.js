@@ -12,6 +12,25 @@ import DebugButton from '../debug/Button';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
 import {executeTestCase} from '../../engine/Tester';
 
+/**
+ * 
+ * @param {string} code the code (raw code: function myCode() {})
+ * @param {string} test the test code (raw test code: function test() {})
+ * @param {array} testCaseTests an array of objects with tests cases to be executed examples at src/engine/strategies/tester
+ * @param {*} sourceCodeTests 
+ * @param {*} guideContent 
+ * @param {*} whenDoneRedirectTo 
+ * @param {*} waitCodeToBeExecutedOnStep 
+ * @param {*} enableEditorOnStep 
+ * @param {*} trackSection 
+ * @param {*} testCaseStrategy 
+ * @param {*} sourceCodeStrategy 
+ * @param {*} disableEditor 
+ * @param {*} introContent 
+ * @param {*} enableIntroOnStep 
+ * @param {*} editorOptions 
+ * @param {*} attentionAnimationTo 
+ */
 const Wrapped = (
   code,
   test,
@@ -73,9 +92,7 @@ const Wrapped = (
 
       current[i] = code;
 
-      this.setState({
-        ...this.state.code, code: current
-      });
+      this.setState({ code: current });
 
       const codeAndTestCase = `${this.state.code[SOURCE_CODE]} ${this.state.code[TEST_CODE]}`;
 
@@ -92,18 +109,14 @@ const Wrapped = (
         });
 
         this.setState({
-          //@ts-ignore
-          ...this.state.currentHint, currentHint: this.state.currentHint + 1,
-          ...this.state.showNext, showNext: false
+          currentHint: this.state.currentHint + 1,
+          showNext: false
         });
       }
     }
 
     onErrorCode = (error) => {
-      this.setState({
-        //@ts-ignore
-        ...this.state.editorError, editorError: error
-      });
+      this.setState({ editorError: error });
     }
 
     onGuideFinishedTyping = () => {
@@ -124,10 +137,7 @@ const Wrapped = (
         return;
       }
 
-      this.setState({
-        //@ts-ignore
-        ...this.state.showNext, showNext: true
-      });
+      this.setState({ showNext: true });
     };
 
     handleProgress = () => {
@@ -147,9 +157,8 @@ const Wrapped = (
 
       if (isNotLast) {
         this.setState({
-          //@ts-ignore
-          ...this.state.currentHint, currentHint: next,
-          ...this.state.showNext, showNext: false
+          currentHint: next,
+          showNext: false
         });
 
         Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10 });
@@ -165,24 +174,15 @@ const Wrapped = (
 
       Emitter.emit(LEVEL_UP);
 
-      this.setState({
-        //@ts-ignore
-        ...this.state.done, done: true
-      });
+      this.setState({ done: true });
     }
 
     previousStep = () => {
-      this.setState({
-        //@ts-ignore
-        ...this.state.currentHint, currentHint: this.state.currentHint - 1
-      });
+      this.setState({ currentHint: this.state.currentHint - 1 });
     }
 
     toogleToolTip = () => {
-      this.setState({
-        //@ts-ignore
-        ...this.state.introEnabled, introEnabled: true
-      });
+      this.setState({ introEnabled: true });
     }
 
     onFinishTooltip = () => {
@@ -191,10 +191,9 @@ const Wrapped = (
       }
 
       this.setState({
-        //@ts-ignore
-        ...this.state.introEnabled, introEnabled: false,
-        ...this.state.currentHint, currentHint: 1 + this.state.currentHint,
-        ...this.state.showNext, showNext: false
+        introEnabled: false,
+        currentHint: 1 + this.state.currentHint,
+        showNext: false
       });
     }
 

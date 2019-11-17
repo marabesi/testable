@@ -1,22 +1,12 @@
 import React from 'react';
 import { shallow } from 'enzyme';
 import { Tutorial } from './Tutorial';
-import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 import {SOURCE_CODE} from '../../constants/editor';
-import { auth } from '../login/Auth';
 
 const ENABLE_EDITOR_ON_HINT = 3;
+const userData = { level: 1, progress: 10 };
 
 describe('Tutorial page', () => {
-  beforeEach(() => {
-    auth.updateUserInfo = jest.fn();
-    Emitter.removeAllListeners(LEVEL_UP);
-  });
-
-  afterEach(() => {
-    Emitter.removeAllListeners(LEVEL_UP);
-  });
-
   test('renders without crashing', () => {
     const wrapper = shallow(<Tutorial />);
 
@@ -29,7 +19,8 @@ describe('Tutorial page', () => {
     1,
     2,
   ])('should not enable editor before the allowed hint - current hint %s', (currentHint) => {
-    const wrapper = shallow(<Tutorial />);
+    const callback = jest.fn();
+    const wrapper = shallow(<Tutorial user={userData} updateUser={callback} />);
     wrapper.instance().setState({
       currentHint
     });
@@ -39,9 +30,8 @@ describe('Tutorial page', () => {
 
   test('level up when last tutorial content step is reached', () => {
     const callback = jest.fn();
-    Emitter.addListener(LEVEL_UP, callback);
 
-    const wrapper = shallow(<Tutorial />);
+    const wrapper = shallow(<Tutorial user={userData} updateUser={callback} />);
     wrapper.instance().setState({
       tutorialContent: [
         { line: 'content first step', style: '' }, { line: 'content last step', style: '' }
@@ -55,9 +45,8 @@ describe('Tutorial page', () => {
 
   test('should not level up on invalid code', () => {
     const callback = jest.fn();
-    Emitter.addListener(LEVEL_UP, callback);
 
-    const wrapper = shallow(<Tutorial />);
+    const wrapper = shallow(<Tutorial user={userData} updateUser={callback} />);
     wrapper.instance().setState({
       currentHint: ENABLE_EDITOR_ON_HINT
     });
@@ -79,7 +68,8 @@ describe('Tutorial page', () => {
   });
 
   test('should redirect once tutorial content is finished', () => {
-    const wrapper = shallow(<Tutorial />);
+    const callback = jest.fn();
+    const wrapper = shallow(<Tutorial user={userData} updateUser={callback} />);
     wrapper.instance().nextHint();
     wrapper.instance().nextHint();
     wrapper.instance().nextHint();
@@ -91,13 +81,15 @@ describe('Tutorial page', () => {
 
   describe('animation behavior once guide has finished typing', () => {
     test('editor should be read only by default', () => {
-      const wrapper = shallow(<Tutorial />);
+      const callback = jest.fn();
+      const wrapper = shallow(<Tutorial user={userData} updateUser={callback} />);
       wrapper.update();
       expect(wrapper.find('EditorManager').prop('options')[SOURCE_CODE].readOnly).toBe(true);
     });
 
     test('should toggle attention class to editor once guide has finished typing', done => {
-      const wrapper = shallow(<Tutorial onHover={hovered => hovered} />);
+      const callback = jest.fn();
+      const wrapper = shallow(<Tutorial onHover={hovered => hovered} user={userData} updateUser={callback} />);
 
       wrapper.instance().onEnableTooltip();
       wrapper.instance().onFinishTooltip();
@@ -118,7 +110,8 @@ describe('Tutorial page', () => {
   test.each([
     'function somar(a,b) { return a+b }',
   ])('valid code behavior %s', (code) => {
-    const wrapper = shallow(<Tutorial />);
+    const callback = jest.fn();
+    const wrapper = shallow(<Tutorial user={userData} updateUser={callback} />);
     wrapper.instance().setState({
       currentHint: ENABLE_EDITOR_ON_HINT
     });
@@ -133,7 +126,8 @@ describe('Tutorial page', () => {
     'function() => { return }',
     'function(a, a) => { return a + a }',
   ])('invalid code behavior %s', (code) => {
-    const wrapper = shallow(<Tutorial />);
+    const callback = jest.fn();
+    const wrapper = shallow(<Tutorial user={userData} updateUser={callback} />);
     wrapper.instance().setState({
       currentHint: ENABLE_EDITOR_ON_HINT
     });
@@ -144,7 +138,8 @@ describe('Tutorial page', () => {
   });
 
   test('should update state with error message', () => {
-    const wrapper = shallow(<Tutorial />);
+    const callback = jest.fn();
+    const wrapper = shallow(<Tutorial user={userData} updateUser={callback} />);
     wrapper.instance().onErrorCode('something went wrong');
     expect(wrapper.instance().state.editorError).toEqual('something went wrong');
   });

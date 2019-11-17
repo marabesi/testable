@@ -24,9 +24,7 @@ export class AchievementList extends Component {
     const { achievements } = props;
 
     if (achievements.length) {
-      this.setState({
-        achievements
-      });
+      this.setState({ achievements });
     }
   }
 
@@ -39,9 +37,7 @@ export class AchievementList extends Component {
 
     current[index] = selected;
 
-    this.setState({
-      ...this.props.achievements, current
-    });
+    this.setState({ current });
 
     track({
       section: 'achievements',

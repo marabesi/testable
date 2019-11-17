@@ -8,19 +8,24 @@ import EditorManager from '../../components/editor-manager/EditorManager';
 import Intro from '../../components/intro/Intro';
 import Guide from '../../components/guide/Guide';
 import DebugButton from '../../components/debug/Button';
-import { auth } from '../../pages/login/Auth';
 import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';
 import Reason from '../../engine/Reason';
 import { Sum } from '../../engine/strategies/behavior/Sum';
 import { testCase as sumTestCase } from '../../engine/strategies/tester/Sum';
 import { onHover } from '../../actions/guideAction';
+import { updateUser } from '../../actions/userAction';
 import { track } from '../../emitter/Tracking';
 import { executeTestCase } from '../../engine/Tester';
 import { SOURCE_CODE } from '../../constants/editor';
 
+const mapStateToProps = state => ({
+  user: state.userReducer.user,
+});
+
 const mapDispatchToProps = (dispatch) => {
   return {
-    onHover: hovered => dispatch(onHover(hovered))
+    onHover: hovered => dispatch(onHover(hovered)),
+    updateUser: data => dispatch(updateUser(data))
   };
 };
 
@@ -55,10 +60,9 @@ export class Tutorial extends Component {
   onFinishTooltip = () => {
     this.props.onHover(false);
     this.setState({
-      // @ts-ignore
-      ...this.state.introEnabled, introEnabled: false,
-      ...this.state.showNext, showNext: false,
-      ...this.state.currentHint, currentHint: this.state.currentHint + 1
+      introEnabled: false,
+      showNext: false,
+      currentHint: this.state.currentHint + 1
     });
     track({
       section: 'tutorial',
@@ -83,17 +87,11 @@ export class Tutorial extends Component {
       return;
     }
 
-    this.setState({
-      //@ts-ignore
-      ...this.state.showNext, showNext: true
-    });
+    this.setState({ showNext: true });
   }
 
   onEnableTooltip = () => {
-    this.setState({
-      //@ts-ignore
-      ...this.state.introEnabled, introEnabled: true
-    });
+    this.setState({ introEnabled: true });
     this.props.onHover(true);
 
     track({
@@ -122,10 +120,7 @@ export class Tutorial extends Component {
   }
 
   onErrorCode = (error) => {
-    this.setState({
-      //@ts-ignore
-      ...this.state.editorError, editorError: error
-    });
+    this.setState({ editorError: error });
   }
 
   nextHint = () => {
@@ -133,12 +128,11 @@ export class Tutorial extends Component {
     const total = this.state.tutorialContent.length;
 
     if (next < total) {
-      Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10 });
+      Emitter.emit(PROGRESS_UP, { amount: this.props.user.progress + 10 });
 
       this.setState({
-        // @ts-ignore
-        ...this.state.currentHint, currentHint: next,
-        ...this.state.showNext, showNext: false
+        currentHint: next,
+        showNext: false
       });
 
       track({
@@ -152,18 +146,14 @@ export class Tutorial extends Component {
 
     Emitter.emit(LEVEL_UP);
 
-    auth.updateUserInfo({
-      tutorial: false
-    });
+    this.props.updateUser({ tutorial: false });
 
     track({
       section: 'tutorial',
       action: 'tutorial_end'
     });
 
-    this.setState({
-      tutorialDone: true
-    });
+    this.setState({ tutorialDone: true });
   }
 
   handleProgress = () => {
@@ -216,7 +206,9 @@ export class Tutorial extends Component {
 
 Tutorial.propTypes = {
   onHover: PropTypes.func,
-  tutorialContent: PropTypes.array
+  tutorialContent: PropTypes.array,
+  user: PropTypes.object,
+  updateUser: PropTypes.func
 };
 
-export default connect(null, mapDispatchToProps)(Tutorial);
+export default connect(mapStateToProps, mapDispatchToProps)(Tutorial);

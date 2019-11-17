@@ -17,11 +17,8 @@ export default class Scene extends Component {
   };
 
   onFinishedTyping() {
-    setTimeout(() => {
-      this.setState({
-        showNextButton: true
-      });
-    }, 900);
+    const { showNextButton } = this.props;
+    setTimeout(() => this.setState({ showNextButton: true }), showNextButton);
   }
 
   /**
@@ -32,17 +29,11 @@ export default class Scene extends Component {
       return;
     }
 
-    this.setState({
-      //@ts-ignore
-      ...this.state.disableNextButton, disableNextButton: true
-    });
+    this.setState({ disableNextButton: true });
 
     setTimeout(() => {
-      this.setState({
-        //@ts-ignore
-        ...this.state.disableNextButton, disableNextButton: false
-      });
-    }, RELEASE_BUTTON);
+      this.setState({ disableNextButton: false });
+    }, this.props.releaseButton);
 
     if (this.props.lastScene) {
       this.props.handleLastScene();
@@ -156,10 +147,14 @@ Scene.propTypes = {
   next: PropTypes.func,
   lastScene: PropTypes.bool,
   handleLastScene: PropTypes.func,
-  button: PropTypes.string
+  button: PropTypes.string,
+  releaseButton: PropTypes.number,
+  showNextButton: PropTypes.number,
 };
 
 Scene.defaultProps = {
   onCompleted: {},
-  showBuggy: false
+  showBuggy: false,
+  releaseButton: RELEASE_BUTTON,
+  showNextButton: 900,
 };
