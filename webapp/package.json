@@ -78,7 +78,7 @@
     "@types/react-router-dom": "^4.3.4",
     "babel-eslint": "^9.0.0",
     "codacy-coverage": "^3.4.0",
-    "coveralls": "^3.0.4",
+    "coveralls": "^3.0.8",
     "css-loader": "^3.2.0",
     "cypress": "^3.2.0",
     "docz": "^1.2.0",
