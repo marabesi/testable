@@ -62,7 +62,7 @@
     "@stryker-mutator/html-reporter": "^2.0.2",
     "@stryker-mutator/javascript-mutator": "^2.0.2",
     "@stryker-mutator/jest-runner": "^2.0.2",
-    "@types/codemirror": "^0.0.76",
+    "@types/codemirror": "^0.0.81",
     "@types/enzyme": "^3.10.2",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/esprima": "^4.0.2",
