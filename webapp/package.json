@@ -81,7 +81,7 @@
     "coveralls": "^3.0.4",
     "css-loader": "^3.2.0",
     "cypress": "^3.2.0",
-    "docz": "^1.2.0",
+    "docz": "^2.1.1",
     "docz-theme-default": "^1.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.12.1",
