@@ -24,6 +24,17 @@ describe('Achievement item behavior', () => {
     expect(wrapper.find('li span').text()).toEqual('desc');
   });
 
+  test('should pass in host as prop', () => {
+    const host = 'http://myhost.co';
+    const wrapper = mount(
+      <AchievementItem
+        host={host}
+      />
+    );
+
+    expect(wrapper.props().host).toEqual(host);
+  });
+
   test('propagate on click event to be handled', () => {
     const callback = jest.fn();
     const wrapper = mount(
