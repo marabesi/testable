@@ -1,5 +1,5 @@
 // @ts-nocheck
-import React, {Component} from 'react';
+import React, { useState, useEffect } from 'react';
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -10,26 +10,18 @@ const mapStateToProps = state => ({
   user: state.userReducer.user,
 });
 
-export class AchievementList extends Component {
-
-  state = {
-    achievements: []
+export const AchievementList = props => {
+  const [achievements, setAchievements] = useState([]);
+  const handleAchievements = () => {
+    if (props.achievements.length) {
+      setAchievements(props.achievements);
+    }
   };
 
-  componentDidMount = () => this.handleAchievements(this.props)
+  useEffect(handleAchievements);
 
-  UNSAFE_componentWillReceiveProps = props => this.handleAchievements(props)
-
-  handleAchievements = (props) => {
-    const { achievements } = props;
-
-    if (achievements.length) {
-      this.setState({ achievements });
-    }
-  }
-
-  showAchievement = index => {
-    const current = this.props.achievements;
+  const showAchievement = index => {
+    const current = Object.assign([], props.achievements);
     const selected = current[index];
     const active = !selected.active;
 
@@ -37,48 +29,46 @@ export class AchievementList extends Component {
 
     current[index] = selected;
 
-    this.setState({ current });
+    setAchievements(current);
 
     track({
       section: 'achievements',
       action: `toggle_achievement_${index}|button_click`,
       value: active,
     });
-  }
+  };
 
-  render() {
-    const achievements = [];
+  const achievementsToRender = [];
 
-    for (const [index, achievement] of this.state.achievements.entries()) {
-      if (this.props.user.level >= achievement.level) {
-        achievements.push(
-          <AchievementItem
-            key={index}
-            title={achievement.title}
-            description={achievement.description}
-            items={achievement.items || []}
-            active={achievement.active}
-            onClick={() => this.showAchievement(index)}
-          />
-        );
-      }
-    }
-
-    if (achievements.length === 0) {
-      return (
-        <span className="p-5 text-white">
-          {this.props.intl.messages.achievements.empty_list}
-        </span>
+  for (const [index, achievement] of achievements.entries()) {
+    if (props.user.level >= achievement.level) {
+      achievementsToRender.push(
+        <AchievementItem
+          key={index}
+          title={achievement.title}
+          description={achievement.description}
+          items={achievement.items || []}
+          active={achievement.active}
+          onClick={() => showAchievement(index)}
+        />
       );
     }
+  }
 
+  if (achievementsToRender.length === 0) {
     return (
-      <ul className="p-2 text-white">
-        {achievements}
-      </ul>
+      <span className="p-5 text-white">
+        {props.intl.messages.achievements.empty_list}
+      </span>
     );
   }
-}
+
+  return (
+    <ul className="p-2 text-white">
+      {achievementsToRender}
+    </ul>
+  );
+};
 
 AchievementList.propTypes = {
   user: PropTypes.object,

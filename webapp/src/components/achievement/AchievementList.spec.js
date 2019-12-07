@@ -1,8 +1,16 @@
 //@ts-nocheck
 import React from 'react';
-import { shallow } from 'enzyme';
+import { act } from 'react-dom/test-utils'; 
+import { shallow, mount } from 'enzyme';
+import { IntlProvider } from 'react-intl';
 import { AchievementList } from './AchievementList';
 import { AchievementItem } from './AchievementItem';
+import { messages } from '../../constants/locale';
+
+const BuildComponent = props => 
+  <IntlProvider locale={'en'} messages={messages.en}>
+    <AchievementList {...props}/>
+  </IntlProvider>;
 
 describe('AchievementList component: behavior based on the user level', () => {
   test('should not show achievement with higher level than the user', () => {
@@ -26,27 +34,12 @@ describe('AchievementList component: behavior based on the user level', () => {
 });
 
 describe('default AchievementList behavior', () => {
-  test('should render achievements via achievements prop', () => {
-    const wrapper = shallow(
-      <AchievementList
-        user={{ level: 1 }}
-        achievements={[
-          {
-            title: 'my title',
-            description: 'my desc',
-            level: 0,
-          },
-        ]}
-      />
-    );
-  
-    expect(wrapper.children().length).toEqual(1);
-  });
 
-  test('should render friendly when the list is empty', () => {
+  test('should render friendly message when the list is empty', () => {
     const msg = 'Você não possui nenhuma conquista até o momento';
     const wrapper = shallow(
       <AchievementList
+        achievements={[]}
         intl={{
           messages: {
             achievements: {
@@ -55,14 +48,14 @@ describe('default AchievementList behavior', () => {
           }
         }}
         user={{ level: 1 }}
-      />);
+      />
+    );
     expect(wrapper.find('span').text()).toEqual(msg);
-    expect(wrapper.find('ul').length).toBe(0);
   });
 
   test('should set item to active to true (show up the item description)', () => {
-    const wrapper = shallow(
-      <AchievementList
+    const wrapper = mount(
+      <BuildComponent
         user={{ level: 1 }}
         achievements={[
           {
@@ -74,8 +67,31 @@ describe('default AchievementList behavior', () => {
       />
     );
 
-    wrapper.instance().showAchievement(0);
+    expect(wrapper.find(AchievementItem).prop('active')).toBeFalsy();
 
-    expect(wrapper.instance().state.achievements[0].active).toBeTruthy();
+    act(() => {
+      wrapper.find(AchievementItem).props().onClick();
+    });
+
+    wrapper.update();
+
+    expect(wrapper.find(AchievementItem).props().active).toBeTruthy();
+  });
+
+  test('should render achievements via achievements prop', () => {
+    const wrapper = mount(
+      <BuildComponent
+        user={{ level: 1 }}
+        achievements={[
+          {
+            title: 'my title',
+            description: 'my desc',
+            level: 0,
+          },
+        ]}
+      />
+    );
+
+    expect(wrapper.find(AchievementItem).length).toEqual(1);
   });
 });

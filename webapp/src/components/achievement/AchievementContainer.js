@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import AchievementList from './AchievementList';
@@ -7,11 +7,9 @@ import Close from '../icons/Close';
 import Title from '../title/Title';
 import { colors } from '../../tailwind';
 
-export class AchievementContainer extends Component {
-
-  render() {
-    const { intl, onClose } = this.props;
-    return (
+export function AchievementContainer(props) {
+  const { intl, onClose } = props;
+  return (
       <>
         <Title>
           <div>
@@ -36,8 +34,7 @@ export class AchievementContainer extends Component {
           <AchievementList achievements={intl.messages.achievements.list} />
         }
       </>
-    );
-  }
+  );
 }
 
 AchievementContainer.propTypes = {
