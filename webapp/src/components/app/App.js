@@ -7,6 +7,7 @@ import { IntlProvider } from 'react-intl';
 import PropTypes from 'prop-types';
 import { mapStyles, bounceTransition } from './transition';
 import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
+import { messages } from '../../constants/locale';
 import Queue from '../../queue/queue';
 import Loading from '../loading/Loading';
 import Sidebar from '../sidebar/Sidebar';
@@ -35,10 +36,6 @@ import './app.scss';
 
 const isDebug = process.env.REACT_APP_DEBUG || false;
 const queue = new Queue();
-const messages = {
-  en: require('../../locale/en').default,
-  'pt-br': require('../../locale/pt-br').default,
-};
 
 const assets = [
   '/assets/buggy-rocket.png',
