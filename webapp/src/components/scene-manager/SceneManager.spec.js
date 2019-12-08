@@ -1,6 +1,7 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import SceneManager from './SceneManager';
+import Scene from './Scene';
 
 describe('Scene manager component', () => {
 
@@ -30,24 +31,18 @@ describe('Scene manager component', () => {
     ]
   };
 
-  test('should initialize manager with scene 1', done => {
+  test('should initialize manager with scene 1', () => {
     const wrapper = mount(
       <SceneManager
         content={content}
       />
     );
 
-    expect(wrapper.html()).toContain('');
-
-    setTimeout(() => {
-      wrapper.update();
-      expect(wrapper.html()).toContain('_ Hello world');
-      wrapper.unmount();
-      done();
-    }, 1500);
+    expect(wrapper.find(Scene).props().step).toEqual(1);
+    expect(wrapper.find(Scene).props().text).toEqual(content.steps[0].content);
   });
 
-  test('should go to step 2 and then back to step 1', done => {
+  test('should go to step 2 and then back to step 1', () => {
     const wrapper = mount(
       <SceneManager
         content={content}
@@ -57,15 +52,12 @@ describe('Scene manager component', () => {
     wrapper.instance().handleNextScene();
     wrapper.instance().handlePreviousScene();
 
-    setTimeout(() => {
-      wrapper.update();
-      expect(wrapper.html()).toContain('_ Hello world');
-      wrapper.unmount();
-      done();
-    }, 1500);
+
+    expect(wrapper.find(Scene).props().step).toEqual(1);
+    expect(wrapper.find(Scene).props().text).toEqual(content.steps[0].content);
   });
 
-  test('should go to the next scene (scene 2)', done => {
+  test('should go to the next scene (scene 2)', () => {
     const wrapper = mount(
       <SceneManager
         content={content}
@@ -73,13 +65,10 @@ describe('Scene manager component', () => {
     );
 
     wrapper.instance().handleNextScene();
+    wrapper.update();
 
-    setTimeout(() => {
-      wrapper.update();
-      expect(wrapper.html()).toContain('step 2 content');
-      wrapper.unmount();
-      done();
-    }, 1500);
+    expect(wrapper.find(Scene).props().step).toEqual(2);
+    expect(wrapper.find(Scene).props().text).toEqual(content.steps[1].content);
   });
 
   test('should not go to previous step when it is in the first step already', () => {
