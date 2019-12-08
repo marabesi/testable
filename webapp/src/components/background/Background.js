@@ -1,4 +1,4 @@
-import React, { PureComponent as Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
@@ -9,23 +9,17 @@ const mapStateToProps = state => ({
   user: state.userReducer.user,
 });
 
-export class Background extends Component {
-
-  render() {
-    return (
-      <>
-        {
-          !this.props.user.uid &&
-          <div className="path">
-            <div className="comet"></div>
-          </div>
-        }
-        <div className={ this.props.options.animation ? 'stars' : 'stars-only' }></div>
-        {this.props.children}
-      </>
-    );
-  }
-}
+export const Background = props =>
+  <>
+    {
+      !props.user.uid &&
+      <div className="path">
+        <div className="comet"></div>
+      </div>
+    }
+    <div className={props.options.animation ? 'stars' : 'stars-only'}></div>
+    {props.children}
+  </>;
 
 Background.propTypes = {
   children: PropTypes.node,

@@ -1,13 +1,15 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import { Background } from './Background';
+import Background, { Background as PureBackground } from './Background';
+import { build, store } from '../../__test__/withReduxProvider';
+import { ON_OPTIONS_UPDATED } from '../../actions/optionsAction';
 
 describe('Background component', () => {
   test('should mount children components', () => {
     const wrapper = mount(
-      <Background>
+      <PureBackground>
         <h1>children</h1>
-      </Background>
+      </PureBackground>
     );
 
     const h1 = wrapper.find('h1').text();
@@ -15,13 +17,26 @@ describe('Background component', () => {
     expect(h1).toEqual('children');
   });
 
-  test('should enable background animation', () => {
+  test('should enable PureBackground animation', () => {
     const wrapper = mount(
-      <Background options={{animation: true}}>
+      <PureBackground options={{animation: true}}>
         <h1>children</h1>
-      </Background>
+      </PureBackground>
     );
 
     expect(wrapper.find('.stars').length).toBe(1);
+  });
+
+  describe('background component controlled via redux options', () => {
+    test('should enable animation', () => {
+      const PureBackgroundWithStore = build(Background);
+      const wrapper = mount(PureBackgroundWithStore);
+
+      store.dispatch({ type: ON_OPTIONS_UPDATED, payload: { animation: true }});
+
+      wrapper.update();
+
+      expect(wrapper.find('.stars').length).toBe(1);
+    });
   });
 });
