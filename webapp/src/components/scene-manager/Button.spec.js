@@ -30,4 +30,18 @@ describe('Scene component', () => {
 
     expect(button.html().match(/my button/).length).toBe(1);
   });
+
+  test('should disable button via props', () => {
+    const wrapper = mount(<Button disabled={true} />);
+    const button = wrapper.find('button');
+
+    expect(button.props().disabled).toBeTruthy();
+  });
+
+  test('should not be disabled by default', () => {
+    const wrapper = mount(<Button />);
+    const button = wrapper.find('button');
+
+    expect(button.props().disabled).toBeFalsy();
+  });
 });
