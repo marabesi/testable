@@ -1,8 +1,11 @@
 import React from 'react';
 import sinon from 'sinon';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
+import { act } from 'react-dom/test-utils';
 import Scene from './Scene';
 import Button from './Button';
+
+jest.useFakeTimers();
 
 describe('Scene component', () => {
 
@@ -29,8 +32,8 @@ describe('Scene component', () => {
     expect(wrapper.find(Button).length).toEqual(0);
   });
 
-  test('by default, the next button is not disabled', done => {
-    const wrapper = shallow(
+  test('remove disable from button after finished typing', () => {
+    const wrapper = mount(
       <Scene
         text={[ {key: 0, line: 'a'} ]}
         button="just a label"
@@ -38,13 +41,13 @@ describe('Scene component', () => {
       />
     );
 
-    wrapper.instance().onFinishedTyping();
+    act(() => {
+      jest.runAllTimers();
+    });
 
-    setTimeout(() => {
-      wrapper.update();
-      expect(wrapper.find(Button).prop('disabled')).toBeFalsy();
-      done();
-    }, 10);
+    wrapper.update();
+
+    expect(wrapper.find(Button).props().disabled).toBeFalsy();
   });
 
   test('by default, does not show alien component', () => {
@@ -66,7 +69,9 @@ describe('Scene component', () => {
       />
     );
 
-    expect(wrapper.find('AlienSvg').prop('className').includes('block')).toBeTruthy();
+    const className = wrapper.find('AlienSvg').prop('className');
+
+    expect(className.includes('block')).toBeTruthy();
   });
 
   test('should show alien component with animation', () => {
@@ -81,26 +86,6 @@ describe('Scene component', () => {
     expect(wrapper.find('AlienSvg').prop('className')).toContain('slide-in-bck-top');
   });
 
-  test('should show up next button', done => {
-    const wrapper = shallow(
-      <Scene
-        text={[ {key: 0, line: 'my'} ]}
-        button="mybutton"
-        showNextButton={1}
-        releaseButton={1}
-      />
-    );
-
-    wrapper.instance().onFinishedTyping();
-
-    setTimeout(() => {
-      wrapper.update();
-
-      expect(wrapper.find(Button).prop('description')).toEqual('mybutton');
-      done();
-    }, 5);
-  });
-
   test('pass in a custom class to the scene container', () => {
     const wrapper = mount(
       <Scene
@@ -112,27 +97,24 @@ describe('Scene component', () => {
     expect(wrapper.find('div').at(0).hasClass('custom-class')).toBeTruthy();
   });
 
-  test('should show up buggy component after typing', done => {
+  test('should show up buggy component after typing', () => {
     const NODE_INDEX = 1;
-    const wrapper = shallow(
+    const wrapper = mount(
       <Scene
-        onCompleted={{showBug: true}}
+        onCompleted={{showBug: {}}}
         text={[ {key: 0, line: 'my'} ]}
-        showNextButton={1}
       />
     );
 
     expect(wrapper.find('BuggyLeft').at(NODE_INDEX).prop('className')).toContain('hidden');
 
-    wrapper.instance().onFinishedTyping();
+    act(() => {
+      jest.runAllTimers();
+    });
 
-    setTimeout(() => {
-      wrapper.update();
+    wrapper.update();
 
-      // @ts-ignore
-      expect(wrapper.find('BuggyLeft').at(NODE_INDEX).prop('className')).toContain('slide-in-bck-right');
-      done();
-    }, 10);
+    expect(wrapper.find('BuggyLeft').at(NODE_INDEX).prop('className')).toContain('slide-in-bck-right');
   });
 
   test('should show up alien character', () => {
@@ -150,11 +132,11 @@ describe('Scene component', () => {
     expect(wrapper.find('img').at(3).prop('src')).toEqual('img content');
   });
 
-  test('should handle last scene', done => {
+  test('should handle last scene', () => {
     const handleLastScene = sinon.spy();
     const handleNextScene = sinon.spy();
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <Scene
         lastScene={true}
         handleLastScene={handleLastScene}
@@ -165,23 +147,23 @@ describe('Scene component', () => {
       />
     );
 
-    wrapper.instance().onFinishedTyping();
+    act(() => {
+      jest.runAllTimers();
+    });
 
-    setTimeout(() => {
-      wrapper.update();
-      wrapper.find(Button).simulate('click');
+    wrapper.update();
 
-      expect(handleLastScene.called).toBeTruthy();
-      expect(handleNextScene.called).toBeFalsy();
-      done();
-    }, 10);
+    wrapper.find(Button).simulate('click');
+
+    expect(handleLastScene.called).toBeTruthy();
+    expect(handleNextScene.called).toBeFalsy();
   });
 
-  test('should handle next scene', done => {
+  test('should handle next scene', () => {
     const handleLastScene = sinon.spy();
     const handleNextScene = sinon.spy();
 
-    const wrapper = shallow(
+    const wrapper = mount(
       <Scene
         lastScene={false}
         handleLastScene={handleLastScene}
@@ -192,71 +174,64 @@ describe('Scene component', () => {
       />
     );
 
-    wrapper.instance().onFinishedTyping();
+    act(() => {
+      jest.runAllTimers();
+    });
 
-    setTimeout(() => {
-      wrapper.update();
-      wrapper.find(Button).simulate('click');
+    wrapper.update();
+    wrapper.find(Button).simulate('click');
 
-      expect(handleLastScene.called).toBeFalsy();
-      expect(handleNextScene.called).toBeTruthy();
-      done();
-    }, 10);
+    expect(handleLastScene.called).toBeFalsy();
+    expect(handleNextScene.called).toBeTruthy();
   });
 
-  test('should disable button once clicked to prevent firing the event twice', done => {
+  test('should disable button once clicked to prevent firing the event twice', () => {
     const onClick = jest.fn();
-    const wrapper = shallow(
+    const wrapper = mount(
       <Scene
         text={[ {key: 0, line: 'my'} ]}
-        button="mybutton"
+        button="my button"
         next={onClick}
         showNextButton={1}
-        releaseButton={1}
       />
     );
 
-    wrapper.instance().onFinishedTyping();
+    act(() => {
+      jest.runAllTimers();
+    });
 
-    setTimeout(() => {
+    wrapper.update();
+
+    // tries to click 10 times next button
+    for (let i = 0; i < 10; i++) {
+      act(() => {
+        wrapper.find(Button).props().onClick();
+      });
+
       wrapper.update();
-
-      // tries to click 10 times next button
-      for (let i = 0; i < 10; i++) {
-        wrapper.find(Button).simulate('click');
-      }
-
-      expect(onClick).toBeCalledTimes(1);
-      done();
-    }, 50);
+    }
+    expect(onClick).toBeCalledTimes(1);
   });
 
-  test('should release disable from next button based on releaseButton prop', done => {
+  test('should release disable from next button based on releaseButton prop', () => {
     const onClick = jest.fn();
-    const wrapper = shallow(
+    const wrapper = mount(
       <Scene
         text={[ {key: 0, line: 'my'} ]}
-        button="mybutton"
+        button="my button"
         next={onClick}
         showNextButton={1}
         releaseButton={5}
       />
     );
 
-    wrapper.instance().onFinishedTyping();
+    act(() => {
+      jest.runAllTimers();
+    });
 
-    setTimeout(() => {
-      wrapper.update();
-      wrapper.find(Button).simulate('click');
-      expect(wrapper.find(Button).prop('disabled')).toBeTruthy();
-    }, 10);
+    wrapper.update();
 
-    setTimeout(() => {
-      wrapper.update();
-
-      expect(wrapper.find(Button).prop('disabled')).toBeFalsy();
-      done();
-    }, 50);
+    expect(wrapper.find(Button).prop('disabled')).toBeFalsy();
   });
 
   test('should render buggy bug version', () => {
@@ -283,5 +258,40 @@ describe('Scene component', () => {
     );
 
     expect(wrapper.find('BuggyHappy').length).toBe(1);
+  });
+
+  test('should apply responsive classes to buggy when animate is set', () => {
+    const wrapper = mount(<Scene showBuggy={{ animate: true}} />);
+    const buggy = wrapper.find('BuggyLeft').at(0);
+    const classes = buggy.prop('className') || '';
+    expect(classes.includes('md:slide-in-bck-right')).toBeTruthy();
+  });
+
+  test('should apply block class to buggy when buggy prop is true', () => {
+    const wrapper = mount(<Scene showBuggy={true} />);
+    const buggy = wrapper.find('BuggyLeft').at(0);
+    const classes = buggy.prop('className') || '';
+    expect(classes.includes('md:block')).toBeTruthy();
+  });
+
+  test('should apply animation class to buggy happy', () => {
+    const wrapper = mount(
+      <Scene
+        onCompleted={{ type: 'happy' }}
+        text={[ {key: 0, line: 'my'} ]}
+        button="my button"
+        showNextButton={1}
+      />
+    );
+
+    act(() => {
+      jest.runAllTimers();
+    });
+
+    wrapper.update();
+
+    const buggyHappy = wrapper.find('BuggyHappyLeft');
+    const classes = buggyHappy.prop('className') || '';
+    expect(classes.includes('md:block md:slide-in-bck-right')).toBeTruthy();
   });
 });
