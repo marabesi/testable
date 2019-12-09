@@ -2,14 +2,14 @@
 import React from 'react';
 import { Provider } from 'react-redux';
 
-import Store from '../../store/store';
+import Store from '../store/store';
 
-const store = Store();
+export const store = Store();
 
-export function build(component) {
+export function build(Component) {
   return (
     <Provider store={store}>
-      <component />
+      <Component />
     </Provider>
   );
 }
