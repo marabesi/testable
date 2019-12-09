@@ -1,5 +1,6 @@
 import React from 'react';
 import { mount } from 'enzyme';
+import { act } from 'react-dom/test-utils'; 
 import SceneManager from './SceneManager';
 import Scene from './Scene';
 
@@ -42,33 +43,44 @@ describe('Scene manager component', () => {
     expect(wrapper.find(Scene).props().text).toEqual(content.steps[0].content);
   });
 
-  test('should go to step 2 and then back to step 1', () => {
+  test('should go to step 2', () => {
     const wrapper = mount(
       <SceneManager
         content={content}
       />
     );
 
-    wrapper.instance().handleNextScene();
-    wrapper.instance().handlePreviousScene();
+    act(() => {
+      wrapper.find(Scene).props().next();
+    });
 
-
-    expect(wrapper.find(Scene).props().step).toEqual(1);
-    expect(wrapper.find(Scene).props().text).toEqual(content.steps[0].content);
-  });
-
-  test('should go to the next scene (scene 2)', () => {
-    const wrapper = mount(
-      <SceneManager
-        content={content}
-      />
-    );
-
-    wrapper.instance().handleNextScene();
     wrapper.update();
 
     expect(wrapper.find(Scene).props().step).toEqual(2);
     expect(wrapper.find(Scene).props().text).toEqual(content.steps[1].content);
+  });
+
+  test('should go to step 1', () => {
+    const wrapper = mount(
+      <SceneManager
+        content={content}
+      />
+    );
+
+    act(() => {
+      wrapper.find(Scene).props().next(); // step 2
+    });
+
+    wrapper.update();
+
+    act(() => {
+      wrapper.find(Scene).props().previous(); // going back - step 1
+    });
+
+    wrapper.update();
+
+    expect(wrapper.find(Scene).props().step).toEqual(1);
+    expect(wrapper.find(Scene).props().text).toEqual(content.steps[0].content);
   });
 
   test('should not go to previous step when it is in the first step already', () => {
@@ -78,9 +90,13 @@ describe('Scene manager component', () => {
       />
     );
 
-    const previous = wrapper.instance().handlePreviousScene();
+    act(() => {
+      wrapper.find(Scene).props().previous();
+    });
 
-    expect(previous).toBeFalsy();
+    wrapper.update();
+
+    expect(wrapper.find(Scene).props().step).toEqual(1);
   });
 
   test('should not go beyond last step', () => {
@@ -90,13 +106,19 @@ describe('Scene manager component', () => {
       />
     );
 
-    const goToLastStep = wrapper.instance().handleNextScene();
-    const beyondLastStep = wrapper.instance().handleNextScene();
+    act(() => {
+      wrapper.find(Scene).props().next(); // step 2
+    });
 
-    wrapper.unmount();
+    wrapper.update();
 
-    expect(goToLastStep).toBeUndefined();
-    expect(beyondLastStep).toBeFalsy();
+    act(() => {
+      wrapper.find(Scene).props().next(); // step 3 - doesn't exists
+    });
+
+    wrapper.update();
+
+    expect(wrapper.find(Scene).props().step).toEqual(2);
   });
 
   test('should pass in lastStep from the content json', () => {
@@ -110,8 +132,8 @@ describe('Scene manager component', () => {
     );
 
     wrapper.update();
-    expect(wrapper.find('Scene').prop('lastScene')).toBe(true);
-    wrapper.unmount();
+
+    expect(wrapper.find(Scene).props().lastScene).toBe(true);
   });
 
   test('should pass in lastStep as true when the last step is reached', () => {
@@ -121,10 +143,13 @@ describe('Scene manager component', () => {
       />
     );
 
-    wrapper.instance().handleNextScene();
+    act(() => {
+      wrapper.find(Scene).props().next(); // go to step 2 - the last step
+    });
+
     wrapper.update();
-    expect(wrapper.find('Scene').prop('lastScene')).toBe(true);
-    wrapper.unmount();
+
+    expect(wrapper.find(Scene).props().lastScene).toBe(true);
   });
 
   describe('debug button', () => {
@@ -146,7 +171,7 @@ describe('Scene manager component', () => {
           content={{}}
         />
       );
-      expect(wrapper.find('Scene').length).toBe(0);
+      expect(wrapper.find(Scene).length).toBe(0);
     });
 
     test('should handle gracefully json object with empty steps', () => {
@@ -157,7 +182,7 @@ describe('Scene manager component', () => {
           }}
         />
       );
-      expect(wrapper.find('Scene').length).toBe(0);
+      expect(wrapper.find(Scene).length).toBe(0);
     });
   });
 });

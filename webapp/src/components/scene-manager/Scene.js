@@ -16,7 +16,7 @@ export default class Scene extends Component {
     disableNextButton: false
   };
 
-  onFinishedTyping() {
+  onFinishedTyping = () => {
     const { showNextButton } = this.props;
     setTimeout(() => this.setState({ showNextButton: true }), showNextButton);
   }
@@ -145,6 +145,7 @@ Scene.propTypes = {
   text: PropTypes.array,
   className: PropTypes.string,
   next: PropTypes.func,
+  previous: PropTypes.func,
   lastScene: PropTypes.bool,
   handleLastScene: PropTypes.func,
   button: PropTypes.string,

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import Scene from './Scene';
 import DebugButton from '../debug/Button';
@@ -6,87 +6,85 @@ import { auth } from '../../pages/login/Auth';
 import Emitter, { PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 import { track } from '../../emitter/Tracking';
 
-export default class SceneManager extends Component {
+const SceneManager = props => {
   
-  state = {
-    currentStep: 1
-  };
+  const [currentStep, setCurrentStep] = useState(1);
 
-  handlePreviousScene = () => {
-    const current = this.state.currentStep;
-
-    if (current === 1) {
+  const handlePreviousScene = () => {
+    if (currentStep === 1) {
       return false;
     }
 
-    this.setState({
-      currentStep: current - 1
-    });
+    setCurrentStep(currentStep - 1);
 
     Emitter.emit(PROGRESS_DOWN, { amount: auth.user.progress - 10 });
-  }
+  };
 
-  handleNextScene = () => {
-    const current = this.state.currentStep;
-    const total = this.props.content.steps.length;
+  const handleNextScene = () => {
+    const current = currentStep;
+    const total = props.content.steps.length;
 
     if (current === total) {
       return false;
     }
 
-    this.setState({
-      currentStep: current + 1
-    });
+    setCurrentStep(current + 1);
 
     Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10 });
 
     track({
-      section: this.props.identifier,
+      section: props.identifier,
       action: 'next_scene|button_click',
       value: current,
     });
+  };
+
+  const steps = props.content.steps || [];
+  const scenes = [];
+  const last = steps.length - 1;
+
+  for (const [index, step] of steps.entries()) {
+    if (step.step === currentStep) {
+      scenes.push(
+        <Scene
+          key={index}
+          text={step.content}
+          button={step.button}
+          step={currentStep}
+          className="m-auto w-3/5"
+          next={handleNextScene}
+          previous={handlePreviousScene}
+          lastScene={step.lastScene || (last === index)}
+          handleLastScene={props.handleLastScene}
+          showAlien={step.showAlien}
+          showBuggy={step.showBuggy || false}
+          onCompleted={step.onCompleted || {}}
+        />
+      );
+    }
   }
 
-  render() {
-    const steps = this.props.content.steps || [];
-    const scenes = [];
-    const last = steps.length - 1;
-
-    for (const [index, step] of steps.entries()) {
-      if (step.step === this.state.currentStep) {
-        scenes.push(
-          <Scene
-            key={index}
-            text={step.content}
-            button={step.button}
-            step={this.state.currentStep}
-            className="m-auto w-3/5"
-            next={this.handleNextScene}
-            lastScene={step.lastScene || (last === index)}
-            handleLastScene={this.props.handleLastScene}
-            showAlien={step.showAlien}
-            showBuggy={step.showBuggy || false}
-            onCompleted={step.onCompleted || {}}
-          />
-        );
-      }
-    }
-
-    return (
+  return (
       <>
-        <div className={`w-full -mt-20 ${this.props.className}`}>
+        <div className={`w-full -mt-20 ${props.className}`}>
           { scenes }
         </div>
-        <DebugButton onClick={this.handlePreviousScene} value="previous" />
-        <DebugButton onClick={this.handleNextScene} value="next" />
-        <DebugButton onClick={this.props.handleLastScene} value="trigger last scene" />
+        <DebugButton onClick={handlePreviousScene} value="previous" />
+        <DebugButton onClick={handleNextScene} value="next" />
+        <DebugButton onClick={props.handleLastScene} value="trigger last scene" />
       </>
-    );
-  }
-}
+  );
+};
 
 SceneManager.propTypes = {
   identifier: PropTypes.string,
   content: PropTypes.object,
-  handleLastScene: PropTypes.func
+  handleLastScene: PropTypes.func,
+  className: PropTypes.string
 };
+
+SceneManager.defaultProps = {
+  className: ''
+};
+
+export default SceneManager;
