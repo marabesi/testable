@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
@@ -8,17 +8,10 @@ const WrappedSceneContentManager = (
   content,
   redirectTo
 ) => {
-  class SceneContentManager extends Component {
-
-    static propTypes = {
-      history: PropTypes.object,
-      handleLastScene: PropTypes.func,
-      className: PropTypes.string,
-    }
-
-    handleLastScene = () => {
-      if (this.props.handleLastScene) {
-        this.props.handleLastScene();
+  const SceneContentManager = props => {
+    const handleLastScene = () => {
+      if (props.handleLastScene) {
+        props.handleLastScene();
         return;
       }
 
@@ -26,23 +19,23 @@ const WrappedSceneContentManager = (
         tutorial: true,
       });
 
-      setTimeout(() => {
-        this.props.history.push(redirectTo);
-      }, 1000);
+      props.history.push(redirectTo);
     }
 
-    render() {
-      const { className } = this.props;
+    return (
+      <SceneManager
+        className={props.className}
+        identifier={identifier}
+        content={content}
+        handleLastScene={handleLastScene}
+      />
+    );
+  }
 
-      return (
-        <SceneManager
-          className={className}
-          identifier={identifier}
-          content={content}
-          handleLastScene={this.handleLastScene}
-        />
-      );
-    }
+  SceneContentManager.propTypes = {
+    history: PropTypes.object,
+    handleLastScene: PropTypes.func,
+    className: PropTypes.string,
   }
 
   return SceneContentManager;

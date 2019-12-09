@@ -2,9 +2,10 @@ import React from 'react';
 import { mount } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import Introduction from './Introduction';
+import SceneManager from '../../components/scene-manager/SceneManager';
 
 describe('Introduction page', () => {
-  test('should define route to redirect to when done', done => {
+  test('should define route to redirect to when done', () => {
     const history = {
       push: jest.fn()
     };
@@ -16,14 +17,11 @@ describe('Introduction page', () => {
         />
       </BrowserRouter>
     );
-    wrapper.find('SceneContentManager').instance().handleLastScene();
+
+    wrapper.find(SceneManager).props().handleLastScene();
 
     wrapper.update();
 
-    setTimeout(() => {
-      done();
-      wrapper.update();
-      expect(history.push).toBeCalledWith('tutorial');
-    }, 1100);
+    expect(history.push).toBeCalledWith('tutorial');
   });
 });

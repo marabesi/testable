@@ -1,7 +1,9 @@
 import React from 'react';
 import { mount } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
+import { act } from 'react-dom/test-utils';
 import SceneContentManager from './SceneContentManager';
+import SceneManager from './SceneManager';
 
 describe('SceneContentManager page', () => {
   let HoC;
@@ -18,7 +20,7 @@ describe('SceneContentManager page', () => {
     HoC = null;
   });
 
-  test('should redirect to tutorial page', done => {
+  test('should redirect to tutorial page', () => {
     const history = {
       push: jest.fn()
     };
@@ -27,14 +29,27 @@ describe('SceneContentManager page', () => {
         <HoC history={history} />
       </BrowserRouter>
     );
-    wrapper.find('SceneContentManager').instance().handleLastScene();
+    wrapper.find(SceneManager).props().handleLastScene();
 
     wrapper.update();
 
-    setTimeout(() => {
-      done();
-      wrapper.update();
-      expect(history.push).toBeCalledWith('my-route');
-    }, 1100);
+    expect(history.push).toBeCalledWith('my-route');
+  });
+
+  test('should invoke last scene callback when given as props', () => {
+    const callback = jest.fn();
+    const wrapper = mount(
+      <BrowserRouter>
+        <HoC history={history} handleLastScene={callback} />
+      </BrowserRouter>
+    );
+
+    act(() => {
+      wrapper.find(SceneManager).props().handleLastScene();
+    });
+
+    wrapper.update();
+
+    expect(callback).toHaveBeenCalledTimes(1);
   });
 });

@@ -1,7 +1,8 @@
 import React from 'react';
 import { mount } from 'enzyme';
-import {BrowserRouter} from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import TutorialEnd from './TutorialEnd';
+import SceneManager from '../../components/scene-manager/SceneManager';
 
 describe('TutorialEnd page', () => {
   test('render without crashing', () => {
@@ -16,7 +17,7 @@ describe('TutorialEnd page', () => {
     expect(wrapper.find('DebugButton').length).toBe(0);
   });
 
-  test('should redirect to unit testing intro page when done', done => {
+  test('should redirect to unit testing intro page when done', () => {
     const history = {
       push: jest.fn()
     };
@@ -26,12 +27,10 @@ describe('TutorialEnd page', () => {
       </BrowserRouter>
     );
 
-    wrappedWithRouter.find(TutorialEnd).instance().handleLastScene();
+    wrappedWithRouter.find(SceneManager).props().handleLastScene();
 
-    setTimeout(() => {
-      wrappedWithRouter.update();
-      expect(history.push).toBeCalledWith('unit-testing-intro');
-      done();
-    }, 1400);
+    wrappedWithRouter.update();
+
+    expect(history.push).toBeCalledWith('unit-testing-intro');
   });
 });
