@@ -16,11 +16,11 @@ describe('Ranking component', () => {
     };
     const wrapper = mount(<Ranking />);
 
-    setTimeout(() => {
+    process.nextTick(() => {
       wrapper.update();
       expect(wrapper.find('Loading').length).toBe(0);
       done();
-    }, 500);
+    });
   });
 
   test('should show a friendly intl message if the data fetching fails', done => {
@@ -33,12 +33,12 @@ describe('Ranking component', () => {
       />
     );
 
-    setTimeout(() => {
+    process.nextTick(() => {
       wrapper.update();
       expect(wrapper.find('Loading').length).toBe(0);
       expect(wrapper.find('h3').text()).toBe('Ocorreu um erro ao carregar o ranking :(');
       done();
-    }, 500);
+    });
   });
 
   test('should render loading component by default', () => {
@@ -111,11 +111,11 @@ describe('Ranking component', () => {
       }}
     />);
 
-    setTimeout(() => {
+    process.nextTick(() => {
       wrapper.update();
       expect(wrapper.find('h3').text()).toEqual('no data');
       wrapper.unmount();
       done();
-    }, 1);
+    });
   });
 });
