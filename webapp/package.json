@@ -79,7 +79,7 @@
     "babel-eslint": "^9.0.0",
     "codacy-coverage": "^3.4.0",
     "coveralls": "^3.0.4",
-    "css-loader": "^3.2.0",
+    "css-loader": "^3.3.2",
     "cypress": "^3.2.0",
     "docz": "^1.2.0",
     "docz-theme-default": "^1.2.0",
