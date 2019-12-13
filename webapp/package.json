@@ -33,7 +33,6 @@
     "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",
     "debug": "export REACT_APP_DEBUG=true && npm run tailwind:css && react-scripts start",
     "start": "npm run tailwind:css && react-scripts start",
-    "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "npm run lint && npm run tailwind:css && export NODE_ENV=production && react-scripts build && npm run docz:build",
     "test": "react-scripts test --env=jsdom --verbose --maxWorkers=4",
