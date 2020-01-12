@@ -47,7 +47,8 @@
     "type:check": "tsc --noEmit",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
-    "stryker:run": "stryker run"
+    "stryker:run": "stryker run",
+    "serve": "node server.js"
   },
   "browserslist": [
     ">0.2%",
