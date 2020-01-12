@@ -16,7 +16,7 @@ services:
   app:
     environment:
       - PORT=5000
-    image: node:10.18
+    build: .
     user: 'node'
     volumes:
       - ./:/var/www
