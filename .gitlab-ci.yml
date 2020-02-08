@@ -1,0 +1,98 @@
+image: docker:latest
+
+services:
+  - docker:dind
+
+variables:
+  DOCKER_DRIVER: overlay2
+
+cache:
+  key: ${CI_COMMIT_REF_SLUG}
+  paths:
+  - ${CI_PROJECT_DIR}/webapp/node_modules
+
+before_script:
+  - docker login registry.gitlab.com -u gitlab-ci-token -p $CI_BUILD_TOKEN
+  - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+  - eval $(ssh-agent -s)
+  #
+  # Add the SSH key stored in SSH_PRIVATE_KEY variable to the agent store
+  # We're using tr to fix line endings which makes ed25519 keys work
+  # without extra base64 encoding.
+  # https://gitlab.com/gitlab-examples/ssh-private-key/issues/1#note_48526556
+  #
+  - echo "$QA_SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add -
+
+  #
+  # Create the SSH directory and give it the right permissions
+  #
+  - mkdir -p ~/.ssh
+  - chmod 700 ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  - cd webapp
+  - echo ${CI_COMMIT_REF_NAME}
+
+stages:
+  - build
+  - install_dependencies
+  - test
+  - metrics
+  - deploy
+
+build:
+  stage: build
+  script: 
+    - docker build . -t registry.gitlab.com/marabesi/testable:$CI_COMMIT_REF_NAME --build-arg REACT_APP_FIREBASE_JSON=$REACT_APP_FIREBASE_JSON --build-arg REACT_APP_RANKING_API=$REACT_APP_RANKING_API --build-arg REACT_APP_SHOW_SURVEY=$REACT_APP_SHOW_SURVEY --build-arg REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL
+    - docker push registry.gitlab.com/marabesi/testable:$CI_COMMIT_REF_NAME
+
+install_dependencies:
+  stage: install_dependencies
+  script: 
+    - docker run -v ${CI_PROJECT_DIR}/webapp/node_modules:/var/www/app/node_modules registry.gitlab.com/marabesi/testable:$CI_COMMIT_REF_NAME npm install
+
+test:
+  stage: test
+  script:
+    - docker pull registry.gitlab.com/marabesi/testable:$CI_COMMIT_REF_NAME
+    - docker run -v ${CI_PROJECT_DIR}/webapp/node_modules:/var/www/app/node_modules -e REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL registry.gitlab.com/marabesi/testable:$CI_COMMIT_REF_NAME npm run test -- --ci --watchAll=false
+    
+lint_report:
+  stage: metrics
+  script:
+    - docker pull registry.gitlab.com/marabesi/testable:$CI_COMMIT_REF_NAME
+    - docker run -v ${CI_PROJECT_DIR}/webapp/eslint:/var/www/app/eslint registry.gitlab.com/marabesi/testable:$CI_COMMIT_REF_NAME npm run lint-report
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/webapp/eslint
+
+code_coverage:
+  stage: metrics
+  script:
+    - docker pull registry.gitlab.com/marabesi/testable:$CI_COMMIT_REF_NAME
+    - docker run -v ${CI_PROJECT_DIR}/webapp/coverage:/var/www/app/coverage -e REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL registry.gitlab.com/marabesi/testable:$CI_COMMIT_REF_NAME npm run coverage
+  artifacts:
+    paths:
+      - ${CI_PROJECT_DIR}/webapp/coverage
+
+deploy:
+  stage: deploy
+  script:
+    - ssh $QA_SERVER_USER@$QA_SERVER_IP
+    - ssh $QA_SERVER_USER@$QA_SERVER_IP "docker pull registry.gitlab.com/marabesi/testable:${CI_COMMIT_REF_NAME}"
+    - ssh $QA_SERVER_USER@$QA_SERVER_IP "docker stop testable || true && docker rm testable || true"
+    - |
+      echo -e "
+        ssh $QA_SERVER_USER@$QA_SERVER_IP 'docker run \
+        --name testable \
+        -e REACT_APP_FIREBASE_JSON=$REACT_APP_FIREBASE_JSON \
+        -e REACT_APP_RANKING_API=$REACT_APP_RANKING_API \
+        -e REACT_APP_SHOW_SURVEY=$REACT_APP_SHOW_SURVEY \
+        -e REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL \
+        -d \
+        -p 80:5000 \
+        registry.gitlab.com/marabesi/testable:master \
+        npm run serve'
+      " | sh
+    - ssh $QA_SERVER_USER@$QA_SERVER_IP "docker system prune --force"
+  only:
+    - master
