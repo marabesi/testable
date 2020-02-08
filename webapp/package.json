@@ -104,6 +104,9 @@
       "src/**/*.{js,jsx}",
       "!src/registerServiceWorker.js",
       "!src/__test__/**/*.js"
+    ],
+    "watchPathIgnorePatterns": [
+      "<rootDir>/(build|docs|node_modules)/"
     ]
   },
   "engines": {
