@@ -1,11 +1,16 @@
-FROM node:10.18
+FROM node:10.18-alpine
+
+ARG REACT_APP_SURVEY_URL=https://form.jotformeu.com/92007220751345?id={id}
+ARG REACT_APP_FIREBASE_JSON='{}'
+ARG REACT_APP_RANKING_API='http://localhost'
+ARG REACT_APP_SHOW_SURVEY=false
+
+WORKDIR /var/www/app
 
 COPY package*.json ./
 
-RUN yarn install
-
 COPY . .
 
-EXPOSE 5000
+RUN npm install --only=production && npm run build
 
-CMD [ "yarn", "serve" ]
+EXPOSE 5000
