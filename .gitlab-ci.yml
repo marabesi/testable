@@ -30,7 +30,7 @@ before_script:
   - chmod 700 ~/.ssh
   - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
   - cd webapp
-  - echo ${CI_COMMIT_REF_NAME}
+  - echo ${CI_COMMIT_REF_SLUG}
   - echo fs.inotify.max_user_watches=524288 | tee -a /etc/sysctl.conf && sysctl -p
 
 stages:
@@ -43,25 +43,25 @@ stages:
 build:
   stage: build
   script: 
-    - docker build . -t registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_NAME --build-arg REACT_APP_FIREBASE_JSON=$REACT_APP_FIREBASE_JSON --build-arg REACT_APP_RANKING_API=$REACT_APP_RANKING_API --build-arg REACT_APP_SHOW_SURVEY=$REACT_APP_SHOW_SURVEY --build-arg REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL
-    - docker push registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_NAME
+    - docker build . -t registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG --build-arg REACT_APP_FIREBASE_JSON=$REACT_APP_FIREBASE_JSON --build-arg REACT_APP_RANKING_API=$REACT_APP_RANKING_API --build-arg REACT_APP_SHOW_SURVEY=$REACT_APP_SHOW_SURVEY --build-arg REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL
+    - docker push registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG
 
 install_dependencies:
   stage: install_dependencies
   script: 
-    - docker run -v ${CI_PROJECT_DIR}/webapp/node_modules:/var/www/app/node_modules registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_NAME npm install
+    - docker run -v ${CI_PROJECT_DIR}/webapp/node_modules:/var/www/app/node_modules registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG npm install
 
 test:
   stage: test
   script:
-    - docker pull registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_NAME
-    - docker run -v ${CI_PROJECT_DIR}/webapp/node_modules:/var/www/app/node_modules -e REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_NAME npm run test -- --ci --watchAll=false
+    - docker pull registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG
+    - docker run -v ${CI_PROJECT_DIR}/webapp/node_modules:/var/www/app/node_modules -e REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG npm run test -- --ci --watchAll=false
     
 lint_report:
   stage: metrics
   script:
-    - docker pull registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_NAME
-    - docker run -v ${CI_PROJECT_DIR}/webapp/eslint:/var/www/app/eslint registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_NAME npm run lint-report
+    - docker pull registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG
+    - docker run -v ${CI_PROJECT_DIR}/webapp/eslint:/var/www/app/eslint registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG npm run lint-report
   artifacts:
     paths:
       - ${CI_PROJECT_DIR}/webapp/eslint
@@ -69,8 +69,8 @@ lint_report:
 code_coverage:
   stage: metrics
   script:
-    - docker pull registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_NAME
-    - docker run -v ${CI_PROJECT_DIR}/webapp/coverage:/var/www/app/coverage -e REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_NAME npm run coverage
+    - docker pull registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG
+    - docker run -v ${CI_PROJECT_DIR}/webapp/coverage:/var/www/app/coverage -e REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG npm run coverage
   artifacts:
     paths:
       - ${CI_PROJECT_DIR}/webapp/coverage
@@ -79,7 +79,7 @@ deploy:
   stage: deploy
   script:
     - ssh $QA_SERVER_USER@$QA_SERVER_IP
-    - ssh $QA_SERVER_USER@$QA_SERVER_IP "docker pull registry.gitlab.com/marabesi/testable-github:${CI_COMMIT_REF_NAME}"
+    - ssh $QA_SERVER_USER@$QA_SERVER_IP "docker pull registry.gitlab.com/marabesi/testable-github:${CI_COMMIT_REF_SLUG}"
     - ssh $QA_SERVER_USER@$QA_SERVER_IP "docker stop testable || true && docker rm testable || true"
     - |
       echo -e "
