@@ -31,7 +31,7 @@
     "postcss": "^7.0.26",
     "postcss-cli": "^6.1.2",
     "eslint-plugin-react": "^7.18.0",
-    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-import": "^2.20.1",
     "@formatjs/intl-relativetimeformat": "^4.5.7",
     "@fullhuman/postcss-purgecss": "^1.2.0",
     "style-loader": "^1.1.3",
