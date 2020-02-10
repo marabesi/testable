@@ -61,7 +61,7 @@ lint_report:
   stage: metrics
   script:
     - docker pull registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG
-    - docker run -v ${CI_PROJECT_DIR}/webapp/eslint:/var/www/app/eslint registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG npm run lint-report
+    - docker run -v ${CI_PROJECT_DIR}/webapp/node_modules:/var/www/app/node_modules -v ${CI_PROJECT_DIR}/webapp/eslint:/var/www/app/eslint registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG npm run lint-report
   artifacts:
     paths:
       - ${CI_PROJECT_DIR}/webapp/eslint
