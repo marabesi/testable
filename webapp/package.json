@@ -81,7 +81,7 @@
     "@types/react-codemirror": "^1.0.2",
     "@types/react-dom": "^16.8.4",
     "@types/react-helmet": "^5.0.15",
-    "@types/react-redux": "^7.1.6",
+    "@types/react-redux": "^7.1.7",
     "@types/react-router": "^5.1.4",
     "@types/react-router-dom": "^4.3.4",
     "codacy-coverage": "^3.4.0",
