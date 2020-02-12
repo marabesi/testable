@@ -71,7 +71,7 @@
   ],
   "devDependencies": {
     "@types/codemirror": "^0.0.81",
-    "@types/enzyme": "^3.10.2",
+    "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/esprima": "^4.0.2",
     "@types/fbemitter": "^2.0.32",
