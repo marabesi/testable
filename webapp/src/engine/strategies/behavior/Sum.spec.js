@@ -17,7 +17,7 @@ describe('Sum strategy', () => {
 
   test.each(invalidSumExamples)(
     'test should not handle when it is not a sum function (%s)',
-    (code) => {
+    code => {
       const result = Reason(code, Sum);
       expect(result).toBeUndefined();
     },
