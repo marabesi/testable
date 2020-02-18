@@ -1,4 +1,3 @@
-//@ts-nocheck
 export const testCaseBehavior = function (ast) {
   let name = '';
   let funcUnderTestName = '';

@@ -65,7 +65,7 @@ export class Header extends React.Component {
       this.resetLevelUpAnimation();
     });
 
-    // @ts-ignore
+    
     Emitter.addListener(PROGRESS_UP, data => {
       this.setState({ progress: data.amount });
 
@@ -74,7 +74,7 @@ export class Header extends React.Component {
       });
     });
 
-    // @ts-ignore
+    
     Emitter.addListener(PROGRESS_DOWN, data => {
       this.setState({ progress: data.amount });
 
@@ -141,5 +141,4 @@ Header.defaultProps = {
   user: {}
 };
 
-//@ts-ignore
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

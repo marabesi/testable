@@ -40,7 +40,6 @@ const auth = {
           this.user.name = user.displayName || '';
           this.user.email = user.email || '';
           this.user.photo = user.photoURL || '';
-          // @ts-ignore
           this.firebaseRef = this.userRef(user);
 
           const vm = this;
@@ -71,7 +70,7 @@ const auth = {
    */
   unsubscribe() {
     if (this.firebaseRef && typeof this.firebaseRef.off === 'function') {
-      // @ts-ignore
+      
       this.firebaseRef.off();
     }
   },

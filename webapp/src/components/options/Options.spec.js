@@ -1,6 +1,5 @@
-//@ts-nocheck
 import React from 'react';
-import {shallow, mount} from 'enzyme';
+import { shallow, mount } from 'enzyme';
 import { IntlProvider } from 'react-intl';
 import configureMockStore from 'redux-mock-store';
 import Options from './Options';

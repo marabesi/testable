@@ -1,40 +1,31 @@
 /* eslint no-eval: 0 */
-import * as React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import Editor from '../editor/Editor';
-import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
+import { SOURCE_CODE, TEST_CODE } from '../../constants/editor';
 
 import './editor-manager.scss';
 
-export default class EditorManager extends React.Component {
+export default class EditorManager extends Component {
 
   state = {
     codeOutput: {},
     codeError: {},
   };
 
-  /**
-  * @param {string} code
-  * @param {number} editorIndexChanged
-  */
   codeChanged = (code, editorIndexChanged) => {
     let codeError = Object.assign({}, this.state.codeError);
-    // @ts-ignore
     codeError[editorIndexChanged] = '';
 
     this.setState({ codeError: codeError });
 
     let codeOutput = Object.assign({}, this.state.codeOutput);
-    // @ts-ignore
     codeOutput[editorIndexChanged] = '';
 
-    // @ts-ignore
     const lemming = new window.Lemming(code);
     const errorCallback = this.props.onErrorCode[editorIndexChanged];
 
-    // @ts-ignore
     lemming.onResult(result => {
-      // @ts-ignore
       codeOutput[editorIndexChanged] = result;
       this.setState({ codeOutput: codeOutput });
 
@@ -43,9 +34,7 @@ export default class EditorManager extends React.Component {
       }
     });
 
-    // @ts-ignore
     lemming.onError(error => {
-      // @ts-ignore
       codeError[editorIndexChanged] = error;
 
       this.setState({ codeError: codeError });
@@ -103,18 +92,13 @@ export default class EditorManager extends React.Component {
             key={i}
             options={editorOptions}
             value={this.props.code ? this.props.code[i] : ''}
-            // @ts-ignore
             codeChanged={code => this.codeChanged(code, i)}
             onFocus={isFocused => this.onEditorFocus(isFocused, i)}
             className={ `source-code border-2 border-testable-blue-overlay editor-${i} ${editorOptions ? editorOptions.className : ''}` }
           />
           <div className="m-auto md:mb-5 bg-blue-dark break-words">
-            <p className="text-white h-6">{
-            // @ts-ignore
-              this.state.codeOutput[i]}</p>
-            <p className="text-red font-medium h-6">{
-              // @ts-ignore
-              this.state.codeError[i]}</p>
+            <p className="text-white h-6">{this.state.codeOutput[i]}</p>
+            <p className="text-red font-medium h-6">{this.state.codeError[i]}</p>
           </div>
         </div>
       );

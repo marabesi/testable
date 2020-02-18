@@ -2,7 +2,7 @@ import React from 'react';
 import { shallow, mount } from 'enzyme';
 import sinon from 'sinon';
 import EditorManager from './EditorManager';
-import {SOURCE_CODE} from '../../constants/editor';
+import { SOURCE_CODE } from '../../constants/editor';
 import lemming from '../../__test__/stubs/lemming';
 
 describe('EditorManager component', () => {

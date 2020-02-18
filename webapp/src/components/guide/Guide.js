@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Buggy, {BuggyBug, BuggySleepy, BuggyHappy} from '../buggy/Buggy';
@@ -8,21 +8,12 @@ import Next from '../icons/Next';
 
 import '../../scss/attention.scss';
 
-/**
- * @param {function} dispatch
- */
 const mapDispatchToProps = dispatch => {
   return {
-    /**
-     * @param {boolean} hovered
-     */
     onHover: hovered => dispatch(onHover(hovered))
   };
 };
 
-/**
- * @param {object} state
- */
 const mapStateToProps = state => ({
   hovered: state.guideReducer.hovered,
 });
@@ -45,7 +36,6 @@ export class Guide extends Component {
   }
 
   componentWillUnmount = () => {
-    // @ts-ignore
     clearInterval(this.trackActivity);
     document.removeEventListener('keydown', this.checkUserAfk, false);
     document.removeEventListener('mousemove', this.checkUserAfk, false);
@@ -56,7 +46,6 @@ export class Guide extends Component {
       afk: false
     });
 
-    // @ts-ignore
     clearInterval(this.trackActivity);
     this.trackActivity = setInterval(this.track, this.props.afkExpirationTime);
   }
@@ -75,11 +64,10 @@ export class Guide extends Component {
   }
 
   renderHint() {
-    // @ts-ignore
     return this.props.guideContent.map((item, index) => {
       if (index === this.props.currentHint) {
         return (
-          <React.Fragment
+          <Fragment
             key={index}
           >
             <AnimatedText
@@ -100,7 +88,7 @@ export class Guide extends Component {
                 <Next className="fill-current text-white py-1 w-6 h-6" />
               </button>
             }
-          </React.Fragment>
+          </Fragment>
         );
       }
 

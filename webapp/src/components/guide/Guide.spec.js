@@ -136,7 +136,7 @@ describe('guide component', () => {
         wrapper.update();
         expect(wrapper.find('BuggySleepy').length).toBe(1);
 
-        // @ts-ignore
+        
         const keypress = new KeyboardEvent('keydown', {keyCode: 37});
         document.dispatchEvent(keypress);
 

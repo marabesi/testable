@@ -1,6 +1,5 @@
-// @ts-nocheck
 import React from 'react';
-import {shallow} from 'enzyme';
+import { shallow } from 'enzyme';
 import sinon from 'sinon';
 import { Header } from './Header';
 import Achievement from '../icons/Achievement';

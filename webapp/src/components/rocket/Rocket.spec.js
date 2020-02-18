@@ -1,4 +1,3 @@
-// @ts-nocheck
 jest.mock('../../engine/Reason', () => () => true);
 
 import React from 'react';

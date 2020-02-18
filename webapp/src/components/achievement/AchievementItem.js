@@ -1,7 +1,7 @@
 import React from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
-import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton, } from 'react-share';
+import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton } from 'react-share';
 
 export function AchievementItem(props) {
   const { title, active, description, items, onClick, intl, host } = props;

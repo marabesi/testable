@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
@@ -17,7 +16,6 @@ export class Ranking extends Component {
   };
 
   componentDidMount() {
-    // @ts-ignore
     fetch(RANKING_API)
       .then(response => response.json())
       .then(ranking => {

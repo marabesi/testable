@@ -1,4 +1,3 @@
-//@ts-nocheck
 import React, { Component  } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
@@ -66,7 +65,7 @@ export class App extends Component {
   }
 
   async componentDidMount() {
-    // @ts-ignore
+    
     Emitter.addListener(TRACKING, data => {
       if (isDebug) {
         /* eslint-disable-next-line */

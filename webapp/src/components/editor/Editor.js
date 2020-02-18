@@ -1,4 +1,3 @@
-// @ts-nocheck
 import React, { Component } from 'react';
 import CodeMirror from 'react-codemirror';
 import PropTypes from 'prop-types';

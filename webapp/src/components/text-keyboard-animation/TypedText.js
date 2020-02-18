@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 import Typed from 'typed.js';
 
-export default class TypedText extends React.Component {
+export default class TypedText extends Component {
   componentDidMount() {
     const { strings } = this.props;
     const options = {
@@ -15,7 +15,6 @@ export default class TypedText extends React.Component {
       options.onComplete = this.props.onComplete;
     }
 
-    // @ts-ignore
     this.typed = new Typed(this.el, options);
   }
 
