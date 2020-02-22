@@ -5,7 +5,7 @@
   "dependencies": {
     "esprima": "^4.0.1",
     "fbemitter": "^2.1.1",
-    "firebase": "^7.8.2",
+    "firebase": "^7.9.0",
     "firebaseui": "^3.6.0",
     "intro.js": "^2.9.3",
     "intro.js-react": "^0.2.0",
@@ -76,8 +76,8 @@
     "@types/esprima": "^4.0.2",
     "@types/fbemitter": "^2.0.32",
     "@types/jest": "^24.9.0",
-    "@types/node": "^13.7.1",
-    "@types/react": "^16.9.20",
+    "@types/node": "^13.7.4",
+    "@types/react": "^16.9.21",
     "@types/react-codemirror": "^1.0.2",
     "@types/react-dom": "^16.8.4",
     "@types/react-helmet": "^5.0.15",
@@ -86,12 +86,12 @@
     "@types/react-router-dom": "^4.3.4",
     "codacy-coverage": "^3.4.0",
     "coveralls": "^3.0.4",
-    "cypress": "^4.0.1",
+    "cypress": "^4.0.2",
     "docz": "^2.2.0",
     "docz-theme-default": "^1.2.0",
     "eslint-html-reporter": "^0.7.4",
     "gh-pages": "^2.2.0",
-    "source-map-explorer": "^2.2.2"
+    "source-map-explorer": "^2.3.1"
   },
   "jest": {
     "collectCoverageFrom": [
