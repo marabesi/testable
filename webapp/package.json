@@ -75,7 +75,7 @@
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/esprima": "^4.0.2",
     "@types/fbemitter": "^2.0.32",
-    "@types/jest": "^24.9.0",
+    "@types/jest": "^25.1.4",
     "@types/node": "^13.7.4",
     "@types/react": "^16.9.21",
     "@types/react-codemirror": "^1.0.2",
