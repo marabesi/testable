@@ -7637,12 +7637,13 @@ firebase@^7.9.0:
     "@firebase/storage" "0.3.30"
     "@firebase/util" "0.2.43"
 
-firebaseui@^3.6.0:
-  version "3.6.1"
-  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-3.6.1.tgz#b88a59680f55d2d15433cd5f61afee468f5dda60"
-  integrity sha512-Ta50Ksi1CKO084YN/Bn5caSlaOxAzA1dzf5StjiRkarXP3Y4KBTp1SEEnYdUw8GcVUm1nRkjnpDkAeqkCYTwqQ==
+firebaseui@^4.5.0:
+  version "4.5.0"
+  resolved "https://registry.yarnpkg.com/firebaseui/-/firebaseui-4.5.0.tgz#5688c0e14ff87d45a187a61b30fd2315fef7c5dc"
+  integrity sha512-aliOXphs4e2DunKEhTqHV4rSMBninYVo0sqFaNTWw+KXRVp6381tluAhf5v8p208MZS0E8PdLKzMlgf11Fheow==
   dependencies:
     dialog-polyfill "^0.4.7"
+    material-design-lite "^1.2.0"
 
 flat-cache@^2.0.1:
   version "2.0.1"
@@ -12624,7 +12625,7 @@ node-object-hash@^2.0.0:
   resolved "https://registry.yarnpkg.com/node-object-hash/-/node-object-hash-2.0.0.tgz#9971fcdb7d254f05016bd9ccf508352bee11116b"
   integrity sha512-VZR0zroAusy1ETZMZiGeLkdu50LGjG5U1KHZqTruqtTyQ2wfWhHG2Ow4nsUbfTFGlaREgNHcCWoM/OzEm6p+NQ==
 
-node-pre-gyp@*, node-pre-gyp@^0.14.0:
+node-pre-gyp@^0.14.0:
   version "0.14.0"
   resolved "https://registry.yarnpkg.com/node-pre-gyp/-/node-pre-gyp-0.14.0.tgz#9a0596533b877289bcad4e143982ca3d904ddc83"
   integrity sha512-+CvDC7ZttU/sSt9rFjix/P05iS43qHCOOGzcr3Ry99bXG7VX953+vFyEuph/tfqoYu8dttBkE86JSKBO2OzcxA==
@@ -16153,8 +16154,9 @@ request@^2.87.0, request@^2.88.0:
     tunnel-agent "^0.6.0"
     uuid "^3.3.2"
 
-"request@github:cypress-io/request#b5af0d1fa47eec97ba980cde90a13e69a2afcd16":
+request@cypress-io/request#b5af0d1fa47eec97ba980cde90a13e69a2afcd16:
   version "2.88.1"
+  uid b5af0d1fa47eec97ba980cde90a13e69a2afcd16
   resolved "https://codeload.github.com/cypress-io/request/tar.gz/b5af0d1fa47eec97ba980cde90a13e69a2afcd16"
   dependencies:
     aws-sign2 "~0.7.0"

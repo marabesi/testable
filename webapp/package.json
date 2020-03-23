@@ -14,7 +14,7 @@
     "esprima": "^4.0.1",
     "fbemitter": "^2.1.1",
     "firebase": "^7.9.0",
-    "firebaseui": "^3.6.0",
+    "firebaseui": "^4.5.0",
     "intro.js": "^2.9.3",
     "intro.js-react": "^0.2.0",
     "material-design-lite": "^1.2.0",
