@@ -70,7 +70,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "@types/codemirror": "^0.0.88",
+    "@types/codemirror": "^0.0.89",
     "@types/enzyme": "^3.10.5",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@types/esprima": "^4.0.2",
