@@ -49,7 +49,7 @@
     "start": "npm run tailwind:css && react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "npm run lint && npm run tailwind:css && export NODE_ENV=production && react-scripts build",
+    "build": "npm run lint && npm run rebuild-sass && npm run tailwind:css && export NODE_ENV=production && react-scripts build",
     "test": "react-scripts test --env=jsdom --verbose --maxWorkers=4 --colors",
     "coverage": "react-scripts test --env=jsdom --no-cache --collectCoverage --ci --watchAll=false --colors",
     "cypress": "cypress open",
@@ -61,7 +61,8 @@
     "coveralls": "react-scripts test --coverage --coverageReporters=text-lcov | coveralls",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
-    "serve": "node server.js"
+    "serve": "node server.js",
+    "rebuild-sass": "npm rebuild node-sass"
   },
   "browserslist": [
     ">0.2%",
