@@ -87,7 +87,7 @@
     "@types/react-router-dom": "^4.3.4",
     "codacy-coverage": "^3.4.0",
     "coveralls": "^3.0.11",
-    "cypress": "^4.3.0",
+    "cypress": "^4.4.0",
     "docz": "^2.3.0",
     "docz-theme-default": "^1.2.0",
     "eslint-html-reporter": "^0.7.4",
