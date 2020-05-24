@@ -80,7 +80,7 @@
     "@types/node": "^13.13.5",
     "@types/react": "^16.9.34",
     "@types/react-codemirror": "^1.0.2",
-    "@types/react-dom": "^16.9.6",
+    "@types/react-dom": "^16.9.8",
     "@types/react-helmet": "^5.0.15",
     "@types/react-redux": "^7.1.8",
     "@types/react-router": "^5.1.5",
