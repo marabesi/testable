@@ -12,7 +12,9 @@ script:
   - npm run build
   - npm run test
   - npm run coveralls
-  - sh deploy.sh
+
+after_success:
+  - test $TRAVIS_BRANCH = "master" && sh deploy.sh
 
 env:
   global:
