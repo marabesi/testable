@@ -1,8 +1,8 @@
 require('dotenv').config();
 
-const config = JSON.parse(process.env.FIREBASE);
+const config = require('./env.json');
 const firebaseDatabaseUrl = process.env.FIREBASE_DATABASE_URL;
-const origins = process.env.CORS_ORIGINS;
+const origins = process.env.CORS_ORIGINS || '';
 
 console.log(`allowed origins: ${origins}`)
 
@@ -10,7 +10,7 @@ const admin = require('firebase-admin');
 const express = require('express');
 
 const app = express();
-const port = 5000;
+const port = process.env.PORT || 4000;
 
 app.use(express.urlencoded({ extended: false }));
 
@@ -58,5 +58,5 @@ app.get('/', (req, res) => {
 })
 
 app.listen(port, () => {
-  console.log(`Server is booming on port 5000 Visit http://localhost:5000`);
+  console.log(`Server is booming on port ${port}`);
 });

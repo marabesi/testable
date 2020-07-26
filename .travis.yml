@@ -14,7 +14,7 @@ script:
   - npm run coveralls
 
 after_success:
-  - test $TRAVIS_BRANCH = "master" && sh deploy.sh
+  - if ["$TRAVIS_BRANCH" == "master"]; then sh deploy.sh; fi;
 
 env:
   global:

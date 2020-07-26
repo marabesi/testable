@@ -5,3 +5,4 @@ firebase.prod.json
 build.sh
 
 .env
+env.json
