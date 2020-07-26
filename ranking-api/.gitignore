@@ -1,8 +1,8 @@
-node_modules/
+# package directories
+node_modules
+jspm_packages
 
-firebase.json
-firebase.prod.json
-build.sh
-
-.env
+# Serverless directories
+.serverless
 env.json
+.env

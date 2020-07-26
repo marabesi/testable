@@ -16,6 +16,7 @@
     "express": "^4.17.1",
     "firebase-admin": "^8.3.0",
     "nodemon": "^1.19.1",
-    "now": "^16.1.2"
+    "now": "^16.1.2",
+    "serverless-http": "^2.5.0"
   }
 }
