@@ -1,0 +1,29 @@
+{
+    "AWSEBDockerrunVersion": 2,
+    "containerDefinitions": [
+        {
+            "name": "testable",
+            "image": "registry.gitlab.com/marabesi/testable-github:master",
+            "essential": true,
+            "memory": 128,
+            "portMappings": [
+                {
+                    "hostPort": 80,
+                    "containerPort": 5000
+                }
+            ]
+        },
+        {
+            "name": "nginx-proxy",
+            "image": "nginx",
+            "essential": true,
+            "memory": 128,
+            "portMappings": [
+                {
+                    "hostPort": 8181,
+                    "containerPort": 80
+                }
+            ]
+        }
+    ]
+}
