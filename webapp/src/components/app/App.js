@@ -34,21 +34,22 @@ import { auth } from '../../pages/login/Auth';
 import './app.scss';
 
 const isDebug = process.env.REACT_APP_DEBUG || false;
+const publicUrl = process.env.PUBLIC_URL || '';
 const queue = new Queue();
 
 const assets = [
-  '/assets/buggy-rocket.png',
-  '/assets/buggy-right.png',
-  '/assets/buggy-happy.png',
-  '/assets/buggy-happy-left.png',
-  '/assets/buggy-left.png',
-  '/assets/buggy-bug.png',
-  '/assets/buggy-zzz.png',
-  '/assets/alien.png',
-  '/assets/alien-rocket.png',
-  '/assets/logo.png',
-  '/assets/placeholder.svg',
-  '/assets/mp3/keyboard.mp3',
+  `${publicUrl}/assets/buggy-rocket.png`,
+  `${publicUrl}/assets/buggy-right.png`,
+  `${publicUrl}/assets/buggy-happy.png`,
+  `${publicUrl}/assets/buggy-happy-left.png`,
+  `${publicUrl}/assets/buggy-left.png`,
+  `${publicUrl}/assets/buggy-bug.png`,
+  `${publicUrl}/assets/buggy-zzz.png`,
+  `${publicUrl}/assets/alien.png`,
+  `${publicUrl}/assets/alien-rocket.png`,
+  `${publicUrl}/assets/logo.png`,
+  `${publicUrl}/assets/placeholder.svg`,
+  `${publicUrl}/assets/mp3/keyboard.mp3`,
 ];
 
 /**
