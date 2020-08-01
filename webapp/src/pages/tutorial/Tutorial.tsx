@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
 import tutorialContent from './tutorial-content';
 import introContent from './intro-content';
 import EditorManager from '../../components/editor-manager/EditorManager';
@@ -18,21 +17,40 @@ import { track } from '../../emitter/Tracking';
 import { executeTestCase } from '../../engine/Tester';
 import { SOURCE_CODE } from '../../constants/editor';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: { userReducer: { user: any; }; }) => ({
   user: state.userReducer.user,
 });
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: any; }) => any) => {
   return {
-    onHover: hovered => dispatch(onHover(hovered)),
-    updateUser: data => dispatch(updateUser(data))
+    onHover: (hovered: boolean) => dispatch(onHover(hovered)),
+    updateUser: (data: any) => dispatch(updateUser(data))
   };
 };
 
 const FIRST_STEP = 0;
 const WAIT_FOR_CODE_ON_STEP = 3;
 
-export class Tutorial extends Component {
+interface TutorialProps {
+  tutorialContent: any[];
+  onHover: Function;
+  updateUser: Function;
+  user: any;
+};
+
+interface TutorialState {
+  tutorialDone: boolean;
+  introEnabled: boolean;
+  intro: any;
+  showNext: boolean;
+  currentHint: Number;
+  code: string;
+  editorOptions: any;
+  editorError?: string;
+  tutorialContent: any[];
+};
+
+export class Tutorial extends Component<TutorialProps, TutorialState> {
 
   state = {
     tutorialDone: false,
@@ -47,6 +65,7 @@ export class Tutorial extends Component {
         readOnly: true
       }
     },
+    editorError: '',
     tutorialContent: this.props.tutorialContent || tutorialContent
   };
 
@@ -100,7 +119,7 @@ export class Tutorial extends Component {
     });
   }
 
-  onValidCode = code => {
+  onValidCode = (code: string) => {
     // when it is not time to do the code yet and when
     // it is done with the sum and tries to add code again
     if (this.state.currentHint !== WAIT_FOR_CODE_ON_STEP) {
@@ -119,7 +138,7 @@ export class Tutorial extends Component {
     }
   }
 
-  onErrorCode = (error) => {
+  onErrorCode = (error: string) => {
     this.setState({ editorError: error });
   }
 
@@ -203,12 +222,5 @@ export class Tutorial extends Component {
     );
   }
 }
-
-Tutorial.propTypes = {
-  onHover: PropTypes.func,
-  tutorialContent: PropTypes.array,
-  user: PropTypes.object,
-  updateUser: PropTypes.func
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Tutorial);

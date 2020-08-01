@@ -3,7 +3,7 @@ import { mount, shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import { Login } from './Login';
 
-const buildComponent = (props) => {
+const buildComponent = (props: any) => {
   return shallow(
     <BrowserRouter>
       <Login
@@ -15,7 +15,12 @@ const buildComponent = (props) => {
 
 describe('Login page behavior', () => {
   test('should load firebase container', () => {
-    const wrapper = mount(<Login />);
+    const wrapper = mount(
+      <Login
+        setUser={jest.fn()}
+        user={undefined}
+      />
+    );
 
     expect(wrapper.find('#firebaseui-auth-container').length).toBe(1);
   });
@@ -23,19 +28,19 @@ describe('Login page behavior', () => {
   describe('user logged in already', () => {
     test('should redirect if already logged in', () => {
       const login = buildComponent({
-        onLoading: () => {},
-        setUser: () => {},
+        onLoading: () => { },
+        setUser: () => { },
         user: { uid: 999 }
       }).find('Login').dive();
-  
+
       expect(login.find('Redirect').length).toBe(1);
     });
-  
+
     test('should fill in logged user data', () => {
       const setUser = jest.fn();
-      const login = buildComponent({ setUser}).find('Login').dive();
+      const login = buildComponent({ setUser }).find('Login').dive();
       login.instance().authStatusChanged({ email: 'test@test.com' });
-  
+
       expect(setUser).toBeCalledWith({ email: 'test@test.com' });
     });
   });

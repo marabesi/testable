@@ -1,7 +1,4 @@
-/**
- * @param action {object}
- */
-export default (state = {}, action) => {
+export default (state = {}, action: any) => {
   switch (action.type) {
   case 'ON_EDITOR_ERROR':
     return Object.assign({}, state, {

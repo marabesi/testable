@@ -13,11 +13,7 @@ describe('protected route component', () => {
       };
     };
 
-    const MyComponent = props => {
-      return (
-        <h1>my component</h1>
-      );
-    };
+    const MyComponent = () => <h1>my component</h1>;
 
     const wrapper = mount(
       <BrowserRouter>

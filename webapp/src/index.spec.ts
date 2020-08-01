@@ -7,7 +7,7 @@ describe('Application root', () => {
     const div = document.createElement('div');
     div.id = 'root';
     document.body.appendChild(div);
-    require('./index.js');
+    require('./index');
     expect(ReactDOM.render).toHaveBeenCalled();
   });
 });

@@ -1,17 +1,14 @@
 export default class Queue {
   prefix = 'testable.'
+  fileReader = new FileReader()
+  localStorage = window.localStorage
+  result = new ArrayBuffer(0);
 
-  /**
-   * @param {FileReader} reader
-   */
-  set reader(reader) {
+  set reader(reader: FileReader) {
     this.fileReader = reader;
   }
 
-  /**
-   * @returns FileReader
-   */
-  get reader() {
+  get reader(): FileReader {
     if (!this.fileReader) {
       return new FileReader();
     }
@@ -31,20 +28,20 @@ export default class Queue {
     return this.localStorage;
   }
 
-  clearStorage(assets) {
+  clearStorage(assets: string[]) {
     for (let asset of assets) {
       const assetName = this.generateNameToStore(asset);
       this.storage.removeItem(assetName);
     }
   }
 
-  generateNameToStore(asset) {
+  generateNameToStore(asset: string) {
     const split = asset.split('/');
     const key = split[split.length - 1];
     return `testable.${key}`;
   }
 
-  fetch(assets) {
+  fetch(assets: string[]) {
     const queue = [];
 
     for (let asset of assets) {
@@ -62,17 +59,18 @@ export default class Queue {
     });
   }
 
-  extractFileName(response) {
+  extractFileName(response: Response) {
     const file = response.url.split('/');
     return `testable.${file[file.length - 1]}`;
   }
 
-  storeFile(response, blob) {
+  storeFile(response: any, blob: any) {
     const key = this.extractFileName(response);
     const reader = this.reader;
     const context = this;
 
     reader.onload = function() {
+      // @ts-ignore
       context.storage.setItem(key, this.result);
     };
 
@@ -80,7 +78,7 @@ export default class Queue {
   }
 }
 
+// @ts-ignore
 Queue.reader = FileReader;
-
+// @ts-ignore
 Queue.storage = localStorage;
-

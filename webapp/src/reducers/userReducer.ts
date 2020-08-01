@@ -5,7 +5,7 @@ import { auth } from '../pages/login/Auth';
 /**
  * @param action {object}
  */
-export default (state = { user: {} }, action) => {
+export default (state = { user: {} }, action: any) => {
   switch (action.type) {
   case SET_USER:
     return Object.assign({}, state, {
@@ -18,6 +18,7 @@ export default (state = { user: {} }, action) => {
     userRef.update(action.payload);
 
     for (let prop in action.payload) {
+      // @ts-ignore
       currentUser[prop] = action.payload[prop];
     }
 

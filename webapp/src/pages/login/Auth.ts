@@ -1,3 +1,4 @@
+// @ts-nocheck
 import firebase from 'firebase/app';
 
 const defaultFirebaseConfig = `{

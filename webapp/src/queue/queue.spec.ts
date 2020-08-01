@@ -1,5 +1,5 @@
 import sinon from 'sinon';
-import Queue from '../queue/queue';
+import Queue from './queue';
 
 /* eslint-disable-next-line */
 global.fetch = function(requestInfo) {

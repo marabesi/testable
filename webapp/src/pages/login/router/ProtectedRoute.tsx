@@ -4,11 +4,11 @@ import PropTypes from 'prop-types';
 import { Route, Redirect } from 'react-router-dom';
 import { auth } from '../Auth';
 
-const mapStateToProps = state => ({
+const mapStateToProps = (state: { userReducer: { user: any; }; }) => ({
   user: state.userReducer.user,
 });
 
-export const ProtectedRoute = ({ component: Component, ...rest }) => {
+export const ProtectedRoute = ({ component: Component, ...rest }: any) => {
   return (
     <Route
       {...rest}

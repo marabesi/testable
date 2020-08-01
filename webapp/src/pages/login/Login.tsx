@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import firebaseui from 'firebaseui';
@@ -12,26 +11,27 @@ import { setUser } from '../../actions/userAction';
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
 
-/** @param {object} state */
-const mapStateToProps = state => ({
+const mapStateToProps = (state: { userReducer: { user: any; }; }) => ({
   user: state.userReducer.user,
 });
 
-/**
- * @param {function} dispatch
- */
-const mapDispatchToProps = dispatch => {
+interface LoginProps {
+  setUser: Function;
+  user: any;
+};
+
+const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: any; }) => any) => {
   return {
-    setUser: user => dispatch(setUser(user)),
+    setUser: (user: any) => dispatch(setUser(user)),
   };
 };
 
-export class Login extends Component {
+export class Login extends Component<LoginProps> {
   state = {
     showFirebaseWidget: false
   }
 
-  constructor(props) {
+  constructor(props: LoginProps) {
     super(props);
 
     auth
@@ -40,7 +40,7 @@ export class Login extends Component {
       .catch(this.authStatusChanged);
   }
 
-  authStatusChanged = user => {
+  authStatusChanged = (user: any) => {
     this.props.setUser(user);
 
     if (user) {
@@ -77,7 +77,7 @@ export class Login extends Component {
   }
 
   render() {
-    if (this.props.user.uid) {
+    if (this.props.user && this.props.user.uid) {
       return (
         <Redirect to={{ pathname: '/intro' }} />
       );
@@ -95,14 +95,5 @@ export class Login extends Component {
     );
   }
 }
-
-Login.propTypes = {
-  user: PropTypes.object,
-  setUser: PropTypes.func,
-};
-
-Login.defaultProps = {
-  user: {}
-};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

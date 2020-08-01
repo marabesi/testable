@@ -7,7 +7,7 @@ const defaultState = () => {
 /**
  * @param action {object}
  */
-export default (state = { options: defaultState()}, action) => {
+export default (state = { options: defaultState()}, action: any) => {
   switch (action.type) {
   case ON_OPTIONS_UPDATED:
     return Object.assign({}, state, {
