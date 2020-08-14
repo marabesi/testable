@@ -11,7 +11,7 @@ COPY package*.json ./
 
 COPY . .
 
-RUN npm install --only=production && npm run build
+RUN npm install && npm run build
 
 EXPOSE 5000
 
