@@ -93,7 +93,7 @@
     "docz-theme-default": "^1.2.0",
     "eslint-html-reporter": "^0.7.4",
     "gh-pages": "^2.2.0",
-    "source-map-explorer": "^2.4.2"
+    "source-map-explorer": "^2.5.0"
   },
   "jest": {
     "collectCoverageFrom": [
