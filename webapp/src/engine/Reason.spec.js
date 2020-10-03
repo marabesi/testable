@@ -1,29 +1,28 @@
-import sinon from 'sinon';
 import Reason from '../engine/Reason';
 
 describe('Reason', () => {
 
   test('should parse var declaration', () => {
-    const strategy = sinon.spy();
+    const strategy = jest.fn();
 
     Reason('var b = 1;', strategy);
-    expect(strategy.called).toBeTruthy();
+    expect(strategy).toHaveBeenCalled();
   });
 
   test('should execute strategy on Program type only', () => {
-    const strategy = sinon.spy();
+    const strategy = jest.fn();
 
     Reason('const a = 12;', strategy);
-    expect(strategy.called).toBeTruthy();
+    expect(strategy).toHaveBeenCalled();
   });
 
   test.each([['function']])(
     'should not buble up the error when a invalid source code is provided',
     (code) => {
-      const strategy = sinon.spy();
+      const strategy = jest.fn();
 
       const result = Reason(code, strategy);
-      expect(strategy.called).toBeFalsy();
+      expect(strategy).toHaveBeenCalledTimes(0);
       expect(result).toBeFalsy();
     }
   );

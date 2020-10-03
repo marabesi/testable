@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 import Editor from './Editor';
 
 describe('Editor component', () => {
@@ -60,7 +59,7 @@ describe('Editor component', () => {
     });
 
     test('should invoke on props when trying to type text on a read only editor', () => {
-      const onFocus = sinon.spy();
+      const onFocus = jest.fn();
       const codeMirrorOptions = {
         readOnly: true
       };
@@ -76,7 +75,7 @@ describe('Editor component', () => {
       wrapper.instance().onFocus();
       wrapper.unmount();
 
-      expect(onFocus.called).toBeTruthy();
+      expect(onFocus).toHaveBeenCalled();
     });
   });
 });

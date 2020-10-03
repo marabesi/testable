@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
 import EditorManager from './EditorManager';
 import { SOURCE_CODE } from '../../constants/editor';
 import lemming from '../../__test__/stubs/lemming';
@@ -28,7 +27,7 @@ describe('EditorManager component', () => {
   global.Lemming = lemming;
 
   test('should invoke onValidCode callback when code execution is done', () => {
-    const onValidCode = sinon.spy();
+    const onValidCode = jest.fn();
 
     const wrapper = mount(
       <EditorManager
@@ -38,11 +37,11 @@ describe('EditorManager component', () => {
     );
     const code = 'var b = 1;';
     wrapper.instance().codeChanged(code, 0);
-    expect(onValidCode.calledWith(code)).toEqual(true);
+    expect(onValidCode).toHaveBeenCalledWith(code, 0);
   });
 
   test('should populate error field when invalid code is written', () => {
-    const onValidCode = sinon.spy();
+    const onValidCode = jest.fn();
 
     const wrapper = mount(
       <EditorManager

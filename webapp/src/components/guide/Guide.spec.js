@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow, mount } from 'enzyme';
-import sinon from 'sinon';
 import { Guide } from './Guide';
 
 const content = [
@@ -29,8 +28,8 @@ describe('guide component', () => {
   });
 
   test('should handle next button click action', () => {
-    const progress = sinon.spy();
-    const onHover = sinon.spy();
+    const progress = jest.fn();
+    const onHover = jest.fn();
     const wrapper = mount(
       <Guide
         guideContent={content}
@@ -43,12 +42,12 @@ describe('guide component', () => {
 
     wrapper.find('button').simulate('click');
 
-    expect(progress.called).toBeTruthy();
+    expect(progress).toHaveBeenCalled();
   });
 
   test('should dispatch hover action when hovering the next button', () => {
-    const onHover = sinon.spy();
-    const progress = sinon.spy();
+    const onHover = jest.fn();
+    const progress = jest.fn();
     const wrapper = mount(
       <Guide
         guideContent={content}
@@ -59,14 +58,14 @@ describe('guide component', () => {
       />
     );
     wrapper.find('button').simulate('mouseenter');
-    expect(onHover.calledWith(true)).toBeTruthy();
+    expect(onHover).toHaveBeenCalledWith(true);
 
     wrapper.find('button').simulate('mouseleave');
-    expect(onHover.calledWith(false)).toBeTruthy();
+    expect(onHover).toHaveBeenCalledWith(false);
   });
 
   test('should not toggle next class if button is hovered', () => {
-    const progress = sinon.spy();
+    const progress = jest.fn();
     const wrapper = mount(
       <Guide
         guideContent={content}

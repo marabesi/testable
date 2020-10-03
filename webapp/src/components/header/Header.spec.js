@@ -1,6 +1,5 @@
 import React from 'react';
 import { shallow } from 'enzyme';
-import sinon from 'sinon';
 import { Header } from './Header';
 import Achievement from '../icons/Achievement';
 import UserMenu from '../user-menu/UserMenu';
@@ -54,7 +53,7 @@ describe('header component', () => {
   });
 
   test('should add level up animation and remove after 600 ms', done => {
-    const updateUserInfo = sinon.spy();
+    const updateUserInfo = jest.fn();
     const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} history={mockedHistory} />);
 
     expect(wrapper.find('.wobble-ver-right').length).toEqual(0);
@@ -64,7 +63,7 @@ describe('header component', () => {
     wrapper.update();
 
     expect(wrapper.find('.wobble-ver-right').length).toEqual(1);
-    expect(updateUserInfo.called).toBeTruthy();
+    expect(updateUserInfo).toHaveBeenCalled();
 
     setTimeout(() => {
       wrapper.update();
@@ -77,23 +76,23 @@ describe('header component', () => {
   test.each([LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN])(
     'unbind events on unmount - event: %s',
     (currentEvent) => {
-      const updateUserInfo = sinon.spy();
+      const updateUserInfo = jest.fn();
       const localWrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} />);
       localWrapper.unmount();
 
       Emitter.emit(currentEvent);
-      expect(updateUserInfo.called).toBeFalsy();
+      expect(updateUserInfo).toHaveBeenCalledTimes(0);
     },
   );
 
   test('should go to the introduction', () => {
-    const updateUserInfo = sinon.spy();
+    const updateUserInfo = jest.fn();
 
     const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} />);
 
     wrapper.instance().goToIntroduction();
 
-    expect(updateUserInfo.called).toBeTruthy();
+    expect(updateUserInfo).toHaveBeenCalled();
 
     wrapper.unmount();
   });
@@ -142,26 +141,26 @@ describe('listen to user events', () => {
   });
 
   test('should emit LEVEL_UP event', () => {
-    const spy = sinon.spy();
+    const spy = jest.fn();
     Emitter.addListener(LEVEL_UP, spy);
 
     const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
     wrapper.instance().levelUp();
     wrapper.unmount();
 
-    expect(spy.called).toBeTruthy();
+    expect(spy).toHaveBeenCalled();
   });
 
   test('should emit LEVEL_DOWN event', () => {
     const user = Object.assign({}, mockedUser);
-    const spy = sinon.spy();
+    const spy = jest.fn();
     Emitter.addListener(LEVEL_DOWN, spy);
 
     const wrapper = shallow(<Header user={user} history={mockedHistory} />);
     wrapper.instance().levelDown();
     wrapper.unmount();
 
-    expect(spy.called).toBeTruthy();
+    expect(spy).toHaveBeenCalled();
   });
 
   test('should render achievement icon', () => {

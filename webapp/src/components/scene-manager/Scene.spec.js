@@ -1,5 +1,4 @@
 import React from 'react';
-import sinon from 'sinon';
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import Scene from './Scene';
@@ -133,8 +132,8 @@ describe('Scene component', () => {
   });
 
   test('should handle last scene', () => {
-    const handleLastScene = sinon.spy();
-    const handleNextScene = sinon.spy();
+    const handleLastScene = jest.fn();
+    const handleNextScene = jest.fn();
 
     const wrapper = mount(
       <Scene
@@ -155,13 +154,13 @@ describe('Scene component', () => {
 
     wrapper.find(Button).simulate('click');
 
-    expect(handleLastScene.called).toBeTruthy();
-    expect(handleNextScene.called).toBeFalsy();
+    expect(handleLastScene).toHaveBeenCalled();
+    expect(handleNextScene).toHaveBeenCalledTimes(0);
   });
 
   test('should handle next scene', () => {
-    const handleLastScene = sinon.spy();
-    const handleNextScene = sinon.spy();
+    const handleLastScene = jest.fn();
+    const handleNextScene = jest.fn();
 
     const wrapper = mount(
       <Scene
@@ -181,8 +180,8 @@ describe('Scene component', () => {
     wrapper.update();
     wrapper.find(Button).simulate('click');
 
-    expect(handleLastScene.called).toBeFalsy();
-    expect(handleNextScene.called).toBeTruthy();
+    expect(handleLastScene).toHaveBeenCalledTimes(0);
+    expect(handleNextScene).toHaveBeenCalled();
   });
 
   test('should disable button once clicked to prevent firing the event twice', () => {

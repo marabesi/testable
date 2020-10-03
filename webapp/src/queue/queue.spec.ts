@@ -1,4 +1,3 @@
-import sinon from 'sinon';
 import Queue from './queue';
 
 /* eslint-disable-next-line */
@@ -51,8 +50,8 @@ describe('queue behavior', () => {
 
   test('should fetch assets that does not exists', async () => {
     const mockedLocalStorage = {
-      getItem: sinon.spy(),
-      setItem: sinon.spy(),
+      getItem: jest.fn(),
+      setItem: jest.fn(),
     };
 
     instance.storage = mockedLocalStorage;
@@ -61,14 +60,14 @@ describe('queue behavior', () => {
       '/my/asset/b.png'
     ]);
 
-    expect(mockedLocalStorage.getItem.calledWith('testable.b.png')).toBeTruthy();
+    expect(mockedLocalStorage.getItem).toHaveBeenCalledWith('testable.b.png');
   });
 
   test('should not fetch assets that exists already', async () => {
     const mockedLocalStorage = {
       /* eslint-disable-next-line */
       getItem: itemKey => true,
-      setItem: sinon.spy(),
+      setItem: jest.fn(),
     };
 
     instance.storage = mockedLocalStorage;
@@ -77,6 +76,6 @@ describe('queue behavior', () => {
       '/my/asset/b.png'
     ]);
 
-    expect(mockedLocalStorage.setItem.called).toBeFalsy();
+    expect(mockedLocalStorage.setItem).toHaveBeenCalledTimes(0);
   });
 });
