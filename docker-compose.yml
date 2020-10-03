@@ -17,6 +17,11 @@ services:
     environment:
       - PORT=5000
     build:
+      args:
+        - REACT_APP_FIREBASE_JSON=$REACT_APP_FIREBASE_JSON
+        - REACT_APP_RANKING_API=$REACT_APP_RANKING_API
+        - REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL
+        - REACT_APP_SHOW_SURVEY=$REACT_APP_SHOW_SURVEY
       context: ./webapp
     user: 'node'
     volumes:
