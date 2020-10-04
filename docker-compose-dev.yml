@@ -22,6 +22,7 @@ services:
       - REACT_APP_RANKING_API=$REACT_APP_RANKING_API
       - REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL
       - REACT_APP_SHOW_SURVEY=$REACT_APP_SHOW_SURVEY
+      - REACT_APP_DEBUG=$REACT_APP_DEBUG
     volumes:
       - ./webapp:/var/www/app
     command: npm run start
