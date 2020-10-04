@@ -36,19 +36,6 @@ describe('App component', () => {
     expect(app.state['isFetchingAssets']).toBeFalsy();
   });
 
-  test('listen to tracking events on mount', () => {
-    const wrapper = mount(
-      <Router>
-        <App />
-      </Router>
-    );
-
-    Emitter.emit(TRACKING, {});
-    expect(auth.insertUserInfo).toBeCalled();
-
-    wrapper.unmount();
-  });
-
   test('unmounted component should not listen to events', done => {
     const wrapper = shallow(
       <Router>

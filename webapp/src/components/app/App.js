@@ -66,7 +66,6 @@ export class App extends Component {
   }
 
   async componentDidMount() {
-    
     Emitter.addListener(TRACKING, data => {
       if (isDebug) {
         /* eslint-disable-next-line */
