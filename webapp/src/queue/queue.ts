@@ -66,7 +66,7 @@ export default class Queue {
 
   storeFile(response: any, blob: any) {
     const key = this.extractFileName(response);
-    const reader = this.reader;
+    const reader = new FileReader();
     const context = this;
 
     reader.onload = function() {
