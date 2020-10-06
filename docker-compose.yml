@@ -31,6 +31,8 @@ services:
   ranking:
     environment:
       - PORT=4000
+      - FIREBASE_DATABASE_URL=$FIREBASE_DATABASE_URL
+      - CORS_ORIGINS=$CORS_ORIGINS
     build:
       context: ./ranking-api
     user: 'node'

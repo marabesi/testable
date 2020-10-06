@@ -10,7 +10,6 @@ const admin = require('firebase-admin');
 const express = require('express');
 
 const app = express();
-const port = process.env.PORT || 4000;
 
 app.use(express.urlencoded({ extended: false }));
 

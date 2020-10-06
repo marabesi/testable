@@ -30,8 +30,9 @@ services:
     ports:
       - 5000:5000
   ranking:
-    environment:
-      - PORT=4000
+    extends:
+      file: ./docker-compose.yml
+      service: ranking
     build:
       context: ./ranking-api
     user: 'node'
