@@ -13,7 +13,7 @@
     "eslint-plugin-react": "^7.21.3",
     "esprima": "^4.0.1",
     "fbemitter": "^2.1.1",
-    "firebase": "^7.22.0",
+    "firebase": "^7.24.0",
     "firebaseui": "^3.6.0",
     "intro.js": "^2.9.3",
     "intro.js-react": "^0.2.0",
