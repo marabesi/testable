@@ -10,6 +10,7 @@ const Base64Image = (props: {image: string, alt: string}) => (
     })}
     src={window.localStorage.getItem(props.image) || ''}
     {...props}
+    alt={props.alt}
   />
 );
 
