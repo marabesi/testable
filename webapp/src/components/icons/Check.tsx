@@ -1,7 +1,7 @@
 //@ts-nocheck
 import React from 'react';
 
-export default props => {
+const Check = props => {
   return (
     <svg 
       version="1.1"
@@ -14,3 +14,5 @@ export default props => {
     </svg>
   );
 };
+
+export default Check;

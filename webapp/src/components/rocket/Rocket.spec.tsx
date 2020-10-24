@@ -211,7 +211,7 @@ describe('Rocket HoC component', () => {
 
       expect(wrapper.instance().state.showNext).toBe(false);
 
-      wrapper.instance().onGuideFinishedTyping()
+      wrapper.instance().onGuideFinishedTyping();
 
       wrapper.update();
 

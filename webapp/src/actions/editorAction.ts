@@ -1,3 +1,4 @@
+//@ts-nocheck
 export const ON_EDITOR_ERROR = 'ON_EDITOR_ERROR';
 export const ON_EDITOR_VALID_CODE = 'ON_EDITOR_VALID_CODE';
 

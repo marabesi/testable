@@ -143,7 +143,8 @@ Scene.propTypes = {
   button: PropTypes.string,
   releaseButton: PropTypes.number,
   showNextButton: PropTypes.number,
-  step: PropTypes.number
+  step: PropTypes.number,
+  showBuggy: PropTypes.bool,
 };
 
 Scene.defaultProps = {

@@ -7,7 +7,7 @@ import { auth } from '../Auth';
 describe('protected route component', () => {
 
   test('should render component when allowed', () => {
-    auth.canEnter = (history, location) => {
+    auth.canEnter = () => {
       return {
         flag: true
       };

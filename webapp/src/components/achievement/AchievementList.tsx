@@ -3,9 +3,9 @@ import React, { useState, useEffect } from 'react';
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import { track } from '../../emitter/Tracking';
 import { AchievementItem as Item } from './types';
 import AchievementItem from './AchievementItem';
+import { track } from '../../emitter/Tracking';
 
 const mapStateToProps = state => ({
   user: state.userReducer.user,

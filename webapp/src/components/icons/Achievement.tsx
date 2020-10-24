@@ -1,7 +1,7 @@
 //@ts-nocheck
 import * as React from 'react';
 
-export default props => {
+const Achievement = props => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -30,3 +30,5 @@ export default props => {
     </svg>
   );
 };
+
+export default Achievement;

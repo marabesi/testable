@@ -79,7 +79,7 @@ describe('Auth behavior', () => {
   });
 
   test('update user data personal info once logged in', done => {
-    auth.userRef = user => {
+    auth.userRef = () => {
       return {
         once: (type, data) => {
           data({

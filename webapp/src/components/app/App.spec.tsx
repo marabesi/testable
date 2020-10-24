@@ -1,6 +1,6 @@
 import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
-import { mount, shallow } from 'enzyme';
+import { shallow } from 'enzyme';
 import { App } from './App';
 import { auth } from '../../pages/login/Auth';
 import Emitter, { TRACKING } from '../../emitter/Emitter';

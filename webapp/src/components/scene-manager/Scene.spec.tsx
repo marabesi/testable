@@ -4,16 +4,16 @@ import { act } from 'react-dom/test-utils';
 import Scene from './Scene';
 import Button from './Button';
 
-jest.useFakeTimers();
-
 describe('Scene component', () => {
 
   beforeEach(() => {
+    jest.useFakeTimers();
     window.localStorage.removeItem('testable.alien.png');
   });
 
   afterEach(() => {
     window.localStorage.removeItem('testable.alien.png');
+    jest.restoreAllMocks();
   });
 
   test('default props value', () => {

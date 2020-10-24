@@ -11,7 +11,7 @@ const mockedResponse = {
 describe('Ranking component', () => {
 
   test('remove loading component once the data has been received from the api', done => {
-    global.fetch = url => {
+    global.fetch = () => {
       return Promise.resolve(new Response(JSON.stringify(mockedResponse)));
     };
     const wrapper = mount(<Ranking />);
@@ -24,7 +24,7 @@ describe('Ranking component', () => {
   });
 
   test('should show a friendly intl message if the data fetching fails', done => {
-    global.fetch = url => {
+    global.fetch = () => {
       return Promise.reject('Something went wrong');
     };
     const wrapper = mount(

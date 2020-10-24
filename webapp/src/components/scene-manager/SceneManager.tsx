@@ -66,14 +66,14 @@ const SceneManager = props => {
   }
 
   return (
-      <>
-        <div className={`w-full -mt-20 ${props.className}`}>
-          { scenes }
-        </div>
-        <DebugButton onClick={handlePreviousScene} value="previous" />
-        <DebugButton onClick={handleNextScene} value="next" />
-        <DebugButton onClick={props.handleLastScene} value="trigger last scene" />
-      </>
+    <>
+      <div className={`w-full -mt-20 ${props.className}`}>
+        { scenes }
+      </div>
+      <DebugButton onClick={handlePreviousScene} value="previous" />
+      <DebugButton onClick={handleNextScene} value="next" />
+      <DebugButton onClick={props.handleLastScene} value="trigger last scene" />
+    </>
   );
 };
 

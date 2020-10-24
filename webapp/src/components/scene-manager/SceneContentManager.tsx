@@ -21,7 +21,7 @@ const WrappedSceneContentManager = (
       });
 
       props.history.push(redirectTo);
-    }
+    };
 
     return (
       <SceneManager
@@ -31,13 +31,13 @@ const WrappedSceneContentManager = (
         handleLastScene={handleLastScene}
       />
     );
-  }
+  };
 
   SceneContentManager.propTypes = {
     history: PropTypes.object,
     handleLastScene: PropTypes.func,
     className: PropTypes.string,
-  }
+  };
 
   return SceneContentManager;
 };

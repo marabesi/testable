@@ -37,7 +37,7 @@ interface TutorialProps {
   onHover: Function;
   updateUser: Function;
   user: any;
-};
+}
 
 interface TutorialState {
   tutorialDone: boolean;
@@ -49,7 +49,7 @@ interface TutorialState {
   editorOptions: any;
   editorError?: string;
   tutorialContent: any[];
-};
+}
 
 export class Tutorial extends Component<TutorialProps, TutorialState> {
 

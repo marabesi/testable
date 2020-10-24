@@ -1,1 +1,0 @@
-declare module 'codemirror/mode/javascript/javascript'

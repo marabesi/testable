@@ -5,22 +5,18 @@ import { SOURCE_CODE } from '../../constants/editor';
 import lemming from '../../__test__/stubs/lemming';
 
 describe('EditorManager component', () => {
-  /* eslint-disable-next-line */
-  global.document.body.createTextRange = function () {
-    return {
-      setEnd: function () { },
-      setStart: function () { },
-      getBoundingClientRect: function () {
-        return { right: 0 };
-      },
-      getClientRects: function () {
-        return {
-          length: 0,
-          left: 0,
-          right: 0
-        };
-      }
-    };
+
+  document.createRange = () => {
+    const range = new Range();
+
+    range.getBoundingClientRect = jest.fn();
+    /* eslint-disable-next-line */
+    range.getClientRects = jest.fn(() => ({
+      item: () => null,
+      length: 0,
+    }));
+
+    return range;
   };
 
   /* eslint-disable-next-line */
@@ -31,8 +27,8 @@ describe('EditorManager component', () => {
 
     const wrapper = mount(
       <EditorManager
-        code={{[SOURCE_CODE]: ''}}
-        onValidCode={{[SOURCE_CODE]: onValidCode}}
+        code={{ [SOURCE_CODE]: '' }}
+        onValidCode={{ [SOURCE_CODE]: onValidCode }}
       />
     );
     const code = 'var b = 1;';
@@ -46,8 +42,8 @@ describe('EditorManager component', () => {
     const wrapper = mount(
       <EditorManager
         editor={1}
-        code={{[SOURCE_CODE]: ''}}
-        onValidCode={{[SOURCE_CODE]: onValidCode}}
+        code={{ [SOURCE_CODE]: '' }}
+        onValidCode={{ [SOURCE_CODE]: onValidCode }}
       />
     );
     const code = '[;';
@@ -60,7 +56,7 @@ describe('EditorManager component', () => {
   test('code output and code error should be empty by default', () => {
     const wrapper = mount(
       <EditorManager
-        code={{[SOURCE_CODE]: ''}}
+        code={{ [SOURCE_CODE]: '' }}
       />
     );
 

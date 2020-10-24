@@ -80,7 +80,8 @@ export class Survey extends Component {
 
 Survey.propTypes = {
   user: PropTypes.object,
-  skip: PropTypes.bool
+  skip: PropTypes.bool,
+  className: PropTypes.string
 };
 
 Survey.defaultProps = {

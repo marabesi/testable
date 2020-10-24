@@ -1,7 +1,7 @@
 //@ts-nocheck
 import * as React from 'react';
 
-export default props => {
+const Next = props => {
   return (
     <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 129 129" { ...props }>
       <g>
@@ -10,3 +10,5 @@ export default props => {
     </svg>
   );
 };
+
+export default Next;

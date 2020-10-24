@@ -10,30 +10,30 @@ import { colors } from '../../tailwind';
 export function AchievementContainer(props) {
   const { intl, onClose } = props;
   return (
-      <>
-        <Title>
-          <div>
-            <Achievement
-              className="fill-current w-6 h-6 text-blue mr-3"
-              style={{ fill: 'none', stroke: colors['blue-lightest'], strokeWidth: '20px'}}
-            />
-            {intl.messages.achievements.title}
-          </div>
-          <Close className="fill-current w-4 h-4 text-white cursor-pointer" onClick={onClose} />
-        </Title>
+    <>
+      <Title>
+        <div>
+          <Achievement
+            className="fill-current w-6 h-6 text-blue mr-3"
+            style={{ fill: 'none', stroke: colors['blue-lightest'], strokeWidth: '20px'}}
+          />
+          {intl.messages.achievements.title}
+        </div>
+        <Close className="fill-current w-4 h-4 text-white cursor-pointer" onClick={onClose} />
+      </Title>
 
-        {
-          intl.messages.achievements.list.length === 0 &&
+      {
+        intl.messages.achievements.list.length === 0 &&
           <span className="p-5 text-white">
             {intl.messages.achievements.empty_list}
           </span>
-        }
+      }
 
-        {
-          intl.messages.achievements.list.length > 0 &&
+      {
+        intl.messages.achievements.list.length > 0 &&
           <AchievementList achievements={intl.messages.achievements.list} />
-        }
-      </>
+      }
+    </>
   );
 }
 

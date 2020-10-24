@@ -21,19 +21,6 @@ const mockedHistory = {
 };
 
 describe('header component', () => {
-  const { reload } = window.location;
-
-  beforeAll(() => {
-    Object.defineProperty(window.location, 'reload', {
-      configurable: true,
-    });
-    window.location.reload = jest.fn();
-  });
-
-  afterAll(() => {
-    window.location.reload = reload;
-  });
-
   test('should not show debug button by default', () => {
     const localWrapper = shallow(<Header user={mockedUser} />);
     expect(localWrapper.find('input[type="button"]').length).toEqual(0);

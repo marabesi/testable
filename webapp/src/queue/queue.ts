@@ -42,7 +42,7 @@ export default class Queue {
   }
 
   fetch(assets: string[]) {
-    const queue = [];
+    const queue: Promise<Response>[] = [];
 
     for (let asset of assets) {
       const assetName = this.generateNameToStore(asset);

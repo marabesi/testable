@@ -1,4 +1,8 @@
 {
+    "globals": {
+        "process": true,
+        "global": true
+    },
     "env": {
         "browser": true,
         "es6": true,

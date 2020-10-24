@@ -18,7 +18,7 @@ const mapStateToProps = (state: { userReducer: { user: any; }; }) => ({
 interface LoginProps {
   setUser: Function;
   user: any;
-};
+}
 
 const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: any; }) => any) => {
   return {

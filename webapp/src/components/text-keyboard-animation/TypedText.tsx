@@ -1,5 +1,6 @@
 //@ts-nocheck
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import Typed from 'typed.js';
 
 export default class TypedText extends Component {
@@ -37,6 +38,11 @@ export default class TypedText extends Component {
     );
   }
 }
+
+TypedText.propTypes = {
+  strings: PropTypes.array,
+  onComplete: PropTypes.func,
+};
 
 TypedText.defaultProps = {
   strings: []

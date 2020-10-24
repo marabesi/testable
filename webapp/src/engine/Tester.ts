@@ -9,7 +9,7 @@
  * @param {array} testCases 
  */
 export const executeTestCase = function (code, strategyResult, testCases) {
-  const result = [];
+  const result: boolean[] = [];
   for (const testCase of testCases) {
     try {
       const preExecution = `${code} ${strategyResult.name}(${testCase.params})`;

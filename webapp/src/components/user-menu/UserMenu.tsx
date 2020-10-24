@@ -100,7 +100,7 @@ UserMenu.defaultProps = {
       survey: {}
     }
   },
-  showUpSurvey: (process.env.REACT_APP_SHOW_SURVEY === 'true') || false
+  showUpSurvey: (process.env.REACT_APP_SHOW_SURVEY === 'true') || false // eslint-disable-line
 };
 
 export default injectIntl(UserMenu);
