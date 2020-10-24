@@ -4,7 +4,7 @@ import content from './completed-intro-content.json';
 import { BuggyRocket } from '../../components/buggy/Buggy';
 import TestExecutionAnimation, { DEFAULT_DELAY } from '../../components/test-execution-animation/TestExecutionAnimation';
 import WrappedSceneContentManager from '../../components/scene-manager/SceneContentManager';
-import Emitter, { LEVEL_UP } from '../../emitter/Emitter.js';
+import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
 
 export const RegularFlow = WrappedSceneContentManager(
   'completed-intro',
