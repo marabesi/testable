@@ -1,3 +1,4 @@
+//@ts-nocheck
 import guideContent from './guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';

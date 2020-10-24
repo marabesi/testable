@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ReactGA, { InitializeOptions} from 'react-ga';
+import ReactGA, { InitializeOptions } from 'react-ga';
 import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 import { Offline, Online } from 'react-detect-offline';

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import guideContent from './rocket03-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';

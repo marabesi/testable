@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { Component } from 'react';
 import content from './completed-end-content.json';
 import { AlienRocket } from '../../components/alien/AlienSvg';

@@ -1,3 +1,4 @@
+//@ts-nocheck
 import content from './challenge03-02-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import { DEFAULT_EDITORS_OPTION, SOURCE_CODE, TEST_CODE } from '../../constants/editor';

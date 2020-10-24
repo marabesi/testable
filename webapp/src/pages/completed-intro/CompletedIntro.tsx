@@ -1,3 +1,4 @@
+//@ts-nocheck
 import React, { Component } from 'react';
 import content from './completed-intro-content.json';
 import { BuggyRocket } from '../../components/buggy/Buggy';
