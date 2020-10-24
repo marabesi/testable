@@ -97,9 +97,9 @@
   },
   "jest": {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx}",
+      "src/**/*.{js,jsx,ts,tsx}",
       "!src/registerServiceWorker.js",
-      "!src/__test__/**/*.js"
+      "!src/__test__/**/*.{js,ts}"
     ],
     "watchPathIgnorePatterns": [
       "./(build|docs|node_modules)/"
