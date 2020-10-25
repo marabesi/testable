@@ -3,10 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@formatjs/intl-relativetimeformat": "^4.5.16",
+    "@formatjs/intl-relativetimeformat": "^7.3.0",
     "@fullhuman/postcss-purgecss": "^1.2.0",
     "babel-eslint": "^10.1.0",
-    "css-loader": "^3.6.0",
+    "css-loader": "^5.0.0",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.5",
     "esprima": "^4.0.1",
@@ -85,7 +85,7 @@
     "@types/react-router-dom": "^4.3.4",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.1.1",
     "coveralls": "^3.1.0",
-    "cypress": "^4.12.1",
+    "cypress": "^5.4.0",
     "gh-pages": "^2.2.0",
     "source-map-explorer": "^2.5.0"
   },
