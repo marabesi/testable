@@ -1,6 +1,5 @@
-import React from 'react';
 import { shallow } from 'enzyme';
-import { AchievementContainer } from './AchievementContainer';
+import AchievementContainer from './AchievementContainer';
 import Title from '../title/Title';
 
 describe('AchievementContainer component: render behavior', () => {

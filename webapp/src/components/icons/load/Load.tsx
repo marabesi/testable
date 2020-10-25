@@ -1,6 +1,4 @@
 //@ts-nocheck
-import * as React from 'react';
-
 import './load.scss';
 
 const Load = props => {

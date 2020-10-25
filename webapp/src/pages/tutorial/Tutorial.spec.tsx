@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import { Tutorial } from './Tutorial';
 import {SOURCE_CODE} from '../../constants/editor';

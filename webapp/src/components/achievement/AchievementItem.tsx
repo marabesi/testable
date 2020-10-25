@@ -1,5 +1,4 @@
 // @ts-nocheck
-import React from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton } from 'react-share';

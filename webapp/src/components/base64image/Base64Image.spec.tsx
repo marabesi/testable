@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount } from 'enzyme';
 import Base64Image from './Base64Image';
 import Emitter, { TRACKING } from '../../emitter/Emitter';

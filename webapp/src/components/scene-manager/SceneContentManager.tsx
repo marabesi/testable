@@ -1,5 +1,4 @@
 //@ts-nocheck
-import React from 'react';
 import PropTypes from 'prop-types';
 import SceneManager from '../../components/scene-manager/SceneManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';

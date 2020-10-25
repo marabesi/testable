@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
@@ -23,7 +23,7 @@ const mapDispatchToProps = dispatch => {
   };
 };
 
-export class Header extends React.Component {
+export class Header extends Component {
 
   state = {
     levelUp: false,

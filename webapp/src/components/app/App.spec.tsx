@@ -1,4 +1,3 @@
-import React from 'react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import { App } from './App';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import Challenge03_01 from './Challenge03_01';
 

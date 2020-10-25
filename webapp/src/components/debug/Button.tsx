@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 /* eslint-disable-next-line */
 const isDebug = process.env.REACT_APP_DEBUG || false;

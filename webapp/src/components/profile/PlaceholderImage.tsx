@@ -1,5 +1,4 @@
 //@ts-nocheck
-import * as React from 'react';
 import Base64Image from '../base64image/Base64Image';
 
 const PlaceholderImage = props => (

@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount } from 'enzyme';
 import { Survey } from './Survey';
 import { auth } from '../../pages/login/Auth';

@@ -1,5 +1,4 @@
 //@ts-nocheck
-import React from 'react';
 import Base64Image from '../base64image/Base64Image';
 
 const Buggy = props => (

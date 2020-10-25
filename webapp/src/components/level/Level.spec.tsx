@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import { Level } from './Level';
 import Emitter, { TRACKING } from '../../emitter/Emitter';

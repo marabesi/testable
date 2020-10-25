@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import Challenge03_02 from './Challenge03_02';
 import { TEST_CODE, SOURCE_CODE } from '../../constants/editor';

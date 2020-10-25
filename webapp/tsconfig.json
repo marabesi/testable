@@ -19,7 +19,8 @@
     "noEmit": true,
     "jsx": "react",
     "noFallthroughCasesInSwitch": true,
-    "noImplicitAny": false
+    "noImplicitAny": false,
+    "allowUmdGlobalAccess": true
   },
   "include": [
     "src"

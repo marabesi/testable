@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { Component, Fragment } from 'react';
+import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Buggy, {BuggyBug, BuggySleepy, BuggyHappy} from '../buggy/Buggy';

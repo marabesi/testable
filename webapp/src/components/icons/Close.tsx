@@ -1,6 +1,4 @@
 //@ts-nocheck
-import React from 'react';
-
 const Close = props => {
   return (
     <svg

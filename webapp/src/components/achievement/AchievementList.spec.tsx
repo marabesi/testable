@@ -1,5 +1,4 @@
-import React from 'react';
-import { act } from 'react-dom/test-utils'; 
+import { act } from 'react-dom/test-utils';
 import { shallow, mount } from 'enzyme';
 import { IntlProvider } from 'react-intl';
 import { AchievementList } from './AchievementList';

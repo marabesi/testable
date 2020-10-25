@@ -1,4 +1,7 @@
+import en from '../locale/en';
+import ptBr from '../locale/pt-br';
+
 export const messages = {
-  en: require('../locale/en').default,
-  'pt-br': require('../locale/pt-br').default,
+  en,
+  'pt-br': ptBr
 };

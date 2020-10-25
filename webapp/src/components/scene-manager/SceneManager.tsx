@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { useState } from 'react';
+import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Scene from './Scene';
 import DebugButton from '../debug/Button';

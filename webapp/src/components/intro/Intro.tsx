@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 import { Steps } from 'intro.js-react';
 
 import 'intro.js/introjs.css';

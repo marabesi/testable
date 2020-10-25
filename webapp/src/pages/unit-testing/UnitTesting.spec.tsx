@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import UnitTesting from './UnitTesting';
 import { TEST_CODE } from '../../constants/editor';

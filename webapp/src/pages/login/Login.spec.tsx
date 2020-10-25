@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount, shallow } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import { Login } from './Login';

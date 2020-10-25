@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { Component } from 'react';
+import { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import PropTypes from 'prop-types';
 import TypedText from './TypedText';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount } from 'enzyme';
 import Background, { Background as PureBackground } from './Background';
 import { build, store } from '../../__test__/withReduxProvider';

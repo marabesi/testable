@@ -1,6 +1,5 @@
-import React from 'react';
 import { mount } from 'enzyme';
-import { act } from 'react-dom/test-utils'; 
+import { act } from 'react-dom/test-utils';
 import SceneManager from './SceneManager';
 import Scene from './Scene';
 

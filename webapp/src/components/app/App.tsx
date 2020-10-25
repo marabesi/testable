@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { Component  } from 'react';
+import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';

@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import Rocket02 from './Rocket02';
 import { TEST_CODE } from '../../constants/editor';

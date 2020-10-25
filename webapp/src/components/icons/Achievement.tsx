@@ -1,6 +1,4 @@
 //@ts-nocheck
-import * as React from 'react';
-
 const Achievement = props => {
   return (
     <svg

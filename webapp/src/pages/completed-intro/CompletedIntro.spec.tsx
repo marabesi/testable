@@ -1,4 +1,3 @@
-import React from 'react';
 import { shallow } from 'enzyme';
 import CompletedIntro, { RegularFlow } from './CompletedIntro';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';

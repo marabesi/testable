@@ -1,6 +1,5 @@
 jest.mock('../../engine/Reason', () => () => true);
 
-import React from 'react';
 import { shallow } from 'enzyme';
 import { default as Rocket} from './Rocket';
 import Emitter, { TRACKING, LEVEL_UP } from '../../emitter/Emitter';

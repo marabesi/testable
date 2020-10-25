@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
 import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../emitter/Emitter';

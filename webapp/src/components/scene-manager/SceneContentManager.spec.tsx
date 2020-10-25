@@ -1,4 +1,3 @@
-import React from 'react';
 import { mount } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import { act } from 'react-dom/test-utils';

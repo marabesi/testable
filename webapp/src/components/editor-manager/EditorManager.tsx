@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { Component } from 'react';
+import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Editor from '../editor/Editor';
 import { SOURCE_CODE, TEST_CODE } from '../../constants/editor';

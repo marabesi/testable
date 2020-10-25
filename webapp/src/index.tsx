@@ -1,4 +1,3 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import ReactGA, { InitializeOptions } from 'react-ga';
 import { Provider } from 'react-redux';

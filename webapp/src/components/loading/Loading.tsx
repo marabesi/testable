@@ -1,5 +1,5 @@
 //@ts-nocheck
-import React, { Component } from 'react';
+import { Component } from 'react';
 import LoadingOverlay from 'react-loading-overlay';
 import Load from '../icons/load/Load';
 
