@@ -70,7 +70,7 @@
   ],
   "devDependencies": {
     "@types/codemirror": "0.0.98",
-    "@types/enzyme": "^3.10.7",
+    "@types/enzyme": "^3.10.8",
     "@types/esprima": "^4.0.2",
     "@types/fbemitter": "^2.0.32",
     "@types/jest": "^26.0.15",
