@@ -1,6 +1,8 @@
 language: node_js
+
 node_js:
-  - "14"
+  - 14
+
 before_script:
 - cd webapp/
 - chmod +x ./prebuild.sh
@@ -9,9 +11,12 @@ before_script:
 - npm install
 
 script:
-  - npm run build
-  - npm run test
-  - npm run coveralls
+  - npm run build && npm run test
+
+coverage:
+  script: npm run coveralls
+  on:
+    branch: master
 
 after_success:
   - ./deploy.sh
