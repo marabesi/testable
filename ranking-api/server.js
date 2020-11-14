@@ -21,7 +21,7 @@ admin.initializeApp({
 const db = admin.database();
 
 app.get('/', (req, res) => {
-  const allowedHostName = origins.replace('http://', '').replace('https://', '')
+  const allowedHostName = origins.replace(/http:\/\//g, '').replace(/https:\/\//g, '')
   console.log('allowedhosts ', allowedHostName)
   console.log('req.host ', req.headers.host)
   if (!allowedHostName.split(',').includes(req.headers.host)) {

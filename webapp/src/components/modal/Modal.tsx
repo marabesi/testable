@@ -30,7 +30,7 @@ function Modal (props) {
 }
 
 Modal.propTypes = {
-  title: PropTypes.object,
+  title: PropTypes.node,
   onClose: PropTypes.func,
   children: PropTypes.node,
 };

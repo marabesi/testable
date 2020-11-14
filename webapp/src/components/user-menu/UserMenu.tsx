@@ -8,7 +8,7 @@ import Cup from '../icons/Cup';
 import Ranking from '../ranking/Ranking';
 import Button from '../../components/scene-manager/Button';
 import Survey from '../../components/survey/Survey';
-import {track} from '../../emitter/Tracking';
+import { track } from '../../emitter/Tracking';
 import { colors } from '../../tailwind';
 
 const hideButtonOnLevel = 14;

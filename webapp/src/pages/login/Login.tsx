@@ -7,17 +7,18 @@ import uiConfig from './Firebase';
 import { auth } from '../login/Auth';
 import { track } from '../../emitter/Tracking';
 import { setUser } from '../../actions/userAction';
+import { User } from '../../types/User';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
 
-const mapStateToProps = (state: { userReducer: { user: any; }; }) => ({
+const mapStateToProps = (state: { userReducer: { user: User; }; }) => ({
   user: state.userReducer.user,
 });
 
 interface LoginProps {
   setUser: Function;
-  user: any;
+  user: User;
 }
 
 const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: any; }) => any) => {
@@ -40,7 +41,7 @@ export class Login extends Component<LoginProps> {
       .catch(this.authStatusChanged);
   }
 
-  authStatusChanged = (user: any) => {
+  authStatusChanged = (user: User) => {
     this.props.setUser(user);
 
     if (user) {

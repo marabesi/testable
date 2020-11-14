@@ -1,5 +1,6 @@
 // @ts-nocheck
 import firebase from 'firebase/app';
+import { User } from '../../types/User';
 
 const defaultFirebaseConfig = `{
   "apiKey":"999",
@@ -32,9 +33,9 @@ const auth = {
   firebaseRef: {
     off: null
   },
-  authenticate() {
+  authenticate(): Promise<User> {
     return new Promise((resolve, reject) => {
-      firebase.auth().onAuthStateChanged(user => {
+      firebase.auth().onAuthStateChanged((user: User) => {
         if (!user) { reject(); }
         if (user !== null) {
           this.user.uid = user.uid;

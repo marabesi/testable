@@ -108,7 +108,7 @@ export class Profile extends Component {
         {
           this.state.modal &&
           <Modal
-            title={this.props.intl.messages.global.options}
+            title={<span>{this.props.intl.messages.global.options}</span>}
             isOpen={this.state.modal}
             onClose={this.onOptions}
           >
