@@ -7,4 +7,4 @@ export interface User {
   tutorial: boolean,
   introduction: boolean,
   progress: number,
-};
+}

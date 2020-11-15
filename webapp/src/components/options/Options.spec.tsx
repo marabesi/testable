@@ -10,6 +10,6 @@ describe('options menu component', () => {
 
     wrapper.find('input').simulate('click', {target: { value : true}});
 
-    expect(onClick).toHaveBeenCalledWith({ animation: true })
+    expect(onClick).toHaveBeenCalledWith({ animation: true });
   });
 });
