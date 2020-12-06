@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@formatjs/intl-relativetimeformat": "^7.3.6",
+    "@formatjs/intl-relativetimeformat": "^8.0.0",
     "@fullhuman/postcss-purgecss": "^1.2.0",
     "babel-eslint": "^10.1.0",
     "css-loader": "^5.0.1",
