@@ -5,3 +5,8 @@
 ## Testable - gamified tool to improve unit testing teaching
 
 ![Testable palette](concept.jpg "Testable palette")
+
+## Installation
+
+Testable uses firebase to manage users and its data, which makes a firebase account a requirement to get the project up and running.
+

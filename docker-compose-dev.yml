@@ -25,13 +25,9 @@ services:
     extends:
       file: ./docker-compose.yml
       service: ranking
-    environment:
-      - PORT=$RANKING_PORT
     build:
       context: ./ranking-api
     user: 'node'
     volumes:
       - ./ranking-api:/var/www/ranking_api
     command: node index.js
-    ports:
-      - $RANKING_PORT:$RANKING_PORT

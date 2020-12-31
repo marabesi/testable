@@ -15,7 +15,7 @@ services:
       - 443:443
   testable:
     environment:
-      - PORT=5000
+      - PORT=$TESTABLE_PORT
     build:
       args:
         - REACT_APP_FIREBASE_JSON=$REACT_APP_FIREBASE_JSON
@@ -28,9 +28,12 @@ services:
     volumes:
       - ./webapp:/var/www/app
     command: npm run serve
+    ports:
+      - $TESTABLE_PORT:$TESTABLE_PORT
   ranking:
     environment:
-      - PORT=4000
+      - PORT=$RANKING_PORT
+      - RANKING_FIREBASE_JSON=$RANKING_FIREBASE_JSON
       - FIREBASE_DATABASE_URL=$FIREBASE_DATABASE_URL
       - CORS_ORIGINS=$CORS_ORIGINS
     build:
@@ -40,4 +43,4 @@ services:
       - ./ranking-api:/var/www/ranking_api
     command: node index.js
     ports:
-      - 4000:4000
+      - $RANKING_PORT:$RANKING_PORT

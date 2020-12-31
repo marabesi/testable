@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const config = require('./env.json');
+const config = JSON.parse(process.env.RANKING_FIREBASE_JSON || `{}`);
 const firebaseDatabaseUrl = process.env.FIREBASE_DATABASE_URL;
 const origins = process.env.CORS_ORIGINS || '';
 
@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
     levelRef.once('value', async function (snapshot) {
       const userData = snapshot.val();
       const filtered = [];
-    
+
       for (let data in userData) {
         const user = await admin.auth().getUser(data);
         if (userData[data].level) {
@@ -42,14 +42,14 @@ app.get('/', (req, res) => {
         }
       }
 
-        res.header('Access-Control-Allow-Origin', '*');
-        res.header(
-          'Access-Control-Allow-Headers',
-          'Origin, X-Requested-With, Content-Type, Accept'
-        );
-        res.json({
-          data: filtered.sort((a, b) => a.level < b.level),
-        });
+      res.header('Access-Control-Allow-Origin', '*');
+      res.header(
+        'Access-Control-Allow-Headers',
+        'Origin, X-Requested-With, Content-Type, Accept'
+      );
+      res.json({
+        data: filtered.sort((a, b) => a.level < b.level),
+      });
     });
   }
 });
