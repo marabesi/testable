@@ -2,7 +2,7 @@
 import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import Header from '../../../header/Header';
+import Header from '../header/Header';
 import Achievements from '../achievement';
 import Logo from '../../images/logo/Logo';
 import { track } from '../../../../emitter/Tracking';

@@ -2,8 +2,8 @@
 import { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
-import Loading from '../ui/interface/loading/Loading';
-import config from '../../config';
+import Loading from '../loading/Loading';
+import config from '../../../../config';
 
 export class Ranking extends Component {
 

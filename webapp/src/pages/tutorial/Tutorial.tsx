@@ -6,7 +6,7 @@ import tutorialContent from './tutorial-content';
 import introContent from './intro-content';
 import EditorManager from '../../components/ui/interface/editor-manager/EditorManager';
 import Intro from '../../components/intro/Intro';
-import Guide from '../../components/guide/Guide';
+import Guide from '../../components/ui/interface/guide/Guide';
 import DebugButton from '../../components/debug/Button';
 import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';
 import Reason from '../../engine/Reason';

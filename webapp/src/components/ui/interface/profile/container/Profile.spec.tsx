@@ -1,7 +1,7 @@
 import { shallow, mount } from 'enzyme';
 import {Profile} from './Profile';
-import { auth } from '../../pages/login/Auth';
-import PlaceholderImage from '../ui/images/profile/PlaceholderImage';
+import { auth } from '../../../../../pages/login/Auth';
+import PlaceholderImage from '../../../images/profile/PlaceholderImage';
 
 const userData = { name: 'fake user', email: 'fake@john.com' };
 

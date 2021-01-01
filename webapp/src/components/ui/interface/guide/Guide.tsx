@@ -2,12 +2,12 @@
 import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Buggy, {BuggyBug, BuggySleepy, BuggyHappy} from '../ui/images/buggy/Buggy';
-import AnimatedText from '../ui/interface/text-keyboard-animation/AnimatedText';
-import { onHover } from '../../actions/guideAction';
-import Next from '../ui/icons/Next';
+import Buggy, {BuggyBug, BuggySleepy, BuggyHappy} from '../../images/buggy/Buggy';
+import AnimatedText from '../text-keyboard-animation/AnimatedText';
+import { onHover } from '../../../../actions/guideAction';
+import Next from '../../icons/Next';
 
-import '../../scss/attention.scss';
+import '../../../../scss/attention.scss';
 
 const mapDispatchToProps = dispatch => {
   return {

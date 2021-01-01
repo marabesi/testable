@@ -3,8 +3,8 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 import { connect } from 'react-redux';
-import LanguageSelector from '../../language-selector/LanguageSelector';
-import { setUpdateOptions } from '../../../actions/optionsAction';
+import LanguageSelector from '../../../../language-selector/LanguageSelector';
+import { setUpdateOptions } from '../../../../../actions/optionsAction';
 
 const mapDispatchToProps = dispatch => ({
   setUpdateOptions: options => dispatch(setUpdateOptions(options))

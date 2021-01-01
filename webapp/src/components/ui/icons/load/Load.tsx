@@ -1,4 +1,3 @@
-//@ts-nocheck
 import './load.scss';
 
 const Load = props => {

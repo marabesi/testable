@@ -4,12 +4,12 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router-dom';
 import { injectIntl } from 'react-intl';
-import Options from './options/Options';
-import PlaceholderImage from '../ui/images/profile/PlaceholderImage';
-import Modal from '../ui/interface/modal/Modal';
-import { auth } from '../../pages/login/Auth';
-import { track } from '../../emitter/Tracking';
-import { setUser } from '../../actions/userAction';
+import Options from '../options/Options';
+import PlaceholderImage from '../../../images/profile/PlaceholderImage';
+import Modal from '../../modal/Modal';
+import { auth } from '../../../../../pages/login/Auth';
+import { track } from '../../../../../emitter/Tracking';
+import { setUser } from '../../../../../actions/userAction';
 
 import './profile.scss';
 

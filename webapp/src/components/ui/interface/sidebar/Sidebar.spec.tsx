@@ -1,7 +1,7 @@
 import { Provider } from 'react-redux';
 import { shallow } from 'enzyme';
 import { Sidebar } from './Sidebar';
-import {Header} from '../../../header/Header';
+import {Header} from '../header/Header';
 import Logo from '../../images/logo/Logo';
 import Store from '../../../../store/store';
 
