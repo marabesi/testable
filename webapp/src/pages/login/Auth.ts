@@ -1,6 +1,7 @@
 // @ts-nocheck
 import firebase from 'firebase/app';
 import { User } from '../../types/User';
+import config from '../../config';
 
 const defaultFirebaseConfig = `{
   "apiKey":"999",
@@ -12,8 +13,7 @@ const defaultFirebaseConfig = `{
   "appId":"999999"
 }`;
 
-/* eslint-disable-next-line */
-const env = JSON.parse(process.env.REACT_APP_FIREBASE_JSON ||  defaultFirebaseConfig);
+const env = JSON.parse(config.firebaseJson ||  defaultFirebaseConfig);
 
 require('firebase/database');
 

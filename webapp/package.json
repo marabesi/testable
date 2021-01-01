@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@formatjs/intl-relativetimeformat": "^8.0.0",
+    "@formatjs/intl-relativetimeformat": "^8.0.2",
     "@fullhuman/postcss-purgecss": "^1.2.0",
     "babel-eslint": "^10.1.0",
     "css-loader": "^5.0.1",
@@ -17,7 +17,7 @@
     "intro.js-react": "^0.2.0",
     "material-design-lite": "^1.2.0",
     "node-sass": "^4.0.0",
-    "postcss": "^8.1.13",
+    "postcss": "^8.2.2",
     "postcss-cli": "^7.1.2",
     "react": "^17.0.1",
     "react-codemirror": "^1.0.0",
@@ -35,6 +35,7 @@
     "react-test-renderer": "^17.0.1",
     "redux": "^4.0.5",
     "redux-mock-store": "^1.5.3",
+    "serve": "^11.3.2",
     "tailwindcss": "^0.7.4",
     "typed.js": "^2.0.10",
     "typescript": "^4.1.2"
@@ -58,7 +59,6 @@
     "coveralls": "react-scripts test --coverage --coverageReporters=text-lcov | coveralls",
     "docz:dev": "docz dev",
     "docz:build": "docz build",
-    "serve": "node server.js",
     "rebuild-sass": "npm rebuild node-sass"
   },
   "browserslist": [
@@ -73,7 +73,7 @@
     "@types/esprima": "^4.0.2",
     "@types/fbemitter": "^2.0.32",
     "@types/jest": "^26.0.19",
-    "@types/node": "^14.14.16",
+    "@types/node": "^14.14.17",
     "@types/react": "^17.0.0",
     "@types/react-codemirror": "^1.0.2",
     "@types/react-dom": "^17.0.0",

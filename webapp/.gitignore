@@ -41,3 +41,4 @@ react-app-env.d.ts
 .docz
 stryker.log
 .stryker-tmp
+.eslintcache

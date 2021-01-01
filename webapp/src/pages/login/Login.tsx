@@ -8,6 +8,7 @@ import { auth } from '../login/Auth';
 import { track } from '../../emitter/Tracking';
 import { setUser } from '../../actions/userAction';
 import { User } from '../../types/User';
+import config, { TEST_MODE } from '../../config';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
@@ -63,8 +64,7 @@ export class Login extends Component<LoginProps> {
   }
 
   componentDidMount() {
-    /* eslint-disable-next-line */
-    if (process.env.NODE_ENV !== 'test') {
+    if (config.env !== TEST_MODE) {
       let ui = firebaseui.auth.AuthUI.getInstance();
       if (!ui) {
         ui = new firebaseui.auth.AuthUI(firebase.auth());

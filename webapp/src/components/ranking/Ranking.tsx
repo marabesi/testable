@@ -3,10 +3,7 @@ import { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import Loading from '../loading/Loading';
-
-/* eslint-disable */
-const RANKING_API = process.env.REACT_APP_RANKING_API;
-/* eslint-enable */
+import config from '../../config';
 
 export class Ranking extends Component {
 
@@ -17,7 +14,7 @@ export class Ranking extends Component {
   };
 
   componentDidMount() {
-    fetch(RANKING_API)
+    fetch(config.rankingApi)
       .then(response => response.json())
       .then(ranking => {
         this.setState({ ranking: ranking.data || [] });

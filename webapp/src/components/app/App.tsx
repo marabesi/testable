@@ -31,11 +31,11 @@ import Survey from '../../pages/survey/Survey';
 import TddIntro from '../../pages/tdd-intro/TddIntro';
 import Tdd from '../../pages/tdd/Tdd';
 import { auth } from '../../pages/login/Auth';
+import config from '../../config';
 
 import './app.scss';
 
-const isDebug = process.env.REACT_APP_DEBUG || false;
-const publicUrl = process.env.PUBLIC_URL || '';
+const { isDebug, publicUrl } = config;
 const queue = new Queue();
 
 const assets = [

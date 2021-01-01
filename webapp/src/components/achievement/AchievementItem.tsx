@@ -1,7 +1,7 @@
-// @ts-nocheck
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton } from 'react-share';
+import config from '../../config';
 
 export function AchievementItem({ title, active, description, items, onClick, intl, host }) {
   const list = items.map((item, index) => <li key={index}>{item}</li>);
@@ -55,7 +55,7 @@ AchievementItem.defaultProps = {
       achievements: {}
     }
   },
-  host: process.env.REACT_APP_HOST || window.location.origin
+  host: config.host,
 };
 
 export default injectIntl(AchievementItem);

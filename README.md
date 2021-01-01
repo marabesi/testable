@@ -59,14 +59,15 @@ RANKING_PORT=4000
 TESTABLE_PORT=3000
 
 # variables used on the webapp only
-REACT_APP_FIREBASE_JSON={}
+REACT_APP_FIREBASE_JSON={"apiKey":"","authDomain":"","databaseURL":"","projectId":"","storageBucket":"","messagingSenderId":"","appId":""}
 REACT_APP_RANKING_API=http://localhost:4000
 REACT_APP_DEBUG=false
 REACT_APP_SHOW_SURVEY=false
 REACT_APP_SURVEY_URL=http://my_forma_to_be_used.com
+REACT_APP_BASE_NAME=/
 
 # variables used on the ranking api only
-RANKING_FIREBASE_JSON={}
+RANKING_FIREBASE_JSON={"type": "service_account", "project_id": "", "private_key_id": "", "private_key": "", "client_email": "", "client_id": "", "auth_uri": "", "token_uri": "", "auth_provider_x509_cert_url": "", "client_x509_cert_url": ""}
 FIREBASE_DATABASE_URL=https://my_database.firebaseio.com
 CORS_ORIGINS=localhost:3000,localhost:4000
 ```
@@ -83,6 +84,8 @@ of the variables, if more detail is needed a link is provided.
 |REACT_APP_DEBUG|false|The debug mode in the interface allows a fast travel in time and debug messages through the dev tool. This value should be used in local/development mode only|
 |REACT_APP_SHOW_SURVEY|false|Variables that controls if the survey button show be shown.|
 |REACT_APP_SURVEY_URL|false|If `REACT_APP_SHOW_SURVEY` is set to true, then this URL is displayed for the user to fill in the survey.|
+|PUBLIC_URL|false|This is the full URL where the frontend is running, for exemple: `https://app-testable.herokuapp.com`|
+|REACT_APP_BASE_NAME|false|this variable is used most for deployment purposes. It configures the build step to use a different base name than `/`. This is useful for deployments under sub directories in the domain, for example: `https://mydomain.org/app`.|
 |RANKING_FIREBASE_JSON|true|Plain json provided by the Firebase services account|
 |FIREBASE_DATABASE_URL|true|This value is provided by the firebase console JSON, and the value is under the key `databaseURL`. Both values should match, to prevent authentication issues.|
 |CORS_ORIGINS|false|This is the variable that controls the CORS in the ranking API. The value should be the domain name and the port if needed. Valid values are: `localhost` or `localhost:3000`. Multiple values are accepted and they must be split by comma, such as: `mydomain1.com,mydomain2.com,localhost:3000,localhost` |

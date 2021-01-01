@@ -1,13 +1,8 @@
 import firebase from 'firebase/app';
-
-/* eslint-disable */
-const tosUrl = process.env.REACT_APP_TOS_URL || '';
-const privacyUrl = process.env.REACT_APP_PRIVACY_URL || '';
-const signInUrl = process.env.REACT_APP_BASE_NAME || '/';
-/* eslint-enable */
+import config from '../../config';
 
 const uiConfig = {
-  signInSuccessUrl: signInUrl,
+  signInSuccessUrl: config.publicUrl,
   signInOptions: [
     {
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID
@@ -23,8 +18,8 @@ const uiConfig = {
     firebase.auth.EmailAuthProvider.PROVIDER_ID
   ],
 
-  tosUrl: tosUrl,
-  privacyPolicyUrl: () => window.location.assign(privacyUrl)
+  tosUrl: config.firebaseTosUrl,
+  privacyPolicyUrl: () => window.location.assign(config.firebasePrivacyUrl)
 };
 
 export default uiConfig;

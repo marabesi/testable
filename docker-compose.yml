@@ -15,7 +15,7 @@ services:
       - 443:443
   testable:
     environment:
-      - PORT=$TESTABLE_PORT
+      - TESTABLE_PORT=$TESTABLE_PORT
     build:
       args:
         - REACT_APP_FIREBASE_JSON=$REACT_APP_FIREBASE_JSON
@@ -23,9 +23,9 @@ services:
         - REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL
         - REACT_APP_SHOW_SURVEY=$REACT_APP_SHOW_SURVEY
         - REACT_APP_DEBUG=$REACT_APP_DEBUG
+        - TESTABLE_PORT=$TESTABLE_PORT
       context: ./webapp
     user: 'node'
-    command: npm run serve
     ports:
       - $TESTABLE_PORT:$TESTABLE_PORT
   ranking:
@@ -37,6 +37,5 @@ services:
     build:
       context: ./ranking-api
     user: 'node'
-    command: node index.js
     ports:
       - $RANKING_PORT:$RANKING_PORT

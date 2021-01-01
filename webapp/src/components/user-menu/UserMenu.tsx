@@ -10,6 +10,7 @@ import Button from '../../components/scene-manager/Button';
 import Survey from '../../components/survey/Survey';
 import { track } from '../../emitter/Tracking';
 import { colors } from '../../tailwind';
+import config from '../../config';
 
 const hideButtonOnLevel = 14;
 
@@ -100,7 +101,7 @@ UserMenu.defaultProps = {
       survey: {}
     }
   },
-  showUpSurvey: (process.env.REACT_APP_SHOW_SURVEY === 'true') || false // eslint-disable-line
+  showUpSurvey: config.showSurvey,
 };
 
 export default injectIntl(UserMenu);

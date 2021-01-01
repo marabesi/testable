@@ -19,8 +19,6 @@ services:
       - ./webapp:/var/www/app
     command: npm run start
     stdin_open: true
-    ports:
-      - $TESTABLE_PORT:$TESTABLE_PORT
   ranking:
     extends:
       file: ./docker-compose.yml
@@ -30,4 +28,4 @@ services:
     user: 'node'
     volumes:
       - ./ranking-api:/var/www/ranking_api
-    command: node index.js
+    command: npm run dev

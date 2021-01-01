@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Button from '../scene-manager/Button';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import config from '../../config';
 
 import '../../scss/shake-horizontal.scss';
 import './survey.scss';
 
-/* eslint-disable-next-line */
-const survey = process.env.REACT_APP_SURVEY_URL || '';
+const survey = config.surveyUrl;
 
 const mapStateToProps = state => ({
   user: state.userReducer.user,
