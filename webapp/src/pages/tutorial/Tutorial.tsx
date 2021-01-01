@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import tutorialContent from './tutorial-content';
 import introContent from './intro-content';
-import EditorManager from '../../components/editor-manager/EditorManager';
+import EditorManager from '../../components/ui/interface/editor-manager/EditorManager';
 import Intro from '../../components/intro/Intro';
 import Guide from '../../components/guide/Guide';
 import DebugButton from '../../components/debug/Button';
@@ -16,7 +16,7 @@ import { onHover } from '../../actions/guideAction';
 import { updateUser } from '../../actions/userAction';
 import { track } from '../../emitter/Tracking';
 import { executeTestCase } from '../../engine/Tester';
-import { SOURCE_CODE } from '../../constants/editor';
+import { SOURCE_CODE } from '../../components/ui/interface/editor-manager/constants';
 
 const mapStateToProps = (state: { userReducer: { user: any; }; }) => ({
   user: state.userReducer.user,

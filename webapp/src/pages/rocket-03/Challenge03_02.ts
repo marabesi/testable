@@ -1,7 +1,7 @@
 //@ts-nocheck
 import content from './challenge03-02-guide-content';
 import Rocket from '../../components/rocket/Rocket';
-import { DEFAULT_EDITORS_OPTION, SOURCE_CODE, TEST_CODE } from '../../constants/editor';
+import { DEFAULT_EDITORS_OPTION, SOURCE_CODE, TEST_CODE } from '../../components/ui/interface/editor-manager/constants';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 import { DivisionByZeroBehavior } from '../../engine/strategies/behavior/DivisionBehavior';
 import { testCaseDivisionByZero } from '../../engine/strategies/tester/TestDivisionTester';

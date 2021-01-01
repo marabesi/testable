@@ -17,6 +17,8 @@ services:
       - PORT=$TESTABLE_PORT
     volumes:
       - ./webapp:/var/www/app
+    ports:
+      - 6060:6060
     command: npm run start
     stdin_open: true
   ranking:

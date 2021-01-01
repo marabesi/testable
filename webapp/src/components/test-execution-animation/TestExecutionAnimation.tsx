@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Component } from 'react';
 import PropTypes from 'prop-types';
-import CheckIcon from '../../components/icons/Check';
+import CheckIcon from '../ui/icons/Check';
 
 import './test-execution-animation.scss';
 

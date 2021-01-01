@@ -3,11 +3,11 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
-import UserMenu from '../../components/user-menu/UserMenu';
-import Level from '../../components/level/Level';
+import UserMenu from '../ui/interface/user-menu/UserMenu';
+import Level from '../ui/interface/level/Level';
 import DebugButton from '../../components/debug/Button';
 import { updateUser } from '../../actions/userAction';
-import AchievementIcon from '../icons/Achievement';
+import AchievementIcon from '../ui/icons/Achievement';
 import Emitter, { LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
 
 import '../../scss/levelup-animation.scss';

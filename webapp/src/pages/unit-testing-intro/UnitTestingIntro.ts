@@ -4,7 +4,7 @@ import Rocket from '../../components/rocket/Rocket';
 import {testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 import { SubtractionBehavior } from '../../engine/strategies/behavior/SubtractionBehavior';
 import { testCase as subtractionTestCase } from '../../engine/strategies/tester/SubtractionTester';
-import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
+import {SOURCE_CODE, TEST_CODE} from '../../components/ui/interface/editor-manager/constants';
 
 const code = `function subtrair(a, b) {
   return a - b

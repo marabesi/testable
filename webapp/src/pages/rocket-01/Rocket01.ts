@@ -1,7 +1,7 @@
 //@ts-nocheck
 import guideContent from './rocket01-guide-content';
 import Rocket from '../../components/rocket/Rocket';
-import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
+import {SOURCE_CODE, TEST_CODE} from '../../components/ui/interface/editor-manager/constants';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 import { MultiplicationBehavior } from '../../engine/strategies/behavior/MultiplicationBehavior';
 import { testCase as sourceTestCase } from '../../engine/strategies/tester/MultiplicationTester';

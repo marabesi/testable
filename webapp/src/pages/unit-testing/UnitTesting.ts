@@ -4,7 +4,7 @@ import Rocket from '../../components/rocket/Rocket';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 import { Sum } from '../../engine/strategies/behavior/Sum';
 import { testCase as sumTestCase } from '../../engine/strategies/tester/Sum';
-import {TEST_CODE} from '../../constants/editor';
+import {TEST_CODE} from '../../components/ui/interface/editor-manager/constants';
 
 const code = `function somar(a, b) {
   return a + b

@@ -1,7 +1,7 @@
 //@ts-nocheck
 import { Component } from 'react';
 import content from './completed-end-content.json';
-import { AlienRocket } from '../../components/alien/AlienSvg';
+import { AlienRocket } from '../../components/ui/images/alien/AlienSvg';
 import TestExecutionAnimation, { DEFAULT_DELAY } from '../../components/test-execution-animation/TestExecutionAnimation';
 import WrappedSceneContentManager from '../../components/scene-manager/SceneContentManager';
 import Emitter, { LEVEL_UP } from '../../emitter/Emitter';

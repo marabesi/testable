@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import Rocket03 from './Rocket03';
-import { TEST_CODE } from '../../constants/editor';
+import { TEST_CODE } from '../../components/ui/interface/editor-manager/constants';
 
 const ENABLE_EDITOR_ON_HINT = 3;
 

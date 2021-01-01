@@ -3,7 +3,7 @@ jest.mock('../../engine/Reason', () => () => true);
 import { shallow } from 'enzyme';
 import { default as Rocket} from './Rocket';
 import Emitter, { TRACKING, LEVEL_UP } from '../../emitter/Emitter';
-import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
+import {SOURCE_CODE, TEST_CODE} from '../ui/interface/editor-manager/constants';
 
 describe('Rocket HoC component', () => {
 

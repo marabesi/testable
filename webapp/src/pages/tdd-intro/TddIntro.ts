@@ -1,7 +1,7 @@
 import guideContent from './tdd-intro-guide-content';
 import introContent from './tdd-intro-content';
 import Rocket from '../../components/rocket/Rocket';
-import { SOURCE_CODE, TEST_CODE } from '../../constants/editor';
+import { SOURCE_CODE, TEST_CODE } from '../../components/ui/interface/editor-manager/constants';
 import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
 import { SubtractionBehavior } from '../../engine/strategies/behavior/SubtractionBehavior';
 import { testCase as SubTester } from '../../engine/strategies/tester/SubtractionTester';

@@ -1,7 +1,7 @@
 import { shallow } from 'enzyme';
 import { Header } from './Header';
-import Achievement from '../icons/Achievement';
-import UserMenu from '../user-menu/UserMenu';
+import Achievement from '../ui/icons/Achievement';
+import UserMenu from '../ui/interface/user-menu/UserMenu';
 import Emitter, {LEVEL_UP, PROGRESS_UP, PROGRESS_DOWN, LEVEL_DOWN} from '../../emitter/Emitter';
 
 const mockedUser =  {

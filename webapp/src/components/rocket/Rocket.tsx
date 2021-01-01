@@ -6,11 +6,11 @@ import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../emitter/Emitter';
 import { track } from '../../emitter/Tracking';
 import { auth } from '../../pages/login/Auth';
 import Reason from '../../engine/Reason';
-import EditorManager from '../../components/editor-manager/EditorManager';
+import EditorManager from '../ui/interface/editor-manager/EditorManager';
 import Guide from '../guide/Guide';
 import Intro from '../intro/Intro';
 import DebugButton from '../debug/Button';
-import {SOURCE_CODE, TEST_CODE} from '../../constants/editor';
+import {SOURCE_CODE, TEST_CODE} from '../ui/interface/editor-manager/constants';
 import {executeTestCase} from '../../engine/Tester';
 
 /**

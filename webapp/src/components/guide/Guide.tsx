@@ -2,10 +2,10 @@
 import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Buggy, {BuggyBug, BuggySleepy, BuggyHappy} from '../buggy/Buggy';
-import AnimatedText from '../text-keyboard-animation/AnimatedText';
+import Buggy, {BuggyBug, BuggySleepy, BuggyHappy} from '../ui/images/buggy/Buggy';
+import AnimatedText from '../ui/interface/text-keyboard-animation/AnimatedText';
 import { onHover } from '../../actions/guideAction';
-import Next from '../icons/Next';
+import Next from '../ui/icons/Next';
 
 import '../../scss/attention.scss';
 

@@ -12,8 +12,10 @@ COPY package*.json ./
 
 COPY . .
 
-RUN npm install && npm run build
+RUN npm install && \
+    mkdir public/docs && \
+    npm run build
 
 EXPOSE 5000
 
-CMD ["./node_modules/.bin/serve", "-p", $TESTABLE_PORT, "-s", "build"]
+CMD ./node_modules/.bin/serve -p $TESTABLE_PORT -s build

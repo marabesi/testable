@@ -42,3 +42,5 @@ react-app-env.d.ts
 stryker.log
 .stryker-tmp
 .eslintcache
+
+public/docs

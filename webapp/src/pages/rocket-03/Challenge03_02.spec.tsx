@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import Challenge03_02 from './Challenge03_02';
-import { TEST_CODE, SOURCE_CODE } from '../../constants/editor';
+import { TEST_CODE, SOURCE_CODE } from '../../components/ui/interface/editor-manager/constants';
 
 const ENABLE_EDITOR_ON_HINT = 3;
 

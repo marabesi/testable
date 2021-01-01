@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import { Tutorial } from './Tutorial';
-import {SOURCE_CODE} from '../../constants/editor';
+import {SOURCE_CODE} from '../../components/ui/interface/editor-manager/constants';
 
 const ENABLE_EDITOR_ON_HINT = 3;
 const userData = { level: 1, progress: 10 };
