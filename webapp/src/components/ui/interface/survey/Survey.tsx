@@ -6,7 +6,7 @@ import Button from '../../buttons/primary/Primary';
 import Emitter, { LEVEL_UP } from '../../../../packages/emitter/Emitter';
 import config from '../../../../config';
 
-import '../../scss/shake-horizontal.scss';
+import '../../../../scss/shake-horizontal.scss';
 import './survey.scss';
 
 const survey = config.surveyUrl;
