@@ -1,9 +1,9 @@
 //@ts-nocheck
 import guideContent from './guide-content';
 import Rocket from '../../components/rocket/Rocket';
-import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
-import { Sum } from '../../engine/strategies/behavior/Sum';
-import { testCase as sumTestCase } from '../../engine/strategies/tester/Sum';
+import { testCaseBehavior, testCase } from '../../packages/engine/strategies/behavior/TestCaseBehavior';
+import { Sum } from '../../packages/engine/strategies/behavior/Sum';
+import { testCase as sumTestCase } from '../../packages/engine/strategies/tester/Sum';
 import {TEST_CODE} from '../../components/ui/interface/editor-manager/constants';
 
 const code = `function somar(a, b) {

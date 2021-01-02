@@ -5,10 +5,10 @@ import PropTypes from 'prop-types';
 import { withRouter } from 'react-router-dom';
 import UserMenu from '../user-menu/UserMenu';
 import Level from '../level/Level';
-import DebugButton from '../../../debug/Button';
-import { updateUser } from '../../../../actions/userAction';
+import DebugButton from '../../buttons/debug/Debug';
+import { updateUser } from '../../../../redux/actions/userAction';
 import AchievementIcon from '../../icons/Achievement';
-import Emitter, { LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN } from '../../../../emitter/Emitter';
+import Emitter, { LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN } from '../../../../packages/emitter/Emitter';
 
 import '../../../../scss/levelup-animation.scss';
 import '../../../../scss/logo-animation.scss';

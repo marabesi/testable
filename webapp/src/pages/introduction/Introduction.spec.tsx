@@ -1,7 +1,7 @@
 import { mount } from 'enzyme';
 import { BrowserRouter } from 'react-router-dom';
 import Introduction from './Introduction';
-import SceneManager from '../../components/scene-manager/SceneManager';
+import SceneManager from '../../components/ui/interface/scene-manager/SceneManager';
 
 describe('Introduction page', () => {
   test('should define route to redirect to when done', () => {

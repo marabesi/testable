@@ -1,7 +1,7 @@
 //@ts-nocheck
 import PropTypes from 'prop-types';
-import SceneManager from '../../components/scene-manager/SceneManager';
-import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import SceneManager from './SceneManager';
+import Emitter, { LEVEL_UP } from '../../../../packages/emitter/Emitter';
 
 const WrappedSceneContentManager = (
   identifier,

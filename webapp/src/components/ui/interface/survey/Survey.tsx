@@ -2,9 +2,9 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import Button from '../scene-manager/Button';
-import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
-import config from '../../config';
+import Button from '../../buttons/primary/Primary';
+import Emitter, { LEVEL_UP } from '../../../../packages/emitter/Emitter';
+import config from '../../../../config';
 
 import '../../scss/shake-horizontal.scss';
 import './survey.scss';

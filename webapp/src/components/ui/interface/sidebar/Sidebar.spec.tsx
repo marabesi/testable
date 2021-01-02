@@ -3,7 +3,7 @@ import { shallow } from 'enzyme';
 import { Sidebar } from './Sidebar';
 import {Header} from '../header/Header';
 import Logo from '../../images/logo/Logo';
-import Store from '../../../../store/store';
+import Store from '../../../../redux/store/store';
 
 const store = Store();
 

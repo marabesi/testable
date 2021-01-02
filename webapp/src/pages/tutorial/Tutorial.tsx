@@ -5,17 +5,17 @@ import { connect } from 'react-redux';
 import tutorialContent from './tutorial-content';
 import introContent from './intro-content';
 import EditorManager from '../../components/ui/interface/editor-manager/EditorManager';
-import Intro from '../../components/intro/Intro';
+import Intro from '../../components/ui/interface/intro/Intro';
 import Guide from '../../components/ui/interface/guide/Guide';
-import DebugButton from '../../components/debug/Button';
-import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../emitter/Emitter';
-import Reason from '../../engine/Reason';
-import { Sum } from '../../engine/strategies/behavior/Sum';
-import { testCase as sumTestCase } from '../../engine/strategies/tester/Sum';
-import { onHover } from '../../actions/guideAction';
-import { updateUser } from '../../actions/userAction';
-import { track } from '../../emitter/Tracking';
-import { executeTestCase } from '../../engine/Tester';
+import DebugButton from '../../components/ui/buttons/debug/Debug';
+import Emitter, { LEVEL_UP, PROGRESS_UP } from '../../packages/emitter/Emitter';
+import Reason from '../../packages/engine/Reason';
+import { Sum } from '../../packages/engine/strategies/behavior/Sum';
+import { testCase as sumTestCase } from '../../packages/engine/strategies/tester/Sum';
+import { onHover } from '../../redux/actions/guideAction';
+import { updateUser } from '../../redux/actions/userAction';
+import { track } from '../../packages/emitter/Tracking';
+import { executeTestCase } from '../../packages/engine/Tester';
 import { SOURCE_CODE } from '../../components/ui/interface/editor-manager/constants';
 
 const mapStateToProps = (state: { userReducer: { user: any; }; }) => ({

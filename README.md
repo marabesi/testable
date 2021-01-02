@@ -90,6 +90,21 @@ of the variables, if more detail is needed a link is provided.
 |FIREBASE_DATABASE_URL|true|This value is provided by the firebase console JSON, and the value is under the key `databaseURL`. Both values should match, to prevent authentication issues.|
 |CORS_ORIGINS|false|This is the variable that controls the CORS in the ranking API. The value should be the domain name and the port if needed. Valid values are: `localhost` or `localhost:3000`. Multiple values are accepted and they must be split by comma, such as: `mydomain1.com,mydomain2.com,localhost:3000,localhost` |
 
+Once the `.env` file is in place and has the described variables/values,
+the docker services are ready to run.
+
+```
+docker-compose -f docker-compose-dev.yml up
+```
+
+### Testing local installation
+
+The project provides a test command to check the installation:
+
+```
+docker-compose -f docker-compose-dev.yml run --rm testable npm run coverage -- --watchAll=false
+```
+
 ## Firebase
 
 As previously mentioned this project uses firebase for managing users and

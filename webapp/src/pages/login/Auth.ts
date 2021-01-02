@@ -1,6 +1,6 @@
 // @ts-nocheck
 import firebase from 'firebase/app';
-import { User } from '../../types/User';
+import { User } from '../../packages/types/User';
 import config from '../../config';
 
 const defaultFirebaseConfig = `{

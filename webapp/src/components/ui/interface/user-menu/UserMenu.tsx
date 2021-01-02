@@ -6,9 +6,9 @@ import Profile from '../profile/container/Profile';
 import Modal from '../modal/Modal';
 import Cup from '../../icons/Cup';
 import Ranking from '../ranking/Ranking';
-import Button from '../../../scene-manager/Button';
-import Survey from '../../../survey/Survey';
-import { track } from '../../../../emitter/Tracking';
+import Button from '../../buttons/primary/Primary';
+import Survey from '../survey/Survey';
+import { track } from '../../../../packages/emitter/Tracking';
 import { colors } from '../../../../tailwind';
 import config from '../../../../config';
 

@@ -1,10 +1,10 @@
 //@ts-nocheck
 import { useState } from 'react';
 import PropTypes from 'prop-types';
-import Button from './Button';
-import AnimatedText from '../ui/interface/text-keyboard-animation/AnimatedText';
-import { BuggyLeft, BuggyBug, BuggyHappy,  BuggyHappyLeft } from '../ui/images/buggy/Buggy';
-import AlienSvg from '../ui/images/alien/AlienSvg';
+import Button from '../../buttons/primary/Primary';
+import AnimatedText from '../text-keyboard-animation/AnimatedText';
+import { BuggyLeft, BuggyBug, BuggyHappy,  BuggyHappyLeft } from '../../images/buggy/Buggy';
+import AlienSvg from '../../images/alien/AlienSvg';
 
 import './scene.scss';
 

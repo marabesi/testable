@@ -1,7 +1,7 @@
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import Scene from './Scene';
-import Button from './Button';
+import Button from '../../buttons/primary/Primary';
 
 describe('Scene component', () => {
 

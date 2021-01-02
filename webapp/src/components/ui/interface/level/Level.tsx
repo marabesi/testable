@@ -2,7 +2,7 @@
 import { Component } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
-import { track } from '../../../../emitter/Tracking';
+import { track } from '../../../../packages/emitter/Tracking';
 
 import './level.scss';
 

@@ -3,8 +3,8 @@ import { Component } from 'react';
 import content from './completed-intro-content.json';
 import { BuggyRocket } from '../../components/ui/images/buggy/Buggy';
 import TestExecutionAnimation, { DEFAULT_DELAY } from '../../components/test-execution-animation/TestExecutionAnimation';
-import WrappedSceneContentManager from '../../components/scene-manager/SceneContentManager';
-import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import WrappedSceneContentManager from '../../components/ui/interface/scene-manager/SceneContentManager';
+import Emitter, { LEVEL_UP } from '../../packages/emitter/Emitter';
 
 export const RegularFlow = WrappedSceneContentManager(
   'completed-intro',

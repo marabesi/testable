@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import { AchievementItem as Item } from './types';
 import AchievementItem from './AchievementItem';
-import { track } from '../../../../emitter/Tracking';
+import { track } from '../../../../packages/emitter/Tracking';
 
 const mapStateToProps = state => ({
   user: state.userReducer.user,

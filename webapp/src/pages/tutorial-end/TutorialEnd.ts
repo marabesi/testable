@@ -1,5 +1,5 @@
 import content from './tutorial-end-content.json';
-import WrappedSceneContentManager from '../../components/scene-manager/SceneContentManager';
+import WrappedSceneContentManager from '../../components/ui/interface/scene-manager/SceneContentManager';
 
 export default WrappedSceneContentManager(
   'tutorial_end',

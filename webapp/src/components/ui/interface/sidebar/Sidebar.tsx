@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Header from '../header/Header';
 import Achievements from '../achievement';
 import Logo from '../../images/logo/Logo';
-import { track } from '../../../../emitter/Tracking';
+import { track } from '../../../../packages/emitter/Tracking';
 
 import '../../../../scss/fade-in-left.scss';
 import '../../../../scss/fade-out-left.scss';

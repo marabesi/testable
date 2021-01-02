@@ -2,10 +2,12 @@ import { MemoryRouter as Router } from 'react-router-dom';
 import { shallow } from 'enzyme';
 import { App } from './App';
 import { auth } from '../../pages/login/Auth';
-import Emitter, { TRACKING } from '../../emitter/Emitter';
+import Emitter, { TRACKING } from '../../packages/emitter/Emitter';
 
-jest.mock('../../queue/queue', () => {
-  const { default: mockedQueue } = jest.requireActual('../../queue/queue');
+const queuePackage = '../../packages/queue/queue';
+
+jest.mock(queuePackage, () => {
+  const { default: mockedQueue } = jest.requireActual(queuePackage);
   mockedQueue.prototype.fetch = () => {
     return Promise.resolve();
   };

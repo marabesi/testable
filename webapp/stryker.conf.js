@@ -6,7 +6,7 @@ module.exports = function(config) {
       './src/**',
       '.env.json'
     ],
-    mutate: ['src/**/*.js?(x)', '!src/**/*@(.test|.spec|Spec).js?(x)'],
+    mutate: ['src/**/*.ts?(x)', '!src/**/*@(.test|.spec|Spec).js?(x)'],
     mutator: 'javascript',
     testRunner: 'jest',
     reporters: ['progress', 'clear-text', 'html'],

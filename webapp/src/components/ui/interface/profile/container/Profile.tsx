@@ -8,8 +8,8 @@ import Options from '../options/Options';
 import PlaceholderImage from '../../../images/profile/PlaceholderImage';
 import Modal from '../../modal/Modal';
 import { auth } from '../../../../../pages/login/Auth';
-import { track } from '../../../../../emitter/Tracking';
-import { setUser } from '../../../../../actions/userAction';
+import { track } from '../../../../../packages/emitter/Tracking';
+import { setUser } from '../../../../../redux/actions/userAction';
 
 import './profile.scss';
 

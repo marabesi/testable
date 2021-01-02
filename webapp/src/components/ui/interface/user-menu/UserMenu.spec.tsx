@@ -1,7 +1,7 @@
 import {shallow} from 'enzyme';
 import {UserMenu} from './UserMenu';
 import Cup from '../../icons/Cup';
-import Button from '../../../scene-manager/Button';
+import Button from '../../buttons/primary/Primary';
 
 const mockedUser = {
   level: 3,

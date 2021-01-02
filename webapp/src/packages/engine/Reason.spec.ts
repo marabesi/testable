@@ -1,4 +1,4 @@
-import Reason from '../engine/Reason';
+import Reason from './Reason';
 
 describe('Reason', () => {
 

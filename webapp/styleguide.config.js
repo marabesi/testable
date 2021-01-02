@@ -32,5 +32,11 @@ module.exports = {
       exampleMode: 'expand',
       usageMode: 'expand'
     },
+    {
+      name: 'Buttons',
+      components: 'src/components/ui/buttons/**/*.{js,tsx}',
+      exampleMode: 'expand',
+      usageMode: 'expand'
+    },
   ]
 };

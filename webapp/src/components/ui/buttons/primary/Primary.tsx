@@ -1,9 +1,9 @@
 //@ts-nocheck
 import PropTypes from 'prop-types';
 
-import './button.scss';
+import './primary.scss';
 
-const Button = props =>  {
+const Primary = props =>  {
   const { onClick, description, className, disabled } = props;
   const fullClassName = `button hover:bg-testable-pink-dark focus:outline-none ${className ? className: ''}`;
 
@@ -12,7 +12,7 @@ const Button = props =>  {
   );
 };
 
-Button.propTypes = {
+Primary.propTypes = {
   /**
    * Custom class to append in the ed of the button element class list.
    */
@@ -31,4 +31,4 @@ Button.propTypes = {
   disabled: PropTypes.bool
 };
 
-export default Button;
+export default Primary;

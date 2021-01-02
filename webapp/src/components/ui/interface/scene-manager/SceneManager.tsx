@@ -2,10 +2,10 @@
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Scene from './Scene';
-import DebugButton from '../debug/Button';
-import { auth } from '../../pages/login/Auth';
-import Emitter, { PROGRESS_UP, PROGRESS_DOWN } from '../../emitter/Emitter';
-import { track } from '../../emitter/Tracking';
+import DebugButton from '../../buttons/debug/Debug';
+import { auth } from '../../../../pages/login/Auth';
+import Emitter, { PROGRESS_UP, PROGRESS_DOWN } from '../../../../packages/emitter/Emitter';
+import { track } from '../../../../packages/emitter/Tracking';
 
 const SceneManager = props => {
   

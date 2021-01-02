@@ -5,9 +5,9 @@ import firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
 import uiConfig from './Firebase';
 import { auth } from '../login/Auth';
-import { track } from '../../emitter/Tracking';
-import { setUser } from '../../actions/userAction';
-import { User } from '../../types/User';
+import { track } from '../../packages/emitter/Tracking';
+import { setUser } from '../../redux/actions/userAction';
+import { User } from '../../packages/types/User';
 import config, { TEST_MODE } from '../../config';
 
 import './firebase/mdl.scss';

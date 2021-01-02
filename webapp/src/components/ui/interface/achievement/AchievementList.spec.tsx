@@ -3,7 +3,7 @@ import { shallow, mount } from 'enzyme';
 import { IntlProvider } from 'react-intl';
 import { AchievementList } from './AchievementList';
 import { AchievementItem } from './AchievementItem';
-import { messages } from '../../../../constants/locale';
+import { messages } from '../../../app/constants/locale';
 
 const BuildComponent = props => 
   <IntlProvider locale={'en'} messages={messages.en}>

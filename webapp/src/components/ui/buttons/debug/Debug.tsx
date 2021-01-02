@@ -1,7 +1,7 @@
 import { Component } from 'react';
-import config from '../../config';
+import config from '../../../../config';
 
-export default class Button extends Component {
+export default class Debug extends Component {
 
   render() {
     return (

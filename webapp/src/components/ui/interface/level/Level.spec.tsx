@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import { Level } from './Level';
-import Emitter, { TRACKING } from '../../../../emitter/Emitter';
+import Emitter, { TRACKING } from '../../../../packages/emitter/Emitter';
 
 describe('Level component', () => {
 

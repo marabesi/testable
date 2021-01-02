@@ -2,9 +2,9 @@
 import content from './challenge03-02-guide-content';
 import Rocket from '../../components/rocket/Rocket';
 import { DEFAULT_EDITORS_OPTION, SOURCE_CODE, TEST_CODE } from '../../components/ui/interface/editor-manager/constants';
-import { testCaseBehavior, testCase } from '../../engine/strategies/behavior/TestCaseBehavior';
-import { DivisionByZeroBehavior } from '../../engine/strategies/behavior/DivisionBehavior';
-import { testCaseDivisionByZero } from '../../engine/strategies/tester/TestDivisionTester';
+import { testCaseBehavior, testCase } from '../../packages/engine/strategies/behavior/TestCaseBehavior';
+import { DivisionByZeroBehavior } from '../../packages/engine/strategies/behavior/DivisionBehavior';
+import { testCaseDivisionByZero } from '../../packages/engine/strategies/tester/TestDivisionTester';
 
 const code = `function dividirGps(a, b) {
   return a / b

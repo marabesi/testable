@@ -1,5 +1,5 @@
 import { Steps } from 'intro.js-react';
-import config from '../../config';
+import config from '../../../../config';
 
 import 'intro.js/introjs.css';
 import './intro.scss';

@@ -1,7 +1,7 @@
 export default {
   env: process.env.NODE_ENV,
   isDebug: process.env.REACT_APP_DEBUG === 'true' || false,
-  publicUrl: process.env.PUBLIC_URL || '',
+  publicUrl: process.env.PUBLIC_URL || '/',
   basename: process.env.REACT_APP_BASE_NAME || '/',
   rankingApi: process.env.REACT_APP_RANKING_API || '',
   host: process.env.REACT_APP_HOST || window.location.origin,

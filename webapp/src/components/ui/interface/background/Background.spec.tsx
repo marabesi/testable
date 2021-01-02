@@ -1,7 +1,7 @@
 import { mount } from 'enzyme';
 import Background, { Background as PureBackground } from './Background';
 import { build, store } from '../../../../__test__/withReduxProvider';
-import { ON_OPTIONS_UPDATED } from '../../../../actions/optionsAction';
+import { ON_OPTIONS_UPDATED } from '../../../../redux/actions/optionsAction';
 
 describe('Background component', () => {
   test('should mount children components', () => {

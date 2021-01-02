@@ -1,7 +1,7 @@
 import { mount } from 'enzyme';
 import { Survey } from './Survey';
-import { auth } from '../../pages/login/Auth';
-import Button from '../scene-manager/Button';
+import { auth } from '../../../../pages/login/Auth';
+import Button from '../../buttons/primary/Primary';
 
 describe('Survey page', () => {
 

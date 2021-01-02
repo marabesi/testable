@@ -1,5 +1,5 @@
 import { mount } from 'enzyme';
-import Button from './Button';
+import Button from './Primary';
 
 describe('Scene component', () => {
   test('should render button', () => {

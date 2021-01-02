@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import CompletedIntro, { RegularFlow } from './CompletedIntro';
-import Emitter, { LEVEL_UP } from '../../emitter/Emitter';
+import Emitter, { LEVEL_UP } from '../../packages/emitter/Emitter';
 
 describe('completed intro page',  () => {
 
