@@ -24,6 +24,7 @@ services:
         - REACT_APP_SHOW_SURVEY=$REACT_APP_SHOW_SURVEY
         - REACT_APP_DEBUG=$REACT_APP_DEBUG
         - TESTABLE_PORT=$TESTABLE_PORT
+        - PUBLIC_URL=$PUBLIC_URL
       context: ./webapp
     user: 'node'
     ports:
