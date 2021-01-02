@@ -1,4 +1,9 @@
+const path = require('path');
+
 module.exports = {
+  require: [
+    path.join(__dirname, 'src/css/index.css')
+  ],
   styleguideDir: './public/docs',
   exampleMode: 'expand',
   components: 'src/components/**/*.{js,jsx,ts,tsx}',
