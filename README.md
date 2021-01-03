@@ -8,9 +8,9 @@
 
 ## Table of contents
 
-1. [Project structure](#1project-structure)
-2. [Installation](#2installation)
-3. [Firebase](#3firebase)
+1. [Project structure](#1-project-structure)
+2. [Installation](#2-installation)
+3. [Firebase](#3-firebase)
 
 ## 1. Project structure
 
