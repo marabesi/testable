@@ -6,7 +6,13 @@
 
 ![Testable palette](concept.jpg "Testable palette")
 
-## Project structure
+## Table of contents
+
+1. [Project structure](#1project-structure)
+2. [Installation](#2installation)
+3. [Firebase](#3firebase)
+
+## 1. Project structure
 
 This repository host the testable web app and the ranking api. Both are
 in the same repository for convinience and for a simpler approach
@@ -41,7 +47,7 @@ Each folder has its own readme file with more detail about the project it self.
 - [webapp readme](webapp/README.md)
 - [ranking api readme](ranking-api/README.md)
 
-## Installation
+## 2. Installation
 
 Testable uses firebase to manage users and its data, which makes a firebase
 account a requirement to get the project up and running. The webapp
@@ -93,11 +99,24 @@ of the variables, if more detail is needed a link is provided.
 Once the `.env` file is in place and has the described variables/values,
 the docker services are ready to run.
 
+### 2.1 Development mode
+
+This project comes with two docker compose files, one for development and another
+one for deployment. For development the suggested approach is to run:
+
 ```
 docker-compose -f docker-compose-dev.yml up
 ```
 
-### Testing local installation
+This will spin up four services three services, names:
+
+1. The web app (front end)
+2. the web app documentation
+3. The ranking api
+
+Those are reloaded once the source code is changed. Perfect for development.
+
+### 2.2 Testing installation (development mode)
 
 The project provides a test command to check the installation:
 
@@ -105,7 +124,18 @@ The project provides a test command to check the installation:
 docker-compose -f docker-compose-dev.yml run --rm testable npm run coverage -- --watchAll=false
 ```
 
-## Firebase
+### 2.3 Deployment mode
+
+The other option is the deployment mode, which uses the default file `docker-compose.yml`.
+There are two differences for this mode. The first one is that it runs without
+auto reloading once the source code is changed and the other one is that
+the documentation is built in the web app disribution rather than having its own service.
+
+```
+docker-compose up
+```
+
+## 3. Firebase
 
 As previously mentioned this project uses firebase for managing users and
 everything related to authentication. This hard dependency makes a must,

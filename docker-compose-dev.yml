@@ -1,9 +1,5 @@
 version: '2'
 services:
-  webserver:
-    extends:
-      file: ./docker-compose.yml
-      service: webserver
   testable:
     extends:
       file: ./docker-compose.yml
