@@ -2,7 +2,7 @@ import firebase from 'firebase/app';
 import config from '../../config';
 
 const uiConfig = {
-  signInSuccessUrl: config.publicUrl,
+  signInSuccessUrl: config.publicUrl || '/',
   signInOptions: [
     {
       provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID
