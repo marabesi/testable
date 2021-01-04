@@ -4,7 +4,10 @@
 
 ## Testable - gamified tool to improve unit testing teaching
 
-![Testable palette](concept.jpg "Testable palette")
+Testable is a gamified tool that offers a javascript based challenges aimed to
+teach unit testing.
+
+![Testable intro](concept.gif "Testable")
 
 ## Table of contents
 
