@@ -14,7 +14,7 @@
     "firebase": "^8.2.1",
     "firebaseui": "^3.6.0",
     "intro.js": "^2.9.3",
-    "intro.js-react": "^0.2.0",
+    "intro.js-react": "^0.3.0",
     "material-design-lite": "^1.2.0",
     "node-sass": "^4.0.0",
     "postcss": "^8.2.2",
