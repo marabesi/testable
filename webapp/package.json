@@ -24,7 +24,7 @@
     "react-detect-offline": "^2.4.0",
     "react-dom": "^17.0.1",
     "react-ga": "^3.3.0",
-    "react-intl": "^5.10.15",
+    "react-intl": "^5.10.16",
     "react-loading-overlay": "^1.0.1",
     "react-modal": "^3.12.1",
     "react-redux": "^7.2.2",
