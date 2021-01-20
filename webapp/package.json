@@ -4,7 +4,7 @@
   "private": true,
   "dependencies": {
     "@formatjs/intl-relativetimeformat": "^8.0.3",
-    "@fullhuman/postcss-purgecss": "^1.2.0",
+    "@fullhuman/postcss-purgecss": "^4.0.0",
     "babel-eslint": "^10.1.0",
     "css-loader": "^5.0.1",
     "enzyme": "^3.11.0",
