@@ -12,7 +12,7 @@
     "esprima": "^4.0.1",
     "fbemitter": "^3.0.0",
     "firebase": "^8.2.6",
-    "firebaseui": "^3.6.0",
+    "firebaseui": "^4.7.3",
     "intro.js": "^2.9.3",
     "intro.js-react": "^0.3.0",
     "material-design-lite": "^1.2.0",
