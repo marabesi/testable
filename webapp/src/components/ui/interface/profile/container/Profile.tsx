@@ -9,7 +9,7 @@ import PlaceholderImage from '../../../images/profile/PlaceholderImage';
 import Modal from '../../modal/Modal';
 import { auth } from '../../../../../pages/login/Auth';
 import { track } from '../../../../../packages/emitter/Tracking';
-import { setUser } from '../../../../../redux/actions/userAction';
+import { setUser } from '../../../../../data-flow/redux/actions/userAction';
 
 import './profile.scss';
 

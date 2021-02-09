@@ -6,7 +6,7 @@ import { withRouter } from 'react-router-dom';
 import UserMenu from '../user-menu/UserMenu';
 import Level from '../level/Level';
 import DebugButton from '../../buttons/debug/Debug';
-import { updateUser } from '../../../../redux/actions/userAction';
+import { updateUser } from '../../../../data-flow/redux/actions/userAction';
 import AchievementIcon from '../../icons/Achievement';
 import Emitter, { LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN } from '../../../../packages/emitter/Emitter';
 

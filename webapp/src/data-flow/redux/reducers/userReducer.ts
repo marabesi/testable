@@ -1,6 +1,6 @@
 /* eslint-disable no-case-declarations */
 import { SET_USER, UPDATE_USER_DATA } from '../actions/userAction';
-import { auth } from '../../pages/login/Auth';
+import { auth } from '../../../pages/login/Auth';
 
 /**
  * @param action {object}

@@ -1,6 +1,6 @@
 import guideContent from './unit-testing-intro-guide-content';
 import introContent from './unit-testing-intro-content';
-import Rocket from '../../components/rocket/Rocket';
+import Rocket from '../../components/ui/interface/rocket/Rocket';
 import {testCaseBehavior, testCase } from '../../packages/engine/strategies/behavior/TestCaseBehavior';
 import { SubtractionBehavior } from '../../packages/engine/strategies/behavior/SubtractionBehavior';
 import { testCase as subtractionTestCase } from '../../packages/engine/strategies/tester/SubtractionTester';

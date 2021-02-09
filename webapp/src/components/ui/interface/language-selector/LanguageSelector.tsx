@@ -1,7 +1,7 @@
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { setLocale } from '../../../../redux/actions/localeAction';
+import { setLocale } from '../../../../data-flow/redux/actions/localeAction';
 
 import '@formatjs/intl-relativetimeformat/polyfill-locales';
 

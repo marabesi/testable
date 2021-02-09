@@ -1,5 +1,5 @@
 import PropTypes from 'prop-types';
-import { track } from '../../packages/emitter/Tracking';
+import { track } from '../../../../packages/emitter/Tracking';
 
 const Base64Image = (props: {image: string, alt: string}) => (
   <img

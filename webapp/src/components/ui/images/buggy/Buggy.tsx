@@ -1,5 +1,5 @@
 //@ts-nocheck
-import Base64Image from '../../../base64image/Base64Image';
+import Base64Image from '../../utilities/base64image/Base64Image';
 
 const Buggy = props => (
   <Base64Image image="testable.buggy-right.png" alt="buggy" {...props}/>

@@ -2,16 +2,16 @@
 import { Component } from 'react';
 import PropTypes from 'prop-types';
 import { Redirect } from 'react-router';
-import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../packages/emitter/Emitter';
-import { track } from '../../packages/emitter/Tracking';
-import { auth } from '../../pages/login/Auth';
-import Reason from '../../packages/engine/Reason';
-import EditorManager from '../ui/interface/editor-manager/EditorManager';
-import Guide from '../ui/interface/guide/Guide';
-import Intro from '../ui/interface/intro/Intro';
-import DebugButton from '../ui/buttons/debug/Debug';
-import {SOURCE_CODE, TEST_CODE} from '../ui/interface/editor-manager/constants';
-import {executeTestCase} from '../../packages/engine/Tester';
+import Emitter, { PROGRESS_UP, LEVEL_UP } from '../../../../packages/emitter/Emitter';
+import { track } from '../../../../packages/emitter/Tracking';
+import { auth } from '../../../../pages/login/Auth';
+import Reason from '../../../../packages/engine/Reason';
+import EditorManager from '../editor-manager/EditorManager';
+import Guide from '../guide/Guide';
+import Intro from '../intro/Intro';
+import DebugButton from '../../buttons/debug/Debug';
+import {SOURCE_CODE, TEST_CODE} from '../editor-manager/constants';
+import {executeTestCase} from '../../../../packages/engine/Tester';
 
 /**
  * 

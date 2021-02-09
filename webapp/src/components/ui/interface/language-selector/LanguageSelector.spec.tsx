@@ -3,7 +3,7 @@ import { IntlProvider } from 'react-intl';
 import configureMockStore from 'redux-mock-store';
 import LanguageSelector from './LanguageSelector';
 import { LanguageSelector as LanguageSelectorWithoutStore } from './LanguageSelector';
-import { SET_LOCALE } from '../../../../redux/actions/localeAction';
+import { SET_LOCALE } from '../../../../data-flow/redux/actions/localeAction';
 
 const mockStore = configureMockStore();
 

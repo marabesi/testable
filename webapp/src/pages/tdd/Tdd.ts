@@ -1,5 +1,5 @@
 import guideContent from './tdd-guide-content';
-import Rocket from '../../components/rocket/Rocket';
+import Rocket from '../../components/ui/interface/rocket/Rocket';
 import { TEST_CODE } from '../../components/ui/interface/editor-manager/constants';
 import { testCaseBehavior, testCase } from '../../packages/engine/strategies/behavior/TestCaseBehavior';
 import { SubtractionBehavior } from '../../packages/engine/strategies/behavior/SubtractionBehavior';

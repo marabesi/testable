@@ -1,6 +1,6 @@
 import { Provider } from 'react-redux';
 
-import Store from '../redux/store/store';
+import Store from '../data-flow/redux/store/store';
 
 export const store = Store();
 

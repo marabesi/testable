@@ -1,9 +1,9 @@
-jest.mock('../../packages/engine/Reason', () => () => true);
+jest.mock('../../../../packages/engine/Reason', () => () => true);
 
 import { shallow } from 'enzyme';
 import { default as Rocket} from './Rocket';
-import Emitter, { TRACKING, LEVEL_UP } from '../../packages/emitter/Emitter';
-import {SOURCE_CODE, TEST_CODE} from '../ui/interface/editor-manager/constants';
+import Emitter, { TRACKING, LEVEL_UP } from '../../../../packages/emitter/Emitter';
+import {SOURCE_CODE, TEST_CODE} from '../editor-manager/constants';
 
 describe('Rocket HoC component', () => {
 

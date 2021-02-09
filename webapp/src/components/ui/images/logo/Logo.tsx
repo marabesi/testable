@@ -1,5 +1,5 @@
 //@ts-nocheck
-import Base64Image from '../../../base64image/Base64Image';
+import Base64Image from '../../utilities/base64image/Base64Image';
 
 const Logo = props => (
   <a href="https://github.com/marabesi/testable" target="_blank" rel="noopener noreferrer">

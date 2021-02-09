@@ -5,13 +5,13 @@ import { HashRouter } from 'react-router-dom';
 import { Offline, Online } from 'react-detect-offline';
 import App from './components/app/App';
 import registerServiceWorker from './registerServiceWorker';
-import Store from './redux/store/store';
+import Store from './data-flow/redux/store/store';
 import Background from './components/ui/interface/background/Background';
 import config, { DEVELOPMENT_MODE, PRODUCTION_MODE } from './config';
 
 import './css/index.css';
 
-const { env, basename, isDebug} = config;
+const { env, basename, isDebug } = config;
 
 const store = Store();
 

@@ -1,6 +1,6 @@
 //@ts-nocheck
 import guideContent from './guide-content';
-import Rocket from '../../components/rocket/Rocket';
+import Rocket from '../../components/ui/interface/rocket/Rocket';
 import { testCaseBehavior, testCase } from '../../packages/engine/strategies/behavior/TestCaseBehavior';
 import { Sum } from '../../packages/engine/strategies/behavior/Sum';
 import { testCase as sumTestCase } from '../../packages/engine/strategies/tester/Sum';

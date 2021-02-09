@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Buggy, {BuggyBug, BuggySleepy, BuggyHappy} from '../../images/buggy/Buggy';
 import AnimatedText from '../text-keyboard-animation/AnimatedText';
-import { onHover } from '../../../../redux/actions/guideAction';
+import { onHover } from '../../../../data-flow/redux/actions/guideAction';
 import Next from '../../icons/Next';
 
 import '../../../../scss/attention.scss';

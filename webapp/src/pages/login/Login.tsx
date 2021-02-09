@@ -6,7 +6,7 @@ import firebase from 'firebase/app';
 import uiConfig from './Firebase';
 import { auth } from '../login/Auth';
 import { track } from '../../packages/emitter/Tracking';
-import { setUser } from '../../redux/actions/userAction';
+import { setUser } from '../../data-flow/redux/actions/userAction';
 import { User } from '../../packages/types/User';
 import config, { TEST_MODE } from '../../config';
 

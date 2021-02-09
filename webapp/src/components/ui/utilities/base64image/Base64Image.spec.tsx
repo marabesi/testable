@@ -1,6 +1,6 @@
 import { mount } from 'enzyme';
 import Base64Image from './Base64Image';
-import Emitter, { TRACKING } from '../../packages/emitter/Emitter';
+import Emitter, { TRACKING } from '../../../../packages/emitter/Emitter';
 
 describe('base64image behavior', () => {
   afterEach(() => {
