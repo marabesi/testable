@@ -1,6 +1,10 @@
 export interface AchievementItem {
   title: string;
-  description: string;
-  level: number;
   active: boolean;
+  description: string;
+  items: any[];
+  onClick: any;
+  level: number;
+  intl: any;
+  host?: string
 }

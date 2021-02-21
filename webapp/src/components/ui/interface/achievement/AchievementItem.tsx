@@ -1,9 +1,10 @@
-import { injectIntl } from 'react-intl';
+import { ReactElement } from 'react';
 import PropTypes from 'prop-types';
 import { FacebookShareButton, FacebookIcon, TwitterIcon, TwitterShareButton } from 'react-share';
+import { AchievementItem as Item } from './types';
 import config from '../../../../config';
 
-export function AchievementItem({ title, active, description, items, onClick, intl, host }) {
+export function AchievementItem({ title, active, description, items, onClick, intl, host }: Item): ReactElement<Item> {
   const list = items.map((item, index) => <li key={index}>{item}</li>);
   return (
     <li className="p-2">
@@ -14,7 +15,7 @@ export function AchievementItem({ title, active, description, items, onClick, in
           <ul className="mt-2">{list}</ul>
           <div className="flex">
             <FacebookShareButton
-              url={host}
+              url={host || ''}
               quote={`${intl.messages.achievements.social_sharing} ${title} - ${description}`}
               className="m-1 ml-0"
             >
@@ -23,7 +24,7 @@ export function AchievementItem({ title, active, description, items, onClick, in
                 round />
             </FacebookShareButton>
             <TwitterShareButton
-              url={host}
+              url={host || ''}
               title={`${intl.messages.achievements.social_sharing} ${title} - ${description}`}
               className="m-1"
             >
@@ -58,4 +59,4 @@ AchievementItem.defaultProps = {
   host: config.host,
 };
 
-export default injectIntl(AchievementItem);
+export default AchievementItem;

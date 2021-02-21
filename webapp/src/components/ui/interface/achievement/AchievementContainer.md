@@ -9,6 +9,15 @@ Currently the achievement list is based on a json file (achievements-content.jso
 import AchievementContainer from './AchievementContainer';
 
 <div className="bg-black">
-  <AchievementContainer />
+  <AchievementContainer 
+    intl={{
+      messages: {
+        achievements: {
+          list: []
+        }
+      }
+    }}
+    onClose={() => alert('onClose trigged!!!')}
+  />
 </div>
 ```

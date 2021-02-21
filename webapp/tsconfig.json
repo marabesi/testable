@@ -20,7 +20,8 @@
     "jsx": "react-jsx",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
-    "allowUmdGlobalAccess": true
+    "allowUmdGlobalAccess": true,
+    "downlevelIteration": true
   },
   "include": [
     "src"

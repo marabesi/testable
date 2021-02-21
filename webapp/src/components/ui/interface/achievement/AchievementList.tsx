@@ -1,17 +1,16 @@
-// @ts-nocheck
-import { useState, useEffect } from 'react';
-import { injectIntl } from 'react-intl';
-import { connect } from 'react-redux';
-import PropTypes from 'prop-types';
+import { useState, useEffect, ReactElement } from 'react';
 import { AchievementItem as Item } from './types';
 import AchievementItem from './AchievementItem';
 import { track } from '../../../../packages/emitter/Tracking';
+import { User } from '../../../../packages/types/User';
 
-const mapStateToProps = state => ({
-  user: state.userReducer.user,
-});
+interface Props {
+  achievements: Item[];
+  user: User;
+  intl: any;
+}
 
-export const AchievementList = (props: { achievements: Item[] }) => {
+export const AchievementList = (props: Props) => {
   const [achievements, setAchievements] = useState<Item[]>([]);
   const handleAchievements = () => {
     if (props.achievements.length) {
@@ -21,9 +20,9 @@ export const AchievementList = (props: { achievements: Item[] }) => {
 
   useEffect(handleAchievements);
 
-  const showAchievement = index => {
-    const current = Object.assign([], props.achievements);
-    const selected = current[index];
+  const showAchievement = (index: number) => {
+    const current: Item[] = Object.assign([], props.achievements);
+    const selected: Item = current[index];
     const active = !selected.active;
 
     selected.active = active;
@@ -39,7 +38,7 @@ export const AchievementList = (props: { achievements: Item[] }) => {
     });
   };
 
-  const achievementsToRender = [];
+  const achievementsToRender: ReactElement<Item>[] = [];
 
   for (const [index, achievement] of achievements.entries()) {
     if (props.user.level >= achievement.level) {
@@ -50,6 +49,7 @@ export const AchievementList = (props: { achievements: Item[] }) => {
           description={achievement.description}
           items={achievement.items || []}
           active={achievement.active}
+          level={props.user.level}
           onClick={() => showAchievement(index)}
         />
       );
@@ -71,12 +71,6 @@ export const AchievementList = (props: { achievements: Item[] }) => {
   );
 };
 
-AchievementList.propTypes = {
-  user: PropTypes.object,
-  intl: PropTypes.object,
-  achievements: PropTypes.array,
-};
-
 AchievementList.defaultProps = {
   user: {},
   achievements: [],
@@ -87,4 +81,4 @@ AchievementList.defaultProps = {
   }
 };
 
-export default injectIntl(connect(mapStateToProps)(AchievementList));
+export default AchievementList;

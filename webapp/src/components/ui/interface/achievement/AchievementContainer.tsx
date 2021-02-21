@@ -1,12 +1,24 @@
-// @ts-nocheck
-import PropTypes from 'prop-types';
+import { ReactElement } from 'react';
 import AchievementList from './AchievementList';
 import Achievement from '../../icons/Achievement';
 import Close from '../../icons/Close';
 import Title from '../title/Title';
 import { colors } from '../../../../tailwind';
+import { User } from '../../../../packages/types/User';
 
-const AchievementContainer = ({ intl, onClose }) => (
+interface Props {
+  intl: any;
+  /**
+   * Callback invoked when the close button is clicked
+   */
+  onClose: any;
+  /**
+   * Logged in user object
+   */
+  user: User
+}
+
+const AchievementContainer = ({ intl, onClose, user }: Props): ReactElement => (
   <>
     <Title>
       <div>
@@ -28,27 +40,13 @@ const AchievementContainer = ({ intl, onClose }) => (
 
     {
       intl.messages.achievements.list.length > 0 &&
-      <AchievementList achievements={intl.messages.achievements.list} />
+      <AchievementList
+        achievements={intl.messages.achievements.list}
+        intl={intl}
+        user={user}
+      />
     }
   </>
 );
-
-AchievementContainer.propTypes = {
-  /**
-   * Callback invoked when the close button is clicked
-   */
-  onClose: PropTypes.func,
-  intl: PropTypes.object,
-};
-
-AchievementContainer.defaultProps = {
-  intl: {
-    messages: {
-      achievements: {
-        list: []
-      }
-    }
-  }
-};
 
 export default AchievementContainer;
