@@ -5,7 +5,17 @@ import Title from '../title/Title';
 describe('AchievementContainer component: render behavior', () => {
   test('should render container title', () => {
     const wrapper = shallow(
-      <AchievementContainer />
+      <AchievementContainer
+        intl={{
+          messages: {
+            achievements: {
+              title: 'Título',
+              list: [],
+              empty_list: 'A lista de conquista está vazia'
+            }
+          }
+        }}
+      />
     );
     expect(wrapper.find(Title).length).toEqual(1);
   });
