@@ -6,7 +6,7 @@
     "@formatjs/intl-relativetimeformat": "^8.1.1",
     "@fullhuman/postcss-purgecss": "^4.0.0",
     "babel-eslint": "^10.1.0",
-    "css-loader": "^5.1.0",
+    "css-loader": "^5.1.1",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "esprima": "^4.0.1",
