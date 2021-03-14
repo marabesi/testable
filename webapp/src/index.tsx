@@ -1,6 +1,7 @@
 import ReactDOM from 'react-dom';
 import ReactGA, { InitializeOptions } from 'react-ga';
 import { Provider } from 'react-redux';
+import { PersistGate } from 'redux-persist/integration/react';
 import { HashRouter } from 'react-router-dom';
 import App from './components/app/App';
 import registerServiceWorker from './registerServiceWorker';
@@ -12,7 +13,7 @@ import './css/index.css';
 
 const { env, basename, isDebug } = config;
 
-const store = Store();
+const { store, persistor } = Store();
 
 if (env === PRODUCTION_MODE) {
   const options: InitializeOptions = { debug: isDebug };
@@ -22,11 +23,16 @@ if (env === PRODUCTION_MODE) {
 
 ReactDOM.render(
   <Provider store={store}>
-    <Background>
-      <HashRouter basename={basename}>
-        <App />
-      </HashRouter>
-    </Background>
+    <PersistGate
+      loading={null}
+      persistor={persistor}
+    >
+      <Background>
+        <HashRouter basename={basename}>
+          <App />
+        </HashRouter>
+      </Background>
+    </PersistGate>,
   </Provider>,
   document.getElementById('root')
 );

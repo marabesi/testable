@@ -5,7 +5,7 @@ import {Header} from '../header/Header';
 import Logo from '../../images/logo/Logo';
 import Store from '../../../../data-flow/redux/store/store';
 
-const store = Store();
+const { store } = Store();
 
 describe('sidebar component', () => {
 

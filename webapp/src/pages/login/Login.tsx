@@ -1,10 +1,8 @@
 // @ts-nocheck
-import { Component } from 'react';
+import { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
-import * as firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
-import uiConfig from './Firebase';
 import Routes from './Routes';
 import { auth } from '../login/Auth';
 import { track } from '../../packages/emitter/Tracking';
@@ -18,12 +16,16 @@ import './firebase/firebase-ui.scss';
 
 const mapStateToProps = (state: { userReducer: { user: User; }; }) => ({
   user: state.userReducer.user,
+  locale: state.localeReducer.locale,
 });
 
 interface LoginProps {
   setUser: Function;
   user?: User;
+  locale: string;
 }
+
+const firebaseResolver = language => require('../../third-party/wrappers/firebaseui/npm__' + language);
 
 const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: any; }) => any) => {
   return {
@@ -31,75 +33,91 @@ const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: any; }) =>
   };
 };
 
-export class Login extends Component<LoginProps> {
-  state = {
-    showFirebaseWidget: false
-  }
+export const Login = ({ setUser, user, locale }: LoginProps) => {
+  const [showFirebaseWidget, setShowFirebaseWidget] = useState(false);
 
-  constructor(props: LoginProps) {
-    super(props);
+  const authStatusChanged = (loggedUser: User) => {
+    setUser(loggedUser);
 
-    auth
-      .authenticate()
-      .then(this.authStatusChanged)
-      .catch(this.authStatusChanged);
-  }
-
-  authStatusChanged = (user: User) => {
-    this.props.setUser(user);
-
-    if (user) {
+    if (loggedUser) {
       track({
         section: 'login',
         action: 'auth_changed'
       });
 
-      this.setState({
+      setShowFirebaseWidget({
         showFirebaseWidget: false,
       });
 
       return;
     }
 
-    this.setState({
+    setShowFirebaseWidget({
       showFirebaseWidget: true,
     });
-  }
+  };
 
-  componentDidMount() {
+  useEffect(() => {
+    auth
+      .authenticate()
+      .then(authStatusChanged)
+      .catch(authStatusChanged);
+
+    const firebaseui = firebaseResolver(locale.replace('-', '_'));
+
     if (config.env !== TEST_MODE) {
       let ui = firebaseui.auth.AuthUI.getInstance();
       if (!ui) {
         ui = new firebaseui.auth.AuthUI(firebase.auth());
       }
+
+      const uiConfig = {
+        signInSuccessUrl: config.publicUrl || '/',
+        signInOptions: [
+          {
+            provider: firebase.auth.GoogleAuthProvider.PROVIDER_ID
+          },
+          {
+            provider: firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+            scopes: [
+              'public_profile',
+              'email',
+            ]
+          },
+          firebase.auth.TwitterAuthProvider.PROVIDER_ID,
+          firebase.auth.EmailAuthProvider.PROVIDER_ID
+        ],
+
+        tosUrl: config.firebaseTosUrl,
+        privacyPolicyUrl: () => window.location.assign(config.firebasePrivacyUrl)
+      };
+
       ui.start('#firebaseui-auth-container', uiConfig);
     }
-  }
 
-  componentWillUnmount() {
-    auth.unsubscribe();
-  }
+    return () => {
+      auth.unsubscribe();
+    };
+  }, []);
 
-  render() {
-    if (this.props.user && this.props.user.uid) {
-      return (
-        <Redirect to={{ pathname: Routes.INTRO }} />
-      );
-    }
-
+  if (user && user.uid) {
     return (
-      <div
-        className={
-          !this.state.showFirebaseWidget
-            ? 'hidden'
-            : 'flex flex-col justify-center items-center h-screen'
-        }
-        id='firebaseui-auth-container'
-      >
-        <LanguageSelector />
-      </div>
+      <Redirect to={{ pathname: Routes.INTRO }} />
     );
   }
-}
+
+  return (
+    <div
+      className={
+        !showFirebaseWidget
+          ? 'hidden'
+          : 'flex flex-col justify-center items-center h-screen'
+      }
+      id='firebaseui-auth-container'
+    >
+      <LanguageSelector onChange={() => window.location.reload()} />
+    </div>
+  );
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login);

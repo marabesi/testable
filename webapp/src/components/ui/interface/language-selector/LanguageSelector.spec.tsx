@@ -23,9 +23,23 @@ describe('language selector component', () => {
     const setLocale = jest.fn();
     const wrapper = shallow(<LanguageSelectorWithoutStore setLocale={setLocale} />);
 
-    wrapper.find('select').simulate('change', {target: { value : 'en'}});
+    wrapper.find('select').simulate('change', { target: { value: 'en' } });
 
     expect(setLocale).toBeCalledWith('en');
+  });
+
+  test('should trigger onChange when switch language', () => {
+    const onChange = jest.fn();
+    const wrapper = shallow(
+      <LanguageSelectorWithoutStore
+        setLocale={jest.fn()}
+        onChange={onChange}
+      />
+    );
+
+    wrapper.find('select').simulate('change', { target: { value: 'en' } });
+
+    expect(onChange).toBeCalledWith('en');
   });
 
   test('dispatch action on change selected language', () => {
@@ -48,9 +62,9 @@ describe('language selector component', () => {
       </IntlProvider>
     );
 
-    wrapper.find('select').simulate('change', {target: { value : 'pt-br'}});
+    wrapper.find('select').simulate('change', { target: { value: 'pt-br' } });
     const actions = store.getActions();
 
-    expect(actions).toEqual([ { 'payload': 'pt-br', 'type': SET_LOCALE } ]);
+    expect(actions).toEqual([{ 'payload': 'pt-br', 'type': SET_LOCALE }]);
   });
 });
