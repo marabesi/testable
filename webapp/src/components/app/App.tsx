@@ -3,10 +3,9 @@ import { Component } from 'react';
 import { connect } from 'react-redux';
 import { Route } from 'react-router-dom';
 import { AnimatedSwitch } from 'react-router-transition';
-import { IntlProvider } from 'react-intl';
 import PropTypes from 'prop-types';
 import { mapStyles, bounceTransition } from './transition';
-import { messages } from './constants/locale';
+import IntlProvider from '../../third-party/wrappers/i18n/IntlProvider';
 import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
 import Queue from '../../packages/queue/queue';
 import Loading from '../ui/interface/loading/Loading';
@@ -95,7 +94,7 @@ export class App extends Component {
     const { locale } = this.props;
 
     return (
-      <IntlProvider locale={locale} messages={messages[locale]}>
+      <IntlProvider locale={locale}>
         <Sidebar>
           <AnimatedSwitch
             atEnter={bounceTransition.atEnter}

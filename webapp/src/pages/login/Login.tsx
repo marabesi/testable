@@ -11,6 +11,7 @@ import { track } from '../../packages/emitter/Tracking';
 import { setUser } from '../../data-flow/redux/actions/userAction';
 import { User } from '../../packages/types/User';
 import config, { TEST_MODE } from '../../config';
+import LanguageSelector from '../../components/ui/interface/language-selector/LanguageSelector';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
@@ -94,7 +95,9 @@ export class Login extends Component<LoginProps> {
             : 'flex flex-col justify-center items-center h-screen'
         }
         id='firebaseui-auth-container'
-      />
+      >
+        <LanguageSelector />
+      </div>
     );
   }
 }
