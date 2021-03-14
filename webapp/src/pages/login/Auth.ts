@@ -1,5 +1,6 @@
 // @ts-nocheck
 import firebase from 'firebase/app';
+import Routes from './Routes';
 import { User } from '../../packages/types/User';
 import config from '../../config';
 
@@ -80,119 +81,119 @@ const auth = {
     if (!user || !user.uid) {
       return {
         flag: false,
-        to: '/'
+        to: Routes.HOME,
       };
     }
 
-    if (to.pathname !== '/intro' && user.level === 1) {
+    if (to.pathname !== Routes.INTRO && user.level === 1) {
       return {
         flag: false,
-        to: '/intro'
+        to: Routes.INTRO
       };
     }
 
-    if (to.pathname !== '/tutorial' && user.level === 2) {
+    if (to.pathname !== Routes.TUTORIAL_START && user.level === 2) {
       return {
         flag: false,
-        to: '/tutorial'
+        to: Routes.TUTORIAL_START
       };
     }
 
-    if (to.pathname !== '/tutorial-end' && user.level === 3) {
+    if (to.pathname !== Routes.TUTORIAL_END && user.level === 3) {
       return {
         flag: false,
-        to: '/tutorial-end'
+        to: Routes.TUTORIAL_END
       };
     }
 
-    if (to.pathname !== '/unit-testing-intro' && user.level === 4) {
+    if (to.pathname !== Routes.UNIT_TEST_INTRO && user.level === 4) {
       return {
         flag: false,
-        to: '/unit-testing-intro'
+        to: Routes.UNIT_TEST_INTRO
       };
     }
 
-    if (to.pathname !== '/unit-testing' && user.level === 5) {
+    if (to.pathname !== Routes.UNIT_TEST && user.level === 5) {
       return {
         flag: false,
-        to: '/unit-testing'
+        to: Routes.UNIT_TEST
       };
     }
 
-    if (to.pathname !== '/unit-testing-end' && user.level === 6) {
+    if (to.pathname !== Routes.UNIT_TEST_END && user.level === 6) {
       return {
         flag: false,
-        to: '/unit-testing-end'
+        to: Routes.UNIT_TEST_END
       };
     }
 
-    if (to.pathname !== '/rocket-01' && user.level === 7) {
+    if (to.pathname !== Routes.CHALLENGE_01 && user.level === 7) {
       return {
         flag: false,
-        to: '/rocket-01'
+        to: Routes.CHALLENGE_01
       };
     }
 
-    if (to.pathname !== '/rocket-02' && user.level === 8) {
+    if (to.pathname !== Routes.CHALLENGE_02 && user.level === 8) {
       return {
         flag: false,
-        to: '/rocket-02'
+        to: Routes.CHALLENGE_02
       };
     }
 
-    if (to.pathname !== '/rocket-03' && user.level === 9) {
+    if (to.pathname !== Routes.CHALLENGE_03 && user.level === 9) {
       return {
         flag: false,
-        to: '/rocket-03'
+        to: Routes.CHALLENGE_03
       };
     }
 
-    if (to.pathname !== '/rocket-03-01' && user.level === 10) {
+    if (to.pathname !== Routes.CHALLENGE_03_01 && user.level === 10) {
       return {
         flag: false,
-        to: '/rocket-03-01'
+        to: Routes.CHALLENGE_03_01
       };
     }
 
-    if (to.pathname !== '/rocket-03-02' && user.level === 11) {
+    if (to.pathname !== Routes.CHALLENGE_03_02 && user.level === 11) {
       return {
         flag: false,
-        to: '/rocket-03-02'
+        to: Routes.CHALLENGE_03_02
       };
     }
 
-    if (to.pathname !== '/completed-intro' && user.level === 12) {
+    if (to.pathname !== Routes.CHALLENGE_COMPLETED_START && user.level === 12) {
       return {
         flag: false,
-        to: '/completed-intro'
+        to: Routes.CHALLENGE_COMPLETED_START
       };
     }
 
-    if (to.pathname !== '/completed-end' && user.level === 13) {
+    if (to.pathname !== Routes.CHALLENGE_COMPLETED_END && user.level === 13) {
       return {
         flag: false,
-        to: '/completed-end'
+        to: Routes.CHALLENGE_COMPLETED_END
       };
     }
 
-    if (to.pathname !== '/survey' && user.level === 14) {
+    if (to.pathname !== Routes.SURVEY && user.level === 14) {
       return {
         flag: false,
-        to: '/survey'
+        to: Routes.SURVEY
       };
     }
 
-    if (to.pathname !== '/tdd-intro' && user.level === 15) {
+    if (to.pathname !== Routes.TDD_START && user.level === 15) {
       return {
         flag: false,
-        to: '/tdd-intro'
+        to: Routes.TDD_START
       };
     }
 
-    if (to.pathname !== '/tdd' && user.level > 15) {
+    if (to.pathname !== Routes.TDD && user.level > 15) {
       return {
         flag: false,
-        to: '/tdd'
+        to: Routes.TDD
       };
     }
 

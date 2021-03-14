@@ -1,9 +1,11 @@
+// @ts-nocheck
 import { Component } from 'react';
 import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import * as firebaseui from 'firebaseui';
 import firebase from 'firebase/app';
 import uiConfig from './Firebase';
+import Routes from './Routes';
 import { auth } from '../login/Auth';
 import { track } from '../../packages/emitter/Tracking';
 import { setUser } from '../../data-flow/redux/actions/userAction';
@@ -19,7 +21,7 @@ const mapStateToProps = (state: { userReducer: { user: User; }; }) => ({
 
 interface LoginProps {
   setUser: Function;
-  user: User;
+  user?: User;
 }
 
 const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: any; }) => any) => {
@@ -80,7 +82,7 @@ export class Login extends Component<LoginProps> {
   render() {
     if (this.props.user && this.props.user.uid) {
       return (
-        <Redirect to={{ pathname: '/intro' }} />
+        <Redirect to={{ pathname: Routes.INTRO }} />
       );
     }
 
