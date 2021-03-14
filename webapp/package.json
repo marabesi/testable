@@ -21,7 +21,6 @@
     "postcss-cli": "^8.3.1",
     "react": "^17.0.1",
     "react-codemirror": "^1.0.0",
-    "react-detect-offline": "^2.4.3",
     "react-dom": "^17.0.1",
     "react-ga": "^3.3.0",
     "react-intl": "^5.13.1",
