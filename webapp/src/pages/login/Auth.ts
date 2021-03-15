@@ -16,6 +16,7 @@ const defaultFirebaseConfig = `{
 
 const env = JSON.parse(config.firebaseJson ||  defaultFirebaseConfig);
 
+require('firebase/auth');
 require('firebase/database');
 
 firebase.initializeApp(env);

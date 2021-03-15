@@ -58,19 +58,19 @@ export const Login = ({ setUser, user, locale }: LoginProps) => {
   };
 
   useEffect(() => {
-    auth
-      .authenticate()
-      .then(authStatusChanged)
-      .catch(authStatusChanged);
-
     const firebaseui = firebaseResolver(locale.replace('-', '_'));
-
+    
     if (config.env !== TEST_MODE) {
       let ui = firebaseui.auth.AuthUI.getInstance();
       if (!ui) {
         ui = new firebaseui.auth.AuthUI(firebase.auth());
       }
 
+      auth
+        .authenticate()
+        .then(authStatusChanged)
+        .catch(authStatusChanged);
+      
       const uiConfig = {
         signInSuccessUrl: config.publicUrl || '/',
         signInOptions: [
