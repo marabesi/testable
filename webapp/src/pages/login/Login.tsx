@@ -115,7 +115,7 @@ export const Login = ({ setUser, user, locale }: LoginProps) => {
       }
       id='firebaseui-auth-container'
     >
-      <LanguageSelector onChange={() => window.location.reload()} />
+      <LanguageSelector />
     </div>
   );
 };

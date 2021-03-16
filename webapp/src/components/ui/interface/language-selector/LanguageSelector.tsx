@@ -24,6 +24,8 @@ export const LanguageSelector = ({ intl, locale, setLocale, onChange }) => {
     if (onChange) {
       onChange(language);
     }
+
+    setTimeout(() => window.location.reload(), 600);
   };
 
   return (
