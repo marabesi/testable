@@ -82,6 +82,7 @@ export default {
     background_animation: 'Animação de fundo',
     languages : {
       en: 'Inglês',
+      es: 'Espanhol',
       'pt-br': 'Português (Brasil)',
       ro: 'Romania'
     },

@@ -1,14 +1,14 @@
 export default {
   global: {
-    options: 'Options',
+    options: 'Opciones',
   },
   menu: {
-    logout: 'logout'
+    logout: 'Salir'
   },
   achievements: {
-    title: 'Achievements',
-    empty_list: 'There is no achievement to show up',
-    social_sharing: 'Achievement unlocked!',
+    title: 'Logros',
+    empty_list: 'Lista esta vacia',
+    social_sharing: 'Has logrado una etiqueta!',
     list: [
       {
         title: 'Challenge accepted',
@@ -66,7 +66,7 @@ export default {
     ]
   },
   level : {
-    label: 'level'
+    label: 'nivel'
   },
   ranking: {
     title: 'ranking',
@@ -78,16 +78,16 @@ export default {
     }
   },
   options: {
-    language: 'Language',
-    background_animation: 'Background animation',
+    language: 'idioma',
+    background_animation: 'Animaciones',
     languages : {
-      en: 'English',
-      es: 'Spanish',
-      'pt-br': 'Portuguese (Brazil)',
-      ro: 'Romanian'
+      en: 'Ingles',
+      es: 'Español',
+      'pt-br': 'Portugues (Brazil)',
+      ro: 'Romania'
     }
   },
   survey: {
-    title: 'Survey'
+    title: 'Encuesta'
   }
 };

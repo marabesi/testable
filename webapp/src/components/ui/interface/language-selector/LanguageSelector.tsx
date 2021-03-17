@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { injectIntl } from 'react-intl';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setLocale } from '../../../../data-flow/redux/actions/localeAction';
+import Loading from '../loading/Loading';
 
 import '@formatjs/intl-relativetimeformat/polyfill-locales';
 
@@ -17,8 +19,11 @@ const mapStateToProps = state => ({
 });
 
 export const LanguageSelector = ({ intl, locale, setLocale, onChange }) => {
+  const [loading, setLoading] = useState(false);
+
   const didChange = event => {
     const language = event.target.value;
+    setLoading(true);
     setLocale(language);
 
     if (onChange) {
@@ -29,11 +34,15 @@ export const LanguageSelector = ({ intl, locale, setLocale, onChange }) => {
   };
 
   return (
-    <select onChange={didChange} value={locale}>
-      <option value="en">{intl.messages.options.languages.en}</option>
-      <option value="pt-br">{intl.messages.options.languages['pt-br']}</option>
-      <option value="ro">{intl.messages.options.languages['ro']}</option>
-    </select>
+    <>
+      {loading && <Loading />}
+      <select onChange={didChange} value={locale}>
+        <option value="en">{intl.messages.options.languages.en}</option>
+        <option value="pt-br">{intl.messages.options.languages['pt-br']}</option>
+        <option value="ro">{intl.messages.options.languages['ro']}</option>
+        <option value="es">{intl.messages.options.languages['es']}</option>
+      </select>
+    </>
   );
 };
 
