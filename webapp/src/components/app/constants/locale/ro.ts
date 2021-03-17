@@ -1,9 +1,9 @@
 export default {
   global: {
-    options: 'Opções'
+    options: 'Opțiuni'
   },
   menu: {
-    logout: 'sair'
+    logout: 'A iesi afara'
   },
   achievements: {
     title: 'Conquistas',
@@ -78,15 +78,15 @@ export default {
     }
   },
   options: {
-    language: 'Idioma',
-    background_animation: 'Animação de fundo',
+    language: 'Limba',
+    background_animation: 'Animație de fundal',
     languages : {
-      en: 'Inglês',
-      'pt-br': 'Português (Brasil)',
-      ro: 'Romania'
+      en: 'Engleză',
+      'pt-br': 'Portugheză - Brazilia',
+      ro: 'Română'
     },
   },
   survey: {
-    title: 'Questionário'
+    title: 'Test'
   }
 };

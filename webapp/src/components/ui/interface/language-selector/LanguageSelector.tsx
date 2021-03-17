@@ -32,6 +32,7 @@ export const LanguageSelector = ({ intl, locale, setLocale, onChange }) => {
     <select onChange={didChange} value={locale}>
       <option value="en">{intl.messages.options.languages.en}</option>
       <option value="pt-br">{intl.messages.options.languages['pt-br']}</option>
+      <option value="ro">{intl.messages.options.languages['ro']}</option>
     </select>
   );
 };

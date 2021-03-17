@@ -82,7 +82,8 @@ export default {
     background_animation: 'Background animation',
     languages : {
       en: 'English',
-      'pt-br': 'Portuguese (Brazil)'
+      'pt-br': 'Portuguese (Brazil)',
+      ro: 'Romanian'
     }
   },
   survey: {
