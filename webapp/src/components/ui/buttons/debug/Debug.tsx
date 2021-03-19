@@ -1,13 +1,15 @@
-import { Component } from 'react';
+import { MouseEventHandler } from 'react';
 import config from '../../../../config';
 
-export default class Debug extends Component {
+interface Props {
+  onClick: MouseEventHandler<HTMLInputElement>;
+  value: string;
+}
 
-  render() {
-    return (
-      <>
-        {config.isDebug && <input type="button" className="bg-white m-2" {...this.props} />}
-      </>
-    );
-  }
+export default function Debug(props: Props) {
+  return (
+    <>
+      {config.isDebug && <input type="button" className="bg-white m-2" {...props} />}
+    </>
+  );
 }

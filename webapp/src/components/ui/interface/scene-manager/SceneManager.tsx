@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Scene from './Scene';
@@ -41,7 +40,7 @@ const SceneManager = props => {
   };
 
   const steps = props.content.steps || [];
-  const scenes = [];
+  const scenes: any[] = [];
   const last = steps.length - 1;
 
   for (const [index, step] of steps.entries()) {
