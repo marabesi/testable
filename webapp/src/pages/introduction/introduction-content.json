@@ -164,7 +164,9 @@
     {
       "step": 7,
       "button": "Estou dentro!",
-      "showAlien": true,
+      "showAlien": {
+        "show": true
+      },
       "lastScene": true,
       "content": [
         {

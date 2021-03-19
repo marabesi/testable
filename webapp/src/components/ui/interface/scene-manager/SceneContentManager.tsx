@@ -1,17 +1,40 @@
-//@ts-nocheck
 import PropTypes from 'prop-types';
-import SceneManager from './SceneManager';
+import SceneManager  from './SceneManager';
 import Emitter, { LEVEL_UP } from '../../../../packages/emitter/Emitter';
 
+export interface SceneContent {
+  line: string;
+  style: string;
+}
+
+export interface SceneItem {
+  button: string;
+  step: Number;
+  lastScene?: boolean;
+  showAlien?: CharacterBehavior;
+  content: SceneContent[];
+  onCompleted?: { showBug: boolean };
+}
+
+export interface CharacterBehavior {
+  animate?: boolean;
+  show?: boolean;
+}
+
+export interface InteractiveContent {
+  version: number;
+  steps: SceneItem[]
+}
+
 const WrappedSceneContentManager = (
-  identifier,
-  content,
-  redirectTo
+  identifier: string,
+  content: InteractiveContent,
+  redirectTo: string
 ) => {
-  const SceneContentManager = props => {
-    const handleLastScene = () => {
-      if (props.handleLastScene) {
-        props.handleLastScene();
+  const SceneContentManager = ({ handleLastScene, history, className }) => {
+    const lastScene = () => {
+      if (handleLastScene) {
+        handleLastScene();
         return;
       }
 
@@ -19,15 +42,15 @@ const WrappedSceneContentManager = (
         tutorial: true,
       });
 
-      props.history.push(redirectTo);
+      history.push(redirectTo);
     };
 
     return (
       <SceneManager
-        className={props.className}
+        className={className}
         identifier={identifier}
         content={content}
-        handleLastScene={handleLastScene}
+        handleLastScene={lastScene}
       />
     );
   };

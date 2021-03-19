@@ -1,4 +1,4 @@
-//@ts-nocheck
+// @ts-nocheck
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import Scene from './Scene';
@@ -8,7 +8,7 @@ import Emitter, { PROGRESS_UP, PROGRESS_DOWN } from '../../../../packages/emitte
 import { track } from '../../../../packages/emitter/Tracking';
 
 const SceneManager = props => {
-  
+
   const [currentStep, setCurrentStep] = useState(1);
 
   const handlePreviousScene = () => {
@@ -68,7 +68,7 @@ const SceneManager = props => {
   return (
     <>
       <div className={`w-full -mt-20 ${props.className}`}>
-        { scenes }
+        {scenes}
       </div>
       <DebugButton onClick={handlePreviousScene} value="previous" />
       <DebugButton onClick={handleNextScene} value="next" />
