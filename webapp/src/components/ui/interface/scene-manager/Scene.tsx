@@ -11,7 +11,6 @@ import './scene.scss';
 const RELEASE_BUTTON = 2000;
 
 const Scene = props => {
-
   const [showNextButton, setShowNextButton] = useState(false);
   const [disableNextButton, setDisableNextButton] = useState(false);
 
@@ -144,12 +143,12 @@ Scene.propTypes = {
   releaseButton: PropTypes.number,
   showNextButton: PropTypes.number,
   step: PropTypes.number,
-  showBuggy: PropTypes.bool,
+  showBuggy: PropTypes.object,
 };
 
 Scene.defaultProps = {
   onCompleted: {},
-  showBuggy: false,
+  showBuggy: {},
   releaseButton: RELEASE_BUTTON,
   showNextButton: 900,
 };

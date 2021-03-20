@@ -2,6 +2,7 @@ import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import SceneManager from './SceneManager';
 import Scene from './Scene';
+import { InteractiveContent } from './SceneContentManager';
 
 describe('Scene manager component', () => {
 
@@ -121,7 +122,7 @@ describe('Scene manager component', () => {
   });
 
   test('should pass in lastStep from the content json', () => {
-    const contentWithLastStep = Object.assign({}, content);
+    const contentWithLastStep: InteractiveContent = Object.assign({}, content);
     contentWithLastStep.steps[0].lastScene = true;
 
     const wrapper = mount(

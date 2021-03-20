@@ -6,8 +6,14 @@ import { auth } from '../../../../pages/login/Auth';
 import Emitter, { PROGRESS_UP, PROGRESS_DOWN } from '../../../../packages/emitter/Emitter';
 import { track } from '../../../../packages/emitter/Tracking';
 
-const SceneManager = props => {
+interface Props {
+  identifier: string;
+  content: any;
+  handleLastScene: (args: any) => any;
+  className: string
+}
 
+const SceneManager = ({ content, identifier, handleLastScene, className }: Props) => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const handlePreviousScene = () => {
@@ -22,7 +28,7 @@ const SceneManager = props => {
 
   const handleNextScene = () => {
     const current = currentStep;
-    const total = props.content.steps.length;
+    const total = content.steps.length;
 
     if (current === total) {
       return false;
@@ -33,13 +39,13 @@ const SceneManager = props => {
     Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10 });
 
     track({
-      section: props.identifier,
+      section: identifier,
       action: 'next_scene|button_click',
       value: current,
     });
   };
 
-  const steps = props.content.steps || [];
+  const steps = content.steps || [];
   const scenes: any[] = [];
   const last = steps.length - 1;
 
@@ -55,9 +61,9 @@ const SceneManager = props => {
           next={handleNextScene}
           previous={handlePreviousScene}
           lastScene={step.lastScene || (last === index)}
-          handleLastScene={props.handleLastScene}
+          handleLastScene={handleLastScene}
           showAlien={step.showAlien}
-          showBuggy={step.showBuggy || false}
+          showBuggy={step.showBuggy}
           onCompleted={step.onCompleted || {}}
         />
       );
@@ -66,12 +72,12 @@ const SceneManager = props => {
 
   return (
     <>
-      <div className={`w-full -mt-20 ${props.className}`}>
+      <div className={`w-full -mt-20 ${className}`}>
         {scenes}
       </div>
       <DebugButton onClick={handlePreviousScene} value="previous" />
       <DebugButton onClick={handleNextScene} value="next" />
-      <DebugButton onClick={props.handleLastScene} value="trigger last scene" />
+      <DebugButton onClick={handleLastScene} value="trigger last scene" />
     </>
   );
 };

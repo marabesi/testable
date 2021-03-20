@@ -20,7 +20,7 @@ describe('Scene component', () => {
 
     expect(wrapper.props().onCompleted).toEqual({});
     expect(wrapper.props().releaseButton).toEqual(2000);
-    expect(wrapper.props().showBuggy).toEqual(false);
+    expect(wrapper.props().showBuggy).toEqual({});
     expect(wrapper.props().showNextButton).toEqual(900);
   });
 
@@ -99,7 +99,7 @@ describe('Scene component', () => {
     const NODE_INDEX = 1;
     const wrapper = mount(
       <Scene
-        onCompleted={{showBug: {}}}
+        onCompleted={{showBug: true}}
         text={[ {key: 0, line: 'my'} ]}
       />
     );
@@ -266,7 +266,7 @@ describe('Scene component', () => {
   });
 
   test('should apply block class to buggy when buggy prop is true', () => {
-    const wrapper = mount(<Scene showBuggy={true} />);
+    const wrapper = mount(<Scene showBuggy={{}} />);
     const buggy = wrapper.find('BuggyLeft').at(0);
     const classes = buggy.prop('className') || '';
     expect(classes.includes('md:block')).toBeTruthy();
