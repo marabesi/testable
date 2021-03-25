@@ -7,7 +7,7 @@ import Modal from '../modal/Modal';
 import Cup from '../../icons/Cup';
 import Ranking from '../ranking/Ranking';
 import Button from '../../buttons/primary/Primary';
-import Survey from '../survey/Survey';
+import Survey from '../survey';
 import { track } from '../../../../packages/emitter/Tracking';
 import { colors } from '../../../../tailwind';
 import config from '../../../../config';

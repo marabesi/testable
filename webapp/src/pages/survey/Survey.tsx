@@ -1,5 +1,4 @@
-//@ts-nocheck
-import SurveyModal from '../../components/ui/interface/survey/Survey';
+import SurveyModal from '../../components/ui/interface/survey';
 
 const SurveyPage = () => <SurveyModal skip={true} />;
 
