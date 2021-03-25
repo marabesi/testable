@@ -1,33 +1,34 @@
-//@ts-nocheck
 import { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
 import Button from '../../buttons/primary/Primary';
 import Emitter, { LEVEL_UP } from '../../../../packages/emitter/Emitter';
+import { User } from '../../../../packages/types/User';
 import config from '../../../../config';
 
 import '../../../../scss/shake-horizontal.scss';
 import './survey.scss';
 
-const survey = config.surveyUrl;
+interface Props {
+  user?: User,
+  skip?: boolean,
+  className?: string,
+  surveyUrl?: string,
+}
 
-const mapStateToProps = state => ({
-  user: state.userReducer.user,
-});
-
-export class Survey extends Component {
+export class Survey extends Component<Props> {
 
   state = {
-    surveyUrl: '',
+    surveyUrl: config.surveyUrl,
     loading: true,
     buttonDescription: 'Responder o questionário depois, quero descobrir o que é TDD!'
   }
 
   componentDidMount() {
-    if (survey) {
-      const surveyUrl = survey.replace('{id}', this.props.user.uid);
+    const surveyUrl = this.props.surveyUrl;
+    const user = this.props.user;
+
+    if (surveyUrl && user) {
       this.setState({
-        surveyUrl: surveyUrl
+        surveyUrl: surveyUrl.replace('{id}', user.uid)
       });
     }
   }
@@ -41,7 +42,9 @@ export class Survey extends Component {
   }
 
   render() {
-    if (this.props.user.uid && survey) {
+    const user = this.props.user;
+
+    if (user && user.uid && this.props.surveyUrl) {
       return (
         <div className={`w-full ${this.props.className}`}>
           {
@@ -78,15 +81,3 @@ export class Survey extends Component {
   }
 }
 
-Survey.propTypes = {
-  user: PropTypes.object,
-  skip: PropTypes.bool,
-  className: PropTypes.string
-};
-
-Survey.defaultProps = {
-  user: {},
-  skip: false
-};
-
-export default connect(mapStateToProps)(Survey);
