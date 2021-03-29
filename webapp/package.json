@@ -37,7 +37,7 @@
     "redux-persist": "^6.0.0",
     "serve": "^11.3.2",
     "tailwindcss": "^0.7.4",
-    "typed.js": "^2.0.10",
+    "typed.js": "^2.0.12",
     "typescript": "^4.2.3"
   },
   "scripts": {
