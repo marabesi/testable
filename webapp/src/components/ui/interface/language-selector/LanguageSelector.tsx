@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { injectIntl } from 'react-intl';
-import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { setLocale } from '../../../../data-flow/redux/actions/localeAction';
 import Loading from '../loading/Loading';
@@ -18,7 +17,16 @@ const mapStateToProps = state => ({
   locale: state.localeReducer.locale,
 });
 
-export const LanguageSelector = ({ intl, locale, setLocale, onChange }) => {
+interface Props {
+  setLocale?: any,
+  onChange?: any,
+  setUpdateOptions?: any,
+  options?: any,
+  locale?: string,
+  intl: any,
+}
+
+export const LanguageSelector = ({ intl, locale, setLocale, onChange }: Props) => {
   const [loading, setLoading] = useState(false);
 
   const didChange = event => {
@@ -44,15 +52,6 @@ export const LanguageSelector = ({ intl, locale, setLocale, onChange }) => {
       </select>
     </>
   );
-};
-
-LanguageSelector.propTypes = {
-  setLocale: PropTypes.func,
-  onChange: PropTypes.func,
-  setUpdateOptions: PropTypes.func,
-  options: PropTypes.object,
-  locale: PropTypes.string,
-  intl: PropTypes.object,
 };
 
 LanguageSelector.defaultProps = {

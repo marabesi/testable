@@ -11,7 +11,7 @@ import Queue from '../../packages/queue/queue';
 import Loading from '../ui/interface/loading/Loading';
 import Sidebar from '../ui/interface/sidebar/Sidebar';
 import Introduction from '../../pages/introduction/Introduction';
-import Login from '../../pages/login/Login';
+import Login from '../../pages/login';
 import Emitter, { TRACKING } from '../../packages/emitter/Emitter';
 import Tutorial from '../../pages/tutorial/Tutorial';
 import NotFound from '../../pages/notfound/NotFound';

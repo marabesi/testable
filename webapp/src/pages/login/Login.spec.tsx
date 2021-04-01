@@ -63,14 +63,5 @@ describe('Login page behavior', () => {
 
       expect(login.find('Redirect').length).toBe(1);
     });
-
-    test.skip('should fill in logged user data', () => {
-      const setUser = jest.fn();
-      const login = buildComponent({ setUser }).find('Login').dive();
-      login.instance().authStatusChanged({ email: 'test@test.com' });
-
-      expect(setUser).toBeCalledWith({ email: 'test@test.com' });
-    });
   });
 });
-

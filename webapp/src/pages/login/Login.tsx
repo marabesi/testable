@@ -1,23 +1,15 @@
-// @ts-nocheck
 import { useEffect, useState } from 'react';
 import { Redirect } from 'react-router';
-import { connect } from 'react-redux';
 import firebase from 'firebase/app';
 import Routes from './Routes';
 import { auth } from './Auth';
 import { track } from '../../packages/emitter/Tracking';
-import { setUser } from '../../data-flow/redux/actions/userAction';
 import { User } from '../../packages/types/User';
 import config, { TEST_MODE } from '../../config';
 import LanguageSelector from '../../components/ui/interface/language-selector/LanguageSelector';
 
 import './firebase/mdl.scss';
 import './firebase/firebase-ui.scss';
-
-const mapStateToProps = (state: { userReducer: { user: User; }; }) => ({
-  user: state.userReducer.user,
-  locale: state.localeReducer.locale,
-});
 
 interface LoginProps {
   setUser: Function;
@@ -26,12 +18,6 @@ interface LoginProps {
 }
 
 const firebaseResolver = language => require('../../third-party/wrappers/firebaseui/npm__' + language);
-
-const mapDispatchToProps = (dispatch: (arg0: { type: string; payload: any; }) => any) => {
-  return {
-    setUser: (user: any) => dispatch(setUser(user)),
-  };
-};
 
 export const Login = ({ setUser, user, locale }: LoginProps) => {
   const [showFirebaseWidget, setShowFirebaseWidget] = useState(false);
@@ -45,16 +31,12 @@ export const Login = ({ setUser, user, locale }: LoginProps) => {
         action: 'auth_changed'
       });
 
-      setShowFirebaseWidget({
-        showFirebaseWidget: false,
-      });
+      setShowFirebaseWidget(false);
 
       return;
     }
 
-    setShowFirebaseWidget({
-      showFirebaseWidget: true,
-    });
+    setShowFirebaseWidget(true);
   };
 
   useEffect(() => {
@@ -120,4 +102,3 @@ export const Login = ({ setUser, user, locale }: LoginProps) => {
   );
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Login);
