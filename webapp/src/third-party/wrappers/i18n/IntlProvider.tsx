@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { IntlProvider } from 'react-intl';
-import { messages } from '../../../components/app/constants/locale';
+import { messages } from './locale';
 
 interface Props {
   locale: string;

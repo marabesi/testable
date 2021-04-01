@@ -4,7 +4,7 @@ import { Redirect } from 'react-router';
 import { connect } from 'react-redux';
 import firebase from 'firebase/app';
 import Routes from './Routes';
-import { auth } from '../login/Auth';
+import { auth } from './Auth';
 import { track } from '../../packages/emitter/Tracking';
 import { setUser } from '../../data-flow/redux/actions/userAction';
 import { User } from '../../packages/types/User';

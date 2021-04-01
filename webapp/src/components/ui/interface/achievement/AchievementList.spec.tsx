@@ -3,25 +3,30 @@ import { shallow, mount } from 'enzyme';
 import { IntlProvider } from 'react-intl';
 import { AchievementList } from './AchievementList';
 import { AchievementItem } from './AchievementItem';
-import { messages } from '../../../app/constants/locale';
+import { User } from '../../../../packages/types/User';
+import { makeUser } from '../../../../__test__/fakes/user';
 
-const BuildComponent = props => 
-  <IntlProvider locale={'en'} messages={messages.en}>
+const BuildComponent = props =>
+  <IntlProvider locale={'en'}>
     <AchievementList {...props}/>
   </IntlProvider>;
+
+const user: User = makeUser();
 
 describe('AchievementList component: behavior based on the user level', () => {
   test('should not show achievement with higher level than the user', () => {
     const wrapper = shallow(
       <AchievementList
-        user={{ level: 1 }}
+        user={user}
         achievements={[
           {
             title: 'Desafio aceito',
-            description: [
-              'Vamos construir um foguete!'
-            ],
+            description: 'Vamos construir um foguete!' ,
             level: 2,
+            active: true,
+            items: [],
+            onClick: () => {},
+            intl: {},
           },
         ]}
       />
@@ -33,7 +38,7 @@ describe('AchievementList component: behavior based on the user level', () => {
   test('should render achievements with lower level than the user', () => {
     const wrapper = mount(
       <BuildComponent
-        user={{ level: 1 }}
+        user={user}
         achievements={[
           {
             title: 'my title',
@@ -71,7 +76,7 @@ describe('default AchievementList behavior', () => {
   test('should set item to active to true (show up the item description)', () => {
     const wrapper = mount(
       <BuildComponent
-        user={{ level: 1 }}
+        user={user}
         achievements={[
           {
             title: 'my title',

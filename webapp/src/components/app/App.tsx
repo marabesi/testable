@@ -30,6 +30,7 @@ import Survey from '../../pages/survey/Survey';
 import TddIntro from '../../pages/tdd-intro/TddIntro';
 import Tdd from '../../pages/tdd/Tdd';
 import { auth } from '../../pages/login/Auth';
+import Routes from '../../pages/login/Routes';
 import config from '../../config';
 
 import './app.scss';
@@ -103,23 +104,23 @@ export class App extends Component {
             mapStyles={mapStyles}
             className="App"
           >
-            <Route exact path="/" component={Login} />
-            <ProtectedRoute path="/intro" component={Introduction} />
-            <ProtectedRoute path="/tutorial" component={Tutorial} />
-            <ProtectedRoute path="/tutorial-end" component={TutorialEnd} />
-            <ProtectedRoute path="/unit-testing-intro" component={UnitTestingIntro} />
-            <ProtectedRoute path="/unit-testing" component={UnitTesting} />
-            <ProtectedRoute path="/unit-testing-end" component={UnitTestingEnd} />
-            <ProtectedRoute path="/rocket-01" component={Rocket01} />
-            <ProtectedRoute path="/rocket-02" component={Rocket02} />
-            <ProtectedRoute path="/rocket-03" component={Rocket03} />
-            <ProtectedRoute path="/rocket-03-01" component={Challenge03_01} />
-            <ProtectedRoute path="/rocket-03-02" component={Challenge03_02} />
-            <ProtectedRoute path="/completed-intro" component={CompletedIntro} />
-            <ProtectedRoute path="/completed-end" component={CompletedEnd} />
-            <ProtectedRoute path="/survey" component={Survey} />
-            <ProtectedRoute path="/tdd-intro" component={TddIntro} />
-            <ProtectedRoute path="/tdd" component={Tdd} />
+            <Route exact path={Routes.HOME} component={Login} />
+            <ProtectedRoute path={Routes.INTRO} component={Introduction} />
+            <ProtectedRoute path={Routes.TUTORIAL_START} component={Tutorial} />
+            <ProtectedRoute path={Routes.TUTORIAL_END} component={TutorialEnd} />
+            <ProtectedRoute path={Routes.UNIT_TEST_INTRO} component={UnitTestingIntro} />
+            <ProtectedRoute path={Routes.UNIT_TEST} component={UnitTesting} />
+            <ProtectedRoute path={Routes.UNIT_TEST_END} component={UnitTestingEnd} />
+            <ProtectedRoute path={Routes.CHALLENGE_01} component={Rocket01} />
+            <ProtectedRoute path={Routes.CHALLENGE_02} component={Rocket02} />
+            <ProtectedRoute path={Routes.CHALLENGE_03} component={Rocket03} />
+            <ProtectedRoute path={Routes.CHALLENGE_03_01} component={Challenge03_01} />
+            <ProtectedRoute path={Routes.CHALLENGE_03_02} component={Challenge03_02} />
+            <ProtectedRoute path={Routes.CHALLENGE_COMPLETED_START} component={CompletedIntro} />
+            <ProtectedRoute path={Routes.CHALLENGE_COMPLETED_END} component={CompletedEnd} />
+            <ProtectedRoute path={Routes.SURVEY} component={Survey} />
+            <ProtectedRoute path={Routes.TDD_START} component={TddIntro} />
+            <ProtectedRoute path={Routes.TDD} component={Tdd} />
             <Route path="*" component={NotFound} />
           </AnimatedSwitch>
         </Sidebar>
