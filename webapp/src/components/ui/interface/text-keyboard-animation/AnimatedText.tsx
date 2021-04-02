@@ -1,16 +1,26 @@
-//@ts-nocheck
 import { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
-import PropTypes from 'prop-types';
 import TypedText from './TypedText';
 
-export default class AnimatedText extends Component {
+interface TextItem {
+  key: number;
+  style: string;
+  line: string;
+}
+
+interface Props {
+  className: string;
+  text: TextItem[];
+  onFinishedTyping: any
+}
+
+export default class AnimatedText extends Component<Props> {
 
   renderText() {
-    const text = [];
-    const prop = this.props.text || [];
+    const text: any = [];
+    const prop: TextItem[] = this.props.text || [];
     
-    prop.forEach(element => {
+    prop.forEach((element: TextItem) => {
       text.push(
         <p key={element.key} className={element.style}>{element.line}</p>
       );
@@ -29,7 +39,3 @@ export default class AnimatedText extends Component {
   }
 }
 
-AnimatedText.propTypes = {
-  text: PropTypes.array,
-  onFinishedTyping: PropTypes.func
-};

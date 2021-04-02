@@ -9,7 +9,7 @@ import { track } from '../../../../packages/emitter/Tracking';
 interface Props {
   identifier: string;
   content: any;
-  handleLastScene: (args: any) => any;
+  handleLastScene: (args?: any) => any;
   className: string
 }
 

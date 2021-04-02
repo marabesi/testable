@@ -32,7 +32,7 @@ describe('completed intro page',  () => {
     expect(regularFlowClasses.includes('hidden')).toBeTruthy();
   });
 
-  test('should add regular flow animation once queu test animation is completed', done => {
+  test('should add regular flow animation once queue test animation is completed', done => {
     const wrapper = shallow(
       <CompletedIntro
         animationDelay={100}

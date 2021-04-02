@@ -67,7 +67,7 @@ describe('Scene component', () => {
       />
     );
 
-    const className = wrapper.find('AlienSvg').prop('className');
+    const className: string = wrapper.find('AlienSvg').prop('className') || '';
 
     expect(className.includes('block')).toBeTruthy();
   });

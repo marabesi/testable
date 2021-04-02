@@ -3,7 +3,12 @@ import { Component } from 'react';
 import PropTypes from 'prop-types';
 import Typed from 'typed.js';
 
-export default class TypedText extends Component {
+interface Props {
+  strings: string[];
+  onComplete: any
+}
+
+export default class TypedText extends Component<Props> {
   componentDidMount() {
     const { strings } = this.props;
     const options = {
