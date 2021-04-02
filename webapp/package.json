@@ -97,6 +97,9 @@
     ],
     "watchPathIgnorePatterns": [
       "./(build|docs|node_modules)/"
+    ],
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/src/third-party"
     ]
   },
   "engines": {
