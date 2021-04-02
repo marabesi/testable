@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { setLocale } from '../../../../data-flow/redux/actions/localeAction';
 import Loading from '../loading/Loading';
 
-import '@formatjs/intl-relativetimeformat/polyfill-locales';
+import '@formatjs/intl-relativetimeformat/polyfill';
 
 const mapDispatchToProps = dispatch => {
   return {
