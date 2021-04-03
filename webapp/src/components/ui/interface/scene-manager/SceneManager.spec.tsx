@@ -36,6 +36,8 @@ describe('Scene manager component', () => {
     const wrapper = mount(
       <SceneManager
         content={content}
+        handleLastScene={jest.fn()}
+        identifier="jest"
       />
     );
 

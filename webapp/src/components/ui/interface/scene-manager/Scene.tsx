@@ -104,7 +104,7 @@ const Scene = ({
           onFinishedTyping={ onFinishedTyping }
         />
 
-        <BuggyLeft className={`absolute pin-r w-1/3 mt-10 hidden ${buggyClass}`} />
+        {! showBuggy.type && <BuggyLeft className={`absolute pin-r w-1/3 mt-10 hidden ${buggyClass}`} />}
 
         <BuggyLeft
           className={
