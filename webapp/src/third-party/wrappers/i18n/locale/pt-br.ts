@@ -1,6 +1,12 @@
 export default {
   global: {
-    options: 'Opções'
+    options: 'Opções',
+    curly_braces_open: '{',
+    underscore_and_curly_braces_open: '_{',
+    curly_braces_close: '}',
+    underscore_and_braces_open: '_[',
+    braces_close: ']',
+    three_dots: '. . .',
   },
   menu: {
     logout: 'sair'
@@ -89,5 +95,35 @@ export default {
   },
   survey: {
     title: 'Questionário'
+  },
+  content: {
+    introduction: {
+      action_which_is_the_first: 'Qual é o primeiro?',
+      hello_world: '_ Hello world',
+      my_name: 'Meu nome é Buggy',
+      want_to_be_a_programmer: 'e meu sonho é ser programador',
+      two_challenges: 'mas tenho dois grandes desafios',
+      action_second_challenge: 'E o segundo?',
+      the_first: '_ O primeiro você sabe bem...',
+      not_easy_to_program: '... programar não é NADA fácil!',
+      action_a_bug: 'Um bug?',
+      the_second_challenge: '_ E o segundo ...',
+      i_am_a_bug: '_Sou um bug!',
+      action_which_friend: 'Que amigo?',
+      no_credibility: 'Não temos credibilidade',
+      no_credibility_in_the_field: 'pelo simples fato de não sermos bem vistos nessa área...',
+      as_my_friend: 'Ao contrário do meu amigo...',
+      action_nazah: 'Nazah? A que faz foguetes?',
+      credit_because_workaholic: 'Que é um alien, pois são super valorizados porque muitos trabalham',
+      the_famous_nazah: 'para aquelas empresa famosa, a Nazah.',
+      pffff: '. . . pfff',
+      action_rockets: 'Foguetes?',
+      no_unit_tests: 'Eu não perco tempo com testes unitários!',
+      much_faster: 'Por isso sempre faço as coisas mais rápidas!',
+      a_few_rockets: 'Até já programei alguns foguetes por aí.',
+      action_i_am_in: 'Estou dentro!',
+      why_dont_we_build_a_rocket: 'Por que não construímos um foguete',
+      send_to_space: 'e mandamos pro espaço?',
+    }
   }
 };
