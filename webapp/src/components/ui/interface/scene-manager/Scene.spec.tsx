@@ -2,7 +2,7 @@ import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import Scene from './Scene';
 import Button from '../../buttons/primary/Primary';
-import { TextItem } from '../text-keyboard-animation/AnimatedText'
+import { TextItem } from '../text-keyboard-animation/AnimatedText';
 
 const fakeText: TextItem[] = [ { key: 0, line: 'my', style: '' } ];
 
@@ -36,7 +36,7 @@ describe('Scene component', () => {
   test('remove disable from button after finished typing', () => {
     const wrapper = mount(
       <Scene
-        text={[ { key: 0, line: 'a', style: '' } ]}
+        text={fakeText}
         button="just a label"
         showNextButton={1}
       />
@@ -268,18 +268,18 @@ describe('Scene component', () => {
     expect(classes.includes('md:slide-in-bck-right')).toBeTruthy();
   });
 
-  test('should apply block class to buggy when buggy prop is true', () => {
+  test('should not apply block class to buggy when there is not buggy type', () => {
     const wrapper = mount(<Scene showBuggy={{}} />);
     const buggy = wrapper.find('BuggyLeft').at(0);
     const classes = buggy.prop('className') || '';
-    expect(classes.includes('md:block')).toBeTruthy();
+    expect(classes.includes('md:block')).toBeFalsy();
   });
 
   test('should apply animation class to buggy happy', () => {
     const wrapper = mount(
       <Scene
         onCompleted={{ type: 'happy' }}
-        text={[ {key: 0, line: 'my', style: '' } ]}
+        text={fakeText}
         button="my button"
         showNextButton={1}
       />

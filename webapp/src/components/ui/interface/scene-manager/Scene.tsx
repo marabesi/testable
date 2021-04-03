@@ -87,12 +87,12 @@ const Scene = ({
 
   let buggyClass = '';
 
-  if (showBuggy && !showBuggy.type) {
+  if (showBuggy.type) {
     buggyClass = 'md:block';
   }
 
-  if (showBuggy && showBuggy.animate) {
-    buggyClass = 'md:block md:slide-in-bck-right';
+  if (showBuggy.animate) {
+    buggyClass += ' md:slide-in-bck-right';
   }
 
   return (
