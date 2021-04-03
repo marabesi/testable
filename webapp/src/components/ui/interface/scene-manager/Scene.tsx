@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import PropTypes from 'prop-types';
 import Button from '../../buttons/primary/Primary';
-import AnimatedText from '../text-keyboard-animation/AnimatedText';
+import AnimatedText, { TextItem } from '../text-keyboard-animation/AnimatedText';
 import { BuggyLeft, BuggyBug, BuggyHappy,  BuggyHappyLeft } from '../../images/buggy/Buggy';
 import AlienSvg from '../../images/alien/AlienSvg';
 
@@ -9,12 +8,40 @@ import './scene.scss';
 
 const RELEASE_BUTTON = 2000;
 
-const Scene = props => {
+interface Props {
+  onCompleted?: any,
+  showAlien?: any,
+  text: TextItem[],
+  className?: string,
+  next?: any,
+  previous?: any,
+  lastScene?: boolean,
+  handleLastScene?: any,
+  button?: string,
+  releaseButton?: number,
+  showNextButton?: number,
+  step?: number,
+  showBuggy?: any,
+}
+
+const Scene = ({
+  onCompleted,
+  showAlien,
+  text,
+  className,
+  next,
+  lastScene,
+  handleLastScene,
+  button,
+  releaseButton,
+  showNextButton: nextButton,
+  showBuggy
+}: Props) => {
   const [showNextButton, setShowNextButton] = useState(false);
   const [disableNextButton, setDisableNextButton] = useState(false);
 
   const onFinishedTyping = () => {
-    setTimeout(() => setShowNextButton(true), props.showNextButton);
+    setTimeout(() => setShowNextButton(true), nextButton);
   };
 
   const onClick = event => {
@@ -26,17 +53,16 @@ const Scene = props => {
 
     setTimeout(() => {
       setDisableNextButton(false);
-    }, props.releaseButton);
+    }, releaseButton);
 
-    if (props.lastScene) {
-      props.handleLastScene();
+    if (lastScene) {
+      handleLastScene();
       return;
     }
 
-    props.next(event);
+    next(event);
   };
 
-  const { className } = props;
   const classes = `
       scene
       flex
@@ -51,21 +77,21 @@ const Scene = props => {
 
   let alienClass = 'hidden';
 
-  if (props.showAlien) {
+  if (showAlien) {
     alienClass = 'md:block';
   }
 
-  if (props.showAlien && props.showAlien.animate) {
+  if (showAlien && showAlien.animate) {
     alienClass = 'md:block md:slide-in-bck-top';
   }
 
   let buggyClass = '';
 
-  if (props.showBuggy && !props.showBuggy.type) {
+  if (showBuggy && !showBuggy.type) {
     buggyClass = 'md:block';
   }
 
-  if (props.showBuggy && props.showBuggy.animate) {
+  if (showBuggy && showBuggy.animate) {
     buggyClass = 'md:block md:slide-in-bck-right';
   }
 
@@ -74,7 +100,7 @@ const Scene = props => {
       <div className="flex">
         <AnimatedText
           className="w-2/3"
-          text={props.text}
+          text={text}
           onFinishedTyping={ onFinishedTyping }
         />
 
@@ -83,14 +109,14 @@ const Scene = props => {
         <BuggyLeft
           className={
             `absolute pin-r w-1/3 mt-10 hidden ${
-              props.onCompleted.showBug && showNextButton ? 'md:block md:slide-in-bck-right' : 'hidden'
+              onCompleted.showBug && showNextButton ? 'md:block md:slide-in-bck-right' : 'hidden'
             }
           `} />
 
         <BuggyHappyLeft
           className={
             `w-3/3 absolute w-1/3 pin-r pin-t -mt-6 hidden ${
-              props.onCompleted.type === 'happy' && showNextButton ? 'md:block md:slide-in-bck-right' : 'hidden'
+              onCompleted.type === 'happy' && showNextButton ? 'md:block md:slide-in-bck-right' : 'hidden'
             }`
           }
         />
@@ -100,52 +126,37 @@ const Scene = props => {
         }/>
 
         {
-          props.showBuggy.type === 'bug' &&
-            <BuggyBug
-              style={{transform: 'scaleX(-1)'}}
-              className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6 hidden md:block'}
-            />
+          showBuggy.type === 'bug' &&
+          <BuggyBug
+            style={{transform: 'scaleX(-1)'}}
+            className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6 hidden md:block'}
+          />
         }
 
         {
-          props.showBuggy.type === 'happy' &&
-            <BuggyHappy
-              style={{transform: 'scaleX(-1)'}}
-              className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6 hidden md:block'}
-            />
+          showBuggy.type === 'happy' &&
+          <BuggyHappy
+            style={{transform: 'scaleX(-1)'}}
+            className={'w-3/3 absolute w-1/3 pin-r pin-t -mt-6 hidden md:block'}
+          />
         }
       </div>
 
       {
         showNextButton &&
-          <Button
-            className="absolute pin-b mb-8 scale-in-center"
-            description={props.button}
-            onClick={onClick}
-            disabled={disableNextButton}
-          />
+        <Button
+          className="absolute pin-b mb-8 scale-in-center"
+          description={button}
+          onClick={onClick}
+          disabled={disableNextButton}
+        />
       }
     </div>
   );
 };
 
-Scene.propTypes = {
-  onCompleted: PropTypes.object,
-  showAlien: PropTypes.object,
-  text: PropTypes.array,
-  className: PropTypes.string,
-  next: PropTypes.func,
-  previous: PropTypes.func,
-  lastScene: PropTypes.bool,
-  handleLastScene: PropTypes.func,
-  button: PropTypes.string,
-  releaseButton: PropTypes.number,
-  showNextButton: PropTypes.number,
-  step: PropTypes.number,
-  showBuggy: PropTypes.object,
-};
-
 Scene.defaultProps = {
+  text: [],
   onCompleted: {},
   showBuggy: {},
   releaseButton: RELEASE_BUTTON,

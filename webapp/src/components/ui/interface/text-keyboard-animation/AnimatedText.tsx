@@ -2,7 +2,7 @@ import { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import TypedText from './TypedText';
 
-interface TextItem {
+export interface TextItem {
   key: number;
   style: string;
   line: string;

@@ -2,6 +2,9 @@ import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
 import Scene from './Scene';
 import Button from '../../buttons/primary/Primary';
+import { TextItem } from '../text-keyboard-animation/AnimatedText'
+
+const fakeText: TextItem[] = [ { key: 0, line: 'my', style: '' } ];
 
 describe('Scene component', () => {
 
@@ -33,7 +36,7 @@ describe('Scene component', () => {
   test('remove disable from button after finished typing', () => {
     const wrapper = mount(
       <Scene
-        text={[ {key: 0, line: 'a'} ]}
+        text={[ { key: 0, line: 'a', style: '' } ]}
         button="just a label"
         showNextButton={1}
       />
@@ -88,7 +91,7 @@ describe('Scene component', () => {
     const wrapper = mount(
       <Scene
         className="custom-class"
-        text={[ {key: 0, line: 'my'} ]}
+        text={fakeText}
       />
     );
 
@@ -100,7 +103,7 @@ describe('Scene component', () => {
     const wrapper = mount(
       <Scene
         onCompleted={{showBug: true}}
-        text={[ {key: 0, line: 'my'} ]}
+        text={fakeText}
       />
     );
 
@@ -123,7 +126,7 @@ describe('Scene component', () => {
           'show': true,
           'animate': false
         }}
-        text={[ {key: 0, line: 'my'} ]}
+        text={fakeText}
       />
     );
 
@@ -139,7 +142,7 @@ describe('Scene component', () => {
         lastScene={true}
         handleLastScene={handleLastScene}
         next={handleNextScene}
-        text={[{ key: 0, line: 'my' }]}
+        text={fakeText}
         showNextButton={1}
         releaseButton={1}
       />
@@ -166,7 +169,7 @@ describe('Scene component', () => {
         lastScene={false}
         handleLastScene={handleLastScene}
         next={handleNextScene}
-        text={[{ key: 0, line: 'my' }]}
+        text={fakeText}
         showNextButton={1}
         releaseButton={1}
       />
@@ -187,7 +190,7 @@ describe('Scene component', () => {
     const onClick = jest.fn();
     const wrapper = mount(
       <Scene
-        text={[ {key: 0, line: 'my'} ]}
+        text={fakeText}
         button="my button"
         next={onClick}
         showNextButton={1}
@@ -215,7 +218,7 @@ describe('Scene component', () => {
     const onClick = jest.fn();
     const wrapper = mount(
       <Scene
-        text={[ {key: 0, line: 'my'} ]}
+        text={fakeText}
         button="my button"
         next={onClick}
         showNextButton={1}
@@ -238,7 +241,7 @@ describe('Scene component', () => {
         showBuggy={{
           type: 'bug',
         }}
-        text={[ {key: 0, line: 'my'} ]}
+        text={fakeText}
       />
     );
 
@@ -251,7 +254,7 @@ describe('Scene component', () => {
         showBuggy={{
           type: 'happy',
         }}
-        text={[ {key: 0, line: 'my'} ]}
+        text={fakeText}
       />
     );
 
@@ -276,7 +279,7 @@ describe('Scene component', () => {
     const wrapper = mount(
       <Scene
         onCompleted={{ type: 'happy' }}
-        text={[ {key: 0, line: 'my'} ]}
+        text={[ {key: 0, line: 'my', style: '' } ]}
         button="my button"
         showNextButton={1}
       />
