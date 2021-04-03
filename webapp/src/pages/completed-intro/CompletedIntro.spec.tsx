@@ -4,11 +4,12 @@ import Emitter, { LEVEL_UP } from '../../packages/emitter/Emitter';
 
 describe('completed intro page',  () => {
 
-  let wrappedComponent = null;
+  let wrappedComponent;
+  const delay = 100;
 
   beforeEach(() => {
     wrappedComponent = shallow(
-      <CompletedIntro />
+      <CompletedIntro animationDelay={delay} />
     );
     Emitter.removeAllListeners(LEVEL_UP);
   });
@@ -24,7 +25,7 @@ describe('completed intro page',  () => {
 
   test('should be hidden by default (regular component)', () => {
     const wrapper = shallow(
-      <CompletedIntro />
+      <CompletedIntro animationDelay={delay} />
     );
 
     const regularFlowClasses = wrapper.find(RegularFlow).prop('className');
@@ -35,7 +36,7 @@ describe('completed intro page',  () => {
   test('should add regular flow animation once queue test animation is completed', done => {
     const wrapper = shallow(
       <CompletedIntro
-        animationDelay={100}
+        animationDelay={delay}
       />
     );
 
@@ -54,7 +55,7 @@ describe('completed intro page',  () => {
     const callback = jest.fn();
     Emitter.addListener(LEVEL_UP, callback);
 
-    const wrapper = shallow(<CompletedIntro />);
+    const wrapper = shallow(<CompletedIntro animationDelay={delay} />);
 
     wrapper.instance().redirect();
 

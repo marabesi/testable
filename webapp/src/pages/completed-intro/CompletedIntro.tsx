@@ -19,7 +19,11 @@ const fixedTests = [
 
 const TestExecution = TestExecutionAnimation(BuggyRocket, fixedTests);
 
-export default class CompletedIntro extends Component {
+interface Props {
+  animationDelay: number;
+}
+
+export default class CompletedIntro extends Component<Props> {
 
   state = {
     completed: false

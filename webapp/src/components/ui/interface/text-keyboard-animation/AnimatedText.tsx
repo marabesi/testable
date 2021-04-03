@@ -1,4 +1,3 @@
-import { Component } from 'react';
 import ReactDOMServer from 'react-dom/server';
 import TypedText from './TypedText';
 
@@ -14,11 +13,11 @@ interface Props {
   onFinishedTyping: any
 }
 
-export default class AnimatedText extends Component<Props> {
+export default function AnimatedText(props: Props ) {
 
-  renderText() {
+  const renderText = () =>  {
     const text: any = [];
-    const prop: TextItem[] = this.props.text || [];
+    const prop: TextItem[] = props.text || [];
     
     prop.forEach((element: TextItem) => {
       text.push(
@@ -27,15 +26,13 @@ export default class AnimatedText extends Component<Props> {
     });
 
     return [ReactDOMServer.renderToStaticMarkup(text)];
-  }
+  };
 
-  render() {
-    return (
-      <TypedText
-        strings={this.renderText()}
-        onComplete={this.props.onFinishedTyping}
-      />
-    );
-  }
+  return (
+    <TypedText
+      strings={renderText()}
+      onComplete={props.onFinishedTyping}
+    />
+  );
 }
 
