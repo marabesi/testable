@@ -13,7 +13,8 @@ before_script:
 script:
   - npm run build && npm run test
 
-coverage:
+deploy:
+  provider: script
   script: npm run coveralls
   on:
     branch: master
