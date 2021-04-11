@@ -14,7 +14,7 @@ teach unit testing.
 1. [Project structure](#1-project-structure)
 2. [Installation](#2-installation)
 3. [Firebase](#3-firebase)
-4. [Components documentation (styleguidist)](https://app-testable.herokuapp.com/docs/index.html){:target="_blank"}
+4. [Components documentation (styleguidist)](https://app-testable.herokuapp.com/docs/index.html)
 
 ## 1. Project structure
 
