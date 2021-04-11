@@ -17,10 +17,7 @@ after_script:
   - ./deploy.sh
 
 after_success:
-  provider: script
-  script: npm run coveralls
-  on:
-    branch: master
+  - npm run coveralls
 
 env:
   global:
