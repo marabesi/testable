@@ -13,3 +13,5 @@ export const localStorageMock = (function () {
     }
   };
 }());
+
+export default localStorageMock;

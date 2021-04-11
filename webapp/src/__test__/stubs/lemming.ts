@@ -1,3 +1,4 @@
+// @ts-nocheck
 const esprima = require('esprima');
 
 export default class Lemming {
