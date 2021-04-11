@@ -57,6 +57,7 @@
     "lint": "eslint src/**/*.{ts,tsx}",
     "lint-report": "eslint src/**/*.js -f node_modules/eslint-html-reporter/reporter.js -o eslint/report.html",
     "coveralls": "react-scripts test --coverage --coverageReporters=text-lcov | coveralls",
+    "mutation": "stryker run",
     "rebuild-sass": "npm rebuild node-sass",
     "docs": "styleguidist server",
     "docs:build": "styleguidist build"

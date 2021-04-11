@@ -1,4 +1,4 @@
-FROM node:14-slim
+FROM node:14-alpine
 
 ARG REACT_APP_SURVEY_URL='https://form.jotformeu.com/92007220751345?id={id}'
 ARG REACT_APP_FIREBASE_JSON='{}'
@@ -12,6 +12,9 @@ WORKDIR /var/www/app
 COPY package*.json ./
 
 COPY . .
+
+RUN apk update && apk upgrade && \
+    apk add --no-cache bash git openssh
 
 RUN npm install && \
     mkdir public/docs && \
