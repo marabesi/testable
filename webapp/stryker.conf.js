@@ -7,13 +7,13 @@ module.exports = {
   htmlReporter: {
     baseDir: 'public/stryker'
   },
-  timeoutMS: 1000,
+  timeoutMS: 500,
   coverageAnalysis: 'off',
   jest: {
     projectType: 'create-react-app',
   },
   mutate: [
-    'src/components/**/*.ts?(x)',
+    'src/components/ui/interface/**/*.ts?(x)',
     '!src/**/*@(.test|.spec|Spec).ts?(x)',
     '!**/*(.json|.css|.scss|.md|.html)',
     '!src/__test__/**'
