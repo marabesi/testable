@@ -9,13 +9,13 @@ import PlaceholderImage from '../../../images/profile/PlaceholderImage';
 import Modal from '../../modal/Modal';
 import { auth } from '../../../../../pages/login/Auth';
 import { track } from '../../../../../packages/emitter/Tracking';
-import { setUser } from '../../../../../data-flow/redux/actions/userAction';
+import { removeUser } from '../../../../../data-flow/redux/actions/userAction';
 
 import './profile.scss';
 
 const mapDispatchToProps = dispatch => {
   return {
-    setUser: user => dispatch(setUser(user))
+    setUser: () => dispatch(removeUser({}))
   };
 };
 

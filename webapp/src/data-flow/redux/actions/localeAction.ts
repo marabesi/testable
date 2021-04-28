@@ -1,4 +1,3 @@
-//@ts-nocheck
 export const SET_LOCALE = 'SET_LOCALE';
 
 export function setLocale(payload) {

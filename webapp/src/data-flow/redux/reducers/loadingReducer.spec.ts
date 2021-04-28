@@ -1,5 +1,5 @@
 import loadingReducer from './loadingReducer';
-import { ON_LOADING } from '../actions/loadingAction';
+import { onLoading } from '../actions/loadingAction';
 
 describe('loading reducer', () => {
   let state;
@@ -13,10 +13,7 @@ describe('loading reducer', () => {
   });
 
   test('dispatch ON_LOADING action', () => {
-    const action = {
-      type: ON_LOADING,
-      payload: true
-    };
+    const action = onLoading(true)
 
     const dispatch = loadingReducer(state, action);
 

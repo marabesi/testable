@@ -1,4 +1,3 @@
-//@ts-nocheck
 export const SET_USER = 'SET_USER';
 export const UPDATE_USER_DATA = 'UPDATE_USER_DATA';
 export const REMOVE_USER = 'REMOVE_USER';

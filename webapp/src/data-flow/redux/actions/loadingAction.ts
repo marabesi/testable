@@ -1,4 +1,3 @@
-//@ts-nocheck
 export const ON_LOADING = 'ON_LOADING';
 
 export function onLoading(payload) {
