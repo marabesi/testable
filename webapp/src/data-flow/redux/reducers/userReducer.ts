@@ -17,7 +17,7 @@ export default (state: UserState = { user: {}}, action: any) => {
       user: {}
     });
   case UPDATE_USER_DATA:
-    const currentUser: User = Object.assign({}, state.user);
+    const currentUser: User | {} | undefined = Object.assign({}, state.user);
     const userRef: any = auth.userRef(state.user);
 
     userRef.update(action.payload);
