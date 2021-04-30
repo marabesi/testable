@@ -13,7 +13,7 @@ describe('loading reducer', () => {
   });
 
   test('dispatch ON_LOADING action', () => {
-    const action = onLoading(true)
+    const action = onLoading(true);
 
     const dispatch = loadingReducer(state, action);
 

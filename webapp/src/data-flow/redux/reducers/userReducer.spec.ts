@@ -6,9 +6,9 @@ jest.mock('../../../pages/login/Auth', () => ({
     userRef: function () {
       return {
         update: function () {
-          return
+          return;
         }
-      }
+      };
     }
   }
 }));
@@ -52,12 +52,12 @@ describe('user reducer', () => {
     const dispatch = userReducer({ user :currentUserData }, updateAction);
 
     expect(dispatch.user).toStrictEqual(payload);
-  })
+  });
 
   test('delete user', () => {
     const removeUserAction = removeUser({});
     const dispatch = userReducer({ user : { name: 'diego' }}, removeUserAction);
 
     expect(dispatch.user).toStrictEqual({});
-  })
+  });
 });
