@@ -16,4 +16,6 @@ if [ "$TRAVIS_BRANCH" = "master" ]; then
     git commit -m 'build' && \
     git push --force $remote_repo master:$remote_branch && \
     rm -fr .git
+
+    curl -X POST -d {} https://api.netlify.com/build_hooks/$BUILD_TOKEN
 fi
