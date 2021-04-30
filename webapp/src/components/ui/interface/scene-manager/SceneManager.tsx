@@ -13,17 +13,20 @@ interface Props {
   className: string
 }
 
+const PROGRESS_FACTOR = 10;
+const FIRST_TEP = 1;
+
 const SceneManager = ({ content, identifier, handleLastScene, className }: Props) => {
   const [currentStep, setCurrentStep] = useState(1);
 
   const handlePreviousScene = () => {
-    if (currentStep === 1) {
+    if (currentStep === FIRST_TEP) {
       return false;
     }
 
-    setCurrentStep(currentStep - 1);
+    setCurrentStep(currentStep - FIRST_TEP);
 
-    Emitter.emit(PROGRESS_DOWN, { amount: auth.user.progress - 10 });
+    Emitter.emit(PROGRESS_DOWN, { amount: auth.user.progress - PROGRESS_FACTOR });
   };
 
   const handleNextScene = () => {
@@ -36,7 +39,7 @@ const SceneManager = ({ content, identifier, handleLastScene, className }: Props
 
     setCurrentStep(current + 1);
 
-    Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + 10 });
+    Emitter.emit(PROGRESS_UP, { amount: auth.user.progress + PROGRESS_FACTOR });
 
     track({
       section: identifier,
