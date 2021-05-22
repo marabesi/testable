@@ -73,7 +73,7 @@
     "@stryker-mutator/html-reporter": "^3.1.0",
     "@stryker-mutator/jest-runner": "^4.6.0",
     "@stryker-mutator/typescript": "^4.0.0",
-    "@types/codemirror": "0.0.109",
+    "@types/codemirror": "5.60.0",
     "@types/enzyme": "^3.10.8",
     "@types/esprima": "^4.0.2",
     "@types/fbemitter": "^2.0.32",
