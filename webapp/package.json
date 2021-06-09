@@ -11,7 +11,7 @@
     "enzyme-adapter-react-16": "^1.15.6",
     "esprima": "^4.0.1",
     "fbemitter": "^3.0.0",
-    "firebase": "^8.6.4",
+    "firebase": "^8.6.5",
     "firebaseui": "^4.7.0",
     "intro.js": "^2.9.3",
     "intro.js-react": "^0.3.0",
