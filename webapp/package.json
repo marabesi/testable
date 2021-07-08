@@ -75,7 +75,7 @@
     "@stryker-mutator/typescript": "^4.0.0",
     "@types/codemirror": "5.60.1",
     "@types/enzyme": "^3.10.8",
-    "@types/esprima": "^4.0.2",
+    "@types/esprima": "^4.0.3",
     "@types/fbemitter": "^2.0.32",
     "@types/jest": "^26.0.23",
     "@types/node": "^16.0.1",
