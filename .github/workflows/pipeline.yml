@@ -1,6 +1,10 @@
 name: Node CI
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+  pull_request:
 
 env:
   CI: true
@@ -45,11 +49,11 @@ jobs:
     - name: npm build
       run: |
         npm run build
-    - name: npm test
+    - name: npm coveralls
       if: github.ref == 'refs/heads/master'
       run: |
         npm run coveralls
     - name: npm test
       if: github.ref != 'refs/heads/master'
       run: |
-        npm run test
+        npm run test:ci
