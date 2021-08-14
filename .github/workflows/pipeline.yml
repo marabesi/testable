@@ -22,15 +22,15 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: cypress setup
-      run: |
-        echo $FIREBASE > src/env.prod.json
-        echo $FIREBASE > src/env.json
-        echo "{
-          \"host\": \"$CYPRESS_HOST\",
-          \"email\": \"$CYPRESS_EMAIL\",
-          \"password\": \"$CYPRESS_PASSWORD\"
-        }" > cypress.env.json
+    # - name: cypress setup
+    #   run: |
+    #     echo $FIREBASE > src/env.prod.json
+    #     echo $FIREBASE > src/env.json
+    #     echo "{
+    #       \"host\": \"$CYPRESS_HOST\",
+    #       \"email\": \"$CYPRESS_EMAIL\",
+    #       \"password\": \"$CYPRESS_PASSWORD\"
+    #     }" > cypress.env.json
     - name: npm install, build, and test
       run: |
         npm install
