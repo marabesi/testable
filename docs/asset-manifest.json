@@ -1,20 +1,20 @@
 {
   "files": {
-    "main.css": "https://marabesi.github.io/testable/static/css/main.50654280.chunk.css",
-    "main.js": "https://marabesi.github.io/testable/build/main.be3ff6a7.js",
-    "runtime-main.js": "https://marabesi.github.io/testable/build/bundle.d27f85f7.js",
-    "static/css/2.870866a8.chunk.css": "https://marabesi.github.io/testable/static/css/2.870866a8.chunk.css",
-    "build/2.0e459bc9.js": "https://marabesi.github.io/testable/build/2.0e459bc9.js",
-    "build/2.0e459bc9.js.LICENSE.txt": "https://marabesi.github.io/testable/build/2.0e459bc9.js.LICENSE.txt",
-    "index.html": "https://marabesi.github.io/testable/index.html",
-    "static/css/2.870866a8.chunk.css.map": "https://marabesi.github.io/testable/static/css/2.870866a8.chunk.css.map",
-    "static/css/main.50654280.chunk.css.map": "https://marabesi.github.io/testable/static/css/main.50654280.chunk.css.map"
+    "main.css": "/static/css/main.38e8d281.chunk.css",
+    "main.js": "/build/main.96f285e6.js",
+    "runtime-main.js": "/build/bundle.b50e26a4.js",
+    "static/css/2.c9e9bd00.chunk.css": "/static/css/2.c9e9bd00.chunk.css",
+    "build/2.8d715593.js": "/build/2.8d715593.js",
+    "build/2.8d715593.js.LICENSE.txt": "/build/2.8d715593.js.LICENSE.txt",
+    "index.html": "/index.html",
+    "static/css/2.c9e9bd00.chunk.css.map": "/static/css/2.c9e9bd00.chunk.css.map",
+    "static/css/main.38e8d281.chunk.css.map": "/static/css/main.38e8d281.chunk.css.map"
   },
   "entrypoints": [
-    "build/bundle.d27f85f7.js",
-    "static/css/2.870866a8.chunk.css",
-    "build/2.0e459bc9.js",
-    "static/css/main.50654280.chunk.css",
-    "build/main.be3ff6a7.js"
+    "build/bundle.b50e26a4.js",
+    "static/css/2.c9e9bd00.chunk.css",
+    "build/2.8d715593.js",
+    "static/css/main.38e8d281.chunk.css",
+    "build/main.96f285e6.js"
   ]
 }
