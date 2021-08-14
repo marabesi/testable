@@ -6,6 +6,7 @@ env:
   CI: true
   GH_REPO: marabesi/testable
   REACT_APP_BASE_NAME: /testable
+  COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
 
 jobs:
   build:
@@ -34,11 +35,14 @@ jobs:
           \"email\": \"$CYPRESS_EMAIL\",
           \"password\": \"$CYPRESS_PASSWORD\"
         }" > cypress.env.json
-    - name: npm install, build, and test
+    - name: npm install
       run: |
         npm install
+    - name: npm build
+      run: |
         npm run build
-        npm run test
+    - name: npm test
+      run: |
         npm run coveralls
       env:
         FIREBASE: ''
