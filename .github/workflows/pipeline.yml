@@ -7,6 +7,10 @@ env:
   GH_REPO: marabesi/testable
   REACT_APP_BASE_NAME: /testable
   COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
+  FIREBASE: ''
+  CYPRESS_HOST: ''
+  CYPRESS_EMAIL: ''
+  CYPRESS_PASSWORD: ''
 
 jobs:
   build:
@@ -42,10 +46,10 @@ jobs:
       run: |
         npm run build
     - name: npm test
+      if: github.ref == 'refs/heads/master'
       run: |
         npm run coveralls
-      env:
-        FIREBASE: ''
-        CYPRESS_HOST: '' 
-        CYPRESS_EMAIL: '' 
-        CYPRESS_PASSWORD: '' 
+    - name: npm test
+      if: github.ref != 'refs/heads/master'
+      run: |
+        npm run test
