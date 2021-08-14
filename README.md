@@ -1,4 +1,4 @@
-[![Codacy Badge](https://api.codacy.com/project/badge/Grade/b22163ba0ed9450d89d6e7b2ef71b886)](https://app.codacy.com/app/matheus-marabesi/testable?utm_source=github.com&utm_medium=referral&utm_content=marabesi/testable&utm_campaign=Badge_Grade_Settings)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/6df65172ce484aec85691c7f0e354d9a)](https://www.codacy.com/gh/marabesi/testable/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=marabesi/testable&amp;utm_campaign=Badge_Grade)
 [![Node CI](https://github.com/marabesi/testable/actions/workflows/pipeline.yml/badge.svg)](https://github.com/marabesi/testable/actions/workflows/pipeline.yml)
 [![Coverage Status](https://coveralls.io/repos/github/marabesi/testable/badge.svg?branch=master)](https://coveralls.io/github/marabesi/testable?branch=master)
 
