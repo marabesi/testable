@@ -73,7 +73,7 @@ REACT_APP_FIREBASE_JSON={"apiKey":"","authDomain":"","databaseURL":"","projectId
 REACT_APP_RANKING_API=http://localhost:4000
 REACT_APP_DEBUG=false
 REACT_APP_SHOW_SURVEY=false
-REACT_APP_SURVEY_URL=http://my_forma_to_be_used.com
+REACT_APP_SURVEY_URL=http://my_form_to_be_used.com
 REACT_APP_BASE_NAME=/
 
 # variables used on the ranking api only
