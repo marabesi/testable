@@ -41,7 +41,7 @@ describe('Ranking component', () => {
     expect(container.querySelector('h3').innerHTML).toBe('Ocorreu um erro ao carregar o ranking :(');
   });
 
-  test.skip('should render loading component by default', async () => {
+  test('should render loading component by default', async () => {
     global.fetch = jest.fn(() => {
       return Promise.resolve({
         json: () => Promise.resolve(mockedResponse)
