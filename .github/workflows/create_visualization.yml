@@ -5,7 +5,7 @@ on:
     branches:
       - master
 jobs:
-  get_data:
+  generate_visualization:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout code
@@ -13,4 +13,4 @@ jobs:
       - name: Update visualization
         uses: githubocto/repo-visualizer@main
         with:
-          excluded_paths: "ignore,.github"
+          excluded_paths: "ignore,.github,*.md"
