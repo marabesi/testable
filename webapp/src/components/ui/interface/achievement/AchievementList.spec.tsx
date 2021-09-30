@@ -1,8 +1,7 @@
 import { act } from 'react-dom/test-utils';
-import { shallow, mount } from 'enzyme';
+import { render, screen } from '@testing-library/react';
 import { IntlProvider } from 'react-intl';
 import { AchievementList } from './AchievementList';
-import { AchievementItem } from './AchievementItem';
 import { User } from '../../../../packages/types/User';
 import { makeUser } from '../../../../__test__/fakes/user';
 
@@ -15,7 +14,7 @@ const user: User = makeUser();
 
 describe('AchievementList component: behavior based on the user level', () => {
   test('should not show achievement with higher level than the user', () => {
-    const wrapper = shallow(
+    render(
       <AchievementList
         user={user}
         achievements={[
@@ -32,11 +31,12 @@ describe('AchievementList component: behavior based on the user level', () => {
       />
     );
 
-    expect(wrapper.find(AchievementItem).length).toEqual(0);
+    expect(screen.queryByText('Desafio aceito')).toBeNull();
+    expect(screen.queryByText('level 2')).toBeNull();
   });
 
   test('should render achievements with lower level than the user', () => {
-    const wrapper = mount(
+    render(
       <BuildComponent
         user={user}
         achievements={[
@@ -49,15 +49,15 @@ describe('AchievementList component: behavior based on the user level', () => {
       />
     );
 
-    expect(wrapper.find(AchievementItem).length).toEqual(1);
+    screen.getByText('my title');
+    screen.getByText('my desc');
   });
 });
 
 describe('default AchievementList behavior', () => {
 
   test('should render friendly message when the list is empty', () => {
-    const msg = 'Você não possui nenhuma conquista até o momento';
-    const wrapper = mount(
+    render(
       <BuildComponent
         achievements={[]}
         intl={{
@@ -70,11 +70,12 @@ describe('default AchievementList behavior', () => {
         user={{ level: 1 }}
       />
     );
-    expect(wrapper.find('span').text()).toEqual(msg);
+
+    screen.getByText('Você não possui nenhuma conquista até o momento');
   });
 
   test('should set item to active to true (show up the item description)', () => {
-    const wrapper = mount(
+    render(
       <BuildComponent
         user={user}
         achievements={[
@@ -87,14 +88,11 @@ describe('default AchievementList behavior', () => {
       />
     );
 
-    expect(wrapper.find(AchievementItem).prop('active')).toBeFalsy();
-
     act(() => {
-      wrapper.find(AchievementItem).props().onClick();
+      const achievement= screen.queryByText('my title');
+      achievement?.click();
     });
 
-    wrapper.update();
-
-    expect(wrapper.find(AchievementItem).props().active).toBeTruthy();
+    screen.queryByText('my title')?.classList.contains('hidden');
   });
 });
