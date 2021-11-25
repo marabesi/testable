@@ -11,10 +11,13 @@ env:
   GH_REPO: marabesi/testable
   COVERALLS_REPO_TOKEN: ${{ secrets.COVERALLS_TOKEN }}
   FIREBASE: ''
+  REACT_APP_FIREBASE_JSON: ${{ secrets.REACT_APP_FIREBASE_JSON }}
+  REACT_APP_DEBUG: false
+  REACT_APP_SHOW_SURVEY: false
+  REACT_APP_BASE_NAME: /testable
   CYPRESS_HOST: ''
   CYPRESS_EMAIL: ''
   CYPRESS_PASSWORD: ''
-  REACT_APP_BASE_NAME: /testable
 
 jobs:
   build:
