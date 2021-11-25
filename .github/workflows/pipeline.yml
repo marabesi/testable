@@ -14,6 +14,7 @@ env:
   CYPRESS_HOST: ''
   CYPRESS_EMAIL: ''
   CYPRESS_PASSWORD: ''
+  REACT_APP_BASE_NAME: /testable
 
 jobs:
   build:
@@ -45,27 +46,25 @@ jobs:
           \"password\": \"$CYPRESS_PASSWORD\"
         }" > cypress.env.json
 
-    - name: npm install
+    - name: npm install ⌛
       run: |
         npm install
 
-    - name: npm build
-      env:
-        REACT_APP_BASE_NAME: "/testable"
+    - name: npm build 🔨
       run: |
         npm run build
 
-    - name: npm coveralls
+    - name: npm coveralls ✅
       if: github.ref == 'refs/heads/master'
       run: |
         npm run coveralls
 
-    - name: npm test
+    - name: npm test ✅
       if: github.ref != 'refs/heads/master'
       run: |
         npm run test:ci
 
-    - name: Deploy 🚀
+    - name: Deploy to gh pages 🚀
       if: github.ref == 'refs/heads/master'
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
