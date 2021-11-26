@@ -27,7 +27,7 @@ complex part is.
 ## 1. Project structure
 
 This repository host the testable web app and the ranking api. Both are
-in the same repository for convinience and for a simpler approach
+in the same repository for convenience and for a simpler approach
 for local development with docker.
 
 ```
@@ -102,7 +102,7 @@ of the variables, if more detail is needed a link is provided.
 |REACT_APP_DEBUG|false|The debug mode in the interface allows a fast travel in time and debug messages through the dev tool. This value should be used in local/development mode only|
 |REACT_APP_SHOW_SURVEY|false|Variables that controls if the survey button show be shown.|
 |REACT_APP_SURVEY_URL|false|If `REACT_APP_SHOW_SURVEY` is set to true, then this URL is displayed for the user to fill in the survey.|
-|PUBLIC_URL|false|This is the full URL where the frontend is running, for exemple: `https://app-testable.herokuapp.com`|
+|PUBLIC_URL|false|This is the full URL where the frontend is running, for example: `https://app-testable.herokuapp.com`|
 |REACT_APP_BASE_NAME|false|this variable is used most for deployment purposes. It configures the build step to use a different base name than `/`. This is useful for deployments under sub directories in the domain, for example: `https://mydomain.org/app`.|
 |RANKING_FIREBASE_JSON|true|Plain json provided by the Firebase services account|
 |FIREBASE_DATABASE_URL|true|This value is provided by the firebase console JSON, and the value is under the key `databaseURL`. Both values should match, to prevent authentication issues.|
@@ -141,7 +141,7 @@ docker-compose -f docker-compose-dev.yml run --rm testable npm run coverage -- -
 The other option is the deployment mode, which uses the default file `docker-compose.yml`.
 There are two differences for this mode. The first one is that it runs without
 auto reloading once the source code is changed and the other one is that
-the documentation is built in the web app disribution rather than having its own service.
+the documentation is built in the web app distribution rather than having its own service.
 
 ```
 docker-compose up
