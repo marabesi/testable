@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@formatjs/intl-relativetimeformat": "^9.3.3",
+    "@formatjs/intl-relativetimeformat": "^9.4.0",
     "@fullhuman/postcss-purgecss": "^4.1.3",
     "babel-eslint": "^10.1.0",
     "css-loader": "^5.2.7",
