@@ -87,7 +87,7 @@
     "@types/react": "^17.0.37",
     "@types/react-codemirror": "^1.0.6",
     "@types/react-dom": "^17.0.11",
-    "@types/react-helmet": "^6.1.4",
+    "@types/react-helmet": "^6.1.5",
     "@types/react-intl": "^3.0.0",
     "@types/react-redux": "^7.1.20",
     "@types/react-router": "^5.1.17",
