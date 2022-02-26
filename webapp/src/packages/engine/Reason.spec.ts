@@ -1,6 +1,15 @@
 import Reason from './Reason';
 
 describe('Reason', () => {
+  const originalConsole = globalThis.console;
+
+  beforeEach(() => {
+    globalThis.console.warn = jest.fn();
+  });
+
+  afterEach(() => {
+    globalThis.console = originalConsole;
+  });
 
   test('should parse var declaration', () => {
     const strategy = jest.fn();
@@ -24,6 +33,7 @@ describe('Reason', () => {
       const result = Reason(code, strategy);
       expect(strategy).toHaveBeenCalledTimes(0);
       expect(result).toBeFalsy();
+      expect(globalThis.console.warn).toHaveBeenCalled();
     }
   );
 });
