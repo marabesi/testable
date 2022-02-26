@@ -17,7 +17,7 @@ describe('Reason', () => {
   });
 
   test.each([['function']])(
-    'should not buble up the error when a invalid source code is provided',
+    'should not bubble up the error when a invalid source code is provided',
     (code) => {
       const strategy = jest.fn();
 
