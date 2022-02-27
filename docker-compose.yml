@@ -11,8 +11,8 @@ services:
       - ./docker/nginx/:/nginx
     command: /bin/bash -c "envsubst < /nginx/default.conf > /etc/nginx/conf.d/default.conf && exec nginx -g 'daemon off;'"
     ports:
-      - 80:80
-      - 443:443
+      - "80:80"
+      - "443:443"
   testable:
     environment:
       - TESTABLE_PORT=$TESTABLE_PORT
@@ -26,7 +26,6 @@ services:
         - TESTABLE_PORT=$TESTABLE_PORT
         - PUBLIC_URL=$PUBLIC_URL
       context: ./webapp
-    user: 'node'
     ports:
       - $TESTABLE_PORT:$TESTABLE_PORT
   ranking:
@@ -37,6 +36,5 @@ services:
       - CORS_ORIGINS=$CORS_ORIGINS
     build:
       context: ./ranking-api
-    user: 'node'
     ports:
       - $RANKING_PORT:$RANKING_PORT

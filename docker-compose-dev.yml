@@ -22,7 +22,7 @@ services:
     volumes:
       - ./webapp:/docs
     ports:
-      - 6060:6060
+      - "6060:6060"
     command: npm run docs
   ranking:
     extends:
@@ -30,7 +30,6 @@ services:
       service: ranking
     build:
       context: ./ranking-api
-    user: 'node'
     volumes:
       - ./ranking-api:/var/www/ranking_api
     command: npm run dev
