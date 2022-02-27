@@ -1,5 +1,4 @@
 const URL = Cypress.env('host');
-const password = Cypress.env('password');
 
 context('introduction page', () => {
   beforeEach(() => {

@@ -10,6 +10,9 @@ context('login', () => {
     indexedDB.deleteDatabase('firebaseLocalStorageDb');
 
     cy.visit(URL);
+
+    cy.wait(1000);
+    cy.get('[data-testid=languages]').select('en');
   });
 
   afterEach(() => {
@@ -45,6 +48,6 @@ context('login', () => {
     cy.get('input[type="password"]').type(password);
     cy.contains('Sign In').click({ timeout: 10000 });
     cy.get('.picture-holder img').click();
-    cy.contains('sair').click();
+    cy.contains('logout').click();
   });
 });
