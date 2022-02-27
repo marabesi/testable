@@ -3,39 +3,44 @@ import { act } from 'react-dom/test-utils';
 import Scene from './Scene';
 import Button from '../../buttons/primary/Primary';
 import { TextItem } from '../text-keyboard-animation/AnimatedText';
+import IntlProvider from '../../../../third-party/wrappers/i18n/IntlProvider';
 
 const fakeText: TextItem[] = [ { key: 0, line: 'my', style: '' } ];
 
+const BuildComponent = (props: any) =>
+  <IntlProvider locale="en">
+    <Scene {...props} />
+  </IntlProvider>;
+
 describe('Scene component', () => {
+  let wrapper;
 
   beforeEach(() => {
     jest.useFakeTimers();
     window.localStorage.removeItem('testable.alien.png');
+    wrapper = mount(<BuildComponent />);
   });
 
   afterEach(() => {
     window.localStorage.removeItem('testable.alien.png');
     jest.restoreAllMocks();
+    wrapper = null;
   });
 
   test('default props value', () => {
-    const wrapper = mount(<Scene />);
-
-    expect(wrapper.props().onCompleted).toEqual({});
-    expect(wrapper.props().releaseButton).toEqual(2000);
-    expect(wrapper.props().showBuggy).toEqual({});
-    expect(wrapper.props().showNextButton).toEqual(900);
+    expect(wrapper.find('Scene').props().onCompleted).toEqual({});
+    expect(wrapper.find('Scene').props().releaseButton).toEqual(2000);
+    expect(wrapper.find('Scene').props().showBuggy).toEqual({});
+    expect(wrapper.find('Scene').props().showNextButton).toEqual(900);
   });
 
   test('by default, does not show up the next button', () => {
-    const wrapper = mount(<Scene />);
-
     expect(wrapper.find(Button).length).toEqual(0);
   });
 
   test('remove disable from button after finished typing', () => {
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         text={fakeText}
         button="just a label"
         showNextButton={1}
@@ -52,20 +57,20 @@ describe('Scene component', () => {
   });
 
   test('by default, does not show alien component', () => {
-    const wrapper = mount(<Scene />);
+    const wrapper = mount(<BuildComponent />);
 
     expect(wrapper.find('AlienSvg').prop('className')).toContain('hidden');
   });
 
   test('by default, does not show buggy bug component', () => {
-    const wrapper = mount(<Scene />);
+    const wrapper = mount(<BuildComponent />);
 
     expect(wrapper.find('BuggyBug').length).toBe(0);
   });
 
   test('should show alien component', () => {
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         showAlien={{}}
       />
     );
@@ -77,7 +82,7 @@ describe('Scene component', () => {
 
   test('should show alien component with animation', () => {
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         showAlien={{
           animate: true
         }}
@@ -89,7 +94,7 @@ describe('Scene component', () => {
 
   test('pass in a custom class to the scene container', () => {
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         className="custom-class"
         text={fakeText}
       />
@@ -101,7 +106,7 @@ describe('Scene component', () => {
   test('should show up buggy component after typing', () => {
     const NODE_INDEX = 1;
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         onCompleted={{showBug: true}}
         text={fakeText}
       />
@@ -121,7 +126,7 @@ describe('Scene component', () => {
   test('should show up alien character', () => {
     window.localStorage.setItem('testable.alien.png', 'img content');
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         showAlien={{
           'show': true,
           'animate': false
@@ -138,7 +143,7 @@ describe('Scene component', () => {
     const handleNextScene = jest.fn();
 
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         lastScene={true}
         handleLastScene={handleLastScene}
         next={handleNextScene}
@@ -165,7 +170,7 @@ describe('Scene component', () => {
     const handleNextScene = jest.fn();
 
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         lastScene={false}
         handleLastScene={handleLastScene}
         next={handleNextScene}
@@ -189,7 +194,7 @@ describe('Scene component', () => {
   test('should disable button once clicked to prevent firing the event twice', () => {
     const onClick = jest.fn();
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         text={fakeText}
         button="my button"
         next={onClick}
@@ -217,7 +222,7 @@ describe('Scene component', () => {
   test('should release disable from next button based on releaseButton prop', () => {
     const onClick = jest.fn();
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         text={fakeText}
         button="my button"
         next={onClick}
@@ -237,7 +242,7 @@ describe('Scene component', () => {
 
   test('should render buggy bug version', () => {
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         showBuggy={{
           type: 'bug',
         }}
@@ -250,7 +255,7 @@ describe('Scene component', () => {
 
   test('should render buggy happy version', () => {
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         showBuggy={{
           type: 'happy',
         }}
@@ -262,14 +267,14 @@ describe('Scene component', () => {
   });
 
   test('should apply responsive classes to buggy when animate is set', () => {
-    const wrapper = mount(<Scene showBuggy={{ animate: true}} />);
+    const wrapper = mount(<BuildComponent showBuggy={{ animate: true}} />);
     const buggy = wrapper.find('BuggyLeft').at(0);
     const classes = buggy.prop('className') || '';
     expect(classes.includes('md:slide-in-bck-right')).toBeTruthy();
   });
 
   test('should not apply block class to buggy when there is not buggy type', () => {
-    const wrapper = mount(<Scene showBuggy={{}} />);
+    const wrapper = mount(<BuildComponent showBuggy={{}} />);
     const buggy = wrapper.find('BuggyLeft').at(0);
     const classes = buggy.prop('className') || '';
     expect(classes.includes('md:block')).toBeFalsy();
@@ -277,7 +282,7 @@ describe('Scene component', () => {
 
   test('should apply animation class to buggy happy', () => {
     const wrapper = mount(
-      <Scene
+      <BuildComponent
         onCompleted={{ type: 'happy' }}
         text={fakeText}
         button="my button"

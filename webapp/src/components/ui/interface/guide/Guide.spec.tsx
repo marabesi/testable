@@ -2,8 +2,8 @@ import { shallow, mount } from 'enzyme';
 import { Guide } from './Guide';
 
 const content = [
-  { line: 'my text' },
-  { line: 'line 2' },
+  { line: 'my_text' },
+  { line: 'line_2' },
   { line: 'last' },
 ];
 

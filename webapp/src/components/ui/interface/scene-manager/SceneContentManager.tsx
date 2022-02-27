@@ -29,7 +29,7 @@ export interface InteractiveContent {
 const WrappedSceneContentManager = (
   identifier: string,
   content: InteractiveContent,
-  redirectTo: string
+  redirectTo: string,
 ) => {
   const SceneContentManager = ({ handleLastScene, history, className }) => {
     const lastScene = () => {

@@ -3,8 +3,13 @@ import { act } from 'react-dom/test-utils';
 import SceneManager from './SceneManager';
 import Scene from './Scene';
 import { InteractiveContent } from './SceneContentManager';
+import IntlProvider from '../../../../third-party/wrappers/i18n/IntlProvider';
 
 describe('Scene manager component', () => {
+  const BuildComponent = (props: any) =>
+    <IntlProvider locale="en">
+      <SceneManager {...props} />
+    </IntlProvider>;
 
   const content = { 
     'version': 1,
@@ -34,7 +39,7 @@ describe('Scene manager component', () => {
 
   test('should initialize manager with scene 1', () => {
     const wrapper = mount(
-      <SceneManager
+      <BuildComponent
         content={content}
         handleLastScene={jest.fn()}
         identifier="jest"
@@ -47,7 +52,7 @@ describe('Scene manager component', () => {
 
   test('should go to step 2', () => {
     const wrapper = mount(
-      <SceneManager
+      <BuildComponent
         content={content}
       />
     );
@@ -64,7 +69,7 @@ describe('Scene manager component', () => {
 
   test('should go to step 1', () => {
     const wrapper = mount(
-      <SceneManager
+      <BuildComponent
         content={content}
       />
     );
@@ -87,7 +92,7 @@ describe('Scene manager component', () => {
 
   test('should not go to previous step when it is in the first step already', () => {
     const wrapper = mount(
-      <SceneManager
+      <BuildComponent
         content={content}
       />
     );
@@ -103,7 +108,7 @@ describe('Scene manager component', () => {
 
   test('should not go beyond last step', () => {
     const wrapper = mount(
-      <SceneManager
+      <BuildComponent
         content={content}
       />
     );
@@ -128,7 +133,7 @@ describe('Scene manager component', () => {
     contentWithLastStep.steps[0].lastScene = true;
 
     const wrapper = mount(
-      <SceneManager
+      <BuildComponent
         content={contentWithLastStep}
       />
     );
@@ -140,7 +145,7 @@ describe('Scene manager component', () => {
 
   test('should pass in lastStep as true when the last step is reached', () => {
     const wrapper = mount(
-      <SceneManager
+      <BuildComponent
         content={content}
       />
     );
@@ -157,7 +162,7 @@ describe('Scene manager component', () => {
   describe('debug button', () => {
     test('should not show up debug button by default', () => {
       const wrapper = mount(
-        <SceneManager
+        <BuildComponent
           content={content}
         />
       );
@@ -169,7 +174,7 @@ describe('Scene manager component', () => {
   describe('empty content provided', () => {
     test('should handle gracefully empty json object', () => {
       const wrapper = mount(
-        <SceneManager
+        <BuildComponent
           content={{}}
         />
       );
@@ -178,7 +183,7 @@ describe('Scene manager component', () => {
 
     test('should handle gracefully json object with empty steps', () => {
       const wrapper = mount(
-        <SceneManager
+        <BuildComponent
           content={{
             steps: []
           }}

@@ -3,7 +3,7 @@ import { Component, Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Buggy, {BuggyBug, BuggySleepy, BuggyHappy} from '../../images/buggy/Buggy';
-import AnimatedText from '../text-keyboard-animation/AnimatedText';
+import AnimatedText, { TextItem } from '../text-keyboard-animation/AnimatedText';
 import { onHover } from '../../../../data-flow/redux/actions/guideAction';
 import Next from '../../icons/Next';
 
@@ -65,7 +65,7 @@ export class Guide extends Component {
   }
 
   renderHint() {
-    return this.props.guideContent.map((item, index) => {
+    return this.props.guideContent.map((item: TextItem, index) => {
       if (index === this.props.currentHint) {
         return (
           <Fragment

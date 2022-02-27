@@ -89,5 +89,16 @@ export default {
   },
   survey: {
     title: 'Survey'
+  },
+  content: {
+    introduction: {
+      what_is_the_first: 'What is the first?',
+      hello_world: '_ Hello world',
+      open_curly_brackets: '{',
+      my_name_is_buggy: 'My name is Buggy',
+      my_dream: 'and my dream is to become a programmer',
+      two_challenges: 'though, I have two big challenges',
+      close_curly_brackets: '}',
+    }
   }
 };

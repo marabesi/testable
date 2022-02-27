@@ -3,30 +3,30 @@
   "steps": [
     {
       "step": 1,
-      "button": "Qual é o primeiro?",
+      "button": "content.introduction.what_is_the_first",
       "content": [
         {
-          "line": "_ Hello world",
+          "line": "content.introduction.hello_world",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": "{",
+          "line": "content.introduction.open_curly_brackets",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": "Meu nome é Buggy",
+          "line": "content.introduction.my_name_is_buggy",
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "e meu sonho é ser programador",
+          "line": "content.introduction.my_dream",
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "mas tenho dois grandes desafios",
+          "line": "content.introduction.two_challenges",
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "}",
+          "line": "content.introduction.close_curly_brackets",
           "style": "p-2 text-blue-light"
         }
       ]

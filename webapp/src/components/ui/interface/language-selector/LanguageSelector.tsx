@@ -44,7 +44,7 @@ export const LanguageSelector = ({ intl, locale, setLocale, onChange }: Props) =
   return (
     <>
       {loading && <Loading />}
-      <select onChange={didChange} value={locale}>
+      <select onChange={didChange} value={locale} data-testid="languages">
         <option value="en">{intl.messages.options.languages.en}</option>
         <option value="pt-br">{intl.messages.options.languages['pt-br']}</option>
         <option value="ro">{intl.messages.options.languages['ro']}</option>

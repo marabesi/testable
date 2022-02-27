@@ -69,7 +69,7 @@ export class Profile extends Component {
         .then(image => {
           const photo = URL.createObjectURL(image);
           this.setState({ photo });
-        });
+        }).catch(error => console.error(error));
     }
   }
 

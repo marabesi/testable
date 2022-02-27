@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { injectIntl } from 'react-intl';
 import Button from '../../buttons/primary/Primary';
 import AnimatedText, { TextItem } from '../text-keyboard-animation/AnimatedText';
 import { BuggyLeft, BuggyBug, BuggyHappy,  BuggyHappyLeft } from '../../images/buggy/Buggy';
@@ -22,6 +23,7 @@ interface Props {
   showNextButton?: number,
   step?: number,
   showBuggy?: any,
+  intl: any,
 }
 
 const Scene = ({
@@ -35,7 +37,7 @@ const Scene = ({
   button,
   releaseButton,
   showNextButton: nextButton,
-  showBuggy
+  showBuggy,
 }: Props) => {
   const [showNextButton, setShowNextButton] = useState(false);
   const [disableNextButton, setDisableNextButton] = useState(false);
@@ -101,7 +103,7 @@ const Scene = ({
         <AnimatedText
           className="w-2/3"
           text={text}
-          onFinishedTyping={ onFinishedTyping }
+          onFinishedTyping={onFinishedTyping}
         />
 
         {! showBuggy.type && <BuggyLeft className={`absolute pin-r w-1/3 mt-10 hidden ${buggyClass}`} />}
@@ -161,6 +163,7 @@ Scene.defaultProps = {
   showBuggy: {},
   releaseButton: RELEASE_BUTTON,
   showNextButton: 900,
+  intl: {},
 };
 
-export default Scene;
+export default injectIntl(Scene);
