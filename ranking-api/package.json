@@ -14,7 +14,7 @@
   "dependencies": {
     "dotenv": "^16.0.1",
     "express": "^4.17.1",
-    "firebase-admin": "^10.2.0",
+    "firebase-admin": "^11.3.0",
     "nodemon": "^2.0.6",
     "now": "^21.0.1",
     "serverless-http": "^2.5.0"
