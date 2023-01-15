@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { mount } from 'enzyme';
 import Modal from './Modal';
 
@@ -8,7 +9,7 @@ describe('modal component', () => {
   });
 
   test('should close modal', () => {
-    const onClose = jest.fn();
+    const onClose = vitest.fn();
     const wrapper = mount(
       <Modal
         title={'modal title'}

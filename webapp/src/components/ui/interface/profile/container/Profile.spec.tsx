@@ -31,8 +31,8 @@ describe('profile component', () => {
   });
 
   test('should logout', () => {
-    auth.signout = jest.fn();
-    const setUser = jest.fn();
+    auth.signout = vitest.fn();
+    const setUser = vitest.fn();
 
     const wrapper = shallow(
       <Profile

@@ -23,7 +23,7 @@ describe('Login page behavior', () => {
         <Provider store={store}>
           <BrowserRouter>
             <Login
-              setUser={jest.fn()}
+              setUser={vitest.fn()}
               user={undefined}
               locale="en"
             />
@@ -41,7 +41,7 @@ describe('Login page behavior', () => {
         <Provider store={store}>
           <BrowserRouter>
             <Login
-              setUser={jest.fn()}
+              setUser={vitest.fn()}
               user={undefined}
               locale="en"
             />

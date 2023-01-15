@@ -1,4 +1,8 @@
-jest.mock('../../../../packages/engine/Reason', () => () => true);
+import {vitest} from 'vitest';
+
+vitest.mock('../../../../packages/engine/Reason', () => {
+  return { default: () => true};
+});
 
 import { shallow } from 'enzyme';
 import { default as Rocket} from './Rocket';
@@ -52,7 +56,7 @@ describe('Rocket HoC component', () => {
   });
 
   test('track section when the component is loaded', () => {
-    const callback = jest.fn();
+    const callback = vitest.fn();
     Emitter.addListener(TRACKING, callback);
 
     const HoC = Rocket(
@@ -146,7 +150,7 @@ describe('Rocket HoC component', () => {
     });
 
     test('should level up on content last step', () => {
-      const callback = jest.fn();
+      const callback = vitest.fn();
       Emitter.addListener(LEVEL_UP, callback);
 
       const HoC = Rocket(
@@ -324,7 +328,7 @@ describe('Rocket HoC component', () => {
     });
 
     test('should not level up when tooltip tour has completed', () => {
-      const callback = jest.fn();
+      const callback = vitest.fn();
       Emitter.addListener(LEVEL_UP, callback);
 
       const wrapper = shallow(<IntroWrapper />);
@@ -334,7 +338,7 @@ describe('Rocket HoC component', () => {
     });
 
     test('should not level up if the current hint is different from the tooltip', () => {
-      const callback = jest.fn();
+      const callback = vitest.fn();
       Emitter.addListener(LEVEL_UP, callback);
 
       const wrapper = shallow(<IntroWrapper />);

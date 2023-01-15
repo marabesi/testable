@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { shallow } from 'enzyme';
 import Editor from './Editor';
 
@@ -25,7 +26,7 @@ describe('Editor component', () => {
 
   describe('handle focus event when trying to type', () => {
     test('fire onFocus event when key is pressed', () => {
-      const onFocus = jest.fn();
+      const onFocus = vitest.fn();
       const wrapper = shallow(
         <Editor
           className="my-editor"
@@ -58,7 +59,7 @@ describe('Editor component', () => {
     });
 
     test('should invoke on props when trying to type text on a read only editor', () => {
-      const onFocus = jest.fn();
+      const onFocus = vitest.fn();
       const codeMirrorOptions = {
         readOnly: true
       };

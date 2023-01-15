@@ -1,4 +1,5 @@
 import firebase from 'firebase/app';
+import { vitest } from 'vitest';
 import { auth } from './Auth';
 
 const mockedUserAuthData = {
@@ -49,7 +50,7 @@ describe('Auth behavior', () => {
   });
 
   test('should logout', () => {
-    const callback = jest.fn();
+    const callback = vitest.fn();
 
     firebase.auth = () => {
       return {
@@ -63,7 +64,7 @@ describe('Auth behavior', () => {
   });
 
   test('unsubscribe to prevent event leak', () => {
-    const callback = jest.fn();
+    const callback = vitest.fn();
     auth.firebaseRef = {
       off: callback
     };
@@ -78,7 +79,7 @@ describe('Auth behavior', () => {
     expect(auth.firebaseRef.off).toBe(null);
   });
 
-  test('update user data personal info once logged in', done => {
+  test('update user data personal info once logged in', () => new Promise(done => {
     auth.userRef = () => {
       return {
         once: (type, data) => {
@@ -109,7 +110,7 @@ describe('Auth behavior', () => {
       expect(data.introduction).toEqual(mockedUserProgress.introduction);
       done();
     });
-  });
+  }));
 });
 
 describe('route access and redirection', () => {

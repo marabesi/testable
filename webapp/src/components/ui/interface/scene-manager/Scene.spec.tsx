@@ -1,5 +1,6 @@
 import { mount } from 'enzyme';
 import { act } from 'react-dom/test-utils';
+import {vitest} from 'vitest';
 import Scene from './Scene';
 import Button from '../../buttons/primary/Primary';
 import { TextItem } from '../text-keyboard-animation/AnimatedText';
@@ -16,14 +17,14 @@ describe('Scene component', () => {
   let wrapper;
 
   beforeEach(() => {
-    jest.useFakeTimers();
+    vitest.useFakeTimers();
     window.localStorage.removeItem('testable.alien.png');
     wrapper = mount(<BuildComponent />);
   });
 
   afterEach(() => {
     window.localStorage.removeItem('testable.alien.png');
-    jest.restoreAllMocks();
+    vitest.restoreAllMocks();
     wrapper = null;
   });
 
@@ -48,7 +49,7 @@ describe('Scene component', () => {
     );
 
     act(() => {
-      jest.runAllTimers();
+      vitest.runAllTimers();
     });
 
     wrapper.update();
@@ -115,7 +116,7 @@ describe('Scene component', () => {
     expect(wrapper.find('BuggyLeft').at(NODE_INDEX).prop('className')).toContain('hidden');
 
     act(() => {
-      jest.runAllTimers();
+      vitest.runAllTimers();
     });
 
     wrapper.update();
@@ -139,8 +140,8 @@ describe('Scene component', () => {
   });
 
   test('should handle last scene', () => {
-    const handleLastScene = jest.fn();
-    const handleNextScene = jest.fn();
+    const handleLastScene = vitest.fn();
+    const handleNextScene = vitest.fn();
 
     const wrapper = mount(
       <BuildComponent
@@ -154,7 +155,7 @@ describe('Scene component', () => {
     );
 
     act(() => {
-      jest.runAllTimers();
+      vitest.runAllTimers();
     });
 
     wrapper.update();
@@ -166,8 +167,8 @@ describe('Scene component', () => {
   });
 
   test('should handle next scene', () => {
-    const handleLastScene = jest.fn();
-    const handleNextScene = jest.fn();
+    const handleLastScene = vitest.fn();
+    const handleNextScene = vitest.fn();
 
     const wrapper = mount(
       <BuildComponent
@@ -181,7 +182,7 @@ describe('Scene component', () => {
     );
 
     act(() => {
-      jest.runAllTimers();
+      vitest.runAllTimers();
     });
 
     wrapper.update();
@@ -192,7 +193,7 @@ describe('Scene component', () => {
   });
 
   test('should disable button once clicked to prevent firing the event twice', () => {
-    const onClick = jest.fn();
+    const onClick = vitest.fn();
     const wrapper = mount(
       <BuildComponent
         text={fakeText}
@@ -203,7 +204,7 @@ describe('Scene component', () => {
     );
 
     act(() => {
-      jest.runAllTimers();
+      vitest.runAllTimers();
     });
 
     wrapper.update();
@@ -220,7 +221,7 @@ describe('Scene component', () => {
   });
 
   test('should release disable from next button based on releaseButton prop', () => {
-    const onClick = jest.fn();
+    const onClick = vitest.fn();
     const wrapper = mount(
       <BuildComponent
         text={fakeText}
@@ -232,7 +233,7 @@ describe('Scene component', () => {
     );
 
     act(() => {
-      jest.runAllTimers();
+      vitest.runAllTimers();
     });
 
     wrapper.update();
@@ -291,7 +292,7 @@ describe('Scene component', () => {
     );
 
     act(() => {
-      jest.runAllTimers();
+      vitest.runAllTimers();
     });
 
     wrapper.update();

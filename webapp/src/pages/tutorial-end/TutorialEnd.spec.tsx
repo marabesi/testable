@@ -26,7 +26,7 @@ describe('TutorialEnd page', () => {
 
   test('should redirect to unit testing intro page when done', () => {
     const history = {
-      push: jest.fn()
+      push: vitest.fn()
     };
     const wrappedWithRouter = mount(
       <BuildComponent history={history}/>

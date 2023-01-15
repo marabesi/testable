@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { mount } from 'enzyme';
 import { AchievementItem } from './AchievementItem';
 
@@ -35,7 +36,7 @@ describe('Achievement item behavior', () => {
   });
 
   test('propagate on click event to be handled', () => {
-    const callback = jest.fn();
+    const callback = vitest.fn();
     const wrapper = mount(
       <AchievementItem
         title="achiv title"
@@ -72,7 +73,7 @@ describe('Achievement item behavior', () => {
   });
 
   test('emit on click event', () => {
-    const callback = jest.fn();
+    const callback = vitest.fn();
     const wrapper = mount(
       <AchievementItem
         title="list items"

@@ -54,7 +54,10 @@ export default class Queue {
     return Promise.all(queue).then(data => {
       for (let response of data) {
         response.blob()
-          .then(blob => this.storeFile(response, blob));
+          .then(blob => this.storeFile(response, blob))
+          .catch(error => {
+            throw new Error(error);
+          });
       }
     });
   }
@@ -64,7 +67,7 @@ export default class Queue {
     return `testable.${file[file.length - 1]}`;
   }
 
-  storeFile(response: any, blob: any) {
+  storeFile(response: Response, blob: Blob) {
     const key = this.extractFileName(response);
     const reader = new FileReader();
     const context = this;
@@ -74,7 +77,9 @@ export default class Queue {
       context.storage.setItem(key, this.result);
     };
 
-    reader.readAsDataURL(blob);
+    const t = blob.text().then(text => new Blob([text]));
+    t.then(r => reader.readAsDataURL(r));
+    // reader.readAsDataURL(t);
   }
 }
 

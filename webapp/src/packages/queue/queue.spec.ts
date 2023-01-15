@@ -1,23 +1,20 @@
+import { vitest } from 'vitest';
 import Queue from './queue';
 
 /* eslint-disable-next-line */
 global.fetch = function(requestInfo) {
-  return Promise.resolve(new Response(new Blob([1, 2, 3])));
+  return Promise.resolve(new Response(new Blob(['1', '2', '3'])));
 };
 
 describe('queue behavior', () => {
-  let instance = null;
+  let instance: Queue;
 
   beforeEach(() => {
     instance = new Queue();
   });
 
-  afterEach(() => {
-    instance = null;
-  });
-
   test('pass in FileReader instance', () => {
-    const reader = { p: 1 };
+    const reader = new FileReader();
     instance.reader = reader;
     expect(instance.reader).toBe(reader);
   });
@@ -50,8 +47,8 @@ describe('queue behavior', () => {
 
   test('should fetch assets that does not exists', async () => {
     const mockedLocalStorage = {
-      getItem: jest.fn(),
-      setItem: jest.fn(),
+      getItem: vitest.fn(),
+      setItem: vitest.fn(),
     };
 
     instance.storage = mockedLocalStorage;
@@ -67,7 +64,7 @@ describe('queue behavior', () => {
     const mockedLocalStorage = {
       /* eslint-disable-next-line */
       getItem: itemKey => true,
-      setItem: jest.fn(),
+      setItem: vitest.fn(),
     };
 
     instance.storage = mockedLocalStorage;

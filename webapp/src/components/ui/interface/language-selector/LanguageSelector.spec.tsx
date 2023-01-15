@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { shallow, mount } from 'enzyme';
 import { IntlProvider } from 'react-intl';
 import configureMockStore from 'redux-mock-store';
@@ -20,7 +21,7 @@ describe('language selector component', () => {
   });
 
   test('switch Portuguese to English', () => {
-    const setLocale = jest.fn();
+    const setLocale = vitest.fn();
     const wrapper = shallow(<LanguageSelectorWithoutStore setLocale={setLocale} />);
 
     wrapper.find('select').simulate('change', { target: { value: 'en' } });
@@ -29,10 +30,10 @@ describe('language selector component', () => {
   });
 
   test('should trigger onChange when switch language', () => {
-    const onChange = jest.fn();
+    const onChange = vitest.fn();
     const wrapper = shallow(
       <LanguageSelectorWithoutStore
-        setLocale={jest.fn()}
+        setLocale={vitest.fn()}
         onChange={onChange}
       />
     );

@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { shallow } from 'enzyme';
 import TestExecutionAnimationHoC from './TestExecutionAnimation';
 
@@ -10,7 +11,7 @@ const TestExecution = TestExecutionAnimationHoC(
 
 describe('Test execution animation component', () => {
 
-  test('should render test queue after animation delay', done => {
+  test('should render test queue after animation delay', () => new Promise(done => {
     const wrapper = shallow(
       <TestExecution
         animationDelay={200}
@@ -22,7 +23,7 @@ describe('Test execution animation component', () => {
       expect(wrapper.find('h1').text()).toEqual('my test');
       done();
     }, 300);
-  });
+  }));
 
   test('should display rocket by default', () => {
     const wrapper = shallow(
@@ -32,7 +33,7 @@ describe('Test execution animation component', () => {
     expect(wrapper.find(RocketComponent).length).toBe(1);
   });
 
-  test('should add rocket wobble class animation by half time of animation delay', done => {
+  test('should add rocket wobble class animation by half time of animation delay', () => new Promise(done => {
     const wrapper = shallow(
       <TestExecution
         animationDelay={700}
@@ -46,9 +47,9 @@ describe('Test execution animation component', () => {
       expect(classes.includes('wobble-hor-bottom')).toBeTruthy();
       done();
     }, 400);
-  });
+  }));
 
-  test('should toggle rocket bouce out top animation class', done => {
+  test('should toggle rocket bouce out top animation class', () => new Promise(done => {
     const wrapper = shallow(
       <TestExecution
         animationDelay={150}
@@ -62,10 +63,10 @@ describe('Test execution animation component', () => {
       expect(classes.includes('bounce-out-top')).toEqual(true);
       done();
     }, 700);
-  });
+  }));
 
-  test('should fire onFinished event once animations has finished', done => {
-    const callback = jest.fn();
+  test('should fire onFinished event once animations has finished', () => new Promise(done => {
+    const callback = vitest.fn();
     shallow(
       <TestExecution
         animationDelay={100}
@@ -77,9 +78,9 @@ describe('Test execution animation component', () => {
       expect(callback).toBeCalled();
       done();
     }, 900);
-  });
+  }));
 
-  test('should not toggle bouce out top animation if there is failing test', done => {
+  test('should not toggle bouce out top animation if there is failing test', () => new Promise(done => {
     const HoC = TestExecutionAnimationHoC(
       RocketComponent,
       [{ test: 'my test', pass: true }, { test: 'my test', pass: false }]
@@ -95,5 +96,5 @@ describe('Test execution animation component', () => {
       expect(wrapper.find(RocketComponent).prop('className').includes('bounce-out-top')).toBeFalsy();
       done();
     }, 900);
-  });
+  }));
 });

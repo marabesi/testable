@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { shallow } from 'enzyme';
 import { Header } from './Header';
 import Achievement from '../../icons/Achievement';
@@ -16,7 +17,7 @@ const mockedUser =  {
 };
 
 const mockedHistory = {
-  push: jest.fn()
+  push: vitest.fn()
 };
 
 describe('header component', () => {
@@ -38,8 +39,8 @@ describe('header component', () => {
     localWrapper.unmount();
   });
 
-  test('should add level up animation and remove after 600 ms', done => {
-    const updateUserInfo = jest.fn();
+  test('should add level up animation and remove after 600 ms', () => new Promise(done => {
+    const updateUserInfo = vitest.fn();
     const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} history={mockedHistory} />);
 
     expect(wrapper.find('.wobble-ver-right').length).toEqual(0);
@@ -57,12 +58,12 @@ describe('header component', () => {
       wrapper.unmount();
       done();
     }, 600);
-  });
+  }));
 
   test.each([LEVEL_UP, LEVEL_DOWN, PROGRESS_UP, PROGRESS_DOWN])(
     'unbind events on unmount - event: %s',
     (currentEvent) => {
-      const updateUserInfo = jest.fn();
+      const updateUserInfo = vitest.fn();
       const localWrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} />);
       localWrapper.unmount();
 
@@ -72,7 +73,7 @@ describe('header component', () => {
   );
 
   test('should go to the introduction', () => {
-    const updateUserInfo = jest.fn();
+    const updateUserInfo = vitest.fn();
 
     const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} />);
 
@@ -87,7 +88,7 @@ describe('header component', () => {
 describe('listen to user events', () => {
 
   test('should level up user', () => {
-    const updateUserInfo = jest.fn();
+    const updateUserInfo = vitest.fn();
     const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} history={mockedHistory} />);
 
     Emitter.emit(LEVEL_UP);
@@ -97,7 +98,7 @@ describe('listen to user events', () => {
   });
 
   test('should level down user', () => {
-    const updateUserInfo = jest.fn();
+    const updateUserInfo = vitest.fn();
     const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} history={mockedHistory} />);
 
     Emitter.emit(LEVEL_DOWN);
@@ -107,7 +108,7 @@ describe('listen to user events', () => {
   });
 
   test('should update user progress up', () => {
-    const updateUserInfo = jest.fn();
+    const updateUserInfo = vitest.fn();
     const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} history={mockedHistory} />);
 
     Emitter.emit(PROGRESS_UP, { amount: 20 });
@@ -117,7 +118,7 @@ describe('listen to user events', () => {
   });
 
   test('should update user progress down', () => {
-    const updateUserInfo = jest.fn();
+    const updateUserInfo = vitest.fn();
 
     const wrapper = shallow(<Header updateUser={updateUserInfo} user={mockedUser} />);
     Emitter.emit(PROGRESS_DOWN, { amount: 5 });
@@ -127,7 +128,7 @@ describe('listen to user events', () => {
   });
 
   test('should emit LEVEL_UP event', () => {
-    const spy = jest.fn();
+    const spy = vitest.fn();
     Emitter.addListener(LEVEL_UP, spy);
 
     const wrapper = shallow(<Header user={mockedUser} history={mockedHistory} />);
@@ -139,7 +140,7 @@ describe('listen to user events', () => {
 
   test('should emit LEVEL_DOWN event', () => {
     const user = Object.assign({}, mockedUser);
-    const spy = jest.fn();
+    const spy = vitest.fn();
     Emitter.addListener(LEVEL_DOWN, spy);
 
     const wrapper = shallow(<Header user={user} history={mockedHistory} />);

@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { shallow } from 'enzyme';
 import { Level } from './Level';
 import Emitter, { TRACKING } from '../../../../packages/emitter/Emitter';
@@ -23,7 +24,7 @@ describe('Level component', () => {
   });
 
   test('should track on click', () => {
-    const callback = jest.fn();
+    const callback = vitest.fn();
     Emitter.addListener(TRACKING, callback);
     const wrapper = shallow(<Level level={2} />);
     wrapper.find('.py-3').simulate('click');

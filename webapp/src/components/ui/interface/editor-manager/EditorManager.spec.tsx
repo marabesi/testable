@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { shallow, mount } from 'enzyme';
 import EditorManager from './EditorManager';
 import { SOURCE_CODE } from './constants';
@@ -8,9 +9,9 @@ describe('EditorManager component', () => {
   document.createRange = () => {
     const range = new Range();
 
-    range.getBoundingClientRect = jest.fn();
+    range.getBoundingClientRect = vitest.fn();
     /* eslint-disable-next-line */
-    range.getClientRects = jest.fn(() => ({
+    range.getClientRects = vitest.fn(() => ({
       item: () => null,
       length: 0,
     }));
@@ -22,7 +23,7 @@ describe('EditorManager component', () => {
   global.Lemming = lemming;
 
   test('should invoke onValidCode callback when code execution is done', () => {
-    const onValidCode = jest.fn();
+    const onValidCode = vitest.fn();
 
     const wrapper = mount(
       <EditorManager
@@ -36,7 +37,7 @@ describe('EditorManager component', () => {
   });
 
   test('should populate error field when invalid code is written', () => {
-    const onValidCode = jest.fn();
+    const onValidCode = vitest.fn();
 
     const wrapper = mount(
       <EditorManager
@@ -116,7 +117,7 @@ describe('EditorManager component', () => {
     expect(isFocused).toBe(true);
   });
 
-  test('should toggle forbidden animation class when focus a read only editor', done => {
+  test('should toggle forbidden animation class when focus a read only editor', () => new Promise(done => {
     const wrapper = shallow(
       <EditorManager
         editor={1}
@@ -137,5 +138,5 @@ describe('EditorManager component', () => {
       expect(wrapper.find('.editor-0.forbidden').length).toEqual(0);
       done();
     }, 3000);
-  });
+  }));
 });

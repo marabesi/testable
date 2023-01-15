@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { mount } from 'enzyme';
 import { Survey } from './Survey';
 import { auth } from '../../../../pages/login/Auth';
@@ -62,7 +63,7 @@ describe('Survey page', () => {
   });
 
   test('level up when skipping the survey', () => {
-    const listener = jest.fn();
+    const listener = vitest.fn();
     Emitter.addListener(LEVEL_UP, listener);
 
     const wrapper = mount(<Survey user={user} skip={true} surveyUrl={surveyUrl} />);

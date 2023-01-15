@@ -52,7 +52,7 @@ describe('completed intro page',  () => {
   });
 
   test('should level up', () => {
-    const callback = jest.fn();
+    const callback = vitest.fn();
     Emitter.addListener(LEVEL_UP, callback);
 
     const wrapper = shallow(<CompletedIntro animationDelay={delay} />);

@@ -21,7 +21,7 @@ describe('SceneContentManager page', () => {
 
   test('should redirect to tutorial page', () => {
     const history = {
-      push: jest.fn()
+      push: vitest.fn()
     };
     const wrapper = mount(
       <BrowserRouter>
@@ -36,7 +36,7 @@ describe('SceneContentManager page', () => {
   });
 
   test('should invoke last scene callback when given as props', () => {
-    const callback = jest.fn();
+    const callback = vitest.fn();
     const wrapper = mount(
       <BrowserRouter>
         <HoC history={history} handleLastScene={callback} />

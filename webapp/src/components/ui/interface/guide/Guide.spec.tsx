@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { shallow, mount } from 'enzyme';
 import { Guide } from './Guide';
 
@@ -27,8 +28,8 @@ describe('guide component', () => {
   });
 
   test('should handle next button click action', () => {
-    const progress = jest.fn();
-    const onHover = jest.fn();
+    const progress = vitest.fn();
+    const onHover = vitest.fn();
     const wrapper = mount(
       <Guide
         guideContent={content}
@@ -45,8 +46,8 @@ describe('guide component', () => {
   });
 
   test('should dispatch hover action when hovering the next button', () => {
-    const onHover = jest.fn();
-    const progress = jest.fn();
+    const onHover = vitest.fn();
+    const progress = vitest.fn();
     const wrapper = mount(
       <Guide
         guideContent={content}
@@ -64,7 +65,7 @@ describe('guide component', () => {
   });
 
   test('should not toggle next class if button is hovered', () => {
-    const progress = jest.fn();
+    const progress = vitest.fn();
     const wrapper = mount(
       <Guide
         guideContent={content}
@@ -101,7 +102,7 @@ describe('guide component', () => {
       expect(wrapper.find('BuggyBug').length).toBe(1);
     });
 
-    test('should show BuggySleepy when the user is afk', done => {
+    test('should show BuggySleepy when the user is afk', () => new Promise(done => {
       const wrapper = mount(
         <Guide
           guideContent={content}
@@ -118,9 +119,9 @@ describe('guide component', () => {
         wrapper.unmount();
         done();
       }, 100);
-    });
+    }));
 
-    test('should show Buggy on user interaction by keyboard', done => {
+    test('should show Buggy on user interaction by keyboard', () => new Promise(done => {
       const wrapper = mount(
         <Guide
           guideContent={content}
@@ -134,7 +135,7 @@ describe('guide component', () => {
         wrapper.update();
         expect(wrapper.find('BuggySleepy').length).toBe(1);
 
-        
+
         const keypress = new KeyboardEvent('keydown', {keyCode: 37});
         document.dispatchEvent(keypress);
 
@@ -143,10 +144,6 @@ describe('guide component', () => {
         expect(wrapper.find('BuggySleepy').length).toBe(0);
         done();
       }, 500);
-    });
-
-    test('should show BuggyHappy', () => {
-
-    });
+    }));
   });
 });

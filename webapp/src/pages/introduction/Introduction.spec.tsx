@@ -7,7 +7,7 @@ import IntlProvider from '../../third-party/wrappers/i18n/IntlProvider';
 describe('Introduction page', () => {
   test('should define route to redirect to when done', () => {
     const history = {
-      push: jest.fn()
+      push: vitest.fn()
     };
 
     const wrapper = mount(

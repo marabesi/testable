@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import { mount } from 'enzyme';
 import Button from './Primary';
 
@@ -8,7 +9,7 @@ describe('Scene component', () => {
   });
 
   test('should fire click event', () => {
-    const click = jest.fn();
+    const click = vitest.fn();
     const wrapper = mount(<Button onClick={click} />);
 
     wrapper.find('button').simulate('click');

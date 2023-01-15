@@ -1,7 +1,8 @@
+import {vitest} from 'vitest';
 import userReducer from './userReducer';
 import { removeUser, SET_USER, updateUser } from '../actions/userAction';
 
-jest.mock('../../../pages/login/Auth', () => ({
+vitest.mock('../../../pages/login/Auth', () => ({
   auth: {
     userRef: function () {
       return {

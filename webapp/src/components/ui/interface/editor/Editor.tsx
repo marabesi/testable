@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 
 import './editor.scss';
 
-require('codemirror/mode/javascript/javascript');
-require('codemirror/lib/codemirror.css');
-require('codemirror/theme/erlang-dark.css');
+import 'codemirror/mode/javascript/javascript';
+import 'codemirror/lib/codemirror.css';
+import 'codemirror/theme/erlang-dark.css';
 
 export default class Editor extends Component {
 

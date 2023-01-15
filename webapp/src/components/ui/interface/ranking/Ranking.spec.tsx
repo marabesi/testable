@@ -1,3 +1,4 @@
+import { vitest } from 'vitest';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils';
 import { Ranking } from './Ranking';
@@ -15,13 +16,13 @@ describe('Ranking component', () => {
   beforeEach(() => {
     container = document.createElement('div');
     document.body.appendChild(container);
-    jest.useFakeTimers();
+    vitest.useFakeTimers();
   });
 
   afterEach(() => {
     document.body.removeChild(container);
     container = null;
-    jest.useRealTimers();
+    vitest.useRealTimers();
   });
 
   test('should show a friendly intl message if the data fetching fails', async () => {
@@ -42,7 +43,7 @@ describe('Ranking component', () => {
   });
 
   test('should render loading component by default', async () => {
-    global.fetch = jest.fn(() => {
+    global.fetch = vitest.fn(() => {
       return Promise.resolve({
         json: () => Promise.resolve(mockedResponse)
       });
@@ -56,7 +57,7 @@ describe('Ranking component', () => {
   });
 
   test('should render table header based on intl', async () => {
-    global.fetch = jest.fn(() => {
+    global.fetch = vitest.fn(() => {
       return Promise.resolve({
         json: () => Promise.resolve(mockedResponse)
       });
@@ -89,7 +90,7 @@ describe('Ranking component', () => {
   });
 
   test('should render ranking table with one user', async () => {
-    global.fetch = jest.fn(() => {
+    global.fetch = vitest.fn(() => {
       return Promise.resolve({
         json: () => Promise.resolve(mockedResponse)
       });
@@ -109,7 +110,7 @@ describe('Ranking component', () => {
   });
 
   test('should show message when data is empty', async () => {
-    global.fetch = jest.fn(() => {
+    global.fetch = vitest.fn(() => {
       return Promise.resolve({
         json: () => Promise.resolve(new Response(''))
       });
