@@ -82,7 +82,7 @@
     "@types/enzyme": "^3.10.11",
     "@types/esprima": "^4.0.3",
     "@types/fbemitter": "^2.0.32",
-    "@types/jest": "^27.5.1",
+    "@types/jest": "^29.5.0",
     "@types/node": "^17.0.21",
     "@types/react": "^17.0.38",
     "@types/react-codemirror": "^1.0.6",
