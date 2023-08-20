@@ -43,21 +43,21 @@ stages:
 
 build:
   stage: build
-  script: 
+  script:
     - docker build . -t registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG --build-arg REACT_APP_FIREBASE_JSON=$REACT_APP_FIREBASE_JSON --build-arg REACT_APP_RANKING_API=$REACT_APP_RANKING_API --build-arg REACT_APP_SHOW_SURVEY=$REACT_APP_SHOW_SURVEY --build-arg REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL
     - docker push registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG
 
 install_dependencies:
   stage: install_dependencies
-  script: 
-    - docker run -v ${CI_PROJECT_DIR}/webapp/node_modules:/var/www/app/node_modules registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG npm install
+  script:
+    - docker run -v ${CI_PROJECT_DIR}/webapp/node_modules:/var/www/app/node_modules registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG npm install --legacy-peer-deps
 
 test:
   stage: test
   script:
     - docker pull registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG
     - docker run -v ${CI_PROJECT_DIR}/webapp/node_modules:/var/www/app/node_modules -e REACT_APP_SURVEY_URL=$REACT_APP_SURVEY_URL registry.gitlab.com/marabesi/testable-github:$CI_COMMIT_REF_SLUG npm run test -- --ci --watchAll=false
-    
+
 lint_report:
   stage: metrics
   script:
