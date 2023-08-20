@@ -1,13 +1,12 @@
 //@ts-nocheck
 import { Component } from 'react';
-import CodeMirror from 'react-codemirror';
+import CodeMirror from '@uiw/react-codemirror';
+import { javascript } from '@codemirror/lang-javascript';
+import { solarizedDark } from '@uiw/codemirror-theme-solarized';
+
 import PropTypes from 'prop-types';
 
 import './editor.scss';
-
-require('codemirror/mode/javascript/javascript');
-require('codemirror/lib/codemirror.css');
-require('codemirror/theme/erlang-dark.css');
 
 export default class Editor extends Component {
 
@@ -15,7 +14,7 @@ export default class Editor extends Component {
     editorIsFocused: false
   }
 
-  onFocus = (isFocused) => {
+  onFocus = (isFocused: boolean) => {
     this.setState({
       editorIsFocused: isFocused
     });
@@ -41,18 +40,19 @@ export default class Editor extends Component {
     const codeMirrorOptions = {
       mode: 'javascript',
       lineNumbers: true,
-      theme: 'erlang-dark',
       showCursorWhenSelecting: false,
       ...options
     };
     return (
       <div className={`editor ${className} `}>
         <CodeMirror
+          theme={solarizedDark}
+          extensions={[javascript({ jsx: true })]}
           value={this.props.value}
-          options={codeMirrorOptions}
-          className="editor"
+          height="300px"
+          basicSetup={codeMirrorOptions}
           onChange={this.props.codeChanged}
-          onFocusChange={this.onFocus}
+          onFocus={this.onFocus}
         />
       </div>
     );

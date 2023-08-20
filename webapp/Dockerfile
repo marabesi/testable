@@ -16,7 +16,7 @@ COPY . .
 RUN apk update && apk upgrade && \
     apk add --no-cache bash git openssh
 
-RUN npm install && \
+RUN npm install --legacy-peer-deps && \
     mkdir public/docs && \
     npm run build
 
