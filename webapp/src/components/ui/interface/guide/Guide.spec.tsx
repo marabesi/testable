@@ -1,6 +1,6 @@
 import { shallow } from 'enzyme';
 import { Guide } from './Guide';
-import {mountApp} from "../../../../__test__/mount";
+import { mountApp } from '../../../../__test__/mount';
 
 const content = [
   { line: 'my_text' },

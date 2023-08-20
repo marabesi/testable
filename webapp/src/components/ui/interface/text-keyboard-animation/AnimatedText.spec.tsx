@@ -1,5 +1,5 @@
 import AnimatedText from './AnimatedText';
-import {mountApp} from "../../../../__test__/mount";
+import { mountApp } from '../../../../__test__/mount';
 
 describe('animated text component', () => {
   test('receive text via props', () => {

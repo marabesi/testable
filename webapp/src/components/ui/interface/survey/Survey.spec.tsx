@@ -4,7 +4,7 @@ import { auth } from '../../../../pages/login/Auth';
 import Button from '../../buttons/primary/Primary';
 import { User } from '../../../../packages/types/User';
 import Emitter, { LEVEL_UP } from '../../../../packages/emitter/Emitter';
-import {mountApp} from "../../../../__test__/mount";
+import { mountApp } from '../../../../__test__/mount';
 
 describe('Survey page', () => {
 

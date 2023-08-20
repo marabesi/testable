@@ -1,5 +1,5 @@
 import Button from './Primary';
-import {mountApp} from "../../../../__test__/mount";
+import { mountApp } from  ../../../../__test__/mount';
 
 describe('Scene component', () => {
   test('should render button', () => {
