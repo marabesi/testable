@@ -1,4 +1,4 @@
-FROM node:14-alpine
+FROM node:16-alpine
 
 ARG REACT_APP_SURVEY_URL='https://form.jotformeu.com/92007220751345?id={id}'
 ARG REACT_APP_FIREBASE_JSON='{}'
