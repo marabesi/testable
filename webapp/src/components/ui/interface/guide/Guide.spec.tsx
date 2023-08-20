@@ -1,5 +1,6 @@
-import { shallow, mount } from 'enzyme';
+import { shallow } from 'enzyme';
 import { Guide } from './Guide';
+import {mountApp} from "../../../../__test__/mount";
 
 const content = [
   { line: 'my_text' },
@@ -15,7 +16,7 @@ describe('guide component', () => {
   });
 
   test('should show up next button', () => {
-    const wrapper = mount(
+    const wrapper = mountApp(
       <Guide
         guideContent={content}
         currentHint={0}
@@ -29,7 +30,7 @@ describe('guide component', () => {
   test('should handle next button click action', () => {
     const progress = jest.fn();
     const onHover = jest.fn();
-    const wrapper = mount(
+    const wrapper = mountApp(
       <Guide
         guideContent={content}
         currentHint={0}
@@ -47,7 +48,7 @@ describe('guide component', () => {
   test('should dispatch hover action when hovering the next button', () => {
     const onHover = jest.fn();
     const progress = jest.fn();
-    const wrapper = mount(
+    const wrapper = mountApp(
       <Guide
         guideContent={content}
         currentHint={0}
@@ -65,7 +66,7 @@ describe('guide component', () => {
 
   test('should not toggle next class if button is hovered', () => {
     const progress = jest.fn();
-    const wrapper = mount(
+    const wrapper = mountApp(
       <Guide
         guideContent={content}
         currentHint={0}
@@ -79,7 +80,7 @@ describe('guide component', () => {
 
   describe('guide image behavior', () => {
     test('should show Buggy by default as guide image', () => {
-      const wrapper = mount(
+      const wrapper = mountApp(
         <Guide
           guideContent={content}
           currentHint={0}
@@ -90,7 +91,7 @@ describe('guide component', () => {
     });
 
     test('should show BuggyBug when the code is invalid', () => {
-      const wrapper = mount(
+      const wrapper = mountApp(
         <Guide
           guideContent={content}
           currentHint={0}
@@ -102,7 +103,7 @@ describe('guide component', () => {
     });
 
     test('should show BuggySleepy when the user is afk', done => {
-      const wrapper = mount(
+      const wrapper = mountApp(
         <Guide
           guideContent={content}
           currentHint={0}
@@ -121,7 +122,7 @@ describe('guide component', () => {
     });
 
     test('should show Buggy on user interaction by keyboard', done => {
-      const wrapper = mount(
+      const wrapper = mountApp(
         <Guide
           guideContent={content}
           currentHint={0}
@@ -134,7 +135,7 @@ describe('guide component', () => {
         wrapper.update();
         expect(wrapper.find('BuggySleepy').length).toBe(1);
 
-        
+
         const keypress = new KeyboardEvent('keydown', {keyCode: 37});
         document.dispatchEvent(keypress);
 

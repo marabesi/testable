@@ -1,5 +1,6 @@
 import ReactDOMServer from 'react-dom/server';
 import { get } from 'lodash';
+import { useIntl } from 'react-intl';
 import TypedText from './TypedText';
 
 export interface TextItem {
@@ -12,10 +13,10 @@ interface Props {
   className?: string;
   text: TextItem[];
   onFinishedTyping?: any;
-  intl?: any;
 }
 
 export default function AnimatedText(props: Props ) {
+  const { messages } = useIntl();
   const renderText = () =>  {
     const text: any = [];
     const prop: TextItem[] = props.text || [];
@@ -23,11 +24,11 @@ export default function AnimatedText(props: Props ) {
     prop.forEach((element: TextItem) => {
       text.push(
         <p key={element.key} className={element.style}>
-          {get(props.intl, `messages.${element.line}`, element.line)}
+          {get(messages, element.line, element.line)}
         </p>
       );
     });
-    // console.log(text);
+
     return [ReactDOMServer.renderToStaticMarkup(text)];
   };
 

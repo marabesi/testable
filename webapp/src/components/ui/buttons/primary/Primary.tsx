@@ -1,14 +1,19 @@
 //@ts-nocheck
 import PropTypes from 'prop-types';
+import { useIntl } from 'react-intl';
+import { get } from 'lodash';
 
 import './primary.scss';
 
 const Primary = props =>  {
+  const { messages } = useIntl();
   const { onClick, description, className, disabled } = props;
   const fullClassName = `button hover:bg-testable-pink-dark focus:outline-none ${className ? className: ''}`;
 
   return (
-    <button className={fullClassName} onClick={onClick} disabled={disabled}>{description}</button>
+    <button className={fullClassName} onClick={onClick} disabled={disabled}>
+      {get(messages, description, description)}
+    </button>
   );
 };
 

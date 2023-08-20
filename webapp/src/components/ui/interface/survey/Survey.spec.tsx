@@ -4,6 +4,7 @@ import { auth } from '../../../../pages/login/Auth';
 import Button from '../../buttons/primary/Primary';
 import { User } from '../../../../packages/types/User';
 import Emitter, { LEVEL_UP } from '../../../../packages/emitter/Emitter';
+import {mountApp} from "../../../../__test__/mount";
 
 describe('Survey page', () => {
 
@@ -54,7 +55,7 @@ describe('Survey page', () => {
   });
 
   test('show up button when loading is done and skip prop is true', () => {
-    const wrapper = mount(<Survey user={user} skip={true} surveyUrl={surveyUrl} />);
+    const wrapper = mountApp(<Survey user={user} skip={true} surveyUrl={surveyUrl} />);
 
     wrapper.find('iframe').simulate('load');
 
@@ -65,7 +66,7 @@ describe('Survey page', () => {
     const listener = jest.fn();
     Emitter.addListener(LEVEL_UP, listener);
 
-    const wrapper = mount(<Survey user={user} skip={true} surveyUrl={surveyUrl} />);
+    const wrapper = mountApp(<Survey user={user} skip={true} surveyUrl={surveyUrl} />);
 
     wrapper.find('iframe').simulate('load');
     wrapper.find(Button).simulate('click');
