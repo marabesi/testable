@@ -32,7 +32,7 @@
     "redux": "^4.1.2",
     "redux-mock-store": "^1.5.3",
     "redux-persist": "^6.0.0",
-    "serve": "^13.0.2",
+    "serve": "^14.2.1",
     "tailwindcss": "^0.7.4",
     "typed.js": "^2.0.12"
   },
