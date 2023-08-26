@@ -3,6 +3,7 @@ import { Component } from 'react';
 import CodeMirror from '@uiw/react-codemirror';
 import { javascript } from '@codemirror/lang-javascript';
 import { solarizedDark } from '@uiw/codemirror-theme-solarized';
+import { content } from '@uiw/codemirror-extensions-events';
 
 import PropTypes from 'prop-types';
 
@@ -13,6 +14,15 @@ export default class Editor extends Component {
   state = {
     editorIsFocused: false
   }
+
+  extension = content({
+    focus: () => {
+      this.onFocus(true);
+    },
+    blur: () => {
+      this.onFocus(false);
+    },
+  });
 
   onFocus = (isFocused: boolean) => {
     this.setState({
@@ -41,18 +51,18 @@ export default class Editor extends Component {
       mode: 'javascript',
       lineNumbers: true,
       showCursorWhenSelecting: false,
+      autocompletion: false,
       ...options
     };
     return (
       <div className={`editor ${className} `}>
         <CodeMirror
           theme={solarizedDark}
-          extensions={[javascript({ jsx: true })]}
+          extensions={[javascript({ jsx: true }), this.extension]}
           value={this.props.value}
           height="300px"
           basicSetup={codeMirrorOptions}
           onChange={this.props.codeChanged}
-          onFocus={this.onFocus}
         />
       </div>
     );
