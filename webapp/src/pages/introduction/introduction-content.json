@@ -3,52 +3,52 @@
   "steps": [
     {
       "step": 1,
-      "button": "content.introduction.what_is_the_first",
+      "button": "content.introduction.first_step.what_is_the_first",
       "content": [
         {
-          "line": "content.introduction.hello_world",
+          "line": "content.introduction.first_step.hello_world",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": "content.introduction.open_curly_brackets",
+          "line": "content.introduction.first_step.open_curly_brackets",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": "content.introduction.my_name_is_buggy",
+          "line": "content.introduction.first_step.my_name_is_buggy",
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "content.introduction.my_dream",
+          "line": "content.introduction.first_step.my_dream",
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "content.introduction.two_challenges",
+          "line": "content.introduction.first_step.two_challenges",
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "content.introduction.close_curly_brackets",
+          "line": "content.introduction.first_step.close_curly_brackets",
           "style": "p-2 text-blue-light"
         }
       ]
     },
     {
       "step": 2,
-      "button": "E o segundo?",
+      "button": "content.introduction.second_step.and_the_second",
       "content": [
         {
-          "line": "_ O primeiro você sabe bem...",
+          "line": "content.introduction.second_step.the_first_you_know",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": "{",
+          "line": "content.introduction.second_step.open_curly_brackets",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": "... programar não é NADA fácil!",
+          "line": "content.introduction.second_step.programming_is_not_easy",
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "}",
+          "line": "content.introduction.second_step.close_curly_brackets",
           "style": "p-2 text-blue-light"
         }
       ]

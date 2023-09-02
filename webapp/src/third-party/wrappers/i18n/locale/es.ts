@@ -92,13 +92,15 @@ export default {
   },
   content: {
     introduction: {
-      what_is_the_first: '¿Qué es primero?',
-      hello_world: '_ Hola mundo',
-      open_curly_brackets: '{',
-      my_name_is_buggy: 'Me llamo é Buggy',
-      my_dream: 'y mi sueño es ser programador',
-      two_challenges: 'pero tengo dos grandes retos',
-      close_curly_brackets: '}',
+      first_step: {
+        what_is_the_first: '¿Cuál es el primero?',
+        hello_world: '_ Hola mundo',
+        open_curly_brackets: '{',
+        my_name_is_buggy: 'Me llamo é Buggy',
+        my_dream: 'y mi sueño es ser programador',
+        two_challenges: 'pero tengo dos grandes retos',
+        close_curly_brackets: '}',
+      }
     }
   }
 };

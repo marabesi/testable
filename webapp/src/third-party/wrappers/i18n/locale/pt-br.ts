@@ -98,13 +98,22 @@ export default {
   },
   content: {
     introduction: {
-      what_is_the_first: 'Qual é o primeiro?',
-      hello_world: '_ Hello world',
-      open_curly_brackets: '{',
-      my_name_is_buggy: 'Meu nome é Buggy',
-      my_dream: 'e meu sonho é ser programador',
-      two_challenges: 'mas tenho dois grandes desafios',
-      close_curly_brackets: '}',
+      first_step: {
+        what_is_the_first: 'Qual é o primeiro?',
+        hello_world: '_ Hello world',
+        open_curly_brackets: '{',
+        my_name_is_buggy: 'Meu nome é Buggy',
+        my_dream: 'e meu sonho é ser programador',
+        two_challenges: 'mas tenho dois grandes desafios',
+        close_curly_brackets: '}',
+      },
+      second_step: {
+        and_the_second: 'E o segundo?',
+        the_first_you_know: '_ O primeiro você sabe bem...',
+        open_curly_brackets: '{',
+        programming_is_not_easy: '... programar não é NADA fácil!',
+        close_curly_brackets: '}',
+      },
     }
   }
 };
