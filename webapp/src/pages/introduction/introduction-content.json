@@ -58,22 +58,22 @@
       "onCompleted": {
         "showBug": true
       },
-      "button": "Um bug?",
+      "button": "content.introduction.third_step.a_bug",
       "content": [
         {
-          "line": "_ E o segundo ...",
+          "line": "content.introduction.third_step.and_the_second",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": ". . .",
+          "line": "content.introduction.third_step.three_dots",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": ". . .",
+          "line": "content.introduction.third_step.three_dots",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": "_Sou um bug!",
+          "line": "content.introduction.third_step.i_am_a_bug",
           "style": "p-2 text-blue-light"
         }
       ]

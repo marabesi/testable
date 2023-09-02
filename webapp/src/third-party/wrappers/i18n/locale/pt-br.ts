@@ -114,6 +114,12 @@ export default {
         programming_is_not_easy: '... programar não é NADA fácil!',
         close_curly_brackets: '}',
       },
+      third_step: {
+        a_bug: 'Um bug?',
+        and_the_second: '_ E o segundo ...',
+        three_dots: '. . .',
+        i_am_a_bug: '_Sou um bug!',
+      }
     }
   }
 };
