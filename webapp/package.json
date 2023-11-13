@@ -13,7 +13,7 @@
     "@uiw/react-codemirror": "^4.21.9",
     "esprima": "^4.0.1",
     "fbemitter": "^3.0.0",
-    "firebase": "^8.10.0",
+    "firebase": "^10.6.0",
     "firebaseui": "^5.0.0",
     "intro.js": "^2.9.3",
     "intro.js-react": "^0.7.0",
