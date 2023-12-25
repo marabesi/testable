@@ -13,7 +13,7 @@ export default class EditorManager extends Component {
     codeError: {},
   };
 
-  codeChanged = (code, editorIndexChanged) => {
+  codeChanged = (code: string, editorIndexChanged: number) => {
     let codeError = Object.assign({}, this.state.codeError);
     codeError[editorIndexChanged] = '';
 
@@ -25,7 +25,7 @@ export default class EditorManager extends Component {
     const lemming = new window.Lemming(code);
     const errorCallback = this.props.onErrorCode[editorIndexChanged];
 
-    lemming.onResult(result => {
+    lemming.onResult((result: string) => {
       codeOutput[editorIndexChanged] = result;
       this.setState({ codeOutput: codeOutput });
 
@@ -34,10 +34,10 @@ export default class EditorManager extends Component {
       }
     });
 
-    lemming.onError(error => {
+    lemming.onError((error: string) => {
       codeError[editorIndexChanged] = error;
 
-      this.setState({ codeError: codeError });
+      this.setState({ codeError });
 
       if (errorCallback) {
         errorCallback(true, editorIndexChanged);
@@ -65,7 +65,7 @@ export default class EditorManager extends Component {
     });
   }
 
-  onEditorFocus = (isFocused, editorIndexChanged) => {
+  onEditorFocus = (isFocused: boolean, editorIndexChanged: number) => {
     if (isFocused && (this.props.options[editorIndexChanged] && this.props.options[editorIndexChanged].readOnly)) {
       this.props.options[editorIndexChanged].className = 'forbidden';
       // @todo maybe popup this method to the parent?
@@ -103,7 +103,7 @@ export default class EditorManager extends Component {
         </div>
       );
     }
-  
+
     return editors;
   }
 }
