@@ -1,19 +1,11 @@
-//@ts-nocheck
-import PropTypes from 'prop-types';
+import { ReactNode } from 'react';
 
-/**
- * @param {object} props
- */
-const Title = props => {
+const Title = ({children, ...props }: { children: ReactNode }) => {
   return (
     <h1 className="uppercase flex justify-between items-center text-blue-lightest p-5 h-16" { ...props }>
-      { props.children }
+      { children }
     </h1>
   );
-};
-
-Title.propTypes = {
-  children: PropTypes.node,
 };
 
 export default Title;
