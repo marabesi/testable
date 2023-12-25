@@ -1,3 +1,4 @@
+import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import ReactGA, { InitializeOptions } from 'react-ga';
 import { Provider } from 'react-redux';
@@ -22,18 +23,21 @@ if (env === PRODUCTION_MODE) {
 }
 
 ReactDOM.render(
-  <Provider store={store}>
-    <PersistGate
-      loading={null}
-      persistor={persistor}
-    >
-      <Background>
-        <HashRouter basename={basename}>
-          <App />
-        </HashRouter>
-      </Background>
-    </PersistGate>,
-  </Provider>,
+  <StrictMode>
+    <Provider store={store}>
+      <PersistGate
+        loading={null}
+        persistor={persistor}
+      >
+        <Background>
+          <HashRouter basename={basename}>
+            <App />
+          </HashRouter>
+        </Background>
+      </PersistGate>,
+    </Provider>
+  </StrictMode>
+  ,
   document.getElementById('root')
 );
 
