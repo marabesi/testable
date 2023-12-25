@@ -44,7 +44,7 @@
     "start": "npm run tailwind:css && react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
-    "build": "npm run lint && npm run rebuild-sass && npm run tailwind:css && npm run docs:build && export NODE_ENV=production && react-scripts build",
+    "build": "export NODE_OPTIONS=--openssl-legacy-provider && npm run lint && npm run rebuild-sass && npm run tailwind:css && npm run docs:build && export NODE_ENV=production && react-scripts build",
     "test": "npm run test:ci -- --maxWorkers=50% --no-cache",
     "test:ci": "react-scripts test --env=jsdom --verbose --colors",
     "coverage": "react-scripts test --env=jsdom --no-cache --collectCoverage --ci --watchAll=false --colors",

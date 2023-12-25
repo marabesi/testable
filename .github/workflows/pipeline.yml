@@ -40,7 +40,7 @@ jobs:
     - name: Use Node.js
       uses: actions/setup-node@v1
       with:
-        node-version: 16.20.2
+        node-version: 18.20.2
 
     - name: cypress setup
       run: |
