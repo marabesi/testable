@@ -10,3 +10,4 @@ env.json
 reports/
 # macos
 .DS_Store
+.vercel

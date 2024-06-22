@@ -25,6 +25,7 @@ app.get('/', (req, res) => {
   console.log('allowedhosts ', allowedHostName)
   console.log('req.host ', req.headers.host)
   if (!allowedHostName.split(',').includes(req.headers.host)) {
+    console.log('host not included in the allowed list', req.headers.host)
     res.status(500).end();
   } else {
     const levelRef = db.ref('users').orderByChild('level').limitToLast(10);
