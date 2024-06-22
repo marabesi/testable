@@ -80,26 +80,26 @@
     },
     {
       "step": 4,
-      "button": "Que amigo?",
+      "button": "content.introduction.forth_step.which_friend",
       "content": [
         {
-          "line": "_{",
+          "line": "global.underscore_and_curly_braces_open",
           "style": "p-2 text-blue-light"
         },
         {
-          "line": "Não temos credibilidade",
+          "line": "content.introduction.forth_step.no_credibility",
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "pelo simples fato de não sermos bem vistos nessa área...",
+          "line": "content.introduction.forth_step.no_credibility_part_2",
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "Ao contrário do meu amigo...",
+          "line": "content.introduction.forth_step.no_credibility_part_3",
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "}",
+          "line": "global.curly_braces_close",
           "style": "p-2 text-blue-light"
         }
       ]
@@ -125,7 +125,7 @@
           "style": "p-2 ml-4 text-blue-light"
         },
         {
-          "line": "}",
+          "line": "global.curly_braces_close",
           "style": "p-2 text-blue-light"
         }
       ]

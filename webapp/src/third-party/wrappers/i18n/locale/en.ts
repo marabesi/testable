@@ -1,6 +1,12 @@
 export default {
   global: {
     options: 'Options',
+    curly_braces_open: '{',
+    underscore_and_curly_braces_open: '_{',
+    curly_braces_close: '}',
+    underscore_and_braces_open: '_[',
+    braces_close: ']',
+    three_dots: '. . .',
   },
   menu: {
     logout: 'logout'
@@ -90,6 +96,12 @@ export default {
   survey: {
     title: 'Survey'
   },
+  intro: {
+    exit: 'Exit',
+    next: 'Next',
+    previous: 'Previous',
+    ready: 'I am ready!',
+  },
   content: {
     introduction: {
       first_step: {
@@ -113,6 +125,12 @@ export default {
         and_the_second: '_ and the second ...',
         three_dots: '. . .',
         i_am_a_bug: '_I am a bug!',
+      },
+      forth_step: {
+        which_friend: 'Which friend?',
+        no_credibility: 'We have no credibility',
+        no_credibility_part_2: 'for the simple fact that we are not well regarded in this area...',
+        no_credibility_part_3: 'Unlike my friend...',
       }
     }
   }

@@ -41,7 +41,7 @@
     "post:css": "postcss -c postcss.config.js src/css/tailwind.css -o src/css/index.css",
     "analyze": "npm run build && source-map-explorer 'build/static/js/*.js'",
     "debug": "export REACT_APP_DEBUG=true && npm run tailwind:css && react-scripts start",
-    "start": "npm run tailwind:css && react-scripts start",
+    "start": "export NODE_OPTIONS=--openssl-legacy-provider && npm run tailwind:css && react-scripts start",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d build",
     "build": "export NODE_OPTIONS=--openssl-legacy-provider && npm run lint && npm run rebuild-sass && npm run tailwind:css && npm run docs:build && export NODE_ENV=production && react-scripts build",

@@ -1,6 +1,12 @@
 export default {
   global: {
-    options: 'Opțiuni'
+    options: 'Opțiuni',
+    curly_braces_open: '{',
+    underscore_and_curly_braces_open: '_{',
+    curly_braces_close: '}',
+    underscore_and_braces_open: '_[',
+    braces_close: ']',
+    three_dots: '. . .',
   },
   menu: {
     logout: 'A iesi afara'

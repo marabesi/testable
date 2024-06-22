@@ -96,6 +96,12 @@ export default {
   survey: {
     title: 'Questionário'
   },
+  intro: {
+    exit: 'Sair',
+    next: 'Próximo',
+    previous: 'Anterior',
+    ready: 'Estou pronto!',
+  },
   content: {
     introduction: {
       first_step: {
@@ -119,6 +125,12 @@ export default {
         and_the_second: '_ E o segundo ...',
         three_dots: '. . .',
         i_am_a_bug: '_Sou um bug!',
+      },
+      forth_step: {
+        which_friend: 'Que amigo?',
+        no_credibility: 'Não temos credibilidade',
+        no_credibility_part_2: 'pelo simples fato de não sermos bem vistos nessa área...',
+        no_credibility_part_3: 'Ao contrário do meu amigo...',
       }
     }
   }
