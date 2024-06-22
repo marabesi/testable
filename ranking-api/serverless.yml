@@ -22,7 +22,7 @@ service: ranking
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs18.x
 
 # you can overwrite defaults here
 #  stage: dev
