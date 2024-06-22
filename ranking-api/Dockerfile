@@ -1,4 +1,4 @@
-FROM node:14-slim
+FROM node:18-slim
 
 WORKDIR /var/www/ranking_api
 
