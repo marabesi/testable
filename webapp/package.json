@@ -72,7 +72,7 @@
     "@stryker-mutator/jest-runner": "^4.6.0",
     "@stryker-mutator/typescript": "^4.0.0",
     "@testing-library/dom": "^8.11.1",
-    "@testing-library/jest-dom": "^6.1.5",
+    "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^12.1.2",
     "@testing-library/user-event": "^13.5.0",
     "@types/enzyme": "^3.10.11",
