@@ -28,19 +28,16 @@ env:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: ./webapp
-
     steps:
-    - uses: actions/checkout@v1
-
+    - uses: actions/checkout@v7
     - name: Use Node.js
-      uses: actions/setup-node@v2
+      uses: actions/setup-node@v7
       with:
-        node-version: 18
+        node-version: 24
 
     - name: cypress setup
       run: |
@@ -64,18 +61,58 @@ jobs:
         npm run build
 
     - name: npm coveralls ✅
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main'
       run: |
         npm run coveralls
 
     - name: npm test ✅
-      if: github.ref != 'refs/heads/master'
+      if: github.ref != 'refs/heads/main'
       run: |
         npm run test:ci
 
     - name: Deploy to gh pages 🚀
-      if: github.ref == 'refs/heads/master'
+      if: github.ref == 'refs/heads/main' && contains(github.event.head_commit.message, 'tagged version')
       uses: JamesIves/github-pages-deploy-action@4.1.4
       with:
         branch: gh-pages
         folder: webapp/build
+
+  dependabot:
+    runs-on: ubuntu-latest
+    needs: [build]
+    if: ${{ github.actor == 'dependabot[bot]' }}
+    permissions:
+      pull-requests: write
+      contents: write
+      repository-projects: read
+
+    steps:
+      - name: Dependabot metadata
+        id: metadata
+        uses: dependabot/fetch-metadata@v1.3.4
+        with:
+          github-token: "${{ secrets.GITHUB_TOKEN }}"
+          skip-commit-verification: true
+
+      - name: Checkout repository
+        uses: actions/checkout@v7
+
+      - name: Approve a PR if not already approved
+        run: |
+          gh pr checkout "$PR_URL"
+            if [ "$(gh pr status --json reviewDecision -q .currentBranch.reviewDecision)" != "APPROVED" ];
+          then
+            gh pr review --approve "$PR_URL"
+          else
+            echo "PR already approved.";
+          fi
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GITHUB_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+      - name: Enable auto-merge for Dependabot PRs
+        if: ${{ contains(github.event.pull_request.title, 'bump')}}
+        run: gh pr merge --auto --rebase "$PR_URL"
+        env:
+          PR_URL: ${{github.event.pull_request.html_url}}
+          GH_TOKEN: ${{secrets.GITHUB_TOKEN}}

@@ -1,9 +1,9 @@
 name: Create repo visualization
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
   push:
     branches:
-      - master
+      - main
 jobs:
   generate_visualization:
     runs-on: ubuntu-latest
