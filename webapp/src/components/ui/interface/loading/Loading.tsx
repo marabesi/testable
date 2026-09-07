@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import LoadingOverlay from 'react-loading-overlay';
+import LoadingOverlay from 'react-loading-overlay-ts';
 import Load from '../../icons/load/Load';
 
 export default class Loading extends Component {

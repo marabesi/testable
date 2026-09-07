@@ -1,10 +1,8 @@
 //@ts-nocheck
 import { Component } from 'react';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
-import { AnimatedSwitch } from 'react-router-transition';
+import { Route, Switch } from 'react-router-dom';
 import PropTypes from 'prop-types';
-import { mapStyles, bounceTransition } from './transition';
 import IntlProvider from '../../third-party/wrappers/i18n/IntlProvider';
 import ProtectedRoute from '../../pages/login/router/ProtectedRoute';
 import Queue from '../../packages/queue/queue';
@@ -97,13 +95,7 @@ export class App extends Component {
     return (
       <IntlProvider locale={locale}>
         <Sidebar>
-          <AnimatedSwitch
-            atEnter={bounceTransition.atEnter}
-            atLeave={bounceTransition.atLeave}
-            atActive={bounceTransition.atActive}
-            mapStyles={mapStyles}
-            className="App"
-          >
+          <Switch>
             <Route exact path={Routes.HOME} component={Login} />
             <ProtectedRoute path={Routes.INTRO} component={Introduction} />
             <ProtectedRoute path={Routes.TUTORIAL_START} component={Tutorial} />
@@ -122,7 +114,7 @@ export class App extends Component {
             <ProtectedRoute path={Routes.TDD_START} component={TddIntro} />
             <ProtectedRoute path={Routes.TDD} component={Tdd} />
             <Route path="*" component={NotFound} />
-          </AnimatedSwitch>
+          </Switch>
         </Sidebar>
       </IntlProvider>
     );
