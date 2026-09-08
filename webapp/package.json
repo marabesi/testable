@@ -28,7 +28,7 @@
     "react-loading-overlay-ts": "^2.0.2",
     "react-modal": "^3.16.3",
     "react-redux": "^7.2.9",
-    "react-router-dom": "^5.3.4",
+    "react-router-dom": "^7.18.3",
     "react-scripts": "4.0.3",
     "react-share": "^4.4.1",
     "react-test-renderer": "^17.0.2",
