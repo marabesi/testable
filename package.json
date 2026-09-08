@@ -1,0 +1,11 @@
+{
+  "name": "testable",
+  "private": true,
+  "workspaces": [
+    "webapp",
+    "ranking-api"
+  ],
+  "engines": {
+    "node": ">=24"
+  }
+}
