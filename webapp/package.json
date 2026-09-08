@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "@codemirror/lang-javascript": "^6.2.5",
-    "@formatjs/intl-relativetimeformat": "^9.5.2",
+    "@formatjs/intl-relativetimeformat": "^12.3.13",
     "@fullhuman/postcss-purgecss": "^8.0.0",
     "@uiw/codemirror-extensions-events": "^4.25.11",
     "@uiw/codemirror-theme-solarized": "^4.25.11",
